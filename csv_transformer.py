@@ -40,6 +40,42 @@ class IntegratedCSVTransformer:
             'numeric_fields_processed': 0
         }
     
+    def _handle_amount_only_scenario(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        Maneja el escenario donde solo hay campo 'amount' sin indicador ni debit/credit.
+        Si amount es negativo: debit=0, credit=abs(amount)
+        Si amount es positivo: debit=amount, credit=0
+        """
+        print(f"💡 HANDLING AMOUNT-ONLY SCENARIO: No debit_credit_indicator found")
+        print(f"   Creating debit_amount and credit_amount based on amount sign")
+        
+        # Inicializar columnas
+        df['debit_amount'] = 0.0
+        df['credit_amount'] = 0.0
+        
+        # Limpiar y procesar la columna amount si es necesario
+        df['amount'] = df['amount'].apply(self._clean_numeric_value_with_zero_fill)
+        
+        # Crear máscaras basadas en el signo de amount
+        positive_amounts = df['amount'] > 0
+        negative_amounts = df['amount'] < 0
+        zero_amounts = df['amount'] == 0
+        
+        # Asignar valores según el signo
+        # Positivos van a debe (debit)
+        df.loc[positive_amounts, 'debit_amount'] = df.loc[positive_amounts, 'amount'].abs()
+        df.loc[positive_amounts, 'credit_amount'] = 0.0
+        
+        # Negativos van a haber (credit)
+        df.loc[negative_amounts, 'debit_amount'] = 0.0
+        df.loc[negative_amounts, 'credit_amount'] = df.loc[negative_amounts, 'amount'].abs()
+        
+        # Ceros quedan en cero (ya inicializados)
+        df.loc[zero_amounts, 'debit_amount'] = 0.0
+        df.loc[zero_amounts, 'credit_amount'] = 0.0
+        
+        
+        return df    
     def create_header_detail_csvs(self, df: pd.DataFrame, user_decisions: Dict, 
                                  standard_fields: List[str]) -> Dict[str, Any]:
         """

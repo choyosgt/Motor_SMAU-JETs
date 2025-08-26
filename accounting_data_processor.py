@@ -51,8 +51,11 @@ class AccountingDataProcessor:
             # Escenario 2: Tiene amount + indicator pero no debit/credit
             elif has_amount and has_indicator and not has_debit and not has_credit:
                 df = self._calculate_debit_credit_from_amount_indicator(df)
+             # NUEVO ESCENARIO 3: Tiene solo amount, sin indicator ni debit/credit
+            elif has_amount and not has_indicator and not has_debit and not has_credit:
+                df = self._handle_amount_only_scenario(df)
             
-            # Escenario 3: Ya tiene todos los campos
+            # Escenario 4: Ya tiene todos los campos
             elif has_amount and has_debit and has_credit:
                 print(f"ℹ️  All amount fields already exist - only numeric cleaning applied")
             

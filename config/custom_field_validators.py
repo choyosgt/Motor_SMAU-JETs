@@ -759,5 +759,66 @@ def test_enhanced_validators():
     
     print(f"\n🎯 Enhanced validators test completed!")
 
+def check_single_date_same_year_pattern(user_decisions: Dict, df: pd.DataFrame) -> Dict:
+    """
+    Comprueba si solo hay una fecha identificada como entry_date con alta confianza,
+    y si todas las fechas son del mismo año, la cambia a posting_date.
+    """
+    # Buscar campos identificados como fechas
+    date_fields = []
+    entry_date_field = None
+    
+    for column_name, decision in user_decisions.items():
+        field_type = decision['field_type']
+        confidence = decision['confidence']
+        
+        if field_type in ['entry_date', 'posting_date']:
+            date_fields.append((column_name, field_type, confidence))
+            if field_type == 'entry_date':
+                entry_date_field = (column_name, confidence)
+    
+    # Solo actuar si hay exactamente una fecha y es entry_date con alta confianza
+    if len(date_fields) == 1 and entry_date_field and entry_date_field[1] >= 0.8:
+        column_name = entry_date_field[0]
+        print(f"\n🔍 CHECKING DATE PATTERN: Only one date field '{column_name}' identified as entry_date")
+        
+        try:
+            # Obtener datos de la columna de fecha
+            date_series = df[column_name].dropna()
+            if len(date_series) == 0:
+                return user_decisions
+            
+            # Parsear fechas y extraer años
+            years = set()
+            parsed_dates = 0
+            
+            for date_value in date_series:
+                try:
+                    from dateutil import parser
+                    parsed_date = parser.parse(str(date_value))
+                    years.add(parsed_date.year)
+                    parsed_dates += 1
+                except:
+                    continue
+            
+            # Verificar si todas las fechas son del mismo año
+            if len(years) == 1 and parsed_dates > 0:
+                year = list(years)[0]
+                print(f"   ✅ All {parsed_dates} dates are from the same year: {year}")
+                print(f"   🔄 CHANGING field type: entry_date → posting_date")
+                
+                # Actualizar la decisión
+                user_decisions[column_name]['field_type'] = 'posting_date'
+                user_decisions[column_name]['confidence'] = min(user_decisions[column_name]['confidence'] + 0.1, 1.0)
+                
+                print(f"   📅 Field '{column_name}' reclassified as posting_date (confidence: {user_decisions[column_name]['confidence']:.3f})")
+            else:
+                print(f"   ℹ️ Dates span multiple years ({len(years)} years), keeping as entry_date")
+                
+        except Exception as e:
+            print(f"   ⚠️ Error checking date pattern: {e}")
+    
+    return user_decisions
+
 if __name__ == "__main__":
     test_enhanced_validators()
