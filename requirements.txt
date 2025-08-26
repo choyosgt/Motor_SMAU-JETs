@@ -1,0 +1,36 @@
+# Dependencias del Sistema Dinámico de Detección de Campos
+# Instalar con: pip install -r requirements.txt
+
+# Dependencias principales
+pandas>=1.5.0
+numpy>=1.21.0
+
+# Configuración YAML
+PyYAML>=6.0
+
+# Soporte para Excel
+openpyxl>=3.0.0
+xlrd>=2.0.0
+
+# Dependencias opcionales para funcionalidades avanzadas
+# Descomenta las que necesites:
+
+# Para análisis semántico (opcional)
+# scikit-learn>=1.0.0
+# sentence-transformers>=2.0.0
+
+# Para bases de datos (opcional)
+# sqlalchemy>=1.4.0
+# psycopg2-binary>=2.9.0  # PostgreSQL
+# pymysql>=1.0.0  # MySQL
+
+# Para validaciones avanzadas (opcional)
+# python-dateutil>=2.8.0
+# regex>=2022.0.0
+
+# Para logging mejorado (opcional)
+# colorlog>=6.0.0
+
+# Para testing (desarrollo)
+# pytest>=7.0.0
+# pytest-cov>=4.0.0

@@ -1,0 +1,288 @@
+{
+  "report_metadata": {
+    "report_type": "csv_analysis",
+    "generated_at": "2025-07-17T11:36:30.315494",
+    "tool_version": "2.1.0"
+  },
+  "file_info": {
+    "original_file": "data/ejemplo_generico_11.csv",
+    "file_name": "ejemplo_generico_11.csv",
+    "file_size_bytes": 1650,
+    "processing_timestamp": "20250717_103003",
+    "rows_count": 20,
+    "columns_count": 14,
+    "erp_system": "Generic_ES"
+  },
+  "data_quality_analysis": {
+    "TxID": {
+      "data_type": "object",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 10,
+      "sample_values": [
+        "TX001",
+        "TX001",
+        "TX002",
+        "TX002",
+        "TX003"
+      ]
+    },
+    "FE": {
+      "data_type": "int64",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 10,
+      "sample_values": [
+        20240115,
+        20240115,
+        20240116,
+        20240116,
+        20240117
+      ]
+    },
+    "LN": {
+      "data_type": "int64",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 2,
+      "sample_values": [
+        1,
+        2,
+        1,
+        2,
+        1
+      ]
+    },
+    "GL": {
+      "data_type": "int64",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 10,
+      "sample_values": [
+        430001,
+        113001,
+        620001,
+        113001,
+        113001
+      ]
+    },
+    "AMT": {
+      "data_type": "float64",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 10,
+      "sample_values": [
+        1150.0,
+        1150.0,
+        2400.0,
+        2400.0,
+        1800.0
+      ]
+    },
+    "DC": {
+      "data_type": "object",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 2,
+      "sample_values": [
+        "D",
+        "C",
+        "D",
+        "C",
+        "D"
+      ]
+    },
+    "TX": {
+      "data_type": "object",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 10,
+      "sample_values": [
+        "Adq. equipamiento",
+        "Adq. equipamiento",
+        "Mkt. digital",
+        "Mkt. digital",
+        "Cobro Cli. A"
+      ]
+    },
+    "CC": {
+      "data_type": "object",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 3,
+      "sample_values": [
+        "CC01",
+        "CC01",
+        "CC02",
+        "CC02",
+        "CC01"
+      ]
+    },
+    "YR": {
+      "data_type": "int64",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 1,
+      "sample_values": [
+        24,
+        24,
+        24,
+        24,
+        24
+      ]
+    },
+    "CU": {
+      "data_type": "object",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 1,
+      "sample_values": [
+        "E",
+        "E",
+        "E",
+        "E",
+        "E"
+      ]
+    },
+    "ST": {
+      "data_type": "object",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 1,
+      "sample_values": [
+        "A",
+        "A",
+        "A",
+        "A",
+        "A"
+      ]
+    },
+    "BY": {
+      "data_type": "object",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 6,
+      "sample_values": [
+        "U01",
+        "U01",
+        "U02",
+        "U02",
+        "U03"
+      ]
+    },
+    "DT": {
+      "data_type": "int64",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 10,
+      "sample_values": [
+        20240115093000,
+        20240115093000,
+        20240116104500,
+        20240116104500,
+        20240117081500
+      ]
+    },
+    "TP": {
+      "data_type": "object",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 10,
+      "sample_values": [
+        "EQ",
+        "EQ",
+        "MK",
+        "MK",
+        "CB"
+      ]
+    }
+  },
+  "mapping_statistics": {
+    "total_columns": 14,
+    "successfully_mapped": 10,
+    "rejected_mappings": 4,
+    "mapping_rate_percent": 71.42857142857143
+  },
+  "field_type_analysis": {
+    "journal_id": {
+      "count": 1,
+      "columns": [
+        "TxID"
+      ],
+      "avg_confidence": 0.6
+    },
+    "effective_date": {
+      "count": 1,
+      "columns": [
+        "FE"
+      ],
+      "avg_confidence": 0.6
+    },
+    "entered_date": {
+      "count": 1,
+      "columns": [
+        "DT"
+      ],
+      "avg_confidence": 0.5
+    },
+    "amount": {
+      "count": 1,
+      "columns": [
+        "AMT"
+      ],
+      "avg_confidence": 1.0
+    },
+    "fiscal_year": {
+      "count": 1,
+      "columns": [
+        "YR"
+      ],
+      "avg_confidence": 1.0
+    }
+  },
+  "csv_transformation": {
+    "mapped_csv_path": "results\\mapped_csvs\\ejemplo_generico_11_mapped_20250717_103003.csv",
+    "total_columns": 14,
+    "mapped_columns": 10,
+    "unmapped_columns": 4,
+    "column_mappings": {
+      "TxID": "journal_id",
+      "FE": "effective_date",
+      "DT": "entered_date",
+      "AMT": "amount",
+      "YR": "fiscal_year",
+      "LN": "journal_id_line_number",
+      "GL": "gl_account_number",
+      "DC": "amount_credit_debit_indicator",
+      "TX": "je_header_description",
+      "BY": "entered_by"
+    },
+    "unmapped_column_list": [
+      "CC",
+      "CU",
+      "ST",
+      "TP"
+    ],
+    "rows_count": 20
+  },
+  "training_session_summary": {
+    "confirmed_mappings": 3,
+    "new_mappings": 2,
+    "corrected_mappings": 5,
+    "rejected_mappings": 4
+  }
+}

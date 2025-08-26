@@ -1,0 +1,249 @@
+{
+  "file_info": {
+    "file_path": "data/Libro Diario Ademco.csv",
+    "file_name": "Libro Diario Ademco.csv",
+    "erp_system": "Generic_ES",
+    "total_columns": 20,
+    "timestamp": "20250717_132111",
+    "backup_created": "config\\backups\\dynamic_fields_config_backup_20250717_132113.yaml"
+  },
+  "original_mappings": {
+    " Period": {
+      "field_type": "period",
+      "field_name": "Período",
+      "confidence": 1.75
+    },
+    "Year": {
+      "field_type": "fiscal_year",
+      "field_name": "Año fiscal",
+      "confidence": 1.65
+    },
+    "G/L": {
+      "field_type": "gl_account_number",
+      "field_name": "Número cuenta contable",
+      "confidence": 1.35
+    },
+    "Plnt": {
+      "field_type": "journal_id_line_number",
+      "field_name": "Número de línea de Asiento",
+      "confidence": 0.348
+    },
+    "Account": {
+      "field_type": "gl_account_number",
+      "field_name": "Número cuenta contable",
+      "confidence": 1.25
+    },
+    "ID": {
+      "field_type": "journal_id",
+      "field_name": "ID de Asiento",
+      "confidence": 1.05
+    },
+    "Texts": {
+      "field_type": "je_line_description",
+      "field_name": "Descripción línea asiento",
+      "confidence": 0.31166666666666665
+    },
+    "User name": {
+      "field_type": "entered_by",
+      "field_name": "Ingresado por",
+      "confidence": 1.75
+    },
+    "Amount in doc. curr.": {
+      "field_type": "amount_credit_debit_indicator",
+      "field_name": "Indicador Debe/Haber",
+      "confidence": 0.35857142857142854
+    },
+    "Amount in local cur.": {
+      "field_type": "document_type",
+      "field_name": "Tipo de documento",
+      "confidence": 0.34875
+    },
+    "Assignment": {
+      "field_type": "journal_id",
+      "field_name": "ID de Asiento",
+      "confidence": 0.341875
+    },
+    "DocumentNo": {
+      "field_type": "journal_id",
+      "field_name": "ID de Asiento",
+      "confidence": 1.75
+    },
+    "LCurr": {
+      "field_type": "amount_currency",
+      "field_name": "Moneda importe",
+      "confidence": 0.3566666666666667
+    },
+    "Curr.": {
+      "field_type": "amount_currency",
+      "field_name": "Moneda importe",
+      "confidence": 1.05
+    },
+    "Pstng Date": {
+      "field_type": "effective_date",
+      "field_name": "Fecha efectiva",
+      "confidence": 1.15
+    },
+    "Text": {
+      "field_type": "je_line_description",
+      "field_name": "Descripción línea asiento",
+      "confidence": 0.95
+    },
+    "Typ": {
+      "field_type": "document_type",
+      "field_name": "Tipo de documento",
+      "confidence": 0.34875
+    }
+  },
+  "confirmed_mappings": {
+    " Period": {
+      "field_type": "period",
+      "confidence": 1.75,
+      "source_erp": "Generic_ES",
+      "field_name": "Período"
+    },
+    "Year": {
+      "field_type": "fiscal_year",
+      "confidence": 1.65,
+      "source_erp": "Generic_ES",
+      "field_name": "Año fiscal"
+    },
+    "G/L": {
+      "field_type": "gl_account_number",
+      "confidence": 1.35,
+      "source_erp": "Generic_ES",
+      "field_name": "Número cuenta contable"
+    },
+    "Account": {
+      "field_type": "gl_account_number",
+      "confidence": 1.25,
+      "source_erp": "Generic_ES",
+      "field_name": "Número cuenta contable"
+    },
+    "Texts": {
+      "field_type": "je_line_description",
+      "confidence": 0.31166666666666665,
+      "source_erp": "Generic_ES",
+      "field_name": "Descripción línea asiento"
+    },
+    "User name": {
+      "field_type": "entered_by",
+      "confidence": 1.75,
+      "source_erp": "Generic_ES",
+      "field_name": "Ingresado por"
+    },
+    "DocumentNo": {
+      "field_type": "journal_id",
+      "confidence": 1.75,
+      "source_erp": "Generic_ES",
+      "field_name": "ID de Asiento"
+    },
+    "LCurr": {
+      "field_type": "amount_currency",
+      "confidence": 0.3566666666666667,
+      "source_erp": "Generic_ES",
+      "field_name": "Moneda importe"
+    },
+    "Curr.": {
+      "field_type": "amount_currency",
+      "confidence": 1.05,
+      "source_erp": "Generic_ES",
+      "field_name": "Moneda importe"
+    },
+    "Pstng Date": {
+      "field_type": "effective_date",
+      "confidence": 1.15,
+      "source_erp": "Generic_ES",
+      "field_name": "Fecha efectiva"
+    },
+    "Text": {
+      "field_type": "je_line_description",
+      "confidence": 0.95,
+      "source_erp": "Generic_ES",
+      "field_name": "Descripción línea asiento"
+    },
+    "Typ": {
+      "field_type": "document_type",
+      "confidence": 0.34875,
+      "source_erp": "Generic_ES",
+      "field_name": "Tipo de documento"
+    }
+  },
+  "new_mappings": {},
+  "corrected_mappings": {
+    "Amount in doc. curr.": {
+      "original": {
+        "field_type": "amount_credit_debit_indicator",
+        "confidence": 0.35857142857142854,
+        "source_erp": "Generic_ES",
+        "field_name": "Indicador Debe/Haber"
+      },
+      "corrected": {
+        "field_type": "amount",
+        "field_name": "Importe",
+        "confidence": 1.0,
+        "source": "manual"
+      }
+    },
+    "Amount in local cur.": {
+      "original": {
+        "field_type": "document_type",
+        "confidence": 0.34875,
+        "source_erp": "Generic_ES",
+        "field_name": "Tipo de documento"
+      },
+      "corrected": {
+        "field_type": "amount",
+        "field_name": "Importe",
+        "confidence": 1.0,
+        "source": "manual"
+      }
+    }
+  },
+  "rejected_mappings": [
+    {
+      "column": "Unnamed: 3",
+      "reason": "user_rejected",
+      "original_mapping": null
+    },
+    {
+      "column": "CoCd",
+      "reason": "user_rejected",
+      "original_mapping": null
+    },
+    {
+      "column": "Plnt",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "journal_id_line_number",
+        "confidence": 0.348,
+        "source_erp": "Generic_ES",
+        "field_name": "Número de línea de Asiento"
+      }
+    },
+    {
+      "column": "ID",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "journal_id",
+        "confidence": 1.05,
+        "source_erp": "Generic_ES",
+        "field_name": "ID de Asiento"
+      }
+    },
+    {
+      "column": "Assignment",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "journal_id",
+        "confidence": 0.341875,
+        "source_erp": "Generic_ES",
+        "field_name": "ID de Asiento"
+      }
+    },
+    {
+      "column": "Tr.Prt",
+      "reason": "user_rejected",
+      "original_mapping": null
+    }
+  ]
+}

@@ -1,0 +1,840 @@
+# automatic_confirmation_trainer.py - TRAINER AUTOMÁTICO SIN CONFIRMACIÓN MANUAL
+# BASADO EN: manual_confirmation_trainer.py pero con decisiones automáticas
+# REGLAS: Mayor confianza gana, excepción para 'amount' prioriza LOCAL siempre
+
+import pandas as pd
+import os
+import sys
+import re
+from typing import Dict, List, Optional, Tuple, Any
+import logging
+from datetime import datetime
+import json
+from pathlib import Path
+import yaml
+
+# Configurar logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+class AutomaticConfirmationTrainingSession:
+    """Sesión de entrenamiento AUTOMÁTICO - sin confirmación manual"""
+    
+    def __init__(self, csv_file: str, erp_hint: str = None):
+        self.csv_file = csv_file
+        self.erp_hint = erp_hint
+        self.df = None
+        self.mapper = None
+        self.detector = None
+        
+        # MISMOS CAMPOS ESTÁNDAR que manual trainer
+        self.standard_fields = [
+            'journal_entry_id', 'line_number', 'description', 'line_description',
+            'posting_date', 'fiscal_year', 'period_number', 'gl_account_number',
+            'amount', 'debit_amount', 'credit_amount', 'debit_credit_indicator',
+            'prepared_by', 'entry_date', 'entry_time', 'gl_account_name', 'vendor_id'
+        ]
+        
+        # Estadísticas de entrenamiento automático
+        self.training_stats = {
+            'columns_processed': 0,
+            'automatic_mappings': 0,
+            'conflicts_resolved': 0,
+            'amount_conflicts_resolved': 0,
+            'high_confidence_mappings': 0,
+            'low_confidence_mappings': 0,
+            'rejected_low_confidence': 0,  # NUEVO: rechazados por baja confianza
+            'unmapped_columns': 0,
+            'synonyms_added': 0,
+            'regex_patterns_added': 0
+        }
+        
+        # Umbral de confianza mínimo
+        self.confidence_threshold = 0.75
+        
+        # Decisiones automáticas registradas (compatible con manual trainer)
+        self.user_decisions = {}  # Mantenemos el mismo nombre para compatibilidad
+        self.learned_patterns = {}
+        self.new_synonyms = {}
+        self.new_regex_patterns = {}
+        self.conflict_resolutions = {}
+        
+        # Archivos de configuración (MISMOS que manual trainer)
+        self.yaml_config_file = "config/pattern_learning_config.yaml"
+        self.dynamic_fields_file = "config/dynamic_fields_config.yaml"
+        
+    def initialize(self) -> bool:
+        """Inicializa la sesión de entrenamiento automático"""
+        try:
+            print(f"Initializing AUTOMATIC TRAINING Session...")
+            print(f"File: {self.csv_file}")
+            print(f"ERP Hint: {self.erp_hint or 'Auto-detect'}")
+            print(f"Mode: AUTOMATIC (no manual confirmation)")
+            print(f"Confidence resolution: Highest confidence wins")
+            print(f"Confidence threshold: Only mappings > {self.confidence_threshold} will be included")
+            print(f"Amount exception: Prioritize 'local' ALWAYS in name")
+            
+            # Verificar archivo
+            if not os.path.exists(self.csv_file):
+                print(f"File not found: {self.csv_file}")
+                return False
+            
+            # Cargar CSV
+            self.df = pd.read_csv(self.csv_file, encoding='utf-8')
+            print(f"Loaded {len(self.df)} rows x {len(self.df.columns)} columns")
+            
+            # Importar módulos del sistema (MISMOS que manual trainer)
+            try:
+                from core.field_mapper import FieldMapper
+                from core.field_detector import FieldDetector
+                
+                self.mapper = FieldMapper()
+                self.detector = FieldDetector()
+                print("System modules imported successfully")
+                
+            except ImportError as e:
+                print(f"Failed to import system modules: {e}")
+                return False
+            
+            # Cargar configuración de patrones aprendidos
+            self._load_learned_patterns()
+            
+            return True
+            
+        except Exception as e:
+            print(f"Initialization failed: {e}")
+            return False
+    
+    def _load_learned_patterns(self):
+        """Carga patrones previamente aprendidos (IGUAL que manual trainer)"""
+        try:
+            if os.path.exists(self.yaml_config_file):
+                with open(self.yaml_config_file, 'r', encoding='utf-8') as f:
+                    config = yaml.safe_load(f)
+                    self.learned_patterns = config.get('learned_patterns', {})
+                    print(f"Loaded {len(self.learned_patterns)} learned patterns")
+            else:
+                print("No previous learned patterns found")
+        except Exception as e:
+            print(f"Could not load learned patterns: {e}")
+            self.learned_patterns = {}
+    
+    def run_automatic_training(self) -> Dict:
+        """Ejecuta el entrenamiento automático SIN confirmación manual"""
+        try:
+            print(f"\nStarting AUTOMATIC FIELD TRAINING...")
+            print(f"=" * 55)
+            print(f"All decisions will be made automatically based on confidence")
+            print(f"Special rule for 'amount': prioritize 'local' columns ALWAYS")
+            print(f"Confidence threshold: {self.confidence_threshold} (only mappings above this will be included)")
+            
+            # Análisis inicial del DataFrame (IGUAL que manual trainer)
+            print(f"CSV Columns ({len(self.df.columns)}):")
+            for i, col in enumerate(self.df.columns, 1):
+                print(f"  {i:2d}. {col}")
+            print()
+            
+            # NUEVO ENFOQUE: Una sola pasada usando el mapper directamente
+            print(f"Processing all columns using field mapper...")
+            print("-" * 50)
+            
+            all_mappings = {}  # column_name -> (field_type, confidence)
+            field_conflicts = {}  # field_type -> [(column_name, confidence), ...]
+            
+            # Procesar cada columna usando SOLO field_mapper
+            for column_name in self.df.columns:
+                print(f"Processing: '{column_name}'")
+                
+                try:
+                    # Usar mapper directamente (como en manual trainer)
+                    sample_data = self.df[column_name].dropna().head(100)
+                    mapping_result = self.mapper.find_field_mapping(
+                        column_name,
+                        self.erp_hint,
+                        sample_data=sample_data
+                    )
+                    
+                    if mapping_result:
+                        field_type, confidence = mapping_result
+                        
+                        # FILTRO DE CONFIANZA: Solo incluir si confianza > threshold
+                        if confidence > self.confidence_threshold:
+                            # Solo incluir si está en nuestros campos estándar
+                            if field_type in self.standard_fields:
+                                all_mappings[column_name] = (field_type, confidence)
+                                
+                                # Registrar para detección de conflictos
+                                if field_type not in field_conflicts:
+                                    field_conflicts[field_type] = []
+                                field_conflicts[field_type].append((column_name, confidence))
+                                
+                                print(f"  ✓ {field_type} (confidence: {confidence:.3f}) - ACCEPTED")
+                            else:
+                                print(f"  → {field_type} (not in standard fields - skipped)")
+                        else:
+                            print(f"  ✗ {field_type} (confidence: {confidence:.3f}) - REJECTED (below {self.confidence_threshold})")
+                            self.training_stats['rejected_low_confidence'] += 1
+                    else:
+                        print(f"  → No mapping found")
+                    
+                    self.training_stats['columns_processed'] += 1
+                    
+                except Exception as e:
+                    print(f"  → Error processing column: {e}")
+                    logger.warning(f"Error processing column {column_name}: {e}")
+            
+            print(f"\nConflict Detection Results:")
+            print("-" * 30)
+            
+            # Detectar y resolver conflictos
+            final_mappings = {}
+            for field_type, candidates in field_conflicts.items():
+                if len(candidates) == 1:
+                    # No hay conflicto
+                    column_name, confidence = candidates[0]
+                    final_mappings[column_name] = {
+                        'field_type': field_type,
+                        'confidence': confidence,
+                        'resolution_type': 'no_conflict'
+                    }
+                    print(f"  {field_type}: '{column_name}' (no conflict)")
+                else:
+                    # HAY CONFLICTO - resolver automáticamente
+                    print(f"  CONFLICT - {field_type}: {len(candidates)} candidates")
+                    for col, conf in candidates:
+                        print(f"    '{col}': {conf:.3f}")
+                    
+                    winner = self._resolve_single_conflict_automatically(field_type, candidates)
+                    if winner:
+                        column_name, confidence, resolution_type = winner
+                        final_mappings[column_name] = {
+                            'field_type': field_type,
+                            'confidence': confidence,
+                            'resolution_type': resolution_type
+                        }
+                        
+                        # Registrar resolución de conflicto
+                        self.conflict_resolutions[field_type] = {
+                            'winner': column_name,
+                            'all_candidates': candidates,
+                            'resolution_type': resolution_type
+                        }
+                        
+                        self.training_stats['conflicts_resolved'] += 1
+                        
+                        if field_type == 'amount':
+                            self.training_stats['amount_conflicts_resolved'] += 1
+                        
+                        print(f"    WINNER: '{column_name}' ({resolution_type})")
+            
+            # Actualizar user_decisions desde mappings finales
+            self._update_user_decisions_from_mappings(final_mappings)
+            
+            # Finalizar entrenamiento
+            result = self._finalize_automatic_training()
+            
+            return result
+            
+        except Exception as e:
+            print(f"Automatic training failed: {e}")
+            import traceback
+            traceback.print_exc()
+            return {'success': False, 'error': str(e)}
+    
+    def _resolve_single_conflict_automatically(self, field_type: str, candidates: List[Tuple[str, float]]) -> Optional[Tuple[str, float, str]]:
+        """Resuelve un conflicto específico automáticamente"""
+        # REGLA ESPECIAL PARA AMOUNT: Priorizar columnas con 'local' SIEMPRE
+        if field_type == 'amount':
+            amount_winner = self._resolve_amount_conflict(candidates)
+            if amount_winner:
+                return amount_winner
+        
+        # REGLA GENERAL: Mayor confianza gana
+        candidates_sorted = sorted(candidates, key=lambda x: x[1], reverse=True)
+        winner_column, winner_confidence = candidates_sorted[0]
+        
+        return (winner_column, winner_confidence, 'highest_confidence')
+    
+    def _resolve_amount_conflict(self, candidates: List[Tuple[str, float]]) -> Optional[Tuple[str, float, str]]:
+        """Resuelve conflictos específicamente para el campo 'amount' - PRIORIDAD ABSOLUTA A 'local'"""
+        print(f"    RESOLVING AMOUNT CONFLICT - checking for 'local' priority...")
+        
+        # PASO 1: Buscar candidatos que contengan 'local' (PRIORIDAD ABSOLUTA)
+        local_candidates = []
+        
+        for column_name, confidence in candidates:
+            column_lower = column_name.lower()
+            
+            # Verificar si contiene la palabra 'local'
+            if 'local' in column_lower:
+                local_candidates.append((column_name, confidence, 'amount_priority_local_ABSOLUTE'))
+                print(f"    FOUND LOCAL CANDIDATE: '{column_name}' (confidence: {confidence:.3f})")
+        
+        # Si hay candidatos con 'local', elegir el de mayor confianza entre ellos
+        # IMPORTANTE: 'local' SIEMPRE gana, sin importar otras consideraciones
+        if local_candidates:
+            best_local = max(local_candidates, key=lambda x: x[1])
+            print(f"    LOCAL PRIORITY RULE ACTIVATED: '{best_local[0]}' WINS (contains 'local')")
+            return best_local
+        
+        # PASO 2: Si no hay candidatos con 'local', buscar ml, lm (prioridad secundaria)
+        priority_keywords = ['ml', 'lm']
+        priority_candidates = []
+        
+        for column_name, confidence in candidates:
+            column_lower = column_name.lower()
+            
+            # Verificar si contiene alguna palabra clave prioritaria
+            for keyword in priority_keywords:
+                if keyword in column_lower:
+                    priority_candidates.append((column_name, confidence, f'amount_priority_{keyword}'))
+                    print(f"    FOUND PRIORITY CANDIDATE: '{column_name}' (contains '{keyword}')")
+                    break
+        
+        # Si hay candidatos prioritarios, elegir el de mayor confianza entre ellos
+        if priority_candidates:
+            best_priority = max(priority_candidates, key=lambda x: x[1])
+            print(f"    PRIORITY RULE: '{best_priority[0]}' contains '{best_priority[2].split('_')[-1]}'")
+            return best_priority
+        
+        # PASO 3: Si no hay candidatos prioritarios, usar regla general (mayor confianza)
+        candidates_sorted = sorted(candidates, key=lambda x: x[1], reverse=True)
+        winner_column, winner_confidence = candidates_sorted[0]
+        
+        print(f"    FALLBACK RULE: '{winner_column}' has highest confidence ({winner_confidence:.3f})")
+        return (winner_column, winner_confidence, 'amount_highest_confidence')
+    
+    def _update_user_decisions_from_mappings(self, final_mappings: Dict):
+        """Actualiza user_decisions basado en mapeos finales (compatible con manual trainer)"""
+        for column_name, mapping_info in final_mappings.items():
+            field_type = mapping_info['field_type']
+            confidence = mapping_info['confidence']
+            resolution_type = mapping_info['resolution_type']
+            
+            # Determinar tipo de decisión automática
+            if resolution_type == 'no_conflict':
+                decision_type = 'automatic_no_conflict'
+            else:
+                decision_type = f'automatic_{resolution_type}'
+            
+            self.user_decisions[column_name] = {
+                'field_type': field_type,
+                'confidence': confidence,
+                'decision_type': decision_type,
+                'resolution_type': resolution_type
+            }
+            
+            # Actualizar estadísticas
+            if confidence > 0.8:
+                self.training_stats['high_confidence_mappings'] += 1
+            else:
+                self.training_stats['low_confidence_mappings'] += 1
+                
+            self.training_stats['automatic_mappings'] += 1
+    
+    def _finalize_automatic_training(self) -> Dict:
+        """Finaliza el entrenamiento automático y genera resultados (FORMATO COMPATIBLE)"""
+        try:
+            print(f"\nAUTOMATIC TRAINING FINALIZATION")
+            print(f"=" * 40)
+            
+            # Generar tabla de mapeo final (IGUAL que manual trainer)
+            mapping_table = self._generate_mapping_table()
+            
+            # Generar reporte
+            report = self._generate_training_report()
+            
+            # Crear CSV transformados (MISMA FUNCIÓN que manual trainer)
+            csv_result = self._create_transformed_csv()
+            
+            return {
+                'success': True,
+                'training_stats': self.training_stats,
+                'user_decisions': self.user_decisions,  # Compatible con manual trainer
+                'learned_patterns': self.learned_patterns,
+                'conflict_resolutions': self.conflict_resolutions,
+                'report_file': report,
+                'header_csv': csv_result.get('header_file') if isinstance(csv_result, dict) else None,
+                'detail_csv': csv_result.get('detail_file') if isinstance(csv_result, dict) else None,
+                'csv_info': csv_result.get('csv_info') if isinstance(csv_result, dict) else None
+            }
+            
+        except Exception as e:
+            print(f"Finalization failed: {e}")
+            return {'success': False, 'error': str(e)}
+    
+    def _generate_mapping_table(self) -> str:
+        """Genera tabla de mapeo final (IGUAL que manual trainer)"""
+        try:
+            table_lines = []
+            table_lines.append(f"{'Campo Estándar':<25} | {'Columna Mapeada':<30} | {'Confianza':<10}")
+            table_lines.append(f"{'-'*25} | {'-'*30} | {'-'*10}")
+            
+            for standard_field in self.standard_fields:
+                mapped_column = "No mapeado"
+                confidence = "0.000"
+                
+                for column_name, decision in self.user_decisions.items():
+                    if decision['field_type'] == standard_field:
+                        mapped_column = column_name
+                        confidence = f"{decision['confidence']:.3f}"
+                        break
+                
+                table_lines.append(f"{standard_field:<25} | {mapped_column:<30} | {confidence:<10}")
+            
+            table_str = "\n".join(table_lines)
+            print(f"\nFINAL MAPPING TABLE:")
+            print(table_str)
+            
+            return table_str
+            
+        except Exception as e:
+            print(f"Could not generate mapping table: {e}")
+            return ""
+    
+    def _generate_training_report(self) -> str:
+        """Genera reporte de entrenamiento automático (FORMATO COMPATIBLE)"""
+        try:
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            report_file = f"automatic_training_report_{timestamp}.txt"
+            
+            with open(report_file, 'w', encoding='utf-8') as f:
+                f.write(f"AUTOMATIC FIELD TRAINING SESSION REPORT\n")
+                f.write(f"=" * 50 + "\n\n")
+                
+                f.write(f"Session Information:\n")
+                f.write(f"  CSV File: {self.csv_file}\n")
+                f.write(f"  ERP Hint: {self.erp_hint or 'Auto-detect'}\n")
+                f.write(f"  Standard Fields: {len(self.standard_fields)}\n")
+                f.write(f"  Mode: AUTOMATIC (no manual confirmation)\n")
+                f.write(f"  Timestamp: {datetime.now().isoformat()}\n\n")
+                
+                f.write(f"Training Statistics:\n")
+                for key, value in self.training_stats.items():
+                    f.write(f"  {key.replace('_', ' ').title()}: {value}\n")
+                f.write("\n")
+                
+                f.write(f"Automatic Decisions:\n")
+                for column, decision in self.user_decisions.items():
+                    f.write(f"  {column}: {decision['field_type']} ")
+                    f.write(f"(confidence: {decision['confidence']:.3f}, ")
+                    f.write(f"type: {decision['decision_type']})\n")
+                f.write("\n")
+                
+                f.write(f"Conflict Resolutions:\n")
+                for field_type, resolution in self.conflict_resolutions.items():
+                    f.write(f"  {field_type}:\n")
+                    f.write(f"    Winner: {resolution['winner']}\n")
+                    f.write(f"    Resolution type: {resolution['resolution_type']}\n")
+                    f.write(f"    All candidates: {resolution['all_candidates']}\n")
+                f.write("\n")
+                
+                f.write(f"Final Mapping Table:\n")
+                f.write(f"{'Campo Estándar':<25} | {'Columna Mapeada':<30} | {'Confianza':<10}\n")
+                f.write(f"{'-'*25} | {'-'*30} | {'-'*10}\n")
+                
+                for standard_field in self.standard_fields:
+                    mapped_column = "No mapeado"
+                    confidence = "0.000"
+                    
+                    for column_name, decision in self.user_decisions.items():
+                        if decision['field_type'] == standard_field:
+                            mapped_column = column_name
+                            confidence = f"{decision['confidence']:.3f}"
+                            break
+                    
+                    f.write(f"{standard_field:<25} | {mapped_column:<30} | {confidence:<10}\n")
+            
+            print(f"Automatic training report saved to: {report_file}")
+            return report_file
+            
+        except Exception as e:
+            print(f"Could not generate report: {e}")
+            return ""
+    
+    def _create_transformed_csv(self) -> Dict:
+        """Crea dos CSV: uno de cabecera y otro de detalle con procesamiento numérico automático"""
+        try:
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            
+            # Crear DataFrame con columnas renombradas
+            transformed_df = self.df.copy()
+            column_mapping = {}
+            
+            # Crear mapeo de columnas originales a campos estándar
+            for column_name, decision in self.user_decisions.items():
+                standard_field = decision['field_type']
+                column_mapping[column_name] = standard_field
+            
+            # Renombrar columnas en el DataFrame
+            transformed_df = transformed_df.rename(columns=column_mapping)
+            
+            # NUEVO: Procesar campos numéricos y calcular amount si es necesario
+            transformed_df = self._process_numeric_fields_and_calculate_amount(transformed_df)
+            
+            # Determinar qué columnas van en header vs detail
+            header_columns = []
+            detail_columns = []
+            
+            for standard_field in self.standard_fields:
+                if standard_field in transformed_df.columns:
+                    # Campos de cabecera (únicos por journal_entry_id)
+                    if standard_field in ['journal_entry_id', 'posting_date', 'fiscal_year', 
+                                        'period_number', 'prepared_by', 'entry_date', 'entry_time', 'description']:
+                        header_columns.append(standard_field)
+                    else:
+                        # Campos de detalle (múltiples líneas por journal_entry_id)
+                        detail_columns.append(standard_field)
+            
+            # Crear CSV de cabecera (datos únicos)
+            if header_columns and 'journal_entry_id' in header_columns:
+                header_df = transformed_df[header_columns].drop_duplicates(subset=['journal_entry_id'])
+                header_file = f"automatic_training_header_{timestamp}.csv"
+                header_df.to_csv(header_file, index=False, encoding='utf-8')
+                print(f"Header CSV created: {header_file} ({len(header_df)} rows)")
+            else:
+                header_file = None
+                print("No header CSV created (no journal_entry_id)")
+            
+            # Crear CSV de detalle (todas las líneas)
+            if detail_columns:
+                # Incluir journal_entry_id en detalle para linking
+                if 'journal_entry_id' in transformed_df.columns and 'journal_entry_id' not in detail_columns:
+                    detail_columns.insert(0, 'journal_entry_id')
+                
+                detail_df = transformed_df[detail_columns]
+                detail_file = f"automatic_training_detail_{timestamp}.csv"
+                detail_df.to_csv(detail_file, index=False, encoding='utf-8')
+                print(f"Detail CSV created: {detail_file} ({len(detail_df)} rows)")
+            else:
+                detail_file = None
+                print("No detail CSV created (no detail columns mapped)")
+            
+            return {
+                'header_file': header_file,
+                'detail_file': detail_file,
+                'csv_info': {
+                    'header_columns': header_columns,
+                    'detail_columns': detail_columns,
+                    'total_standard_fields_mapped': len(self.user_decisions),
+                    'unmapped_standard_fields': [f for f in self.standard_fields 
+                                               if f not in [d['field_type'] for d in self.user_decisions.values()]]
+                }
+            }
+            
+        except Exception as e:
+            print(f"Error creating transformed CSVs: {e}")
+            return {'success': False, 'error': str(e)}
+    
+    def _process_numeric_fields_and_calculate_amount(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Procesa campos numéricos, limpia monedas y calcula amount si es necesario"""
+        try:
+            print(f"\n💰 PROCESSING NUMERIC FIELDS AND CALCULATING AMOUNT")
+            print(f"-" * 50)
+            
+            # Lista de campos numéricos que necesitan limpieza
+            numeric_fields = ['amount', 'debit_amount', 'credit_amount']
+            
+            # Limpiar campos numéricos existentes
+            cleaned_fields = []
+            for field in numeric_fields:
+                if field in df.columns:
+                    print(f"Cleaning numeric field: {field}")
+                    original_samples = df[field].dropna().head(3).tolist()
+                    print(f"   Original values: {original_samples}")
+                    
+                    df[field] = df[field].apply(self._clean_numeric_value)
+                    
+                    cleaned_samples = df[field].dropna().head(3).tolist()
+                    print(f"   Cleaned values:  {cleaned_samples}")
+                    
+                    cleaned_fields.append(field)
+            
+            # Verificar si necesitamos calcular amount
+            has_amount = 'amount' in df.columns
+            has_debit = 'debit_amount' in df.columns
+            has_credit = 'credit_amount' in df.columns
+            
+            if not has_amount and has_debit and has_credit:
+                print(f"💡 CALCULATING AMOUNT: amount = debit_amount - credit_amount")
+                
+                # Calcular amount como debit - credit
+                df['amount'] = df['debit_amount'].fillna(0) - df['credit_amount'].fillna(0)
+                
+                print(f"   ✓ Amount calculated for {len(df)} rows")
+                print(f"   Sample calculated amounts: {df['amount'].head(3).tolist()}")
+                
+            elif has_amount:
+                print(f"✓ Amount field already exists - using existing values")
+            else:
+                print(f"⚠️ Cannot calculate amount - missing debit_amount or credit_amount fields")
+            
+            # Mostrar resumen de limpieza
+            if cleaned_fields:
+                print(f"\n📊 NUMERIC FIELDS PROCESSING SUMMARY:")
+                for field in cleaned_fields:
+                    if field in df.columns:
+                        non_null_count = df[field].notna().sum()
+                        print(f"   {field}: {non_null_count} valid numeric values")
+            
+            return df
+            
+        except Exception as e:
+            print(f"Error processing numeric fields: {e}")
+            return df
+    
+    def _clean_numeric_value(self, value) -> Optional[float]:
+        """Limpia un valor numérico eliminando texto de moneda y convirtiendo a float"""
+        try:
+            if pd.isna(value):
+                return None
+            
+            # Convertir a string si no lo es
+            str_value = str(value).strip()
+            
+            if not str_value or str_value.lower() in ['', 'nan', 'none', 'null']:
+                return None
+            
+            # Remover espacios múltiples
+            str_value = re.sub(r'\s+', ' ', str_value)
+            
+            # Patrones para limpiar monedas y texto
+            # Ejemplos: "1000 EUR", "1,500.50 USD", "$1000", "1000€", "EUR 1000"
+            currency_patterns = [
+                r'\b[A-Z]{3}\b',        # EUR, USD, GBP, etc.
+                r'[€$£¥₹₽]',           # Símbolos de moneda
+                r'\b(euros?|dollars?|pounds?|yen)\b',  # Nombres de moneda
+                r'[A-Za-z]+',          # Cualquier texto restante
+            ]
+            
+            # Aplicar todos los patrones
+            cleaned_value = str_value
+            for pattern in currency_patterns:
+                cleaned_value = re.sub(pattern, '', cleaned_value, flags=re.IGNORECASE)
+            
+            # Limpiar espacios y caracteres especiales excepto números, puntos, comas y signos
+            cleaned_value = re.sub(r'[^\d.,\-+]', '', cleaned_value)
+            
+            if not cleaned_value:
+                return None
+            
+            # MEJORADO: Manejar diferentes formatos de números incluyendo múltiples puntos/comas
+            # Casos: "10.908.09", "1.234.567.89", "10,908.09", "10.908,09"
+            
+            # Contar puntos y comas
+            dot_count = cleaned_value.count('.')
+            comma_count = cleaned_value.count(',')
+            
+            if dot_count == 0 and comma_count == 0:
+                # Solo números enteros
+                return float(cleaned_value)
+                
+            elif dot_count > 1 and comma_count == 0:
+                # Múltiples puntos: "10.908.09" → 10908.09
+                # El último punto es decimal si tiene 1-2 dígitos después
+                last_dot_pos = cleaned_value.rfind('.')
+                after_last_dot = cleaned_value[last_dot_pos + 1:]
+                
+                if len(after_last_dot) <= 2 and after_last_dot.isdigit():
+                    # Último punto es decimal
+                    before_decimal = cleaned_value[:last_dot_pos].replace('.', '')
+                    decimal_part = after_last_dot
+                    cleaned_value = before_decimal + '.' + decimal_part
+                else:
+                    # Todos los puntos son separadores de miles
+                    cleaned_value = cleaned_value.replace('.', '')
+                    
+            elif comma_count > 1 and dot_count == 0:
+                # Múltiples comas: "10,908,09" → 10908.09
+                last_comma_pos = cleaned_value.rfind(',')
+                after_last_comma = cleaned_value[last_comma_pos + 1:]
+                
+                if len(after_last_comma) <= 2 and after_last_comma.isdigit():
+                    # Última coma es decimal
+                    before_decimal = cleaned_value[:last_comma_pos].replace(',', '')
+                    decimal_part = after_last_comma
+                    cleaned_value = before_decimal + '.' + decimal_part
+                else:
+                    # Todas las comas son separadores de miles
+                    cleaned_value = cleaned_value.replace(',', '')
+                    
+            elif dot_count == 1 and comma_count == 1:
+                # Un punto y una coma: determinar cuál es decimal
+                dot_pos = cleaned_value.find('.')
+                comma_pos = cleaned_value.find(',')
+                
+                if dot_pos < comma_pos:
+                    # Formato: 1.234,56 (europeo)
+                    after_comma = cleaned_value[comma_pos + 1:]
+                    if len(after_comma) <= 2 and after_comma.isdigit():
+                        cleaned_value = cleaned_value.replace('.', '').replace(',', '.')
+                    else:
+                        cleaned_value = cleaned_value.replace(',', '')
+                else:
+                    # Formato: 1,234.56 (americano)  
+                    after_dot = cleaned_value[dot_pos + 1:]
+                    if len(after_dot) <= 2 and after_dot.isdigit():
+                        cleaned_value = cleaned_value.replace(',', '')
+                    else:
+                        cleaned_value = cleaned_value.replace('.', '').replace(',', '.')
+                        
+            elif dot_count == 1 and comma_count == 0:
+                # Solo un punto: "1234.56" o "1.234"
+                dot_pos = cleaned_value.find('.')
+                after_dot = cleaned_value[dot_pos + 1:]
+                
+                if len(after_dot) > 2:
+                    # Probablemente separador de miles: "1.234" → "1234"
+                    cleaned_value = cleaned_value.replace('.', '')
+                # Si tiene 1-2 dígitos después, lo dejamos como decimal
+                
+            elif comma_count == 1 and dot_count == 0:
+                # Solo una coma: "1234,56" o "1,234"
+                comma_pos = cleaned_value.find(',')
+                after_comma = cleaned_value[comma_pos + 1:]
+                
+                if len(after_comma) <= 2 and after_comma.isdigit():
+                    # Probablemente decimal: "1234,56" → "1234.56"
+                    cleaned_value = cleaned_value.replace(',', '.')
+                else:
+                    # Probablemente separador de miles: "1,234" → "1234"
+                    cleaned_value = cleaned_value.replace(',', '')
+            
+            # Convertir a float
+            if cleaned_value and cleaned_value not in ['.', ',', '-', '+']:
+                return float(cleaned_value)
+            else:
+                return None
+                
+        except (ValueError, TypeError):
+            # Si no se puede convertir, intentar extraer números
+            try:
+                # Buscar patrones numéricos más complejos
+                numbers = re.findall(r'-?\d+[.,]?\d*', str(value))
+                if numbers:
+                    # Tomar el primer número encontrado y limpiarlo recursivamente
+                    first_num = numbers[0].replace(',', '.')
+                    return float(first_num)
+                return None
+            except:
+                return None
+
+
+def run_automatic_training(csv_file: str, erp_hint: str = None) -> Dict:
+    """Función principal para ejecutar entrenamiento automático"""
+    try:
+        print(f"🤖 AUTOMATIC CONFIRMATION TRAINER")
+        print(f"=" * 50)
+        print(f"Starting automatic training session...")
+        print(f"File: {csv_file}")
+        print(f"ERP: {erp_hint or 'Auto-detect'}")
+        print(f"Decision mode: AUTOMATIC (no confirmation required)")
+        print(f"Quality filter: Only confidence > 0.75 accepted")
+        print(f"Special rule: AMOUNT field prioritizes 'local' ALWAYS")
+        print()
+        
+        # Crear sesión de entrenamiento automático
+        session = AutomaticConfirmationTrainingSession(csv_file, erp_hint)
+        
+        # Inicializar
+        if not session.initialize():
+            return {'success': False, 'error': 'Initialization failed'}
+        
+        # Ejecutar entrenamiento automático
+        result = session.run_automatic_training()
+        
+        if result['success']:
+            print(f"\n✅ AUTOMATIC TRAINING COMPLETED SUCCESSFULLY!")
+            print(f"📊 Statistics:")
+            for key, value in result['training_stats'].items():
+                print(f"   • {key.replace('_', ' ').title()}: {value}")
+            
+            if result.get('csv_info'):
+                csv_info = result['csv_info']
+                if csv_info.get('header_columns'):
+                    print(f"   • Header columns: {', '.join(csv_info['header_columns'])}")
+                if csv_info.get('detail_columns'):
+                    print(f"   • Detail columns: {', '.join(csv_info['detail_columns'])}")
+            
+            print(f"\nAUTOMATIC TRAINING ACHIEVEMENTS:")
+            print(f"   • Automatic mappings: {result['training_stats']['automatic_mappings']}")
+            print(f"   • Conflicts resolved: {result['training_stats']['conflicts_resolved']}")
+            print(f"   • Amount conflicts resolved: {result['training_stats']['amount_conflicts_resolved']}")
+            print(f"   • High confidence decisions: {result['training_stats']['high_confidence_mappings']}")
+            print(f"   • Rejected low confidence: {result['training_stats']['rejected_low_confidence']}")
+            print(f"   • Standard fields only: {len(session.standard_fields)}")
+            print(f"   • LOCAL PRIORITY RULE: Active for amount conflicts")
+            print(f"   • CONFIDENCE FILTER: Only mappings > {session.confidence_threshold} included")
+        
+        return result
+        
+    except Exception as e:
+        print(f"Automatic training failed: {e}")
+        import traceback
+        traceback.print_exc()
+        return {'success': False, 'error': str(e)}
+
+
+def main():
+    """Función principal - COMPATIBLE con manual_confirmation_trainer.py"""
+    if len(sys.argv) < 2:
+        print("AUTOMATIC CONFIRMATION TRAINER")
+        print("=" * 50)
+        print("Training with AUTOMATIC DECISIONS - no manual confirmation required")
+        print()
+        print("FEATURES:")
+        print("  • ALL decisions made automatically based on confidence")
+        print("  • High confidence: automatic assignment")
+        print("  • Confidence filter: Only mappings > 0.75 are included")
+        print("  • Conflicts resolved by highest confidence")
+        print("  • Special rule for 'amount': prioritizes 'local' ALWAYS")
+        print("  • Automatic numeric field cleaning and amount calculation")
+        print("  • Same standard fields (17 fields total)")
+        print("  • Same CSV outputs as manual trainer")
+        print("  • Compatible with main_global.py")
+        print()
+        print("STANDARD FIELDS:")
+        standard_fields = [
+            'journal_entry_id', 'line_number', 'description', 'line_description',
+            'posting_date', 'fiscal_year', 'period_number', 'gl_account_number',
+            'amount', 'debit_amount', 'credit_amount', 'debit_credit_indicator',
+            'prepared_by', 'entry_date', 'entry_time', 'gl_account_name', 'vendor_id'
+        ]
+        for i, field in enumerate(standard_fields, 1):
+            print(f"  {i:2d}. {field}")
+        print()
+        print("Usage:")
+        print("  python automatic_confirmation_trainer.py <csv_file> [erp_hint]")
+        print()
+        print("Examples:")
+        print("  python automatic_confirmation_trainer.py data/journal.csv")
+        print("  python automatic_confirmation_trainer.py data/journal.csv SAP")
+        print("  python automatic_confirmation_trainer.py data/journal.csv Oracle")
+        print()
+        print("OUTPUT FILES:")
+        print("  • automatic_training_report_TIMESTAMP.txt")
+        print("  • automatic_training_header_TIMESTAMP.csv")
+        print("  • automatic_training_detail_TIMESTAMP.csv")
+        print()
+        print("NUMERIC PROCESSING:")
+        print("  • Cleans currency symbols and text from numeric fields")
+        print("  • Handles different number formats (1,234.56 vs 1.234,56)")
+        print("  • Calculates amount = debit_amount - credit_amount if needed")
+        return
+    
+    # Extraer parámetros
+    csv_file = sys.argv[1]
+    erp_hint = sys.argv[2] if len(sys.argv) > 2 else None
+    
+    # Ejecutar entrenamiento automático
+    result = run_automatic_training(csv_file, erp_hint)
+    
+    if not result['success']:
+        print(f"❌ Training failed: {result.get('error')}")
+        sys.exit(1)
+    
+    print(f"\n✅ Automatic training completed successfully!")
+
+
+if __name__ == "__main__":
+    main()

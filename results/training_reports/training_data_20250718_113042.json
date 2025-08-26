@@ -1,0 +1,1249 @@
+{
+  "file_info": {
+    "file_path": "data/Libro Diario Jones.csv",
+    "file_name": "Libro Diario Jones.csv",
+    "erp_system": "Generic_ES",
+    "total_columns": 100,
+    "timestamp": "20250718_113042",
+    "backup_created": "config\\backups\\dynamic_fields_config_backup_20250718_113043.yaml"
+  },
+  "original_mappings": {
+    "LEDGER": {
+      "field_type": "ledger",
+      "field_name": "Libro contable",
+      "confidence": 1.75
+    },
+    "FISCAL YEAR": {
+      "field_type": "fiscal_year",
+      "field_name": "Año fiscal",
+      "confidence": 1.75
+    },
+    "ACCOUNTING PERIOD": {
+      "field_type": "period",
+      "field_name": "Período",
+      "confidence": 1.75
+    },
+    "JOURNAL DATE": {
+      "field_type": "journal_id",
+      "field_name": "ID de Asiento",
+      "confidence": 0.33699999999999997
+    },
+    "JOURNAL ID": {
+      "field_type": "journal_id",
+      "field_name": "ID de Asiento",
+      "confidence": 0.9
+    },
+    "JOURNAL STATUS": {
+      "field_type": "reversal_indicator",
+      "field_name": "Indicador reversión",
+      "confidence": 0.35
+    },
+    "REVERSAL": {
+      "field_type": "reversal_indicator",
+      "field_name": "Indicador reversión",
+      "confidence": 0.30000000000000004
+    },
+    "CREATED BY": {
+      "field_type": "entered_by",
+      "field_name": "Ingresado por",
+      "confidence": 1.75
+    },
+    "JOURNAL LINE REF": {
+      "field_type": "journal_id",
+      "field_name": "ID de Asiento",
+      "confidence": 0.33699999999999997
+    },
+    "POSTED DATE/TIME": {
+      "field_type": "entered_time",
+      "field_name": "Hora ingreso",
+      "confidence": 0.366
+    },
+    "JOURNAL SOURCE": {
+      "field_type": "journal_id",
+      "field_name": "ID de Asiento",
+      "confidence": 0.33699999999999997
+    },
+    "JOURNAL LINE NUMBER": {
+      "field_type": "journal_id",
+      "field_name": "ID de Asiento",
+      "confidence": 0.33699999999999997
+    },
+    "TREE NODE DESCR ACCT L4": {
+      "field_type": "amount_credit",
+      "field_name": "Importe Haber",
+      "confidence": 0.345
+    },
+    "TREE NODE DESCR ACCT L6": {
+      "field_type": "amount_credit",
+      "field_name": "Importe Haber",
+      "confidence": 0.345
+    },
+    "ACCOUNT DESCRIPTION": {
+      "field_type": "je_header_description",
+      "field_name": "Descripción encabezado asiento",
+      "confidence": 0.345
+    },
+    "ALTERNATE ACCOUNT DESCRIPTION": {
+      "field_type": "je_header_description",
+      "field_name": "Descripción encabezado asiento",
+      "confidence": 0.345
+    },
+    "BUSINESS LINE DESCRIPTION": {
+      "field_type": "je_header_description",
+      "field_name": "Descripción encabezado asiento",
+      "confidence": 0.345
+    },
+    "FUNCTION DESCRIPTION": {
+      "field_type": "je_header_description",
+      "field_name": "Descripción encabezado asiento",
+      "confidence": 0.345
+    },
+    "MARKET DESCRIPTION": {
+      "field_type": "je_header_description",
+      "field_name": "Descripción encabezado asiento",
+      "confidence": 0.345
+    },
+    "PROJECT DESCRIPTION": {
+      "field_type": "je_header_description",
+      "field_name": "Descripción encabezado asiento",
+      "confidence": 0.345
+    },
+    "LEVEL 5 NODE DESCRIPTION": {
+      "field_type": "je_header_description",
+      "field_name": "Descripción encabezado asiento",
+      "confidence": 0.345
+    },
+    "BUSINESS UNIT": {
+      "field_type": "business_unit_code",
+      "field_name": "Código Unidad de Negocio",
+      "confidence": 1.75
+    },
+    "GLOBAL ACCOUNT": {
+      "field_type": "gl_account_number",
+      "field_name": "Número cuenta contable",
+      "confidence": 0.3333333333333333
+    },
+    "ALTERNATE ACCOUNT": {
+      "field_type": "gl_account_number",
+      "field_name": "Número cuenta contable",
+      "confidence": 0.3333333333333333
+    },
+    "BOOK CODE": {
+      "field_type": "business_unit_code",
+      "field_name": "Código Unidad de Negocio",
+      "confidence": 0.345
+    },
+    "PC BUSINESS UNIT": {
+      "field_type": "business_unit_code",
+      "field_name": "Código Unidad de Negocio",
+      "confidence": 0.345
+    },
+    "PROJECT ID": {
+      "field_type": "journal_id",
+      "field_name": "ID de Asiento",
+      "confidence": 0.33699999999999997
+    },
+    "ACTIVITY ID": {
+      "field_type": "journal_id",
+      "field_name": "ID de Asiento",
+      "confidence": 0.33699999999999997
+    },
+    "TRANSACTION CURRENCY": {
+      "field_type": "document_type",
+      "field_name": "Tipo de documento",
+      "confidence": 0.34444444444444444
+    },
+    "TRANSACTION AMOUNT": {
+      "field_type": "amount",
+      "field_name": "Importe",
+      "confidence": 0.3414285714285714
+    },
+    "CURRENCY CODE": {
+      "field_type": "amount_currency",
+      "field_name": "Moneda importe",
+      "confidence": 1.75
+    },
+    "MONETARY AMOUNT": {
+      "field_type": "amount_currency",
+      "field_name": "Moneda importe",
+      "confidence": 0.3433333333333333
+    },
+    "LINE DESCRIPTION": {
+      "field_type": "je_header_description",
+      "field_name": "Descripción encabezado asiento",
+      "confidence": 0.345
+    },
+    "LONG DESCRIPTION": {
+      "field_type": "je_header_description",
+      "field_name": "Descripción encabezado asiento",
+      "confidence": 0.345
+    },
+    "BI/AP INVOICE NUMBER": {
+      "field_type": "journal_id",
+      "field_name": "ID de Asiento",
+      "confidence": 0.33699999999999997
+    },
+    "VENDOR ID": {
+      "field_type": "journal_id",
+      "field_name": "ID de Asiento",
+      "confidence": 0.33699999999999997
+    },
+    "VCHR LINE NUM": {
+      "field_type": "journal_id",
+      "field_name": "ID de Asiento",
+      "confidence": 0.33699999999999997
+    },
+    "PAYMENT CHECK NUM": {
+      "field_type": "journal_id",
+      "field_name": "ID de Asiento",
+      "confidence": 0.33699999999999997
+    },
+    "PAYMENT REQUEST ID": {
+      "field_type": "journal_id",
+      "field_name": "ID de Asiento",
+      "confidence": 0.33699999999999997
+    },
+    "PAYMENT DESCR": {
+      "field_type": "amount_credit",
+      "field_name": "Importe Haber",
+      "confidence": 0.345
+    },
+    "EX REPORT\\CASH ADV\\VOUCHER ID": {
+      "field_type": "journal_id",
+      "field_name": "ID de Asiento",
+      "confidence": 0.33699999999999997
+    },
+    "EXP LINE NUM": {
+      "field_type": "journal_id",
+      "field_name": "ID de Asiento",
+      "confidence": 0.33699999999999997
+    },
+    "EXPENSE TYPE": {
+      "field_type": "document_type",
+      "field_name": "Tipo de documento",
+      "confidence": 0.34444444444444444
+    },
+    "EMPLOYEE ID": {
+      "field_type": "journal_id",
+      "field_name": "ID de Asiento",
+      "confidence": 0.33699999999999997
+    },
+    "PAYMENT DATE": {
+      "field_type": "effective_date",
+      "field_name": "Fecha efectiva",
+      "confidence": 0.3347368421052631
+    },
+    "AR ITEM ID": {
+      "field_type": "journal_id",
+      "field_name": "ID de Asiento",
+      "confidence": 0.33699999999999997
+    },
+    "AR PAYMENT ID": {
+      "field_type": "journal_id",
+      "field_name": "ID de Asiento",
+      "confidence": 0.33699999999999997
+    },
+    "DEAL ID": {
+      "field_type": "journal_id",
+      "field_name": "ID de Asiento",
+      "confidence": 0.33699999999999997
+    },
+    "BI/AP INVOICE NUMBER.1": {
+      "field_type": "journal_id",
+      "field_name": "ID de Asiento",
+      "confidence": 0.33699999999999997
+    },
+    "LINE NUM": {
+      "field_type": "journal_id",
+      "field_name": "ID de Asiento",
+      "confidence": 0.33699999999999997
+    },
+    "CUSTOMER ID": {
+      "field_type": "document_type",
+      "field_name": "Tipo de documento",
+      "confidence": 0.34444444444444444
+    },
+    "CUSTOMER NAME": {
+      "field_type": "document_type",
+      "field_name": "Tipo de documento",
+      "confidence": 0.34444444444444444
+    },
+    "INTERNAL CUST NAME": {
+      "field_type": "document_type",
+      "field_name": "Tipo de documento",
+      "confidence": 0.34444444444444444
+    },
+    "SOLD TO CUSTOMER": {
+      "field_type": "entered_date",
+      "field_name": "Fecha ingreso",
+      "confidence": 0.35
+    },
+    "SOLD TO CUST NAME": {
+      "field_type": "entered_date",
+      "field_name": "Fecha ingreso",
+      "confidence": 0.35
+    },
+    "PAYMENT DATE.1": {
+      "field_type": "effective_date",
+      "field_name": "Fecha efectiva",
+      "confidence": 0.3347368421052631
+    },
+    "CONTRACT BUSINESS UNIT": {
+      "field_type": "business_unit_code",
+      "field_name": "Código Unidad de Negocio",
+      "confidence": 0.345
+    },
+    "CONTRACT NUMBER": {
+      "field_type": "journal_id",
+      "field_name": "ID de Asiento",
+      "confidence": 0.33699999999999997
+    },
+    "CONTRACT DESCRIPTION": {
+      "field_type": "je_header_description",
+      "field_name": "Descripción encabezado asiento",
+      "confidence": 0.345
+    },
+    "CONTRACT LINE NUM": {
+      "field_type": "journal_id",
+      "field_name": "ID de Asiento",
+      "confidence": 0.33699999999999997
+    },
+    "ANALYSIS TYPE": {
+      "field_type": "document_type",
+      "field_name": "Tipo de documento",
+      "confidence": 0.34444444444444444
+    },
+    "SERVICE TYPE - OWNER": {
+      "field_type": "document_type",
+      "field_name": "Tipo de documento",
+      "confidence": 0.34444444444444444
+    },
+    "OWNER DESCRIPTION": {
+      "field_type": "je_header_description",
+      "field_name": "Descripción encabezado asiento",
+      "confidence": 0.345
+    },
+    "SERVICE TYPE - OCCUPIER": {
+      "field_type": "document_type",
+      "field_name": "Tipo de documento",
+      "confidence": 0.34444444444444444
+    },
+    "OCCUPIER DESCRIPTION": {
+      "field_type": "je_header_description",
+      "field_name": "Descripción encabezado asiento",
+      "confidence": 0.345
+    },
+    "PROPOSAL ID": {
+      "field_type": "journal_id_line_number",
+      "field_name": "Número de línea de Asiento",
+      "confidence": 0.34454545454545454
+    },
+    "CUST/VEND VAT ID": {
+      "field_type": "document_type",
+      "field_name": "Tipo de documento",
+      "confidence": 0.34444444444444444
+    },
+    "VAT DCLRTN DATE": {
+      "field_type": "amount_credit_debit_indicator",
+      "field_name": "Indicador Debe/Haber",
+      "confidence": 0.3525
+    },
+    "VAT ACCOUNT TYPE": {
+      "field_type": "document_type",
+      "field_name": "Tipo de documento",
+      "confidence": 0.34444444444444444
+    },
+    "VAT CODE": {
+      "field_type": "business_unit_code",
+      "field_name": "Código Unidad de Negocio",
+      "confidence": 0.345
+    },
+    "VAT TRANSACTION TYPE": {
+      "field_type": "document_type",
+      "field_name": "Tipo de documento",
+      "confidence": 0.34444444444444444
+    },
+    "LINE DOC TYPE": {
+      "field_type": "document_type",
+      "field_name": "Tipo de documento",
+      "confidence": 0.34444444444444444
+    },
+    "LINE DOC SEQ NBR": {
+      "field_type": "journal_id_line_number",
+      "field_name": "Número de línea de Asiento",
+      "confidence": 0.34454545454545454
+    },
+    "LINE DOC_SEQ DATE": {
+      "field_type": "journal_id_line_number",
+      "field_name": "Número de línea de Asiento",
+      "confidence": 0.34454545454545454
+    },
+    "DOC TYPE": {
+      "field_type": "document_type",
+      "field_name": "Tipo de documento",
+      "confidence": 1.15
+    },
+    "DOC SEQ NBR": {
+      "field_type": "journal_id_line_number",
+      "field_name": "Número de línea de Asiento",
+      "confidence": 0.34454545454545454
+    },
+    "DOC_SEQ_DATE": {
+      "field_type": "journal_id_line_number",
+      "field_name": "Número de línea de Asiento",
+      "confidence": 0.34454545454545454
+    }
+  },
+  "confirmed_mappings": {
+    "LEDGER": {
+      "field_type": "ledger",
+      "confidence": 1.75,
+      "source_erp": "Generic_ES",
+      "field_name": "Libro contable"
+    },
+    "FISCAL YEAR": {
+      "field_type": "fiscal_year",
+      "confidence": 1.75,
+      "source_erp": "Generic_ES",
+      "field_name": "Año fiscal"
+    },
+    "ACCOUNTING PERIOD": {
+      "field_type": "period",
+      "confidence": 1.75,
+      "source_erp": "Generic_ES",
+      "field_name": "Período"
+    },
+    "JOURNAL ID": {
+      "field_type": "journal_id",
+      "confidence": 0.9,
+      "source_erp": "Generic_ES",
+      "field_name": "ID de Asiento"
+    },
+    "REVERSAL": {
+      "field_type": "reversal_indicator",
+      "confidence": 0.30000000000000004,
+      "source_erp": "Generic_ES",
+      "field_name": "Indicador reversión"
+    },
+    "CREATED BY": {
+      "field_type": "entered_by",
+      "confidence": 1.75,
+      "source_erp": "Generic_ES",
+      "field_name": "Ingresado por"
+    },
+    "POSTED DATE/TIME": {
+      "field_type": "entered_time",
+      "confidence": 0.366,
+      "source_erp": "Generic_ES",
+      "field_name": "Hora ingreso"
+    },
+    "BUSINESS UNIT": {
+      "field_type": "business_unit_code",
+      "confidence": 1.75,
+      "source_erp": "Generic_ES",
+      "field_name": "Código Unidad de Negocio"
+    },
+    "GLOBAL ACCOUNT": {
+      "field_type": "gl_account_number",
+      "confidence": 0.3333333333333333,
+      "source_erp": "Generic_ES",
+      "field_name": "Número cuenta contable"
+    },
+    "ALTERNATE ACCOUNT": {
+      "field_type": "gl_account_number",
+      "confidence": 0.3333333333333333,
+      "source_erp": "Generic_ES",
+      "field_name": "Número cuenta contable"
+    },
+    "TRANSACTION AMOUNT": {
+      "field_type": "amount",
+      "confidence": 0.3414285714285714,
+      "source_erp": "Generic_ES",
+      "field_name": "Importe"
+    },
+    "CURRENCY CODE": {
+      "field_type": "amount_currency",
+      "confidence": 1.75,
+      "source_erp": "Generic_ES",
+      "field_name": "Moneda importe"
+    },
+    "LONG DESCRIPTION": {
+      "field_type": "je_header_description",
+      "confidence": 0.345,
+      "source_erp": "Generic_ES",
+      "field_name": "Descripción encabezado asiento"
+    },
+    "LINE DOC TYPE": {
+      "field_type": "document_type",
+      "confidence": 0.34444444444444444,
+      "source_erp": "Generic_ES",
+      "field_name": "Tipo de documento"
+    },
+    "DOC TYPE": {
+      "field_type": "document_type",
+      "confidence": 1.15,
+      "source_erp": "Generic_ES",
+      "field_name": "Tipo de documento"
+    }
+  },
+  "new_mappings": {},
+  "corrected_mappings": {
+    "JOURNAL DATE": {
+      "original": {
+        "field_type": "journal_id",
+        "confidence": 0.33699999999999997,
+        "source_erp": "Generic_ES",
+        "field_name": "ID de Asiento"
+      },
+      "corrected": {
+        "field_type": "effective_date",
+        "field_name": "Fecha efectiva",
+        "confidence": 1.0,
+        "source": "manual"
+      }
+    },
+    "JOURNAL LINE NUMBER": {
+      "original": {
+        "field_type": "journal_id",
+        "confidence": 0.33699999999999997,
+        "source_erp": "Generic_ES",
+        "field_name": "ID de Asiento"
+      },
+      "corrected": {
+        "field_type": "journal_id_line_number",
+        "field_name": "Número de línea de Asiento",
+        "confidence": 1.0,
+        "source": "manual"
+      }
+    },
+    "TRANSACTION CURRENCY": {
+      "original": {
+        "field_type": "document_type",
+        "confidence": 0.34444444444444444,
+        "source_erp": "Generic_ES",
+        "field_name": "Tipo de documento"
+      },
+      "corrected": {
+        "field_type": "amount_currency",
+        "field_name": "Moneda importe",
+        "confidence": 1.0,
+        "source": "manual"
+      }
+    },
+    "MONETARY AMOUNT": {
+      "original": {
+        "field_type": "amount_currency",
+        "confidence": 0.3433333333333333,
+        "source_erp": "Generic_ES",
+        "field_name": "Moneda importe"
+      },
+      "corrected": {
+        "field_type": "amount",
+        "field_name": "Importe",
+        "confidence": 1.0,
+        "source": "manual"
+      }
+    },
+    "LINE DESCRIPTION": {
+      "original": {
+        "field_type": "je_header_description",
+        "confidence": 0.345,
+        "source_erp": "Generic_ES",
+        "field_name": "Descripción encabezado asiento"
+      },
+      "corrected": {
+        "field_type": "je_line_description",
+        "field_name": "Descripción línea asiento",
+        "confidence": 1.0,
+        "source": "manual"
+      }
+    }
+  },
+  "rejected_mappings": [
+    {
+      "column": "JOURNAL STATUS",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "reversal_indicator",
+        "confidence": 0.35,
+        "source_erp": "Generic_ES",
+        "field_name": "Indicador reversión"
+      }
+    },
+    {
+      "column": "JOURNAL LINE REF",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "journal_id",
+        "confidence": 0.33699999999999997,
+        "source_erp": "Generic_ES",
+        "field_name": "ID de Asiento"
+      }
+    },
+    {
+      "column": "JOURNAL SOURCE",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "journal_id",
+        "confidence": 0.33699999999999997,
+        "source_erp": "Generic_ES",
+        "field_name": "ID de Asiento"
+      }
+    },
+    {
+      "column": "TREE NODE DESCR ACCT L4",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "amount_credit",
+        "confidence": 0.345,
+        "source_erp": "Generic_ES",
+        "field_name": "Importe Haber"
+      }
+    },
+    {
+      "column": "TREE NODE DESCR ACCT L6",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "amount_credit",
+        "confidence": 0.345,
+        "source_erp": "Generic_ES",
+        "field_name": "Importe Haber"
+      }
+    },
+    {
+      "column": "ACCOUNT DESCRIPTION",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "je_header_description",
+        "confidence": 0.345,
+        "source_erp": "Generic_ES",
+        "field_name": "Descripción encabezado asiento"
+      }
+    },
+    {
+      "column": "ALTERNATE ACCOUNT DESCRIPTION",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "je_header_description",
+        "confidence": 0.345,
+        "source_erp": "Generic_ES",
+        "field_name": "Descripción encabezado asiento"
+      }
+    },
+    {
+      "column": "BUSINESS LINE DESCRIPTION",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "je_header_description",
+        "confidence": 0.345,
+        "source_erp": "Generic_ES",
+        "field_name": "Descripción encabezado asiento"
+      }
+    },
+    {
+      "column": "FUNCTION DESCRIPTION",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "je_header_description",
+        "confidence": 0.345,
+        "source_erp": "Generic_ES",
+        "field_name": "Descripción encabezado asiento"
+      }
+    },
+    {
+      "column": "MARKET DESCRIPTION",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "je_header_description",
+        "confidence": 0.345,
+        "source_erp": "Generic_ES",
+        "field_name": "Descripción encabezado asiento"
+      }
+    },
+    {
+      "column": "PROJECT DESCRIPTION",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "je_header_description",
+        "confidence": 0.345,
+        "source_erp": "Generic_ES",
+        "field_name": "Descripción encabezado asiento"
+      }
+    },
+    {
+      "column": "LEVEL 5 NODE DESCRIPTION",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "je_header_description",
+        "confidence": 0.345,
+        "source_erp": "Generic_ES",
+        "field_name": "Descripción encabezado asiento"
+      }
+    },
+    {
+      "column": "4 DIG",
+      "reason": "user_rejected",
+      "original_mapping": null
+    },
+    {
+      "column": "3 DIG",
+      "reason": "user_rejected",
+      "original_mapping": null
+    },
+    {
+      "column": "BUSINES LINE",
+      "reason": "user_rejected",
+      "original_mapping": null
+    },
+    {
+      "column": "FUNCTION",
+      "reason": "user_rejected",
+      "original_mapping": null
+    },
+    {
+      "column": "MARKET",
+      "reason": "user_rejected",
+      "original_mapping": null
+    },
+    {
+      "column": "AFFILIATE",
+      "reason": "user_rejected",
+      "original_mapping": null
+    },
+    {
+      "column": "BOOK CODE",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "business_unit_code",
+        "confidence": 0.345,
+        "source_erp": "Generic_ES",
+        "field_name": "Código Unidad de Negocio"
+      }
+    },
+    {
+      "column": "PC BUSINESS UNIT",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "business_unit_code",
+        "confidence": 0.345,
+        "source_erp": "Generic_ES",
+        "field_name": "Código Unidad de Negocio"
+      }
+    },
+    {
+      "column": "PROJECT ID",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "journal_id",
+        "confidence": 0.33699999999999997,
+        "source_erp": "Generic_ES",
+        "field_name": "ID de Asiento"
+      }
+    },
+    {
+      "column": "ACTIVITY ID",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "journal_id",
+        "confidence": 0.33699999999999997,
+        "source_erp": "Generic_ES",
+        "field_name": "ID de Asiento"
+      }
+    },
+    {
+      "column": "RESOURCE CATEGORY",
+      "reason": "user_rejected",
+      "original_mapping": null
+    },
+    {
+      "column": "RESOURCE SUB CATEGORY",
+      "reason": "user_rejected",
+      "original_mapping": null
+    },
+    {
+      "column": "FX RATE",
+      "reason": "user_rejected",
+      "original_mapping": null
+    },
+    {
+      "column": "OPEN ITEM KEY",
+      "reason": "user_rejected",
+      "original_mapping": null
+    },
+    {
+      "column": "BI/AP INVOICE NUMBER",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "journal_id",
+        "confidence": 0.33699999999999997,
+        "source_erp": "Generic_ES",
+        "field_name": "ID de Asiento"
+      }
+    },
+    {
+      "column": "VENDOR ID",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "journal_id",
+        "confidence": 0.33699999999999997,
+        "source_erp": "Generic_ES",
+        "field_name": "ID de Asiento"
+      }
+    },
+    {
+      "column": "VENDOR NAME",
+      "reason": "user_rejected",
+      "original_mapping": null
+    },
+    {
+      "column": "VCHR LINE NUM",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "journal_id",
+        "confidence": 0.33699999999999997,
+        "source_erp": "Generic_ES",
+        "field_name": "ID de Asiento"
+      }
+    },
+    {
+      "column": "INVOICE DATE",
+      "reason": "user_rejected",
+      "original_mapping": null
+    },
+    {
+      "column": "PAYMENT CHECK NUM",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "journal_id",
+        "confidence": 0.33699999999999997,
+        "source_erp": "Generic_ES",
+        "field_name": "ID de Asiento"
+      }
+    },
+    {
+      "column": "PAYMENT REQUEST ID",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "journal_id",
+        "confidence": 0.33699999999999997,
+        "source_erp": "Generic_ES",
+        "field_name": "ID de Asiento"
+      }
+    },
+    {
+      "column": "PAYMENT REQUESTOR",
+      "reason": "user_rejected",
+      "original_mapping": null
+    },
+    {
+      "column": "PAYMENT DESCR",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "amount_credit",
+        "confidence": 0.345,
+        "source_erp": "Generic_ES",
+        "field_name": "Importe Haber"
+      }
+    },
+    {
+      "column": "EX REPORT\\CASH ADV\\VOUCHER ID",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "journal_id",
+        "confidence": 0.33699999999999997,
+        "source_erp": "Generic_ES",
+        "field_name": "ID de Asiento"
+      }
+    },
+    {
+      "column": "EXP LINE NUM",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "journal_id",
+        "confidence": 0.33699999999999997,
+        "source_erp": "Generic_ES",
+        "field_name": "ID de Asiento"
+      }
+    },
+    {
+      "column": "EXPENSE TYPE",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "document_type",
+        "confidence": 0.34444444444444444,
+        "source_erp": "Generic_ES",
+        "field_name": "Tipo de documento"
+      }
+    },
+    {
+      "column": "PREF MERCHANT FLG",
+      "reason": "user_rejected",
+      "original_mapping": null
+    },
+    {
+      "column": "EMPLOYEE ID",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "journal_id",
+        "confidence": 0.33699999999999997,
+        "source_erp": "Generic_ES",
+        "field_name": "ID de Asiento"
+      }
+    },
+    {
+      "column": "EMPLOYEE NAME",
+      "reason": "user_rejected",
+      "original_mapping": null
+    },
+    {
+      "column": "PAYMENT DUE DATE",
+      "reason": "user_rejected",
+      "original_mapping": null
+    },
+    {
+      "column": "PAYMENT DATE",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "effective_date",
+        "confidence": 0.3347368421052631,
+        "source_erp": "Generic_ES",
+        "field_name": "Fecha efectiva"
+      }
+    },
+    {
+      "column": "AR ITEM ID",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "journal_id",
+        "confidence": 0.33699999999999997,
+        "source_erp": "Generic_ES",
+        "field_name": "ID de Asiento"
+      }
+    },
+    {
+      "column": "AR PAYMENT ID",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "journal_id",
+        "confidence": 0.33699999999999997,
+        "source_erp": "Generic_ES",
+        "field_name": "ID de Asiento"
+      }
+    },
+    {
+      "column": "ITEM LINE",
+      "reason": "user_rejected",
+      "original_mapping": null
+    },
+    {
+      "column": "DEAL ID",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "journal_id",
+        "confidence": 0.33699999999999997,
+        "source_erp": "Generic_ES",
+        "field_name": "ID de Asiento"
+      }
+    },
+    {
+      "column": "BI/AP INVOICE NUMBER.1",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "journal_id",
+        "confidence": 0.33699999999999997,
+        "source_erp": "Generic_ES",
+        "field_name": "ID de Asiento"
+      }
+    },
+    {
+      "column": "LINE NUM",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "journal_id",
+        "confidence": 0.33699999999999997,
+        "source_erp": "Generic_ES",
+        "field_name": "ID de Asiento"
+      }
+    },
+    {
+      "column": "INVOICE DATE.1",
+      "reason": "user_rejected",
+      "original_mapping": null
+    },
+    {
+      "column": "CUSTOMER ID",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "document_type",
+        "confidence": 0.34444444444444444,
+        "source_erp": "Generic_ES",
+        "field_name": "Tipo de documento"
+      }
+    },
+    {
+      "column": "CUSTOMER NAME",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "document_type",
+        "confidence": 0.34444444444444444,
+        "source_erp": "Generic_ES",
+        "field_name": "Tipo de documento"
+      }
+    },
+    {
+      "column": "INTERNAL CUST NAME",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "document_type",
+        "confidence": 0.34444444444444444,
+        "source_erp": "Generic_ES",
+        "field_name": "Tipo de documento"
+      }
+    },
+    {
+      "column": "SOLD TO CUSTOMER",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "entered_date",
+        "confidence": 0.35,
+        "source_erp": "Generic_ES",
+        "field_name": "Fecha ingreso"
+      }
+    },
+    {
+      "column": "SOLD TO CUST NAME",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "entered_date",
+        "confidence": 0.35,
+        "source_erp": "Generic_ES",
+        "field_name": "Fecha ingreso"
+      }
+    },
+    {
+      "column": "BILLING SPECIALIST NAME",
+      "reason": "user_rejected",
+      "original_mapping": null
+    },
+    {
+      "column": "PROJECT MANAGER",
+      "reason": "user_rejected",
+      "original_mapping": null
+    },
+    {
+      "column": "PAYMENT DUE DATE.1",
+      "reason": "user_rejected",
+      "original_mapping": null
+    },
+    {
+      "column": "PAYMENT DATE.1",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "effective_date",
+        "confidence": 0.3347368421052631,
+        "source_erp": "Generic_ES",
+        "field_name": "Fecha efectiva"
+      }
+    },
+    {
+      "column": "CONTRACT BUSINESS UNIT",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "business_unit_code",
+        "confidence": 0.345,
+        "source_erp": "Generic_ES",
+        "field_name": "Código Unidad de Negocio"
+      }
+    },
+    {
+      "column": "CONTRACT NUMBER",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "journal_id",
+        "confidence": 0.33699999999999997,
+        "source_erp": "Generic_ES",
+        "field_name": "ID de Asiento"
+      }
+    },
+    {
+      "column": "CONTRACT DESCRIPTION",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "je_header_description",
+        "confidence": 0.345,
+        "source_erp": "Generic_ES",
+        "field_name": "Descripción encabezado asiento"
+      }
+    },
+    {
+      "column": "CONTRACT LINE NUM",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "journal_id",
+        "confidence": 0.33699999999999997,
+        "source_erp": "Generic_ES",
+        "field_name": "ID de Asiento"
+      }
+    },
+    {
+      "column": "ANALYSIS TYPE",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "document_type",
+        "confidence": 0.34444444444444444,
+        "source_erp": "Generic_ES",
+        "field_name": "Tipo de documento"
+      }
+    },
+    {
+      "column": "SERVICE TYPE - OWNER",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "document_type",
+        "confidence": 0.34444444444444444,
+        "source_erp": "Generic_ES",
+        "field_name": "Tipo de documento"
+      }
+    },
+    {
+      "column": "OWNER DESCRIPTION",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "je_header_description",
+        "confidence": 0.345,
+        "source_erp": "Generic_ES",
+        "field_name": "Descripción encabezado asiento"
+      }
+    },
+    {
+      "column": "SERVICE TYPE - OCCUPIER",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "document_type",
+        "confidence": 0.34444444444444444,
+        "source_erp": "Generic_ES",
+        "field_name": "Tipo de documento"
+      }
+    },
+    {
+      "column": "OCCUPIER DESCRIPTION",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "je_header_description",
+        "confidence": 0.345,
+        "source_erp": "Generic_ES",
+        "field_name": "Descripción encabezado asiento"
+      }
+    },
+    {
+      "column": "PROPOSAL ID",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "journal_id_line_number",
+        "confidence": 0.34454545454545454,
+        "source_erp": "Generic_ES",
+        "field_name": "Número de línea de Asiento"
+      }
+    },
+    {
+      "column": "RESOURCE CATEGORY.1",
+      "reason": "user_rejected",
+      "original_mapping": null
+    },
+    {
+      "column": "RESOURCE SUB CAT",
+      "reason": "user_rejected",
+      "original_mapping": null
+    },
+    {
+      "column": "CUST/VEND VAT ID",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "document_type",
+        "confidence": 0.34444444444444444,
+        "source_erp": "Generic_ES",
+        "field_name": "Tipo de documento"
+      }
+    },
+    {
+      "column": "VAT DCLRTN DATE",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "amount_credit_debit_indicator",
+        "confidence": 0.3525,
+        "source_erp": "Generic_ES",
+        "field_name": "Indicador Debe/Haber"
+      }
+    },
+    {
+      "column": "VAT ACCOUNT TYPE",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "document_type",
+        "confidence": 0.34444444444444444,
+        "source_erp": "Generic_ES",
+        "field_name": "Tipo de documento"
+      }
+    },
+    {
+      "column": "VAT CODE",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "business_unit_code",
+        "confidence": 0.345,
+        "source_erp": "Generic_ES",
+        "field_name": "Código Unidad de Negocio"
+      }
+    },
+    {
+      "column": "VAT TRANSACTION TYPE",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "document_type",
+        "confidence": 0.34444444444444444,
+        "source_erp": "Generic_ES",
+        "field_name": "Tipo de documento"
+      }
+    },
+    {
+      "column": "LINE DOC SEQ NBR",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "journal_id_line_number",
+        "confidence": 0.34454545454545454,
+        "source_erp": "Generic_ES",
+        "field_name": "Número de línea de Asiento"
+      }
+    },
+    {
+      "column": "LINE DOC_SEQ DATE",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "journal_id_line_number",
+        "confidence": 0.34454545454545454,
+        "source_erp": "Generic_ES",
+        "field_name": "Número de línea de Asiento"
+      }
+    },
+    {
+      "column": "DOC SEQ NBR",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "journal_id_line_number",
+        "confidence": 0.34454545454545454,
+        "source_erp": "Generic_ES",
+        "field_name": "Número de línea de Asiento"
+      }
+    },
+    {
+      "column": "DOC_SEQ_DATE",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "journal_id_line_number",
+        "confidence": 0.34454545454545454,
+        "source_erp": "Generic_ES",
+        "field_name": "Número de línea de Asiento"
+      }
+    }
+  ]
+}

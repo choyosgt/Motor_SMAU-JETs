@@ -1,0 +1,190 @@
+{
+  "report_metadata": {
+    "report_type": "csv_analysis",
+    "generated_at": "2025-07-16T23:13:20.718029",
+    "tool_version": "2.1.0"
+  },
+  "file_info": {
+    "original_file": "data/ejemplo_contaplus.csv",
+    "file_name": "ejemplo_contaplus.csv",
+    "file_size_bytes": 348,
+    "processing_timestamp": "20250716_231223",
+    "rows_count": 5,
+    "columns_count": 7,
+    "erp_system": "Generic_ES"
+  },
+  "data_quality_analysis": {
+    "NumAsiento": {
+      "data_type": "int64",
+      "non_null_count": 5,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 5,
+      "sample_values": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "FechaAsiento": {
+      "data_type": "object",
+      "non_null_count": 5,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 5,
+      "sample_values": [
+        "01/01/2024",
+        "02/01/2024",
+        "03/01/2024",
+        "04/01/2024",
+        "05/01/2024"
+      ]
+    },
+    "CuentaContable": {
+      "data_type": "int64",
+      "non_null_count": 5,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 5,
+      "sample_values": [
+        4300001,
+        7000001,
+        5720001,
+        4300002,
+        6230001
+      ]
+    },
+    "CentroCosto": {
+      "data_type": "object",
+      "non_null_count": 5,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 3,
+      "sample_values": [
+        "CC001",
+        "CC002",
+        "CC001",
+        "CC003",
+        "CC002"
+      ]
+    },
+    "Debe": {
+      "data_type": "float64",
+      "non_null_count": 5,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 4,
+      "sample_values": [
+        100.5,
+        0.0,
+        25.75,
+        150.25,
+        0.0
+      ]
+    },
+    "Haber": {
+      "data_type": "float64",
+      "non_null_count": 5,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 4,
+      "sample_values": [
+        0.0,
+        100.5,
+        25.75,
+        0.0,
+        150.25
+      ]
+    },
+    "ConceptoAsiento": {
+      "data_type": "object",
+      "non_null_count": 5,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 5,
+      "sample_values": [
+        "Compra material",
+        "Venta producto",
+        "Pago factura",
+        "Compra servicios",
+        "Cobro cliente"
+      ]
+    }
+  },
+  "mapping_statistics": {
+    "total_columns": 7,
+    "successfully_mapped": 6,
+    "rejected_mappings": 1,
+    "mapping_rate_percent": 85.71428571428571
+  },
+  "field_type_analysis": {
+    "journal_id": {
+      "count": 1,
+      "columns": [
+        "NumAsiento"
+      ],
+      "avg_confidence": 0.9
+    },
+    "effective_date": {
+      "count": 1,
+      "columns": [
+        "FechaAsiento"
+      ],
+      "avg_confidence": 0.9
+    },
+    "gl_account_number": {
+      "count": 1,
+      "columns": [
+        "CuentaContable"
+      ],
+      "avg_confidence": 0.9
+    },
+    "amount_debit": {
+      "count": 1,
+      "columns": [
+        "Debe"
+      ],
+      "avg_confidence": 0.9
+    },
+    "amount_credit": {
+      "count": 1,
+      "columns": [
+        "Haber"
+      ],
+      "avg_confidence": 0.9
+    },
+    "je_header_description": {
+      "count": 1,
+      "columns": [
+        "ConceptoAsiento"
+      ],
+      "avg_confidence": 0.9
+    }
+  },
+  "csv_transformation": {
+    "mapped_csv_path": "results\\mapped_csvs\\ejemplo_contaplus_mapped_20250716_231223.csv",
+    "total_columns": 7,
+    "mapped_columns": 6,
+    "unmapped_columns": 1,
+    "column_mappings": {
+      "NumAsiento": "journal_id",
+      "FechaAsiento": "effective_date",
+      "CuentaContable": "gl_account_number",
+      "Debe": "amount_debit",
+      "Haber": "amount_credit",
+      "ConceptoAsiento": "je_header_description"
+    },
+    "unmapped_column_list": [
+      "CentroCosto"
+    ],
+    "rows_count": 5
+  },
+  "training_session_summary": {
+    "confirmed_mappings": 6,
+    "new_mappings": 0,
+    "corrected_mappings": 0,
+    "rejected_mappings": 1
+  }
+}

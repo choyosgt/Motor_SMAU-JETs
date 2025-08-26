@@ -1,0 +1,3305 @@
+field_definitions:
+  dynamic_fields:
+    amount:
+      active: true
+      code: amount
+      data_type: numeric
+      default_value: null
+      description: Importe
+      metadata: {}
+      name: Importe
+      priority: 100
+      synonyms:
+        Generic_ES:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Importe
+          language: es
+          name: Importe
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Importe
+          language: es
+          name: Monto
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Importe
+          language: es
+          name: Valor
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.7
+          deprecated: false
+          description: Synonym for Importe
+          language: es
+          name: Cantidad
+        - added_at: '2025-07-16T23:28:08.661799'
+          confidence_boost: 0.3
+          deprecated: false
+          description: Synonym for Importe
+          language: es
+          name: total
+        - added_at: '2025-07-17T10:08:46.462565'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Importe
+          language: es
+          name: Value
+        - added_at: '2025-07-17T10:24:32.461751'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Importe
+          language: es
+          name: Importe3
+        - added_at: '2025-07-17T11:36:29.404898'
+          confidence_boost: 0.3
+          deprecated: false
+          description: Synonym for Importe
+          language: es
+          name: AMT
+        - added_at: '2025-07-17T12:09:44.173856'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Importe
+          language: es
+          name: ImporteLC
+        - added_at: '2025-07-17T13:12:27.597786'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Importe
+          language: es
+          name: Amount
+        - added_at: '2025-07-17T13:22:24.449820'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Importe
+          language: es
+          name: Amount in doc. curr.
+        - added_at: '2025-07-17T13:22:24.449820'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Importe
+          language: es
+          name: Saldo
+        - added_at: '2025-07-17T13:22:24.449820'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Importe
+          language: es
+          name: Amount in local cur.
+        - added_at: '2025-07-17T16:55:10.342289'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Importe
+          language: es
+          name: SALDO
+        - added_at: '2025-07-17T17:36:34.078493'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Importe
+          language: es
+          name: Importe_Euros
+        - added_at: '2025-07-18T11:38:29.629598'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Importe
+          language: es
+          name: TRANSACTION AMOUNT
+        - added_at: '2025-07-18T11:38:29.637369'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Importe
+          language: es
+          name: MONETARY AMOUNT
+        Navision:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Importe
+          language: en
+          name: Amount
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Importe
+          language: en
+          name: Amount_LCY
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Importe
+          language: en
+          name: Additional_Currency_Amount
+        Oracle:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Importe
+          language: en
+          name: AMOUNT
+        SAGE:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Importe
+          language: en
+          name: Amount
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Importe
+          language: en
+          name: Value
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Importe
+          language: en
+          name: Net_Amount
+        SAP:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Importe
+          language: en
+          name: DMBTR
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Importe
+          language: en
+          name: WRBTR
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Importe
+          language: en
+          name: KBETR
+        - added_at: '2025-07-16T23:25:00.581040'
+          confidence_boost: 0.5
+          deprecated: false
+          description: Synonym for Importe
+          language: es
+          name: Impte.ML
+        - added_at: '2025-07-16T23:25:00.588717'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Importe
+          language: es
+          name: Importe
+        - added_at: '2025-07-17T12:45:51.182506'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Importe
+          language: es
+          name: Amount in Comp Cd Crcy
+        - added_at: '2025-07-17T12:45:51.183725'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Importe
+          language: es
+          name: Amnt in Balance Tr Crcy
+      timestamps:
+        created_at: '2025-07-16T16:11:07.454967'
+        updated_at: '2025-07-18T11:38:29.924541'
+        version: 1
+      validation:
+        custom_function: null
+        max_length: null
+        max_value: null
+        min_length: null
+        min_value: null
+        pattern: null
+        required: false
+    credit_amount:
+      active: true
+      code: credit_amount
+      data_type: numeric
+      default_value: null
+      description: Importe Haber
+      metadata: {}
+      name: Importe Haber
+      priority: 100
+      synonyms:
+        Generic_ES:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Importe Haber
+          language: es
+          name: Haber
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Importe Haber
+          language: es
+          name: ImporteHaber
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Importe Haber
+          language: es
+          name: Abono
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.7
+          deprecated: false
+          description: Synonym for Importe Haber
+          language: es
+          name: Cr
+        - added_at: '2025-07-16T23:28:08.664263'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Importe Haber
+          language: es
+          name: Importe en haber en moneda de empresa
+        - added_at: '2025-07-17T08:48:01.173521'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Importe Haber
+          language: es
+          name: Importe haber
+        - added_at: '2025-07-17T10:24:32.460525'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Importe Haber
+          language: es
+          name: Importe2
+        - added_at: '2025-07-17T13:12:27.602063'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Importe Haber
+          language: es
+          name: Credit Amount
+        - added_at: '2025-07-17T13:50:44.053371'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Importe Haber
+          language: es
+          name: Imp. div. Haber
+        - added_at: '2025-07-17T16:55:10.328503'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Importe Haber
+          language: es
+          name: HABER
+        - added_at: '2025-07-22T18:19:22.927230'
+          confidence_boost: 0.2
+          deprecated: false
+          description: Learned from manual training - 2025-07-22
+          language: es
+          name: importe_credito
+        - added_at: '2025-07-22T18:30:11.914776'
+          confidence_boost: 0.2
+          deprecated: false
+          description: Learned from manual training - 2025-07-22
+          language: es
+          name: CrAmt
+        Navision:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Importe Haber
+          language: en
+          name: Credit_Amount
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Importe Haber
+          language: en
+          name: Credit_Amount_LCY
+        - added_at: '2025-07-17T09:51:03.215179'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Importe Haber
+          language: es
+          name: CREDITAMOUNT
+        Oracle:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Importe Haber
+          language: en
+          name: ENTERED_CR
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Importe Haber
+          language: en
+          name: ACCOUNTED_CR
+        SAGE:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Importe Haber
+          language: en
+          name: Credit_Amount
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Importe Haber
+          language: en
+          name: CR_Amount
+        SAP:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Importe Haber
+          language: en
+          name: HABENBETRAG
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Importe Haber
+          language: en
+          name: CREDIT_AMOUNT
+        - added_at: '2025-07-18T10:48:51.374402'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Importe Haber
+          language: es
+          name: Importe en haber en moneda de empresa
+        - added_at: '2025-07-18T10:48:51.375420'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Importe Haber
+          language: es
+          name: Importe en haber en moneda de transacción
+      timestamps:
+        created_at: '2025-07-16T16:11:07.454967'
+        updated_at: '2025-07-22T18:30:11.914798'
+        version: 3
+      validation:
+        custom_function: null
+        max_length: null
+        max_value: null
+        min_length: null
+        min_value: null
+        pattern: null
+        required: false
+    debit_amount:
+      active: true
+      code: debit_amount
+      data_type: numeric
+      default_value: null
+      description: Importe Debe
+      metadata: {}
+      name: Importe Debe
+      priority: 100
+      synonyms:
+        Generic_ES:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Importe Debe
+          language: es
+          name: Debe
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Importe Debe
+          language: es
+          name: ImporteDebe
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Importe Debe
+          language: es
+          name: Cargo
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.7
+          deprecated: false
+          description: Synonym for Importe Debe
+          language: es
+          name: Dr
+        - added_at: '2025-07-16T23:28:08.663324'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Importe Debe
+          language: es
+          name: Importe en debe en moneda de empresa
+        - added_at: '2025-07-17T08:48:01.173521'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Importe Debe
+          language: es
+          name: Importe debe
+        - added_at: '2025-07-17T10:24:32.460525'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Importe Debe
+          language: es
+          name: Importe1
+        - added_at: '2025-07-17T13:12:27.600822'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Importe Debe
+          language: es
+          name: Debit Amount
+        - added_at: '2025-07-17T13:50:44.052351'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Importe Debe
+          language: es
+          name: Imp. div. Debe
+        - added_at: '2025-07-17T16:55:10.328503'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Importe Debe
+          language: es
+          name: DEBE
+        - added_at: '2025-07-22T18:19:13.882274'
+          confidence_boost: 0.2
+          deprecated: false
+          description: Learned from manual training - 2025-07-22
+          language: es
+          name: importe_debito
+        - added_at: '2025-07-22T18:29:48.260316'
+          confidence_boost: 0.2
+          deprecated: false
+          description: Learned from manual training - 2025-07-22
+          language: es
+          name: DrAmt
+        Navision:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Importe Debe
+          language: en
+          name: Debit_Amount
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Importe Debe
+          language: en
+          name: Debit_Amount_LCY
+        - added_at: '2025-07-17T09:51:03.215179'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Importe Debe
+          language: es
+          name: DEBITAMOUNT
+        Oracle:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Importe Debe
+          language: en
+          name: ENTERED_DR
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Importe Debe
+          language: en
+          name: ACCOUNTED_DR
+        SAGE:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Importe Debe
+          language: en
+          name: Debit_Amount
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Importe Debe
+          language: en
+          name: DR_Amount
+        SAP:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Importe Debe
+          language: en
+          name: SOLLBETRAG
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Importe Debe
+          language: en
+          name: DEBIT_AMOUNT
+        - added_at: '2025-07-18T10:48:51.370572'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Importe Debe
+          language: es
+          name: Importe en debe en moneda de empresa
+        - added_at: '2025-07-18T10:48:51.375420'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Importe Debe
+          language: es
+          name: Importe en debe en moneda de transacción
+      timestamps:
+        created_at: '2025-07-16T16:11:07.454967'
+        updated_at: '2025-07-22T18:29:48.260323'
+        version: 3
+      validation:
+        custom_function: null
+        max_length: null
+        max_value: null
+        min_length: null
+        min_value: null
+        pattern: null
+        required: false
+    debit_credit_indicator:
+      active: true
+      code: debit_credit_indicator
+      data_type: alphanumeric
+      default_value: null
+      description: Indicador Debe/Haber
+      metadata: {}
+      name: Indicador Debe/Haber
+      priority: 100
+      synonyms:
+        Generic_ES:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Indicador Debe/Haber
+          language: es
+          name: IndicadorDH
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Indicador Debe/Haber
+          language: es
+          name: TipoImporte
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Indicador Debe/Haber
+          language: es
+          name: DebeHaber
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.7
+          deprecated: false
+          description: Synonym for Indicador Debe/Haber
+          language: es
+          name: Signo
+        - added_at: '2025-07-17T10:08:46.463594'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Indicador Debe/Haber
+          language: es
+          name: Flag
+        - added_at: '2025-07-17T11:36:29.406920'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Indicador Debe/Haber
+          language: es
+          name: DC
+        - added_at: '2025-07-17T12:09:44.177890'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Indicador Debe/Haber
+          language: es
+          name: Ind
+        - added_at: '2025-07-17T17:36:34.081455'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Indicador Debe/Haber
+          language: es
+          name: Signo_DC
+        Navision:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Indicador Debe/Haber
+          language: en
+          name: Debit_Credit_Indicator
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Indicador Debe/Haber
+          language: en
+          name: Amount_Type
+        Oracle:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Indicador Debe/Haber
+          language: en
+          name: DR_CR_FLAG
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Indicador Debe/Haber
+          language: en
+          name: AMOUNT_TYPE
+        SAGE:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Indicador Debe/Haber
+          language: en
+          name: DC_Indicator
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Indicador Debe/Haber
+          language: en
+          name: Amount_Sign
+        SAP:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Indicador Debe/Haber
+          language: en
+          name: SHKZG
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Indicador Debe/Haber
+          language: en
+          name: DEBIT_CREDIT_IND
+        - added_at: '2025-07-16T23:25:00.581040'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Indicador Debe/Haber
+          language: es
+          name: D/H
+        - added_at: '2025-07-17T12:45:51.169126'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Indicador Debe/Haber
+          language: es
+          name: D/C
+      timestamps:
+        created_at: '2025-07-16T16:11:07.454967'
+        updated_at: '2025-07-18T11:38:29.924541'
+        version: 1
+      validation:
+        custom_function: null
+        max_length: null
+        max_value: null
+        min_length: null
+        min_value: null
+        pattern: null
+        required: false
+    description:
+      active: true
+      code: description
+      data_type: text
+      default_value: null
+      description: Descripción encabezado asiento
+      metadata: {}
+      name: Descripción encabezado asiento
+      priority: 100
+      synonyms:
+        Generic_ES:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Descripción encabezado asiento
+          language: es
+          name: ConceptoAsiento
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Descripción encabezado asiento
+          language: es
+          name: DescripcionAsiento
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Descripción encabezado asiento
+          language: es
+          name: Concepto
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.7
+          deprecated: false
+          description: Synonym for Descripción encabezado asiento
+          language: es
+          name: Descripcion
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.7
+          deprecated: false
+          description: Synonym for Descripción encabezado asiento
+          language: es
+          name: Glosa
+        - added_at: '2025-07-16T23:28:08.661799'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Descripción encabezado asiento
+          language: es
+          name: Texto de cabecera de asiento contable
+        - added_at: '2025-07-17T10:08:46.466996'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Descripción encabezado asiento
+          language: es
+          name: Memo
+        - added_at: '2025-07-17T10:27:02.988954'
+          confidence_boost: 0.3
+          deprecated: false
+          description: Synonym for Descripción encabezado asiento
+          language: es
+          name: Comentario
+        - added_at: '2025-07-17T10:29:49.645402'
+          confidence_boost: 0.3
+          deprecated: false
+          description: Synonym for Descripción encabezado asiento
+          language: es
+          name: Resumen
+        - added_at: '2025-07-17T11:36:29.406920'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Descripción encabezado asiento
+          language: es
+          name: TX
+        - added_at: '2025-07-17T12:09:44.176893'
+          confidence_boost: 0.3
+          deprecated: false
+          description: Synonym for Descripción encabezado asiento
+          language: es
+          name: Observaciones
+        - added_at: '2025-07-17T13:12:27.597275'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Descripción encabezado asiento
+          language: es
+          name: Description
+        - added_at: '2025-07-17T16:55:10.337550'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Descripción encabezado asiento
+          language: es
+          name: narrative
+        - added_at: '2025-07-17T17:06:49.177839'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Descripción encabezado asiento
+          language: es
+          name: CONCEPTO
+        - added_at: '2025-07-18T11:38:29.631687'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Descripción encabezado asiento
+          language: es
+          name: LONG DESCRIPTION
+        - added_at: '2025-07-24T14:35:34.398845'
+          confidence_boost: 0.2
+          deprecated: false
+          description: Learned from manual training - 2025-07-24
+          language: es
+          name: Texto cab.documento
+        Navision:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Descripción encabezado asiento
+          language: en
+          name: Description
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Descripción encabezado asiento
+          language: en
+          name: External_Document_No
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Descripción encabezado asiento
+          language: en
+          name: Reason_Code
+        - added_at: '2025-07-17T09:51:03.216316'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Descripción encabezado asiento
+          language: es
+          name: DESCRIPTION
+        Oracle:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Descripción encabezado asiento
+          language: en
+          name: DESCRIPTION
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Descripción encabezado asiento
+          language: en
+          name: REFERENCE10
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Descripción encabezado asiento
+          language: en
+          name: JE_SOURCE
+        SAGE:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Descripción encabezado asiento
+          language: en
+          name: Description
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Descripción encabezado asiento
+          language: en
+          name: Narrative
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Descripción encabezado asiento
+          language: en
+          name: Details
+        SAP:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Descripción encabezado asiento
+          language: en
+          name: BKTXT
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Descripción encabezado asiento
+          language: en
+          name: SGTXT
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Descripción encabezado asiento
+          language: en
+          name: ZUONR
+        - added_at: '2025-07-16T23:22:51.837508'
+          confidence_boost: 0.3
+          deprecated: false
+          description: Synonym for Descripción encabezado asiento
+          language: es
+          name: Txt.cab.doc.
+        - added_at: '2025-07-18T10:48:51.370572'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Descripción encabezado asiento
+          language: es
+          name: Texto de cabecera de asiento contable
+      timestamps:
+        created_at: '2025-07-16T16:11:07.454967'
+        updated_at: '2025-07-24T14:35:34.398854'
+        version: 3
+      validation:
+        custom_function: null
+        max_length: null
+        max_value: null
+        min_length: null
+        min_value: null
+        pattern: null
+        required: false
+    entry_date:
+      active: true
+      code: entry_date
+      data_type: date
+      default_value: null
+      description: Fecha ingreso
+      metadata: {}
+      name: Fecha ingreso
+      priority: 100
+      synonyms:
+        Generic_ES:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Fecha ingreso
+          language: es
+          name: FechaIngreso
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Fecha ingreso
+          language: es
+          name: FechaCreacion
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Fecha ingreso
+          language: es
+          name: FechaRegistro
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.7
+          deprecated: false
+          description: Synonym for Fecha ingreso
+          language: es
+          name: Timestamp
+        - added_at: '2025-07-17T08:48:01.171168'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Fecha ingreso
+          language: es
+          name: Fecha registro
+        - added_at: '2025-07-17T10:13:07.408517'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Fecha ingreso
+          language: es
+          name: FechaReg
+        - added_at: '2025-07-17T11:36:29.404056'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Fecha ingreso
+          language: es
+          name: DT
+        - added_at: '2025-07-17T12:09:44.176893'
+          confidence_boost: 0.3
+          deprecated: false
+          description: Synonym for Fecha ingreso
+          language: es
+          name: FchReg
+        - added_at: '2025-07-17T13:50:44.058316'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Fecha ingreso
+          language: es
+          name: F. entr.
+        - added_at: '2025-07-22T08:56:43.480736'
+          confidence_boost: 0.2
+          deprecated: false
+          description: Learned from manual training - 2025-07-22
+          language: es
+          name: Date Created.1
+        Navision:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Fecha ingreso
+          language: en
+          name: Created_Date
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Fecha ingreso
+          language: en
+          name: Entry_Date
+        Oracle:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Fecha ingreso
+          language: en
+          name: CREATION_DATE
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Fecha ingreso
+          language: en
+          name: DATE_CREATED
+        SAGE:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Fecha ingreso
+          language: en
+          name: Date_Created
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Fecha ingreso
+          language: en
+          name: Input_Date
+        SAP:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Fecha ingreso
+          language: en
+          name: CPUDT
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Fecha ingreso
+          language: en
+          name: CREATED_DATE
+        - added_at: '2025-07-16T23:22:51.839768'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Fecha ingreso
+          language: es
+          name: FechaEntr
+        - added_at: '2025-07-17T12:45:51.182506'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Fecha ingreso
+          language: es
+          name: CreatnTime
+      timestamps:
+        created_at: '2025-07-16T16:11:07.454967'
+        updated_at: '2025-07-22T08:56:43.480745'
+        version: 2
+      validation:
+        custom_function: null
+        max_length: null
+        max_value: null
+        min_length: null
+        min_value: null
+        pattern: null
+        required: false
+    entry_time:
+      active: true
+      code: entry_time
+      data_type: text
+      default_value: null
+      description: Hora ingreso
+      metadata: {}
+      name: Hora ingreso
+      priority: 100
+      synonyms:
+        Generic_ES:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Hora ingreso
+          language: es
+          name: HoraIngreso
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Hora ingreso
+          language: es
+          name: HoraCreacion
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Hora ingreso
+          language: es
+          name: Hora
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.7
+          deprecated: false
+          description: Synonym for Hora ingreso
+          language: es
+          name: Time
+        - added_at: '2025-07-17T10:08:46.465609'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Hora ingreso
+          language: es
+          name: RegTime
+        - added_at: '2025-07-18T11:38:29.626224'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Hora ingreso
+          language: es
+          name: POSTED DATE/TIME
+        Navision:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Hora ingreso
+          language: en
+          name: Created_Time
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Hora ingreso
+          language: en
+          name: Entry_Time
+        Oracle:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Hora ingreso
+          language: en
+          name: CREATION_TIME
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Hora ingreso
+          language: en
+          name: LAST_UPDATE_DATE
+        SAGE:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Hora ingreso
+          language: en
+          name: Time_Created
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Hora ingreso
+          language: en
+          name: Input_Time
+        SAP:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Hora ingreso
+          language: en
+          name: CPUTM
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Hora ingreso
+          language: en
+          name: CREATED_TIME
+        - added_at: '2025-07-16T23:22:51.830982'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Hora ingreso
+          language: es
+          name: Hora
+      timestamps:
+        created_at: '2025-07-16T16:11:07.454967'
+        updated_at: '2025-07-18T11:38:29.924541'
+        version: 1
+      validation:
+        custom_function: null
+        max_length: null
+        max_value: null
+        min_length: null
+        min_value: null
+        pattern: null
+        required: false
+    fiscal_year:
+      active: true
+      code: fiscal_year
+      data_type: numeric
+      default_value: null
+      description: Año fiscal
+      metadata: {}
+      name: Año fiscal
+      priority: 100
+      synonyms:
+        Generic_ES:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Año fiscal
+          language: es
+          name: Ejercicio
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Año fiscal
+          language: es
+          name: Anio
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Año fiscal
+          language: es
+          name: AnoFiscal
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.7
+          deprecated: false
+          description: Synonym for Año fiscal
+          language: es
+          name: Year
+        - added_at: '2025-07-17T10:24:32.459237'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Año fiscal
+          language: es
+          name: Año
+        - added_at: '2025-07-17T11:36:29.404898'
+          confidence_boost: 0.3
+          deprecated: false
+          description: Synonym for Año fiscal
+          language: es
+          name: YR
+        - added_at: '2025-07-17T12:09:44.174894'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Año fiscal
+          language: es
+          name: Ej
+        - added_at: '2025-07-17T17:36:34.083548'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Año fiscal
+          language: es
+          name: Ejercicio_Fiscal
+        - added_at: '2025-07-18T11:38:29.620236'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Año fiscal
+          language: es
+          name: FISCAL YEAR
+        Navision:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Año fiscal
+          language: en
+          name: Fiscal_Year
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Año fiscal
+          language: en
+          name: Accounting_Year
+        Oracle:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Año fiscal
+          language: en
+          name: PERIOD_YEAR
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Año fiscal
+          language: en
+          name: FISCAL_YEAR_NAME
+        SAGE:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Año fiscal
+          language: en
+          name: Financial_Year
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Año fiscal
+          language: en
+          name: Year_Number
+        SAP:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Año fiscal
+          language: en
+          name: GJAHR
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Año fiscal
+          language: en
+          name: FISCAL_YEAR
+        - added_at: '2025-07-16T23:22:51.838774'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Año fiscal
+          language: es
+          name: Año
+        - added_at: '2025-07-16T23:25:00.581040'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Año fiscal
+          language: es
+          name: Año
+        - added_at: '2025-07-17T12:45:51.169126'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Año fiscal
+          language: es
+          name: Year
+      timestamps:
+        created_at: '2025-07-16T16:11:07.454967'
+        updated_at: '2025-07-18T11:38:29.924541'
+        version: 1
+      validation:
+        custom_function: null
+        max_length: null
+        max_value: null
+        min_length: null
+        min_value: null
+        pattern: null
+        required: false
+    gl_account_name:
+      active: true
+      code: gl_account_name
+      data_type: text
+      default_value: null
+      description: Nombre cuenta contable del plan de cuentas
+      metadata: {}
+      name: Nombre cuenta contable
+      priority: 100
+      synonyms:
+        Generic_ES:
+        - added_at: '2025-07-21T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Nombre cuenta contable
+          language: es
+          name: NombreCuenta
+        - added_at: '2025-07-21T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Nombre cuenta contable
+          language: es
+          name: DescripcionCuenta
+        - added_at: '2025-07-21T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Nombre cuenta contable
+          language: es
+          name: CuentaContable
+        - added_at: '2025-07-21T16:11:07.454967'
+          confidence_boost: 0.7
+          deprecated: false
+          description: Synonym for Nombre cuenta contable
+          language: en
+          name: AccountName
+        - added_at: '2025-07-21T16:11:07.454967'
+          confidence_boost: 0.7
+          deprecated: false
+          description: Synonym for Nombre cuenta contable
+          language: en
+          name: GLAccount
+        - added_at: '2025-07-22T08:53:33.891267'
+          confidence_boost: 0.2
+          deprecated: false
+          description: Learned from manual training - 2025-07-22
+          language: es
+          name: Type
+        Navision:
+        - added_at: '2025-07-21T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Nombre cuenta contable
+          language: en
+          name: Account_Name
+        - added_at: '2025-07-21T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Nombre cuenta contable
+          language: en
+          name: GL_Account_Name
+        Oracle:
+        - added_at: '2025-07-21T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Nombre cuenta contable
+          language: en
+          name: ACCOUNT_NAME
+        - added_at: '2025-07-21T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Nombre cuenta contable
+          language: en
+          name: GL_ACCOUNT_DESC
+        SAGE:
+        - added_at: '2025-07-21T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Nombre cuenta contable
+          language: en
+          name: Account_Description
+        - added_at: '2025-07-21T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Nombre cuenta contable
+          language: en
+          name: GL_Account_Name
+        SAP:
+        - added_at: '2025-07-21T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Nombre cuenta contable
+          language: en
+          name: KTEXT
+        - added_at: '2025-07-21T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Nombre cuenta contable
+          language: en
+          name: GL_ACCOUNT_NAME
+        - added_at: '2025-07-21T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Nombre cuenta contable
+          language: en
+          name: SAKNR_TEXT
+      timestamps:
+        created_at: '2025-07-21T16:11:07.454967'
+        updated_at: '2025-07-22T18:06:44.922374'
+        version: 3
+      validation:
+        custom_function: null
+        max_length: null
+        max_value: null
+        min_length: null
+        min_value: null
+        pattern: null
+        required: false
+    gl_account_number:
+      active: true
+      code: gl_account_number
+      data_type: alphanumeric
+      default_value: null
+      description: Número cuenta contable
+      metadata: {}
+      name: Número cuenta contable
+      priority: 100
+      synonyms:
+        Generic_ES:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: es
+          name: CuentaContable
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.7
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: es
+          name: Cuenta de mayor/Nombre IC
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: es
+          name: Cuenta
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: es
+          name: CodigoCuenta
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: es
+          name: NumCuenta
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.7
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: es
+          name: CodCuenta
+        - added_at: '2025-07-16T23:28:08.658270'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: es
+          name: Cuenta de mayor
+        - added_at: '2025-07-17T08:48:01.171168'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: es
+          name: Nº cuenta
+        - added_at: '2025-07-17T10:08:46.466996'
+          confidence_boost: 0.3
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: es
+          name: AcctNum
+        - added_at: '2025-07-17T10:13:07.395831'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: es
+          name: CuentaMayor
+        - added_at: '2025-07-17T10:24:32.459237'
+          confidence_boost: 0.3
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: es
+          name: Cta
+        - added_at: '2025-07-17T10:27:02.984090'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: es
+          name: CuentaGL
+        - added_at: '2025-07-17T11:36:29.405923'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: es
+          name: GL
+        - added_at: '2025-07-17T12:09:44.173856'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: es
+          name: CtaMay
+        - added_at: '2025-07-17T13:12:27.591803'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: es
+          name: G_L Account No_
+        - added_at: '2025-07-17T13:22:24.445592'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: es
+          name: G/L
+        - added_at: '2025-07-17T13:22:24.445592'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: es
+          name: Account
+        - added_at: '2025-07-17T16:55:10.340263'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: es
+          name: Cuenta sin punto
+        - added_at: '2025-07-17T16:55:10.342289'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: es
+          name: Sin espacios cuenta
+        - added_at: '2025-07-17T17:06:49.177839'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: es
+          name: CUENTA
+        - added_at: '2025-07-17T17:06:49.177839'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: es
+          name: SUBCTA
+        - added_at: '2025-07-17T17:36:34.078493'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: es
+          name: Cta_Contable
+        - added_at: '2025-07-18T11:38:29.628377'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: es
+          name: GLOBAL ACCOUNT
+        - added_at: '2025-07-18T11:38:29.628377'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: es
+          name: ALTERNATE ACCOUNT
+        - added_at: '2025-07-22T08:57:56.547220'
+          confidence_boost: 0.2
+          deprecated: false
+          description: Learned from manual training - 2025-07-22
+          language: es
+          name: Spanish Account
+        - added_at: '2025-07-22T18:18:14.959178'
+          confidence_boost: 0.2
+          deprecated: false
+          description: Learned from manual training - 2025-07-22
+          language: es
+          name: numero_cuenta
+        - added_at: '2025-07-22T18:29:04.505683'
+          confidence_boost: 0.2
+          deprecated: false
+          description: Learned from manual training - 2025-07-22
+          language: es
+          name: 91Acct
+        - added_at: '2025-07-24T15:55:57.926444'
+          confidence_boost: 0.2
+          deprecated: false
+          description: Learned from manual training - 2025-07-24
+          language: es
+          name: Lib.mayor
+        Navision:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: en
+          name: G_L_Account_No
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: en
+          name: Account_No
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: en
+          name: GL_Account_Code
+        - added_at: '2025-07-17T09:51:03.215179'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: es
+          name: GLACCOUNTNO
+        Oracle:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: en
+          name: CODE_COMBINATION_ID
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: en
+          name: ACCOUNT_SEGMENT
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: en
+          name: NATURAL_ACCOUNT
+        SAGE:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: en
+          name: Account_Code
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: en
+          name: Nominal_Code
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: en
+          name: GL_Code
+        SAP:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: en
+          name: HKONT
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: en
+          name: RACCT
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: en
+          name: SAKNR
+        - added_at: '2025-07-16T23:25:00.587510'
+          confidence_boost: 0.3
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: es
+          name: LibrMay
+        - added_at: '2025-07-17T12:45:51.184613'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: es
+          name: Account
+        - added_at: '2025-07-18T10:48:51.370572'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: es
+          name: Cuenta de mayor
+      timestamps:
+        created_at: '2025-07-16T16:11:07.454967'
+        updated_at: '2025-07-24T15:55:57.926451'
+        version: 5
+      validation:
+        custom_function: null
+        max_length: null
+        max_value: null
+        min_length: null
+        min_value: null
+        pattern: null
+        required: false
+    journal_entry_id:
+      active: true
+      code: journal_entry_id
+      data_type: alphanumeric
+      default_value: null
+      description: ID del Asiento
+      metadata: {}
+      name: ID de Asiento
+      priority: 100
+      synonyms:
+        Generic_ES:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: es
+          name: NumAsiento
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: es
+          name: IdAsiento
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: es
+          name: AsientoId
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: es
+          name: NroAsiento
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: es
+          name: Journal
+        - added_at: '2025-07-16T23:28:08.658270'
+          confidence_boost: 0.3
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: es
+          name: Asiento contable
+        - added_at: '2025-07-17T08:48:01.171168'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: es
+          name: Nº documento
+        - added_at: '2025-07-17T08:48:01.173521'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: es
+          name: Nº asiento
+        - added_at: '2025-07-17T10:08:46.466996'
+          confidence_boost: 0.3
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: es
+          name: TransID
+        - added_at: '2025-07-17T10:13:07.407347'
+          confidence_boost: 0.3
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: es
+          name: NumDoc
+
+        - added_at: '2025-07-17T10:27:02.982089'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: es
+          name: As
+        - added_at: '2025-07-17T10:29:49.644890'
+          confidence_boost: 0.3
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: es
+          name: DocNum
+        - added_at: '2025-07-17T11:36:29.403201'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: es
+          name: TxID
+        - added_at: '2025-07-17T12:09:44.177890'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: es
+          name: Num
+        - added_at: '2025-07-17T13:12:27.595901'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: es
+          name: Document No_
+        - added_at: '2025-07-17T13:22:24.445592'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: es
+          name: DocumentNo
+        - added_at: '2025-07-17T13:50:44.048593'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: es
+          name: Nº asto.
+        - added_at: '2025-07-17T14:08:50.414808'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: es
+          name: Asiento
+        - added_at: '2025-07-17T17:36:34.075965'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: es
+          name: Ref_Asiento
+        - added_at: '2025-07-18T11:38:29.622252'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: es
+          name: JOURNAL ID
+        - added_at: '2025-07-22T18:29:27.695821'
+          confidence_boost: 0.2
+          deprecated: false
+          description: Learned from manual training - 2025-07-22
+          language: es
+          name: BatNbr
+        - added_at: '2025-07-22T18:52:17.433482'
+          confidence_boost: 0.2
+          deprecated: false
+          description: Learned from manual training - 2025-07-22
+          language: es
+          name: Numero_Asiento
+        Navision:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: en
+          name: Document_No
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: en
+          name: Entry_No
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: en
+          name: Transaction_No
+        - added_at: '2025-07-17T09:51:03.214167'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: es
+          name: DOCUMENTNO
+        Oracle:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: en
+          name: JE_HEADER_ID
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: en
+          name: REFERENCE1
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: en
+          name: BATCH_NAME
+        SAGE:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: en
+          name: Reference
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: en
+          name: Journal_Number
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: en
+          name: Transaction_ID
+        SAP:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: en
+          name: BELNR
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: en
+          name: AWKEY
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: en
+          name: BKTXT
+        - added_at: '2025-07-16T23:22:51.835894'
+          confidence_boost: 0.3
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: es
+          name: Nº doc.
+        - added_at: '2025-07-17T12:45:51.169126'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: es
+          name: DocumentNo
+        - added_at: '2025-07-18T10:48:51.370572'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: es
+          name: Asiento contable
+      timestamps:
+        created_at: '2025-07-16T16:11:07.454967'
+        updated_at: '2025-07-22T18:52:17.433492'
+        version: 3
+      validation:
+        custom_function: null
+        max_length: null
+        max_value: null
+        min_length: null
+        min_value: null
+        pattern: null
+        required: false
+    ledger:
+      active: true
+      code: ledger
+      data_type: alphanumeric
+      default_value: null
+      description: Libro contable
+      metadata: {}
+      name: Libro contable
+      priority: 100
+      synonyms:
+        Generic_ES:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Libro contable
+          language: es
+          name: LibroContable
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Libro contable
+          language: es
+          name: Libro
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Libro contable
+          language: es
+          name: Diario
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.7
+          deprecated: false
+          description: Synonym for Libro contable
+          language: es
+          name: Ledger
+        - added_at: '2025-07-17T17:06:49.177839'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Libro contable
+          language: es
+          name: DIARIO
+        - added_at: '2025-07-18T11:38:29.618218'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Libro contable
+          language: es
+          name: LEDGER
+        Navision:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Libro contable
+          language: en
+          name: Journal_Template_Name
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Libro contable
+          language: en
+          name: Journal_Batch_Name
+        Oracle:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Libro contable
+          language: en
+          name: LEDGER_NAME
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Libro contable
+          language: en
+          name: JE_CATEGORY
+        SAGE:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Libro contable
+          language: en
+          name: Ledger
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Libro contable
+          language: en
+          name: Journal_Code
+        SAP:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Libro contable
+          language: en
+          name: RLDNR
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Libro contable
+          language: en
+          name: LEDGER
+        - added_at: '2025-07-17T12:45:51.169126'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Libro contable
+          language: es
+          name: Ld
+      timestamps:
+        created_at: '2025-07-16T16:11:07.454967'
+        updated_at: '2025-07-18T11:38:29.924541'
+        version: 1
+      validation:
+        custom_function: null
+        max_length: null
+        max_value: null
+        min_length: null
+        min_value: null
+        pattern: null
+        required: false
+    line_description:
+      active: true
+      code: line_description
+      data_type: text
+      default_value: null
+      description: Descripción línea asiento
+      metadata: {}
+      name: Descripción línea asiento
+      priority: 100
+      synonyms:
+        Generic_ES:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Descripción línea asiento
+          language: es
+          name: ConceptoLinea
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Descripción línea asiento
+          language: es
+          name: DescripcionLinea
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Descripción línea asiento
+          language: es
+          name: Descripci�n
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Descripción línea asiento
+          language: es
+          name: DetalleLinea
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.7
+          deprecated: false
+          description: Synonym for Descripción línea asiento
+          language: es
+          name: GlosaLinea
+        - added_at: '2025-07-16T23:28:08.663324'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Descripción línea asiento
+          language: es
+          name: Texto de posición de asiento contable
+        - added_at: '2025-07-17T10:29:49.638448'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Descripción línea asiento
+          language: es
+          name: Detalle
+        - added_at: '2025-07-17T13:22:24.445592'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Descripción línea asiento
+          language: es
+          name: Texts
+        - added_at: '2025-07-17T13:22:24.448664'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Descripción línea asiento
+          language: es
+          name: Text
+        - added_at: '2025-07-17T13:50:44.059806'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Descripción línea asiento
+          language: es
+          name: Descr. apte.
+        - added_at: '2025-07-17T14:08:50.416761'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Descripción línea asiento
+          language: es
+          name: Descripción
+        - added_at: '2025-07-17T17:06:49.177839'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Descripción línea asiento
+          language: es
+          name: TEXTO
+        - added_at: '2025-07-17T17:36:34.089543'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Descripción línea asiento
+          language: es
+          name: Concepto_Movimiento
+        - added_at: '2025-07-18T11:38:29.637369'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Descripción línea asiento
+          language: es
+          name: LINE DESCRIPTION
+        - added_at: '2025-07-22T18:06:12.153286'
+          confidence_boost: 0.2
+          deprecated: false
+          description: Learned from manual training - 2025-07-22
+          language: es
+          name: Concepto
+        - added_at: '2025-07-22T18:31:08.371685'
+          confidence_boost: 0.2
+          deprecated: false
+          description: Learned from manual training - 2025-07-22
+          language: es
+          name: TranDesc
+        Navision:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Descripción línea asiento
+          language: en
+          name: Comment
+        Oracle:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Descripción línea asiento
+          language: en
+          name: DESCRIPTION
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Descripción línea asiento
+          language: en
+          name: REFERENCE4
+        SAGE:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Descripción línea asiento
+          language: en
+          name: Details
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Descripción línea asiento
+          language: en
+          name: Memo
+        SAP:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Descripción línea asiento
+          language: en
+          name: SGTXT
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Descripción línea asiento
+          language: en
+          name: ZUONR
+        - added_at: '2025-07-16T23:25:00.581040'
+          confidence_boost: 0.3
+          deprecated: false
+          description: Synonym for Descripción línea asiento
+          language: es
+          name: Texto
+        - added_at: '2025-07-17T12:45:51.180051'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Descripción línea asiento
+          language: es
+          name: Text
+        - added_at: '2025-07-18T10:48:51.370572'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Descripción línea asiento
+          language: es
+          name: Texto de posición de asiento contable
+      timestamps:
+        created_at: '2025-07-16T16:11:07.454967'
+        updated_at: '2025-07-22T18:31:08.371694'
+        version: 3
+      validation:
+        custom_function: null
+        max_length: null
+        max_value: null
+        min_length: null
+        min_value: null
+        pattern: null
+        required: false
+    line_number:
+      active: true
+      code: line_number
+      data_type: numeric
+      default_value: null
+      description: Número de línea de Asiento
+      metadata: {}
+      name: Número de línea de Asiento
+      priority: 100
+      synonyms:
+        Generic_ES:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Número de línea de Asiento
+          language: es
+          name: NumLinea
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Número de línea de Asiento
+          language: es
+          name: LineaAsiento
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Número de línea de Asiento
+          language: es
+          name: NroLinea
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.7
+          deprecated: false
+          description: Synonym for Número de línea de Asiento
+          language: es
+          name: Linea
+        - added_at: '2025-07-17T08:48:01.173521'
+          confidence_boost: 0.3
+          deprecated: false
+          description: Synonym for Número de línea de Asiento
+          language: es
+          name: Nº mov.
+        - added_at: '2025-07-17T10:08:46.462565'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Número de línea de Asiento
+          language: es
+          name: Seq
+        - added_at: '2025-07-17T10:24:32.457239'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Número de línea de Asiento
+          language: es
+          name: Pos
+        - added_at: '2025-07-17T10:29:49.645402'
+          confidence_boost: 0.3
+          deprecated: false
+          description: Synonym for Número de línea de Asiento
+          language: es
+          name: Sec
+        - added_at: '2025-07-17T11:36:29.405923'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Número de línea de Asiento
+          language: es
+          name: LN
+        - added_at: '2025-07-17T13:12:27.604427'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Número de línea de Asiento
+          language: es
+          name: Entry No_
+        - added_at: '2025-07-17T17:36:34.075965'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Número de línea de Asiento
+          language: es
+          name: Num_Linea
+        - added_at: '2025-07-18T11:38:29.635237'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Número de línea de Asiento
+          language: es
+          name: JOURNAL LINE NUMBER
+        - added_at: '2025-07-22T18:17:11.147288'
+          confidence_boost: 0.2
+          deprecated: false
+          description: Learned from manual training - 2025-07-22
+          language: es
+          name: linea_item
+        Navision:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Número de línea de Asiento
+          language: en
+          name: Line_No
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Número de línea de Asiento
+          language: en
+          name: Entry_Line_No
+        Oracle:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Número de línea de Asiento
+          language: en
+          name: JE_LINE_NUM
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Número de línea de Asiento
+          language: en
+          name: LINE_NUMBER
+        SAGE:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Número de línea de Asiento
+          language: en
+          name: Line_Number
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Número de línea de Asiento
+          language: en
+          name: Seq_Number
+        SAP:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Número de línea de Asiento
+          language: en
+          name: BUZEI
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Número de línea de Asiento
+          language: en
+          name: LINE_ITEM
+        - added_at: '2025-07-16T23:25:00.587510'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Número de línea de Asiento
+          language: es
+          name: Pos
+        - added_at: '2025-07-17T12:45:51.169126'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Número de línea de Asiento
+          language: es
+          name: LineI
+        - added_at: '2025-07-17T12:45:51.181476'
+          confidence_boost: 0.3
+          deprecated: false
+          description: Synonym for Número de línea de Asiento
+          language: es
+          name: Itm
+        - added_at: '2025-07-22T16:39:27.727265'
+          confidence_boost: 0.2
+          deprecated: false
+          description: Learned from manual training - 2025-07-22
+          language: es
+          name: BKTXT
+      timestamps:
+        created_at: '2025-07-16T16:11:07.454967'
+        updated_at: '2025-07-23T09:43:00.759344'
+        version: 4
+      validation:
+        custom_function: null
+        max_length: null
+        max_value: null
+        min_length: null
+        min_value: null
+        pattern: null
+        required: false
+    period_number:
+      active: true
+      code: period_number
+      data_type: alphanumeric
+      default_value: null
+      description: Período
+      metadata: {}
+      name: Período
+      priority: 100
+      synonyms:
+        Generic_ES:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Período
+          language: es
+          name: Periodo
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Período
+          language: es
+          name: Mes
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Período
+          language: es
+          name: PeriodoContable
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.7
+          deprecated: false
+          description: Synonym for Período
+          language: es
+          name: Trimestre
+        - added_at: '2025-07-17T10:08:46.468295'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Período
+          language: es
+          name: Per
+        - added_at: '2025-07-17T13:22:24.445592'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Período
+          language: es
+          name: Period
+        - added_at: '2025-07-17T13:50:44.045671'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Período
+          language: es
+          name: Per.
+        - added_at: '2025-07-17T16:55:10.328503'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Período
+          language: es
+          name: Acc period
+        - added_at: '2025-07-17T17:36:34.085715'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Período
+          language: es
+          name: Periodo_Cont
+        - added_at: '2025-07-18T11:38:29.620236'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Período
+          language: es
+          name: ACCOUNTING PERIOD
+        - added_at: '2025-07-22T18:30:29.733232'
+          confidence_boost: 0.2
+          deprecated: false
+          description: Learned from manual training - 2025-07-22
+          language: es
+          name: PerPost
+        Navision:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Período
+          language: en
+          name: Accounting_Period
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Período
+          language: en
+          name: Period_No
+        Oracle:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Período
+          language: en
+          name: PERIOD_NAME
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Período
+          language: en
+          name: PERIOD_NUM
+        SAGE:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Período
+          language: en
+          name: Period
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Período
+          language: en
+          name: Month_Number
+        SAP:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Período
+          language: en
+          name: MONAT
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Período
+          language: en
+          name: FISCAL_PERIOD
+      timestamps:
+        created_at: '2025-07-16T16:11:07.454967'
+        updated_at: '2025-07-22T18:30:29.733248'
+        version: 2
+      validation:
+        custom_function: null
+        max_length: null
+        max_value: null
+        min_length: null
+        min_value: null
+        pattern: null
+        required: false
+    posting_date:
+      active: true
+      code: posting_date
+      data_type: date
+      default_value: null
+      description: Fecha efectiva
+      metadata: {}
+      name: Fecha efectiva
+      priority: 100
+      synonyms:
+        Generic_ES:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: es
+          name: FechaAsiento
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: es
+          name: FechaContable
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: es
+          name: Fecha
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: es
+          name: FechaValor
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.7
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: es
+          name: FechaOperacion
+        - added_at: '2025-07-16T23:28:08.658270'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: es
+          name: Fecha de contabilización
+        - added_at: '2025-07-17T08:48:01.173521'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: es
+          name: Fecha emisión documento
+        - added_at: '2025-07-17T10:08:46.461050'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: es
+          name: TDate
+        - added_at: '2025-07-17T10:27:02.983088'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: es
+          name: FechaTrans
+        - added_at: '2025-07-17T11:36:29.403201'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: es
+          name: FE
+        - added_at: '2025-07-17T12:09:44.176893'
+          confidence_boost: 0.3
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: es
+          name: FchTrans
+        - added_at: '2025-07-17T13:12:27.591803'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: es
+          name: Posting Date
+        - added_at: '2025-07-17T13:12:27.603248'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: es
+          name: Document Date
+        - added_at: '2025-07-17T13:22:24.448664'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: es
+          name: Pstng Date
+        - added_at: '2025-07-17T13:50:44.058316'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: es
+          name: F. ctble. asto.
+        - added_at: '2025-07-17T16:55:10.323778'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: es
+          name: Doc date
+        - added_at: '2025-07-17T16:55:10.323778'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: es
+          name: Value date
+        - added_at: '2025-07-17T17:06:49.177839'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: es
+          name: FECHA
+        - added_at: '2025-07-17T17:36:34.086943'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: es
+          name: Fch_Operacion
+        - added_at: '2025-07-18T11:38:29.635237'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: es
+          name: JOURNAL DATE
+        Navision:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: en
+          name: Posting_Date
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: en
+          name: Document_Date
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: en
+          name: VAT_Date
+        - added_at: '2025-07-17T09:51:03.214167'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: es
+          name: POSTINGDATE
+        Oracle:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: en
+          name: GL_DATE
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: en
+          name: DEFAULT_EFFECTIVE_DATE
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: en
+          name: ACCOUNTING_DATE
+        SAGE:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: en
+          name: Transaction_Date
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: en
+          name: Posting_Date
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: en
+          name: Value_Date
+        SAP:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: en
+          name: BUDAT
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: en
+          name: BLDAT
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: en
+          name: VALUT
+        - added_at: '2025-07-16T23:22:51.830982'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: es
+          name: Fecha doc.
+        - added_at: '2025-07-16T23:22:51.835894'
+          confidence_boost: 0.3
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: es
+          name: Fe.contab.
+        - added_at: '2025-07-17T12:45:51.180051'
+          confidence_boost: 0.3
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: es
+          name: Pstng Date
+        - added_at: '2025-07-17T12:45:51.181476'
+          confidence_boost: 0.3
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: es
+          name: Doc. Date
+        - added_at: '2025-07-18T10:48:51.368500'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: es
+          name: Fecha de contabilización
+      timestamps:
+        created_at: '2025-07-16T16:11:07.454967'
+        updated_at: '2025-07-22T08:56:18.460178'
+        version: 2
+      validation:
+        custom_function: null
+        max_length: null
+        max_value: null
+        min_length: null
+        min_value: null
+        pattern: null
+        required: false
+    prepared_by:
+      active: true
+      code: prepared_by
+      data_type: alphanumeric
+      default_value: null
+      description: Ingresado por
+      metadata: {}
+      name: Ingresado por
+      priority: 100
+      synonyms:
+        Generic_ES:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Ingresado por
+          language: es
+          name: Usuario
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Ingresado por
+          language: es
+          name: Autor
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Ingresado por
+          language: es
+          name: CreadoPor
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Ingresado por
+          language: es
+          name: IngresadoPor
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.7
+          deprecated: false
+          description: Synonym for Ingresado por
+          language: es
+          name: User
+        - added_at: '2025-07-17T08:48:01.171168'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Ingresado por
+          language: es
+          name: Id. usuario
+        - added_at: '2025-07-17T10:08:46.465609'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Ingresado por
+          language: es
+          name: CreatedBy
+        - added_at: '2025-07-17T10:24:32.460525'
+          confidence_boost: 0.3
+          deprecated: false
+          description: Synonym for Ingresado por
+          language: es
+          name: Usr
+        - added_at: '2025-07-17T11:36:29.406920'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Ingresado por
+          language: es
+          name: BY
+        - added_at: '2025-07-17T12:09:44.175894'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Ingresado por
+          language: es
+          name: UsuarioReg
+        - added_at: '2025-07-17T13:12:27.598857'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Ingresado por
+          language: es
+          name: User ID
+        - added_at: '2025-07-17T13:22:24.445592'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Ingresado por
+          language: es
+          name: User name
+        - added_at: '2025-07-17T13:50:44.055900'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Ingresado por
+          language: es
+          name: Usuario contab.
+        - added_at: '2025-07-18T11:38:29.625113'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Ingresado por
+          language: es
+          name: CREATED BY
+        - added_at: '2025-07-22T18:29:38.914372'
+          confidence_boost: 0.2
+          deprecated: false
+          description: Learned from manual training - 2025-07-22
+          language: es
+          name: Crtd_User
+        - added_at: '2025-07-24T14:35:27.764688'
+          confidence_boost: 0.2
+          deprecated: false
+          description: Learned from manual training - 2025-07-24
+          language: es
+          name: Nombre del usuario
+        Navision:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Ingresado por
+          language: en
+          name: User_ID
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Ingresado por
+          language: en
+          name: Source_Code
+        - added_at: '2025-07-17T09:51:03.217448'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Ingresado por
+          language: es
+          name: USERID
+        Oracle:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Ingresado por
+          language: en
+          name: CREATED_BY
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Ingresado por
+          language: en
+          name: LAST_UPDATED_BY
+        SAGE:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Ingresado por
+          language: en
+          name: User_Name
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Ingresado por
+          language: en
+          name: Created_By
+        SAP:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Ingresado por
+          language: en
+          name: USNAM
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Ingresado por
+          language: en
+          name: CREATED_BY
+        - added_at: '2025-07-16T23:22:51.830982'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Ingresado por
+          language: es
+          name: Usuario
+        - added_at: '2025-07-17T12:45:51.169126'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Ingresado por
+          language: es
+          name: User Name
+        - added_at: '2025-07-18T10:48:51.370572'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Ingresado por
+          language: es
+          name: Creado por
+      timestamps:
+        created_at: '2025-07-16T16:11:07.454967'
+        updated_at: '2025-07-24T14:35:27.764696'
+        version: 3
+      validation:
+        custom_function: null
+        max_length: null
+        max_value: null
+        min_length: null
+        min_value: null
+        pattern: null
+        required: false
+    reversal_indicator:
+      active: true
+      code: reversal_indicator
+      data_type: alphanumeric
+      default_value: null
+      description: Indicador reversión
+      metadata: {}
+      name: Indicador reversión
+      priority: 100
+      synonyms:
+        Generic_ES:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Indicador reversión
+          language: es
+          name: IndicadorReversion
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Indicador reversión
+          language: es
+          name: Reversado
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Indicador reversión
+          language: es
+          name: Anulado
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.7
+          deprecated: false
+          description: Synonym for Indicador reversión
+          language: es
+          name: EstadoReversion
+        - added_at: '2025-07-17T10:13:07.405902'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Indicador reversión
+          language: es
+          name: Estado
+        - added_at: '2025-07-17T10:29:49.641695'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Indicador reversión
+          language: es
+          name: Stat
+        - added_at: '2025-07-17T12:09:44.175894'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Indicador reversión
+          language: es
+          name: StatusReg
+        - added_at: '2025-07-18T11:38:29.622252'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Indicador reversión
+          language: es
+          name: REVERSAL
+        Navision:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Indicador reversión
+          language: en
+          name: Reversed
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Indicador reversión
+          language: en
+          name: Reversal_Entry_No
+        Oracle:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Indicador reversión
+          language: en
+          name: REVERSAL_FLAG
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Indicador reversión
+          language: en
+          name: STATUS
+        SAGE:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Indicador reversión
+          language: en
+          name: Reversal_Flag
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Indicador reversión
+          language: en
+          name: Reversed_Flag
+        SAP:
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Indicador reversión
+          language: en
+          name: STBLG
+        - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Indicador reversión
+          language: en
+          name: REVERSAL_FLAG
+      timestamps:
+        created_at: '2025-07-16T16:11:07.454967'
+        updated_at: '2025-07-18T11:38:29.924541'
+        version: 1
+      validation:
+        custom_function: null
+        max_length: null
+        max_value: null
+        min_length: null
+        min_value: null
+        pattern: null
+        required: false
+    vendor_id:
+      active: true
+      code: vendor_id
+      data_type: text
+      default_value: null
+      description: Identificador del tercero en el libro diario
+      metadata: {}
+      name: ID Tercero
+      priority: 100
+      synonyms:
+        Generic_ES:
+        - added_at: '2025-07-21T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for ID Tercero
+          language: es
+          name: Tercero
+        - added_at: '2025-07-21T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for ID Tercero
+          language: es
+          name: Proveedor
+        - added_at: '2025-07-21T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for ID Tercero
+          language: es
+          name: IDProveedor
+        - added_at: '2025-07-21T16:11:07.454967'
+          confidence_boost: 0.7
+          deprecated: false
+          description: Synonym for ID Tercero
+          language: en
+          name: Vendor
+        - added_at: '2025-07-21T16:11:07.454967'
+          confidence_boost: 0.7
+          deprecated: false
+          description: Synonym for ID Tercero
+          language: en
+          name: Supplier
+        - added_at: '2025-07-21T16:11:07.454967'
+          confidence_boost: 0.6
+          deprecated: false
+          description: Synonym for ID Tercero
+          language: en
+          name: ThirdParty
+        - added_at: '2025-07-22T18:06:31.310498'
+          confidence_boost: 0.2
+          deprecated: false
+          description: Learned from manual training - 2025-07-22
+          language: es
+          name: Externo
+        - added_at: '2025-07-22T18:17:48.074387'
+          confidence_boost: 0.2
+          deprecated: false
+          description: Learned from manual training - 2025-07-22
+          language: es
+          name: cuenta_mayor
+        - added_at: '2025-07-24T14:34:52.912905'
+          confidence_boost: 0.2
+          deprecated: false
+          description: Learned from manual training - 2025-07-24
+          language: es
+          name: Acreedor
+        Navision:
+        - added_at: '2025-07-21T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for ID Tercero
+          language: en
+          name: Vendor_No
+        - added_at: '2025-07-21T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for ID Tercero
+          language: en
+          name: Vendor_Code
+        - added_at: '2025-07-22T16:59:48.952988'
+          confidence_boost: 0.2
+          deprecated: false
+          description: Learned from manual training - 2025-07-22
+          language: es
+          name: Cta. contrapartida
+        Oracle:
+        - added_at: '2025-07-21T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for ID Tercero
+          language: en
+          name: VENDOR_ID
+        - added_at: '2025-07-21T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for ID Tercero
+          language: en
+          name: SUPPLIER_ID
+        SAGE:
+        - added_at: '2025-07-21T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for ID Tercero
+          language: en
+          name: Supplier_Code
+        - added_at: '2025-07-21T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for ID Tercero
+          language: en
+          name: Vendor_ID
+        SAP:
+        - added_at: '2025-07-21T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for ID Tercero
+          language: en
+          name: LIFNR
+        - added_at: '2025-07-21T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for ID Tercero
+          language: en
+          name: VENDOR_ID
+        - added_at: '2025-07-21T16:11:07.454967'
+          confidence_boost: 0.7
+          deprecated: false
+          description: Synonym for ID Tercero
+          language: en
+          name: KUNNR
+      timestamps:
+        created_at: '2025-07-21T16:11:07.454967'
+        updated_at: '2025-07-24T14:34:52.912911'
+        version: 5
+      validation:
+        custom_function: null
+        max_length: null
+        max_value: null
+        min_length: null
+        min_value: null
+        pattern: null
+        required: false
+system:
+  auto_reload: true
+  last_updated: '2025-07-24T15:55:58.140772'
+  reload_interval_seconds: 30
+  version: 2.0.2

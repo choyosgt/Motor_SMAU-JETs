@@ -1,0 +1,21 @@
+Ref_Asiento,Fch_Operacion,Num_Linea,Cta_Contable,Importe_Euros,Signo_DC,Concepto_Movimiento,Cod_Empresa,Ejercicio_Fiscal,Divisa,Periodo_Cont
+JE001,15.01.2024,1,430001,1250.75,D,Compra material oficina - Facturas pendientes,EMP01,2024,EUR,01
+JE001,15.01.2024,2,472001,262.66,D,IVA Soportado 21% - Material oficina,EMP01,2024,EUR,01
+JE001,15.01.2024,3,400001,1513.41,C,Proveedores nacionales - Papelería Martín SL,EMP01,2024,EUR,01
+JE002,15.01.2024,1,625001,890.50,D,Servicios publicitarios online - Facebook Ads,EMP02,2024,EUR,01
+JE002,15.01.2024,2,113001,890.50,C,Banco Santander Cta 0049-1234-12-1234567890,EMP02,2024,EUR,01
+JE003,16.01.2024,1,640001,2150.00,D,Arrendamientos oficina - Enero 2024,EMP01,2024,EUR,01
+JE003,16.01.2024,2,451001,2150.00,C,IVA Repercutido 0% - Exento arrendamiento,EMP01,2024,EUR,01
+JE004,16.01.2024,1,113001,4500.00,D,Banco BBVA Cta 0182-5678-90-9876543210,EMP02,2024,EUR,01
+JE004,16.01.2024,2,700001,4500.00,C,Ventas mercaderías - Cliente Distribuciones Norte,EMP02,2024,EUR,01
+JE005,17.01.2024,1,210001,15000.00,D,Equipos informáticos - Portátiles Dell Latitude,EMP01,2024,EUR,01
+JE005,17.01.2024,2,472001,3150.00,D,IVA Soportado 21% - Equipos informáticos,EMP01,2024,EUR,01
+JE005,17.01.2024,3,400002,18150.00,C,Proveedores UE - Dell Technologies Ireland Ltd,EMP01,2024,EUR,01
+JE006,17.01.2024,1,621001,750.80,D,Servicios profesionales - Asesoría fiscal diciembre,EMP02,2024,EUR,01
+JE006,17.01.2024,2,472001,157.67,D,IVA Soportado 21% - Servicios profesionales,EMP02,2024,EUR,01
+JE006,17.01.2024,3,410001,908.47,C,Acreedores prestación servicios - Consultores Unidos SL,EMP02,2024,EUR,01
+JE007,18.01.2024,1,627001,125.30,D,Servicios telefónicos - Movistar enero 2024,EMP01,2024,EUR,01
+JE007,18.01.2024,2,472001,26.31,D,IVA Soportado 21% - Servicios telefónicos,EMP01,2024,EUR,01
+JE007,18.01.2024,3,410002,151.61,C,Acreedores servicios diversos - Telefónica España SAU,EMP01,2024,EUR,01
+JE008,18.01.2024,1,113002,2890.75,D,Banco ING Cta 1465-0100-12-1234567890,EMP02,2024,EUR,01
+JE008,18.01.2024,2,760001,2890.75,C,Ingresos financieros - Intereses cuenta remunerada,EMP02,2024,EUR,01

@@ -1,0 +1,200 @@
+{
+  "file_info": {
+    "file_path": "data/ejemplo_generico_07.csv",
+    "file_name": "ejemplo_generico_07.csv",
+    "erp_system": "Generic_ES",
+    "total_columns": 15,
+    "timestamp": "20250717_101127",
+    "backup_created": "config\\backups\\dynamic_fields_config_backup_20250717_101128.yaml"
+  },
+  "original_mappings": {
+    "Fecha": {
+      "field_type": "effective_date",
+      "field_name": "Fecha efectiva",
+      "confidence": 1.75
+    },
+    "Linea": {
+      "field_type": "journal_id_line_number",
+      "field_name": "Número de línea de Asiento",
+      "confidence": 1.65
+    },
+    "CuentaMayor": {
+      "field_type": "gl_account_number",
+      "field_name": "Número cuenta contable",
+      "confidence": 0.6
+    },
+    "Ref": {
+      "field_type": "journal_id",
+      "field_name": "ID de Asiento",
+      "confidence": 0.5
+    },
+    "Importe": {
+      "field_type": "amount",
+      "field_name": "Importe",
+      "confidence": 1.85
+    },
+    "Signo": {
+      "field_type": "amount_credit_debit_indicator",
+      "field_name": "Indicador Debe/Haber",
+      "confidence": 1.65
+    },
+    "Concepto": {
+      "field_type": "je_header_description",
+      "field_name": "Descripción encabezado asiento",
+      "confidence": 1.75
+    },
+    "CodEmp": {
+      "field_type": "company_code",
+      "field_name": "Código compañía",
+      "confidence": 0.6
+    },
+    "Periodo": {
+      "field_type": "period",
+      "field_name": "Período",
+      "confidence": 1.85
+    },
+    "Moneda": {
+      "field_type": "amount_currency",
+      "field_name": "Moneda importe",
+      "confidence": 1.85
+    },
+    "Estado": {
+      "field_type": "reversal_indicator",
+      "field_name": "Indicador reversión",
+      "confidence": 0.6
+    },
+    "Usuario": {
+      "field_type": "entered_by",
+      "field_name": "Ingresado por",
+      "confidence": 1.85
+    },
+    "FechaReg": {
+      "field_type": "effective_date",
+      "field_name": "Fecha efectiva",
+      "confidence": 0.6
+    },
+    "Tipo": {
+      "field_type": "amount_credit_debit_indicator",
+      "field_name": "Indicador Debe/Haber",
+      "confidence": 0.6
+    }
+  },
+  "confirmed_mappings": {
+    "Fecha": {
+      "field_type": "effective_date",
+      "confidence": 1.75,
+      "source_erp": "Generic_ES",
+      "field_name": "Fecha efectiva"
+    },
+    "Linea": {
+      "field_type": "journal_id_line_number",
+      "confidence": 1.65,
+      "source_erp": "Generic_ES",
+      "field_name": "Número de línea de Asiento"
+    },
+    "CuentaMayor": {
+      "field_type": "gl_account_number",
+      "confidence": 0.6,
+      "source_erp": "Generic_ES",
+      "field_name": "Número cuenta contable"
+    },
+    "Importe": {
+      "field_type": "amount",
+      "confidence": 1.85,
+      "source_erp": "Generic_ES",
+      "field_name": "Importe"
+    },
+    "Signo": {
+      "field_type": "amount_credit_debit_indicator",
+      "confidence": 1.65,
+      "source_erp": "Generic_ES",
+      "field_name": "Indicador Debe/Haber"
+    },
+    "Concepto": {
+      "field_type": "je_header_description",
+      "confidence": 1.75,
+      "source_erp": "Generic_ES",
+      "field_name": "Descripción encabezado asiento"
+    },
+    "CodEmp": {
+      "field_type": "company_code",
+      "confidence": 0.6,
+      "source_erp": "Generic_ES",
+      "field_name": "Código compañía"
+    },
+    "Periodo": {
+      "field_type": "period",
+      "confidence": 1.85,
+      "source_erp": "Generic_ES",
+      "field_name": "Período"
+    },
+    "Moneda": {
+      "field_type": "amount_currency",
+      "confidence": 1.85,
+      "source_erp": "Generic_ES",
+      "field_name": "Moneda importe"
+    },
+    "Estado": {
+      "field_type": "reversal_indicator",
+      "confidence": 0.6,
+      "source_erp": "Generic_ES",
+      "field_name": "Indicador reversión"
+    },
+    "Usuario": {
+      "field_type": "entered_by",
+      "confidence": 1.85,
+      "source_erp": "Generic_ES",
+      "field_name": "Ingresado por"
+    }
+  },
+  "new_mappings": {
+    "NumDoc": {
+      "field_type": "journal_id",
+      "field_name": "ID de Asiento",
+      "confidence": 1.0,
+      "source": "manual"
+    }
+  },
+  "corrected_mappings": {
+    "FechaReg": {
+      "original": {
+        "field_type": "effective_date",
+        "confidence": 0.6,
+        "source_erp": "Generic_ES",
+        "field_name": "Fecha efectiva"
+      },
+      "corrected": {
+        "field_type": "entered_date",
+        "field_name": "Fecha ingreso",
+        "confidence": 1.0,
+        "source": "manual"
+      }
+    },
+    "Tipo": {
+      "original": {
+        "field_type": "amount_credit_debit_indicator",
+        "confidence": 0.6,
+        "source_erp": "Generic_ES",
+        "field_name": "Indicador Debe/Haber"
+      },
+      "corrected": {
+        "field_type": "document_type",
+        "field_name": "Tipo de documento",
+        "confidence": 1.0,
+        "source": "manual"
+      }
+    }
+  },
+  "rejected_mappings": [
+    {
+      "column": "Ref",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "journal_id",
+        "confidence": 0.5,
+        "source_erp": "Generic_ES",
+        "field_name": "ID de Asiento"
+      }
+    }
+  ]
+}

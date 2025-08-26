@@ -1,0 +1,314 @@
+{
+  "report_metadata": {
+    "report_type": "csv_analysis",
+    "generated_at": "2025-07-16T23:22:58.724060",
+    "tool_version": "2.1.0"
+  },
+  "file_info": {
+    "original_file": "data/Libro Diario Dielectro Cabecera.csv",
+    "file_name": "Libro Diario Dielectro Cabecera.csv",
+    "file_size_bytes": 56999446,
+    "processing_timestamp": "20250716_232044",
+    "rows_count": 638999,
+    "columns_count": 16,
+    "erp_system": "SAP"
+  },
+  "data_quality_analysis": {
+    "Unnamed: 0": {
+      "data_type": "float64",
+      "non_null_count": 0,
+      "null_count": 638999,
+      "null_percentage": 100.0,
+      "unique_values": 0,
+      "sample_values": []
+    },
+    "Soc.": {
+      "data_type": "int64",
+      "non_null_count": 638999,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 1,
+      "sample_values": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "Nº doc.": {
+      "data_type": "int64",
+      "non_null_count": 638999,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 638999,
+      "sample_values": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    " Año": {
+      "data_type": "int64",
+      "non_null_count": 638999,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 1,
+      "sample_values": [
+        2023,
+        2023,
+        2023,
+        2023,
+        2023
+      ]
+    },
+    "Clase": {
+      "data_type": "object",
+      "non_null_count": 638999,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 37,
+      "sample_values": [
+        "ZB",
+        "ZB",
+        "ZB",
+        "ZB",
+        "ZB"
+      ]
+    },
+    "Fecha doc.": {
+      "data_type": "object",
+      "non_null_count": 638999,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 477,
+      "sample_values": [
+        "04.01.2023",
+        "05.01.2023",
+        "07.01.2023",
+        "10.01.2023",
+        "10.01.2023"
+      ]
+    },
+    "Fe.contab.": {
+      "data_type": "object",
+      "non_null_count": 638999,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 365,
+      "sample_values": [
+        "04.01.2023",
+        "05.01.2023",
+        "07.01.2023",
+        "10.01.2023",
+        "10.01.2023"
+      ]
+    },
+    "FechaEntr": {
+      "data_type": "object",
+      "non_null_count": 638999,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 398,
+      "sample_values": [
+        "16.12.2022",
+        "16.12.2022",
+        "16.12.2022",
+        "16.12.2022",
+        "20.12.2022"
+      ]
+    },
+    "Hora": {
+      "data_type": "object",
+      "non_null_count": 638999,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 42808,
+      "sample_values": [
+        "10:49:51",
+        "10:51:02",
+        "10:51:50",
+        "10:56:03",
+        "8:47:47"
+      ]
+    },
+    "Últ.act.": {
+      "data_type": "float64",
+      "non_null_count": 0,
+      "null_count": 638999,
+      "null_percentage": 100.0,
+      "unique_values": 0,
+      "sample_values": []
+    },
+    "Usuario": {
+      "data_type": "object",
+      "non_null_count": 638999,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 145,
+      "sample_values": [
+        "FINANZAS",
+        "FINANZAS",
+        "FINANZAS",
+        "FINANZAS",
+        "FINANZAS"
+      ]
+    },
+    "CódT": {
+      "data_type": "object",
+      "non_null_count": 637930,
+      "null_count": 1069,
+      "null_percentage": 0.16729290656166912,
+      "unique_values": 45,
+      "sample_values": [
+        "FBW3",
+        "FBW3",
+        "FBW3",
+        "FBW3",
+        "FBW3"
+      ]
+    },
+    "Anul.con": {
+      "data_type": "float64",
+      "non_null_count": 1486,
+      "null_count": 637513,
+      "null_percentage": 99.7674487753502,
+      "unique_values": 1484,
+      "sample_values": [
+        692.0,
+        691.0,
+        402.0,
+        399.0,
+        626.0
+      ]
+    },
+    "Txt.cab.doc.": {
+      "data_type": "object",
+      "non_null_count": 249985,
+      "null_count": 389014,
+      "null_percentage": 60.87865552215261,
+      "unique_values": 26993,
+      "sample_values": [
+        "Efecto devuelto acreedor",
+        "Efecto devuelto acreedor",
+        "Efecto devuelto acreedor",
+        "Efecto devuelto acreedor",
+        "Efecto devuelto acreedor"
+      ]
+    },
+    "Mon.": {
+      "data_type": "object",
+      "non_null_count": 638999,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 1,
+      "sample_values": [
+        "EUR",
+        "EUR",
+        "EUR",
+        "EUR",
+        "EUR"
+      ]
+    },
+    "S": {
+      "data_type": "object",
+      "non_null_count": 10785,
+      "null_count": 628214,
+      "null_percentage": 98.31220393146155,
+      "unique_values": 5,
+      "sample_values": [
+        "A",
+        "A",
+        "A",
+        "A",
+        "A"
+      ]
+    }
+  },
+  "mapping_statistics": {
+    "total_columns": 16,
+    "successfully_mapped": 10,
+    "rejected_mappings": 6,
+    "mapping_rate_percent": 62.5
+  },
+  "field_type_analysis": {
+    "document_type": {
+      "count": 1,
+      "columns": [
+        "Clase"
+      ],
+      "avg_confidence": 1.0
+    },
+    "effective_date": {
+      "count": 2,
+      "columns": [
+        "Fecha doc.",
+        "Fe.contab."
+      ],
+      "avg_confidence": 1.0
+    },
+    "entered_time": {
+      "count": 1,
+      "columns": [
+        "Hora"
+      ],
+      "avg_confidence": 1.0
+    },
+    "entered_by": {
+      "count": 1,
+      "columns": [
+        "Usuario"
+      ],
+      "avg_confidence": 1.0
+    },
+    "journal_id": {
+      "count": 1,
+      "columns": [
+        "Nº doc."
+      ],
+      "avg_confidence": 1.0
+    },
+    "je_header_description": {
+      "count": 1,
+      "columns": [
+        "Txt.cab.doc."
+      ],
+      "avg_confidence": 1.0
+    }
+  },
+  "csv_transformation": {
+    "mapped_csv_path": "results\\mapped_csvs\\Libro Diario Dielectro Cabecera_mapped_20250716_232044.csv",
+    "total_columns": 18,
+    "mapped_columns": 10,
+    "unmapped_columns": 6,
+    "column_mappings": {
+      "Clase": "document_type",
+      "Fecha doc.": "effective_date",
+      "Hora": "entered_time",
+      "Usuario": "entered_by",
+      "Nº doc.": "journal_id",
+      "Fe.contab.": "effective_date",
+      "Txt.cab.doc.": "je_header_description",
+      " Año": "fiscal_year",
+      "FechaEntr": "entered_date",
+      "Mon.": "amount_currency"
+    },
+    "unmapped_column_list": [
+      "Unnamed: 0",
+      "Soc.",
+      "Últ.act.",
+      "CódT",
+      "Anul.con",
+      "S"
+    ],
+    "rows_count": 638999
+  },
+  "training_session_summary": {
+    "confirmed_mappings": 4,
+    "new_mappings": 3,
+    "corrected_mappings": 3,
+    "rejected_mappings": 6
+  }
+}

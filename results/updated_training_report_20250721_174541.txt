@@ -1,0 +1,36 @@
+UPDATED ENHANCED TRAINER - TRAINING REPORT
+==================================================
+Generated: 2025-07-21 17:45:41
+Source file: data/ejemplo_sap_02.csv
+ERP hint: SAP
+
+TRAINING STATISTICS
+--------------------
+Columns Processed: 12
+Patterns Learned: 0
+Synonyms Added: 0
+User Confirmations: 9
+User Corrections: 0
+Automatic Detections: 0
+Manual Mappings: 0
+High Confidence Confirmed: 9
+Low Confidence Suggested: 0
+Bad Suggestions Avoided: 0
+Vendor Id Detections: 0
+Gl Account Name Detections: 0
+
+CONFIRMED MAPPINGS
+--------------------
+Column Name                    | Mapped Field              | Confidence
+----------------------------------------------------------------------
+BELNR                          | journal_entry_id          | 0.95
+BUDAT                          | posting_date              | 0.90
+GJAHR                          | fiscal_year               | 0.90
+MONAT                          | period_number             | 0.90
+HKONT                          | gl_account_number         | 0.90
+DMBTR                          | amount                    | 0.90
+SHKZG                          | debit_credit_indicator    | 0.90
+SGTXT                          | line_description          | 0.85
+USNAM                          | prepared_by               | 0.90
+
+Total confirmed mappings: 9

@@ -1,0 +1,63 @@
+# config/system_config.yaml
+# Configuración principal del sistema dinámico
+# Todas las constantes se configuran aquí externamente
+
+system_configuration:
+  # ===============================================
+  # UMBRALES DE CONFIANZA PARA DETECCIÓN
+  # ===============================================
+  min_confidence_threshold: 0.15        # Umbral mínimo para considerar una detección
+  exact_match_threshold: 0.95           # Coincidencia exacta de nombres
+  partial_match_threshold: 0.7          # Coincidencia parcial de nombres  
+  semantic_match_threshold: 0.5         # Similitud semántica
+  pattern_match_threshold: 0.35         # Coincidencia por patrón regex
+  content_validation_threshold: 0.2     # Validación de contenido
+
+  # ===============================================
+  # CONFIGURACIÓN DE RECARGA AUTOMÁTICA
+  # ===============================================
+  auto_reload_enabled: true             # Habilitar recarga automática
+  default_reload_interval: 45           # Intervalo en segundos
+  
+  # ===============================================
+  # GESTIÓN DE CACHE Y PERFORMANCE
+  # ===============================================
+  max_backup_retention: 15              # Número máximo de backups
+  max_cache_size: 1500                  # Tamaño máximo del cache
+  cache_ttl_seconds: 7200               # Tiempo de vida del cache (2 horas)
+  
+  # ===============================================
+  # CONFIGURACIÓN DE LOGGING
+  # ===============================================
+  log_level: INFO                       # DEBUG, INFO, WARNING, ERROR
+  log_performance: true                 # Habilitar métricas de performance
+  
+  # ===============================================
+  # CARACTERÍSTICAS AVANZADAS
+  # ===============================================
+  enable_content_validation: true       # Validar contenido de columnas
+  enable_pattern_matching: true         # Habilitar coincidencias por patrón
+  max_columns_per_file: 500             # Límite de columnas a procesar
+  max_rows_for_analysis: 10000          # Límite de filas para análisis
+  
+  # ===============================================
+  # CAMPOS CORE PREDEFINIDOS (EDITABLES)
+  # ===============================================
+core_fields:
+    journal_entry_id: "ID del Asiento"
+    line_number: "Número de Línea del Asiento"
+    description: "Descripción del Encabezado"
+    line_description: "Descripción de la Línea"
+    posting_date: "Fecha Efectiva"
+    fiscal_year: "Año Fiscal"
+    period_number: "Período"
+    gl_account_number: "Número de Cuenta Contable"
+    gl_account_name: "Nombre de Cuenta Contable"
+    amount: "Importe"
+    debit_amount: "Importe Debe"
+    credit_amount: "Importe Haber"
+    debit_credit_indicator: "Indicador Debe/Haber"
+    prepared_by: "Introducido Por"
+    entry_date: "Fecha de Introducción"
+    entry_time: "Hora de Introducción"
+    vendor_id: "ID Tercero"

@@ -1,0 +1,198 @@
+{
+  "report_metadata": {
+    "report_type": "csv_analysis",
+    "generated_at": "2025-07-17T14:08:51.801466",
+    "tool_version": "2.1.0"
+  },
+  "file_info": {
+    "original_file": "data/Libro Diario Fundacion Miro.csv",
+    "file_name": "Libro Diario Fundacion Miro.csv",
+    "file_size_bytes": 4843772,
+    "processing_timestamp": "20250717_140546",
+    "rows_count": 45512,
+    "columns_count": 8,
+    "erp_system": "Generic_ES"
+  },
+  "data_quality_analysis": {
+    "Fecha": {
+      "data_type": "object",
+      "non_null_count": 45510,
+      "null_count": 2,
+      "null_percentage": 0.004394445420987871,
+      "unique_values": 29,
+      "sample_values": [
+        "01/02/2024",
+        "01/02/2024",
+        "01/02/2024",
+        "01/02/2024",
+        "01/02/2024"
+      ]
+    },
+    "Asiento": {
+      "data_type": "float64",
+      "non_null_count": 45510,
+      "null_count": 2,
+      "null_percentage": 0.004394445420987871,
+      "unique_values": 15635,
+      "sample_values": [
+        482.708,
+        482.708,
+        482.708,
+        482.708,
+        482.709
+      ]
+    },
+    "NºDoc": {
+      "data_type": "float64",
+      "non_null_count": 2788,
+      "null_count": 42724,
+      "null_percentage": 93.8741430831429,
+      "unique_values": 1394,
+      "sample_values": [
+        84.97,
+        84.97,
+        84.988,
+        84.988,
+        84.989
+      ]
+    },
+    "Cuenta": {
+      "data_type": "float64",
+      "non_null_count": 45510,
+      "null_count": 2,
+      "null_percentage": 0.004394445420987871,
+      "unique_values": 694,
+      "sample_values": [
+        57007001.0,
+        57007001.0,
+        57200182.0,
+        57200182.0,
+        57007006.0
+      ]
+    },
+    "Descripción": {
+      "data_type": "object",
+      "non_null_count": 45510,
+      "null_count": 2,
+      "null_percentage": 0.004394445420987871,
+      "unique_values": 693,
+      "sample_values": [
+        "CAIXA CENTRAL",
+        "CAIXA CENTRAL",
+        "BBVA",
+        "BBVA",
+        "CAIXA CANVIS"
+      ]
+    },
+    "Concepto": {
+      "data_type": "object",
+      "non_null_count": 45511,
+      "null_count": 1,
+      "null_percentage": 0.0021972227104939354,
+      "unique_values": 15664,
+      "sample_values": [
+        "INGRES EFECTIU LOOMIS",
+        "INGRES EFECTIU LOOMIS",
+        "INGRES EFECTIU LOOMIS",
+        "INGRES EFECTIU LOOMIS",
+        "LOOMIS PORTEN CANVI"
+      ]
+    },
+    "Debe": {
+      "data_type": "object",
+      "non_null_count": 17483,
+      "null_count": 28029,
+      "null_percentage": 61.58595535243452,
+      "unique_values": 3215,
+      "sample_values": [
+        "11.384.85",
+        "8.055.00",
+        "1.750.00",
+        "31.50",
+        "-2.692.76"
+      ]
+    },
+    "Haber": {
+      "data_type": "object",
+      "non_null_count": 28029,
+      "null_count": 17483,
+      "null_percentage": 38.414044647565476,
+      "unique_values": 4309,
+      "sample_values": [
+        "11.384.85",
+        "8.055.00",
+        "1.750.00",
+        "30.29",
+        "1.21"
+      ]
+    }
+  },
+  "mapping_statistics": {
+    "total_columns": 8,
+    "successfully_mapped": 7,
+    "rejected_mappings": 1,
+    "mapping_rate_percent": 87.5
+  },
+  "field_type_analysis": {
+    "effective_date": {
+      "count": 1,
+      "columns": [
+        "Fecha"
+      ],
+      "avg_confidence": 1.75
+    },
+    "gl_account_number": {
+      "count": 1,
+      "columns": [
+        "Cuenta"
+      ],
+      "avg_confidence": 1.85
+    },
+    "je_header_description": {
+      "count": 1,
+      "columns": [
+        "Concepto"
+      ],
+      "avg_confidence": 1.75
+    },
+    "amount_debit": {
+      "count": 1,
+      "columns": [
+        "Debe"
+      ],
+      "avg_confidence": 1.85
+    },
+    "amount_credit": {
+      "count": 1,
+      "columns": [
+        "Haber"
+      ],
+      "avg_confidence": 1.85
+    }
+  },
+  "csv_transformation": {
+    "mapped_csv_path": "results\\mapped_csvs\\Libro Diario Fundacion Miro_mapped_20250717_140546.csv",
+    "total_columns": 8,
+    "mapped_columns": 7,
+    "unmapped_columns": 1,
+    "column_mappings": {
+      "Fecha": "effective_date",
+      "Cuenta": "gl_account_number",
+      "Concepto": "je_header_description",
+      "Debe": "amount_debit",
+      "Haber": "amount_credit",
+      "Asiento": "journal_id",
+      "Descripción": "je_line_description"
+    },
+    "unmapped_column_list": [
+      "NºDoc"
+    ],
+    "rows_count": 45512
+  },
+  "training_session_summary": {
+    "confirmed_mappings": 5,
+    "new_mappings": 0,
+    "corrected_mappings": 2,
+    "rejected_mappings": 1
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "journal_id": {
+    "examples": [
+      1000001,
+      1000001,
+      1000002
+    ],
+    "patterns": [
+      "DDDDDDD"
+    ],
+    "column_names": [
+      "BELNR"
+    ]
+  },
+  "journal_id_line_number": {
+    "examples": [
+      1,
+      2,
+      1
+    ],
+    "patterns": [
+      "D"
+    ],
+    "column_names": [
+      "BUZEI"
+    ]
+  },
+  "effective_date": {
+    "examples": [
+      "2024-01-15",
+      "2024-01-15",
+      "2024-01-15"
+    ],
+    "patterns": [
+      "DDDD-DD-DD"
+    ],
+    "column_names": [
+      "BUDAT"
+    ]
+  },
+  "gl_account_number": {
+    "examples": [
+      4000001,
+      1600001,
+      6000001
+    ],
+    "patterns": [
+      "DDDDDDD"
+    ],
+    "column_names": [
+      "HKONT"
+    ]
+  },
+  "amount_debit": {
+    "examples": [
+      1500.0,
+      0.0,
+      2300.5
+    ],
+    "patterns": [
+      "DDDD.D",
+      "D.D"
+    ],
+    "column_names": [
+      "SOLLBETRAG"
+    ]
+  },
+  "amount_credit": {
+    "examples": [
+      0.0,
+      1500.0,
+      0.0
+    ],
+    "patterns": [
+      "D.D",
+      "DDDD.D"
+    ],
+    "column_names": [
+      "HABENBETRAG"
+    ]
+  },
+  "je_line_description": {
+    "examples": [
+      "Purchase of office supplies",
+      "Purchase of office supplies",
+      "Marketing campaign expenses"
+    ],
+    "patterns": [
+      "AAAAAAAASAASAAAAAASAAAAAAAA",
+      "AAAAAAAAASAAAAAAAASAAAAAAAA",
+      "AAAAASAAAAAAASAAAAAAA"
+    ],
+    "column_names": [
+      "SGTXT"
+    ]
+  },
+  "amount_currency": {
+    "examples": [
+      "EUR",
+      "EUR",
+      "EUR"
+    ],
+    "patterns": [
+      "AAA"
+    ],
+    "column_names": [
+      "WAERS"
+    ]
+  },
+  "fiscal_year": {
+    "examples": [
+      2024,
+      2024,
+      2024
+    ],
+    "patterns": [
+      "DDDD"
+    ],
+    "column_names": [
+      "GJAHR"
+    ]
+  },
+  "document_type": {
+    "examples": [
+      "KR",
+      "KR",
+      "KZ"
+    ],
+    "patterns": [
+      "AA"
+    ],
+    "column_names": [
+      "BLART"
+    ]
+  }
+}

@@ -1,0 +1,161 @@
+{
+  "file_info": {
+    "file_path": "data/ejemplo_navision_02.csv",
+    "file_name": "ejemplo_navision_02.csv",
+    "erp_system": "Navision",
+    "total_columns": 15,
+    "timestamp": "20250717_094555",
+    "backup_created": "config\\backups\\dynamic_fields_config_backup_20250717_094556.yaml"
+  },
+  "original_mappings": {
+    "DOCUMENTNO": {
+      "field_type": "journal_id",
+      "field_name": "ID de Asiento",
+      "confidence": 1.85
+    },
+    "POSTINGDATE": {
+      "field_type": "effective_date",
+      "field_name": "Fecha efectiva",
+      "confidence": 1.85
+    },
+    "GLACCOUNTNO": {
+      "field_type": "gl_account_number",
+      "field_name": "Número cuenta contable",
+      "confidence": 1.85
+    },
+    "DEBITAMOUNT": {
+      "field_type": "amount_debit",
+      "field_name": "Importe Debe",
+      "confidence": 1.85
+    },
+    "CREDITAMOUNT": {
+      "field_type": "amount_credit",
+      "field_name": "Importe Haber",
+      "confidence": 1.85
+    },
+    "DESCRIPTION": {
+      "field_type": "je_header_description",
+      "field_name": "Descripción encabezado asiento",
+      "confidence": 1.85
+    },
+    "CURRENCY": {
+      "field_type": "amount_currency",
+      "field_name": "Moneda importe",
+      "confidence": 1.5499999999999998
+    },
+    "JOURNALTEMPLATE": {
+      "field_type": "ledger",
+      "field_name": "Libro contable",
+      "confidence": 0.6
+    },
+    "JOURNALBATCH": {
+      "field_type": "ledger",
+      "field_name": "Libro contable",
+      "confidence": 0.6
+    },
+    "USERID": {
+      "field_type": "entered_by",
+      "field_name": "Ingresado por",
+      "confidence": 1.85
+    }
+  },
+  "confirmed_mappings": {
+    "DOCUMENTNO": {
+      "field_type": "journal_id",
+      "confidence": 1.85,
+      "source_erp": "Navision",
+      "field_name": "ID de Asiento"
+    },
+    "POSTINGDATE": {
+      "field_type": "effective_date",
+      "confidence": 1.85,
+      "source_erp": "Navision",
+      "field_name": "Fecha efectiva"
+    },
+    "GLACCOUNTNO": {
+      "field_type": "gl_account_number",
+      "confidence": 1.85,
+      "source_erp": "Navision",
+      "field_name": "Número cuenta contable"
+    },
+    "DEBITAMOUNT": {
+      "field_type": "amount_debit",
+      "confidence": 1.85,
+      "source_erp": "Navision",
+      "field_name": "Importe Debe"
+    },
+    "CREDITAMOUNT": {
+      "field_type": "amount_credit",
+      "confidence": 1.85,
+      "source_erp": "Navision",
+      "field_name": "Importe Haber"
+    },
+    "DESCRIPTION": {
+      "field_type": "je_header_description",
+      "confidence": 1.85,
+      "source_erp": "Navision",
+      "field_name": "Descripción encabezado asiento"
+    },
+    "CURRENCY": {
+      "field_type": "amount_currency",
+      "confidence": 1.5499999999999998,
+      "source_erp": "Navision",
+      "field_name": "Moneda importe"
+    },
+    "USERID": {
+      "field_type": "entered_by",
+      "confidence": 1.85,
+      "source_erp": "Navision",
+      "field_name": "Ingresado por"
+    }
+  },
+  "new_mappings": {},
+  "corrected_mappings": {},
+  "rejected_mappings": [
+    {
+      "column": "DIMENSIONCODE",
+      "reason": "user_rejected",
+      "original_mapping": null
+    },
+    {
+      "column": "COSTCENTER",
+      "reason": "user_rejected",
+      "original_mapping": null
+    },
+    {
+      "column": "PROJECT",
+      "reason": "user_rejected",
+      "original_mapping": null
+    },
+    {
+      "column": "VATCODE",
+      "reason": "user_rejected",
+      "original_mapping": null
+    },
+    {
+      "column": "JOURNALTEMPLATE",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "ledger",
+        "confidence": 0.6,
+        "source_erp": "Navision",
+        "field_name": "Libro contable"
+      }
+    },
+    {
+      "column": "JOURNALBATCH",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "ledger",
+        "confidence": 0.6,
+        "source_erp": "Navision",
+        "field_name": "Libro contable"
+      }
+    },
+    {
+      "column": "EXTERNALDOCNO",
+      "reason": "user_rejected",
+      "original_mapping": null
+    }
+  ]
+}

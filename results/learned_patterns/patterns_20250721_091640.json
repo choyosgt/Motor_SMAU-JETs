@@ -1,0 +1,102 @@
+{
+  "effective_date": {
+    "examples": [
+      "01/01/2024",
+      "01/01/2024",
+      "01/01/2024"
+    ],
+    "patterns": [
+      "D{2}SD{2}SD{4}"
+    ],
+    "column_names": [
+      "FECHA"
+    ]
+  },
+  "journal_id": {
+    "examples": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "patterns": [
+      "DPD"
+    ],
+    "column_names": [
+      "DIARIO"
+    ]
+  },
+  "gl_account_number": {
+    "examples": [
+      1000.0,
+      1120.0,
+      1170.0
+    ],
+    "patterns": [
+      "D{4}PD"
+    ],
+    "column_names": [
+      "CUENTA"
+    ]
+  },
+  "je_line_description": {
+    "examples": [
+      "Capital Social",
+      "Reserva Legal",
+      "Reserva voluntaria"
+    ],
+    "patterns": [
+      "A{7+}WA{6+}",
+      "A{7+}WA{5}",
+      "A{7+}WL{10+}",
+      "A{7+}PL{6+}WL{6+}PL{8+}",
+      "A{8+}WLWL{9+}"
+    ],
+    "column_names": [
+      "TEXTO"
+    ]
+  },
+  "je_header_description": {
+    "examples": [
+      "RECIBO TH",
+      "RECIBO TH",
+      "CAJA SERVICIO"
+    ],
+    "patterns": [
+      "U{6+}WU{2}",
+      "U{4}WU{8+}",
+      "D{3}HD{6}"
+    ],
+    "column_names": [
+      "CONCEPTO"
+    ]
+  },
+  "amount_debit": {
+    "examples": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "patterns": [
+      "DPD",
+      "D{6}PD{2}"
+    ],
+    "column_names": [
+      "DEBE"
+    ]
+  },
+  "amount_credit": {
+    "examples": [
+      60102.0,
+      12020.4,
+      496999.23
+    ],
+    "patterns": [
+      "D{5}PD",
+      "D{6}PD{2}",
+      "DPD"
+    ],
+    "column_names": [
+      "HABER"
+    ]
+  }
+}

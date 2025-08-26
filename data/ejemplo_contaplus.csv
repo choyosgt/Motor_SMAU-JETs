@@ -1,0 +1,6 @@
+NumAsiento,FechaAsiento,CuentaContable,CentroCosto,Debe,Haber,ConceptoAsiento
+1,01/01/2024,4300001,CC001,100.5,0.0,Compra material
+2,02/01/2024,7000001,CC002,0.0,100.5,Venta producto
+3,03/01/2024,5720001,CC001,25.75,25.75,Pago factura
+4,04/01/2024,4300002,CC003,150.25,0.0,Compra servicios
+5,05/01/2024,6230001,CC002,0.0,150.25,Cobro cliente

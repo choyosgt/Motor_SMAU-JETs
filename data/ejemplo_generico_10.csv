@@ -1,0 +1,21 @@
+DocNum,Fecha,Sec,Cuenta,Valor,Signo,Detalle,Resumen,Org,Per,Curr,Stat,User
+D100,2024-01-15,1,43001,1300.00,1,Compra impresora HP LaserJet,Compra equipos enero,ORG1,01,EUR,OK,USR1
+D100,2024-01-15,2,11301,1300.00,0,Pago impresora HP LaserJet,Compra equipos enero,ORG1,01,EUR,OK,USR1
+D101,2024-01-16,1,62001,950.75,1,Anuncios Google Ads Q1,Marketing digital,ORG1,01,EUR,OK,USR2
+D101,2024-01-16,2,11301,950.75,0,Pago Google Ads campaña,Marketing digital,ORG1,01,EUR,OK,USR2
+D102,2024-01-17,1,11301,2200.00,1,Transferencia Cliente Lopez SA,Cobros enero,ORG1,01,EUR,OK,USR3
+D102,2024-01-17,2,70001,2200.00,0,Factura 2024-001 Cliente Lopez,Cobros enero,ORG1,01,EUR,OK,USR3
+D103,2024-01-18,1,51001,1650.00,1,Licencia Office 365 anual,Software empresarial,ORG1,01,EUR,OK,USR1
+D103,2024-01-18,2,11301,1650.00,0,Microsoft Office 365 Business,Software empresarial,ORG1,01,EUR,OK,USR1
+D104,2024-01-19,1,63001,825.50,1,Hotel Madrid conferencia,Gastos viaje,ORG1,01,EUR,OK,USR4
+D104,2024-01-19,2,11301,825.50,0,Alojamiento conferencia tech,Gastos viaje,ORG1,01,EUR,OK,USR4
+D105,2024-01-20,1,35001,3200.00,1,Componentes electronicos,Inventario materiales,ORG1,01,EUR,OK,USR5
+D105,2024-01-20,2,11301,3200.00,0,Stock componentes enero,Inventario materiales,ORG1,01,EUR,OK,USR5
+D106,2024-01-21,1,11301,4800.00,1,Deposito Banco Santander,Ingresos servicios,ORG1,01,EUR,OK,USR3
+D106,2024-01-21,2,70501,4800.00,0,Servicios consultoria IT,Ingresos servicios,ORG1,01,EUR,OK,USR3
+D107,2024-01-22,1,64001,750.00,1,Alquiler local Calle Mayor,Gastos estructura,ORG1,01,EUR,OK,USR2
+D107,2024-01-22,2,11301,750.00,0,Renta mensual oficina,Gastos estructura,ORG1,01,EUR,OK,USR2
+D108,2024-01-23,1,52001,1100.00,1,Reparacion servidor principal,Mantenimiento equipos,ORG1,01,EUR,OK,USR6
+D108,2024-01-23,2,11301,1100.00,0,Servicio tecnico Dell,Mantenimiento equipos,ORG1,01,EUR,OK,USR6
+D109,2024-01-24,1,11301,3650.00,1,Cheque Empresa Construcciones,Ventas enero,ORG1,01,EUR,OK,USR3
+D109,2024-01-24,2,70001,3650.00,0,Venta productos construccion,Ventas enero,ORG1,01,EUR,OK,USR3

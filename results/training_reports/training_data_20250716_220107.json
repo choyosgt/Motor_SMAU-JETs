@@ -1,0 +1,94 @@
+{
+  "file_info": {
+    "file_path": "data/ejemplo_contaplus.csv",
+    "file_name": "ejemplo_contaplus.csv",
+    "erp_system": "Generic_ES",
+    "total_columns": 7,
+    "timestamp": "20250716_220107",
+    "backup_created": "config\\backups\\dynamic_fields_config_backup_20250716_220108.yaml"
+  },
+  "original_mappings": {
+    "NumAsiento": {
+      "field_type": "journal_id",
+      "field_name": "ID de Asiento",
+      "confidence": 0.9
+    },
+    "FechaAsiento": {
+      "field_type": "effective_date",
+      "field_name": "Fecha Efectiva",
+      "confidence": 1
+    },
+    "CuentaContable": {
+      "field_type": "gl_account_number",
+      "field_name": "Número Cuenta Contable",
+      "confidence": 0.9
+    },
+    "CentroCosto": {
+      "field_type": "cost_center",
+      "field_name": "Centro de Coste",
+      "confidence": 0.9
+    },
+    "Debe": {
+      "field_type": "amount_debit",
+      "field_name": "Importe Débito",
+      "confidence": 0.9
+    },
+    "Haber": {
+      "field_type": "amount_credit",
+      "field_name": "Importe Crédito",
+      "confidence": 0.9
+    },
+    "ConceptoAsiento": {
+      "field_type": "je_header_description",
+      "field_name": "Descripción Cabecera Asiento",
+      "confidence": 0.8
+    }
+  },
+  "confirmed_mappings": {
+    "NumAsiento": {
+      "field_type": "journal_id",
+      "confidence": 0.9,
+      "source_erp": "Generic_ES",
+      "field_name": "ID de Asiento"
+    },
+    "FechaAsiento": {
+      "field_type": "effective_date",
+      "confidence": 1,
+      "source_erp": "Generic_ES",
+      "field_name": "Fecha Efectiva"
+    },
+    "CuentaContable": {
+      "field_type": "gl_account_number",
+      "confidence": 0.9,
+      "source_erp": "Generic_ES",
+      "field_name": "Número Cuenta Contable"
+    },
+    "CentroCosto": {
+      "field_type": "cost_center",
+      "confidence": 0.9,
+      "source_erp": "Generic_ES",
+      "field_name": "Centro de Coste"
+    },
+    "Debe": {
+      "field_type": "amount_debit",
+      "confidence": 0.9,
+      "source_erp": "Generic_ES",
+      "field_name": "Importe Débito"
+    },
+    "Haber": {
+      "field_type": "amount_credit",
+      "confidence": 0.9,
+      "source_erp": "Generic_ES",
+      "field_name": "Importe Crédito"
+    },
+    "ConceptoAsiento": {
+      "field_type": "je_header_description",
+      "confidence": 0.8,
+      "source_erp": "Generic_ES",
+      "field_name": "Descripción Cabecera Asiento"
+    }
+  },
+  "new_mappings": {},
+  "corrected_mappings": {},
+  "rejected_mappings": []
+}

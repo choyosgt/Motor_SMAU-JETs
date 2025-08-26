@@ -1,0 +1,6 @@
+Numero_Asiento,Fecha_Contable,Cuenta,Centro,Importe_Debe,Importe_Haber,Descripcion,Moneda
+1,01/01/2024,4300001,CC001,1000.5,0.0,Compra material,EUR
+2,02/01/2024,7000001,CC002,0.0,1000.5,Venta producto,EUR
+3,03/01/2024,5720001,CC001,250.75,250.75,Pago factura,EUR
+4,04/01/2024,4300002,CC003,1500.25,0.0,Compra servicios,EUR
+5,05/01/2024,6230001,CC002,0.0,1500.25,Cobro cliente,EUR

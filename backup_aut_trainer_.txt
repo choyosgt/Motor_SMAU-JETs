@@ -1,0 +1,703 @@
+# automatic_confirmation_trainer.py - TRAINER AUTOMÁTICO SIN CONFIRMACIÓN MANUAL
+# BASADO EN: manual_confirmation_trainer.py pero con decisiones automáticas
+# REGLAS: Mayor confianza gana, excepción para 'amount' prioriza ml/lm/local
+
+import pandas as pd
+import os
+import sys
+import re
+from typing import Dict, List, Optional, Tuple, Any
+import logging
+from datetime import datetime
+import json
+from pathlib import Path
+import yaml
+
+# Configurar logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+class AutomaticConfirmationTrainingSession:
+    """Sesión de entrenamiento AUTOMÁTICO - sin confirmación manual"""
+    
+    def __init__(self, csv_file: str, erp_hint: str = None):
+        self.csv_file = csv_file
+        self.erp_hint = erp_hint
+        self.df = None
+        self.mapper = None
+        self.detector = None
+        
+        # MISMOS CAMPOS ESTÁNDAR que manual trainer
+        self.standard_fields = [
+            'journal_entry_id', 'line_number', 'description', 'line_description',
+            'posting_date', 'fiscal_year', 'period_number', 'gl_account_number',
+            'amount', 'debit_amount', 'credit_amount', 'debit_credit_indicator',
+            'prepared_by', 'entry_date', 'entry_time', 'gl_account_name', 'vendor_id'
+        ]
+        
+        # Estadísticas de entrenamiento automático
+        self.training_stats = {
+            'columns_processed': 0,
+            'automatic_mappings': 0,
+            'conflicts_resolved': 0,
+            'amount_conflicts_resolved': 0,
+            'high_confidence_mappings': 0,
+            'low_confidence_mappings': 0,
+            'unmapped_columns': 0,
+            'synonyms_added': 0,
+            'regex_patterns_added': 0
+        }
+        
+        # Decisiones automáticas registradas (compatible con manual trainer)
+        self.user_decisions = {}  # Mantenemos el mismo nombre para compatibilidad
+        self.learned_patterns = {}
+        self.new_synonyms = {}
+        self.new_regex_patterns = {}
+        self.conflict_resolutions = {}
+        
+        # Archivos de configuración (MISMOS que manual trainer)
+        self.yaml_config_file = "config/pattern_learning_config.yaml"
+        self.dynamic_fields_file = "config/dynamic_fields_config.yaml"
+        
+    def initialize(self) -> bool:
+        """Inicializa la sesión de entrenamiento automático"""
+        try:
+            print(f"Initializing AUTOMATIC TRAINING Session...")
+            print(f"File: {self.csv_file}")
+            print(f"ERP Hint: {self.erp_hint or 'Auto-detect'}")
+            print(f"Mode: AUTOMATIC (no manual confirmation)")
+            print(f"Conflict resolution: Highest confidence wins")
+            print(f"Amount exception: Prioritize 'ml', 'lm', 'local' in name")
+            
+            # Verificar archivo
+            if not os.path.exists(self.csv_file):
+                print(f"File not found: {self.csv_file}")
+                return False
+            
+            # Cargar CSV
+            self.df = pd.read_csv(self.csv_file, encoding='utf-8')
+            print(f"Loaded {len(self.df)} rows x {len(self.df.columns)} columns")
+            
+            # Importar módulos del sistema (MISMOS que manual trainer)
+            try:
+                from core.field_mapper import FieldMapper
+                from core.field_detector import FieldDetector
+                
+                self.mapper = FieldMapper()
+                self.detector = FieldDetector()
+                print("System modules imported successfully")
+                
+            except ImportError as e:
+                print(f"Failed to import system modules: {e}")
+                return False
+            
+            # Cargar configuración de patrones aprendidos
+            self._load_learned_patterns()
+            
+            return True
+            
+        except Exception as e:
+            print(f"Initialization failed: {e}")
+            return False
+    
+    def _load_learned_patterns(self):
+        """Carga patrones previamente aprendidos (IGUAL que manual trainer)"""
+        try:
+            if os.path.exists(self.yaml_config_file):
+                with open(self.yaml_config_file, 'r', encoding='utf-8') as f:
+                    config = yaml.safe_load(f)
+                    self.learned_patterns = config.get('learned_patterns', {})
+                    print(f"Loaded {len(self.learned_patterns)} learned patterns")
+            else:
+                print("No previous learned patterns found")
+        except Exception as e:
+            print(f"Could not load learned patterns: {e}")
+            self.learned_patterns = {}
+    
+    def run_automatic_training(self) -> Dict:
+        """Ejecuta el entrenamiento automático SIN confirmación manual"""
+        try:
+            print(f"\nStarting AUTOMATIC FIELD TRAINING...")
+            print(f"=" * 55)
+            print(f"All decisions will be made automatically based on confidence")
+            print(f"Special rule for 'amount': prioritize ml/lm/local columns")
+            
+            # Análisis inicial del DataFrame (IGUAL que manual trainer)
+            initial_analysis = self._analyze_initial_state()
+            
+            # Almacenar todas las detecciones por tipo de campo
+            field_candidates = {}  # {field_type: [(column_name, confidence), ...]}
+            
+            # FASE 1: Detectar todos los candidatos para cada columna
+            print(f"\nPHASE 1: Detecting all field candidates...")
+            print("-" * 40)
+            
+            for i, column_name in enumerate(self.df.columns, 1):
+                print(f"Column {i}/{len(self.df.columns)}: '{column_name}'")
+                
+                # Obtener muestra de datos
+                sample_data = self.df[column_name].dropna().head(20)
+                
+                # Intentar mapeo automático (MISMA FUNCIÓN que manual trainer)
+                mapping_result = self._try_automatic_mapping(column_name, sample_data)
+                
+                if mapping_result:
+                    field_type, confidence = mapping_result
+                    
+                    print(f"  Detected: {field_type} (confidence: {confidence:.3f})")
+                    
+                    # Agregar a candidatos
+                    if field_type not in field_candidates:
+                        field_candidates[field_type] = []
+                    
+                    field_candidates[field_type].append((column_name, confidence))
+                    
+                    self.training_stats['columns_processed'] += 1
+                    
+                    if confidence > 0.8:
+                        self.training_stats['high_confidence_mappings'] += 1
+                    else:
+                        self.training_stats['low_confidence_mappings'] += 1
+                else:
+                    print(f"  No mapping found")
+                    self.training_stats['unmapped_columns'] += 1
+            
+            # FASE 2: Resolver conflictos automáticamente
+            print(f"\nPHASE 2: Resolving conflicts automatically...")
+            print("-" * 40)
+            
+            final_mappings = self._resolve_all_conflicts_automatically(field_candidates)
+            
+            # FASE 3: Registrar decisiones (formato compatible con manual trainer)
+            print(f"\nPHASE 3: Recording automatic decisions...")
+            print("-" * 40)
+            
+            for column_name, field_info in final_mappings.items():
+                # Formato compatible con manual trainer
+                self.user_decisions[column_name] = {
+                    'field_type': field_info['field_type'],
+                    'confidence': field_info['confidence'],
+                    'decision_type': f"automatic_{field_info['resolution_type']}",
+                    'sample_data': self.df[column_name].dropna().head(3).tolist()
+                }
+                
+                self.training_stats['automatic_mappings'] += 1
+                
+                print(f"  {column_name} -> {field_info['field_type']} "
+                      f"(confidence: {field_info['confidence']:.3f})")
+            
+            # Finalizar entrenamiento (MISMA FUNCIÓN que manual trainer)
+            result = self._finalize_automatic_training()
+            
+            return result
+            
+        except Exception as e:
+            print(f"Error in automatic training: {e}")
+            return {'success': False, 'error': str(e)}
+    
+    def _analyze_initial_state(self) -> Dict:
+        """Análisis inicial del DataFrame (IGUAL que manual trainer)"""
+        analysis = {
+            'total_columns': len(self.df.columns),
+            'total_rows': len(self.df),
+            'column_names': list(self.df.columns),
+            'erp_detected': self.erp_hint or 'Auto-detect'
+        }
+        
+        print(f"Initial Analysis:")
+        print(f"  Total columns: {analysis['total_columns']}")
+        print(f"  Total rows: {analysis['total_rows']}")
+        print(f"  ERP hint: {analysis['erp_detected']}")
+        
+        return analysis
+    
+    def _try_automatic_mapping(self, column_name: str, sample_data: pd.Series) -> Optional[Tuple[str, float]]:
+        """Intenta mapeo automático usando las MISMAS FUNCIONES que manual trainer"""
+        try:
+            # Usar el mapper del sistema (MISMA FUNCIÓN)
+            mapping_result = self.mapper.find_field_mapping(
+                column_name, 
+                self.erp_hint, 
+                sample_data=sample_data
+            )
+            
+            if mapping_result:
+                field_type, confidence = mapping_result
+                
+                # Solo aceptar si está en nuestros campos estándar
+                if field_type in self.standard_fields:
+                    return (field_type, confidence)
+            
+            return None
+            
+        except Exception as e:
+            logger.warning(f"Error in automatic mapping for {column_name}: {e}")
+            return None
+    
+    def _resolve_all_conflicts_automatically(self, field_candidates: Dict[str, List[Tuple[str, float]]]) -> Dict[str, Dict]:
+        """Resuelve TODOS los conflictos automáticamente usando las reglas definidas"""
+        final_mappings = {}
+        
+        for field_type, candidates in field_candidates.items():
+            # Si solo hay un candidato, asignar directamente
+            if len(candidates) == 1:
+                column_name, confidence = candidates[0]
+                final_mappings[column_name] = {
+                    'field_type': field_type,
+                    'confidence': confidence,
+                    'resolution_type': 'no_conflict'
+                }
+                continue
+            
+            # Hay conflicto - aplicar reglas de resolución
+            print(f"CONFLICT for '{field_type}': {len(candidates)} candidates")
+            
+            winner = self._resolve_single_conflict_automatically(field_type, candidates)
+            
+            if winner:
+                column_name, confidence, resolution_type = winner
+                final_mappings[column_name] = {
+                    'field_type': field_type,
+                    'confidence': confidence,
+                    'resolution_type': resolution_type
+                }
+                
+                # Registrar resolución de conflicto
+                self.conflict_resolutions[field_type] = {
+                    'winner': column_name,
+                    'all_candidates': candidates,
+                    'resolution_type': resolution_type
+                }
+                
+                self.training_stats['conflicts_resolved'] += 1
+                
+                if field_type == 'amount':
+                    self.training_stats['amount_conflicts_resolved'] += 1
+                
+                print(f"  WINNER: '{column_name}' ({resolution_type})")
+        
+        return final_mappings
+    
+    def _resolve_single_conflict_automatically(self, field_type: str, candidates: List[Tuple[str, float]]) -> Optional[Tuple[str, float, str]]:
+        """Resuelve un conflicto específico automáticamente"""
+        # REGLA ESPECIAL PARA AMOUNT: Priorizar columnas con ml, lm, local
+        if field_type == 'amount':
+            amount_winner = self._resolve_amount_conflict(candidates)
+            if amount_winner:
+                return amount_winner
+        
+        # REGLA GENERAL: Mayor confianza gana
+        candidates_sorted = sorted(candidates, key=lambda x: x[1], reverse=True)
+        winner_column, winner_confidence = candidates_sorted[0]
+        
+        return (winner_column, winner_confidence, 'highest_confidence')
+    
+    def _resolve_amount_conflict(self, candidates: List[Tuple[str, float]]) -> Optional[Tuple[str, float, str]]:
+        """Resuelve conflictos específicamente para el campo 'amount'"""
+        # Buscar candidatos que contengan las palabras clave
+        priority_keywords = ['ml', 'lm', 'local']
+        priority_candidates = []
+        
+        for column_name, confidence in candidates:
+            column_lower = column_name.lower()
+            
+            # Verificar si contiene alguna palabra clave prioritaria
+            for keyword in priority_keywords:
+                if keyword in column_lower:
+                    priority_candidates.append((column_name, confidence, f'amount_priority_{keyword}'))
+                    break
+        
+        # Si hay candidatos prioritarios, elegir el de mayor confianza entre ellos
+        if priority_candidates:
+            best_priority = max(priority_candidates, key=lambda x: x[1])
+            print(f"    AMOUNT PRIORITY RULE: '{best_priority[0]}' contains '{best_priority[2].split('_')[-1]}'")
+            return best_priority
+        
+        # Si no hay candidatos prioritarios, usar regla general (mayor confianza)
+        candidates_sorted = sorted(candidates, key=lambda x: x[1], reverse=True)
+        winner_column, winner_confidence = candidates_sorted[0]
+        
+        return (winner_column, winner_confidence, 'amount_highest_confidence')
+    
+    def _finalize_automatic_training(self) -> Dict:
+        """Finaliza el entrenamiento automático y genera resultados (FORMATO COMPATIBLE)"""
+        try:
+            print(f"\nAUTOMATIC TRAINING FINALIZATION")
+            print(f"=" * 40)
+            
+            # Generar tabla de mapeo final (IGUAL que manual trainer)
+            mapping_table = self._generate_mapping_table()
+            
+            # Generar reporte
+            report = self._generate_training_report()
+            
+            # Crear CSV transformados (MISMA FUNCIÓN que manual trainer)
+            csv_result = self._create_transformed_csv()
+            
+            return {
+                'success': True,
+                'training_stats': self.training_stats,
+                'user_decisions': self.user_decisions,  # Compatible con manual trainer
+                'learned_patterns': self.learned_patterns,
+                'conflict_resolutions': self.conflict_resolutions,
+                'report_file': report,
+                'header_csv': csv_result.get('header_file') if isinstance(csv_result, dict) else None,
+                'detail_csv': csv_result.get('detail_file') if isinstance(csv_result, dict) else None,
+                'csv_info': csv_result  # Información completa de los archivos CSV
+            }
+            
+        except Exception as e:
+            print(f"Error finalizing automatic training: {e}")
+            return {'success': False, 'error': str(e)}
+    
+    def _generate_mapping_table(self) -> List[Dict]:
+        """Genera tabla con Campo Estándar | Columna Mapeada | Confianza (IGUAL que manual trainer)"""
+        
+        # Crear tabla con todos los campos estándar
+        mapping_table = []
+        
+        for standard_field in self.standard_fields:
+            # Buscar si alguna columna fue mapeada a este campo
+            mapped_column = None
+            confidence = 0.0
+            
+            for column_name, decision in self.user_decisions.items():
+                if decision['field_type'] == standard_field:
+                    mapped_column = column_name
+                    confidence = decision['confidence']
+                    break
+            
+            mapping_table.append({
+                'Campo Estándar': standard_field,
+                'Columna Mapeada': mapped_column if mapped_column else 'No mapeado',
+                'Confianza': f"{confidence:.3f}" if mapped_column else "0.000"
+            })
+        
+        # Mostrar tabla
+        print(f"\nFINAL AUTOMATIC MAPPING TABLE:")
+        print(f"{'Campo Estándar':<25} | {'Columna Mapeada':<30} | {'Confianza':<10}")
+        print(f"{'-'*25} | {'-'*30} | {'-'*10}")
+        
+        for row in mapping_table:
+            print(f"{row['Campo Estándar']:<25} | {row['Columna Mapeada']:<30} | {row['Confianza']:<10}")
+        
+        return mapping_table
+    
+    def _generate_training_report(self) -> str:
+        """Genera reporte detallado del entrenamiento automático"""
+        try:
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            report_file = f"automatic_training_report_{timestamp}.txt"
+            
+            with open(report_file, 'w', encoding='utf-8') as f:
+                f.write("AUTOMATIC FIELD TRAINING SESSION REPORT\n")
+                f.write("=" * 50 + "\n\n")
+                
+                f.write(f"Session Information:\n")
+                f.write(f"  CSV File: {self.csv_file}\n")
+                f.write(f"  ERP Hint: {self.erp_hint}\n")
+                f.write(f"  Standard Fields: {len(self.standard_fields)}\n")
+                f.write(f"  Mode: AUTOMATIC (no manual confirmation)\n")
+                f.write(f"  Timestamp: {datetime.now().isoformat()}\n\n")
+                
+                f.write(f"Training Statistics:\n")
+                for key, value in self.training_stats.items():
+                    f.write(f"  {key.replace('_', ' ').title()}: {value}\n")
+                f.write("\n")
+                
+                f.write(f"Automatic Decisions:\n")
+                for column, decision in self.user_decisions.items():
+                    f.write(f"  {column}: {decision['field_type']} ")
+                    f.write(f"(confidence: {decision['confidence']:.3f}, ")
+                    f.write(f"type: {decision['decision_type']})\n")
+                f.write("\n")
+                
+                f.write(f"Conflict Resolutions:\n")
+                for field_type, resolution in self.conflict_resolutions.items():
+                    f.write(f"  {field_type}:\n")
+                    f.write(f"    Winner: {resolution['winner']}\n")
+                    f.write(f"    Resolution type: {resolution['resolution_type']}\n")
+                    f.write(f"    All candidates: {resolution['all_candidates']}\n")
+                f.write("\n")
+                
+                f.write(f"Final Mapping Table:\n")
+                f.write(f"{'Campo Estándar':<25} | {'Columna Mapeada':<30} | {'Confianza':<10}\n")
+                f.write(f"{'-'*25} | {'-'*30} | {'-'*10}\n")
+                
+                for standard_field in self.standard_fields:
+                    mapped_column = "No mapeado"
+                    confidence = "0.000"
+                    
+                    for column_name, decision in self.user_decisions.items():
+                        if decision['field_type'] == standard_field:
+                            mapped_column = column_name
+                            confidence = f"{decision['confidence']:.3f}"
+                            break
+                    
+                    f.write(f"{standard_field:<25} | {mapped_column:<30} | {confidence:<10}\n")
+            
+            print(f"Automatic training report saved to: {report_file}")
+            return report_file
+            
+        except Exception as e:
+            print(f"Could not generate report: {e}")
+            return ""
+    
+    def _create_transformed_csv(self) -> str:
+        """Crea dos CSV: uno de cabecera y otro de detalle (IGUAL que manual trainer)"""
+        try:
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            
+            # Crear DataFrame con columnas renombradas
+            transformed_df = self.df.copy()
+            column_mapping = {}
+            
+            # Crear mapeo de columnas originales a campos estándar
+            for column, decision in self.user_decisions.items():
+                field_type = decision['field_type']
+                # Crear nombre único si ya existe
+                new_name = field_type
+                counter = 1
+                while new_name in column_mapping.values():
+                    new_name = f"{field_type}_{counter}"
+                    counter += 1
+                
+                column_mapping[column] = new_name
+            
+            # Renombrar columnas
+            transformed_df.rename(columns=column_mapping, inplace=True)
+            print(f"DataFrame transformed with {len(column_mapping)} field mappings")
+            
+            # Manejar campos DateTime (MISMA FUNCIÓN que manual trainer)
+            try:
+                self._handle_datetime_fields(transformed_df)
+            except Exception as e:
+                print(f"Error processing DateTime fields: {e}")
+
+            print("DateTime field separation completed")
+            
+            # Campos requeridos para cada archivo (IGUALES que manual trainer)
+            header_fields = [
+                'description', 'entry_date', 'entry_time', 'fiscal_year', 
+                'journal_entry_id', 'period_number', 'posting_date', 'prepared_by'
+            ]
+            
+            detail_fields = [
+                'amount', 'debit_credit_indicator', 'gl_account_name', 'gl_account_number',
+                'journal_entry_id', 'line_description', 'line_number', 'vendor_id'
+            ]
+            
+            # ========== ARCHIVO DE CABECERA ==========
+            header_file = f"automatic_training_header_{timestamp}.csv"
+            
+            # Filtrar columnas disponibles para cabecera
+            available_header_cols = [col for col in header_fields if col in transformed_df.columns]
+            
+            if available_header_cols:
+                # Verificar que tengamos journal_entry_id para agrupar
+                if 'journal_entry_id' in available_header_cols:
+                    # Crear DataFrame de cabecera agrupado por journal_entry_id
+                    header_df = transformed_df[available_header_cols].groupby('journal_entry_id').first().reset_index()
+                    print(f"Header file: {len(header_df)} unique journal entries")
+                else:
+                    # Si no hay journal_entry_id, tomar la primera fila como muestra
+                    header_df = transformed_df[available_header_cols].head(1)
+                    print(f"No journal_entry_id found for grouping. Using first row as header sample.")
+                
+                # Guardar archivo de cabecera
+                header_df.to_csv(header_file, index=False, encoding='utf-8')
+                print(f"Header CSV saved: {header_file}")
+                print(f"   Columns: {', '.join(available_header_cols)}")
+            else:
+                print(f"No header fields found in mapped columns")
+                header_file = None
+            
+            # ========== ARCHIVO DE DETALLE ==========
+            detail_file = f"automatic_training_detail_{timestamp}.csv"
+            
+            # Filtrar columnas disponibles para detalle
+            available_detail_cols = [col for col in detail_fields if col in transformed_df.columns]
+            
+            if available_detail_cols:
+                # Crear DataFrame de detalle (todas las filas)
+                detail_df = transformed_df[available_detail_cols]
+                
+                # Guardar archivo de detalle
+                detail_df.to_csv(detail_file, index=False, encoding='utf-8')
+                print(f"Detail CSV saved: {detail_file}")
+                print(f"   Rows: {len(detail_df)}, Columns: {', '.join(available_detail_cols)}")
+            else:
+                print(f"No detail fields found in mapped columns")
+                detail_file = None
+            
+            # Retornar información de ambos archivos
+            result_info = {
+                'header_file': header_file,
+                'detail_file': detail_file,
+                'header_columns': available_header_cols if available_header_cols else [],
+                'detail_columns': available_detail_cols if available_detail_cols else [],
+                'amount_created': 'amount' not in self.df.columns and 'amount' in transformed_df.columns
+            }
+            
+            return result_info
+            
+        except Exception as e:
+            print(f"Could not create transformed CSV files: {e}")
+            return {"header_file": None, "detail_file": None, "error": str(e)}
+
+    def _handle_datetime_fields(self, df):
+        """Maneja la separación de campos DateTime - MISMA LÓGICA que manual trainer"""
+        try:
+            print("Checking for combined DateTime fields...")
+            
+            # Buscar columnas que podrían contener fecha y hora juntas
+            for col in df.columns:
+                if col in ['entry_date', 'entry_time'] and col in df.columns:
+                    # Verificar si la columna contiene información de fecha y hora
+                    sample_values = df[col].dropna().head(10)
+                    
+                    for value in sample_values:
+                        if pd.notna(value):
+                            str_value = str(value).strip()
+                            
+                            # Si contiene tanto fecha como hora, separar
+                            if re.search(r'\d{1,2}[\.\/\-]\d{1,2}[\.\/\-]\d{2,4}.*\d{1,2}:\d{2}', str_value):
+                                print(f"  Separating DateTime field: {col}")
+                                
+                                # Crear columnas separadas
+                                df['entry_date'] = df[col].apply(lambda x: self._extract_date_part(x) if pd.notna(x) else None)
+                                df['entry_time'] = df[col].apply(lambda x: self._extract_time_part(x) if pd.notna(x) else None)
+                                
+                                # Eliminar columna original si es diferente
+                                if col not in ['entry_date', 'entry_time']:
+                                    df.drop(columns=[col], inplace=True)
+                                
+                                break
+            
+        except Exception as e:
+            print(f"Error processing DateTime fields: {e}")
+    
+    def _extract_date_part(self, value) -> str:
+        """Extrae la parte de fecha de un DateTime"""
+        try:
+            str_value = str(value).strip()
+            date_match = re.search(r'(\d{1,2}[\.\/\-]\d{1,2}[\.\/\-]\d{2,4})', str_value)
+            return date_match.group(1) if date_match else str_value
+        except:
+            return str(value)
+    
+    def _extract_time_part(self, value) -> str:
+        """Extrae la parte de hora de un DateTime"""
+        try:
+            str_value = str(value).strip()
+            time_match = re.search(r'(\d{1,2}:\d{2}(?::\d{2})?)', str_value)
+            return time_match.group(1) if time_match else ""
+        except:
+            return ""
+
+
+def quick_train_automatic_confirmation(csv_file: str, erp_hint: str = None) -> Dict:
+    """
+    Función principal para entrenamiento automático sin confirmación manual
+    COMPATIBLE con la interfaz del manual trainer
+    """
+    print(f"AUTOMATIC CONFIRMATION Training Started")
+    print(f"=" * 55)
+    print(f"All decisions will be made automatically based on confidence")
+    
+    try:
+        if not os.path.exists(csv_file):
+            print(f"File not found: {csv_file}")
+            
+            directory = os.path.dirname(csv_file) or "."
+            if os.path.exists(directory):
+                files = [f for f in os.listdir(directory) if f.endswith('.csv')]
+                if files:
+                    print(f"Available CSV files in '{directory}':")
+                    for i, file in enumerate(files, 1):
+                        print(f"   {i}. {file}")
+            
+            return {'success': False, 'error': f'File not found: {csv_file}'}
+        
+        # Crear sesión de entrenamiento automático
+        session = AutomaticConfirmationTrainingSession(csv_file, erp_hint)
+        
+        if not session.initialize():
+            return {'success': False, 'error': 'Failed to initialize automatic training session'}
+        
+        # Ejecutar entrenamiento automático
+        result = session.run_automatic_training()
+        
+        if result['success']:
+            print(f"\nAUTOMATIC TRAINING COMPLETED SUCCESSFULLY!")
+            
+            print(f"Statistics:")
+            for key, value in result['training_stats'].items():
+                print(f"   • {key.replace('_', ' ').title()}: {value}")
+            
+            if result.get('csv_info'):
+                csv_info = result['csv_info']
+                if csv_info.get('header_columns'):
+                    print(f"   • Header columns: {', '.join(csv_info['header_columns'])}")
+                if csv_info.get('detail_columns'):
+                    print(f"   • Detail columns: {', '.join(csv_info['detail_columns'])}")
+            
+            print(f"\nAUTOMATIC TRAINING ACHIEVEMENTS:")
+            print(f"   • Automatic mappings: {result['training_stats']['automatic_mappings']}")
+            print(f"   • Conflicts resolved: {result['training_stats']['conflicts_resolved']}")
+            print(f"   • Amount conflicts resolved: {result['training_stats']['amount_conflicts_resolved']}")
+            print(f"   • High confidence decisions: {result['training_stats']['high_confidence_mappings']}")
+            print(f"   • Standard fields only: {len(session.standard_fields)}")
+        
+        return result
+        
+    except Exception as e:
+        print(f"Automatic training failed: {e}")
+        return {'success': False, 'error': str(e)}
+
+
+def main():
+    """Función principal - COMPATIBLE con manual_confirmation_trainer.py"""
+    if len(sys.argv) < 2:
+        print("AUTOMATIC CONFIRMATION TRAINER")
+        print("=" * 50)
+        print("Training with AUTOMATIC DECISIONS - no manual confirmation required")
+        print()
+        print("FEATURES:")
+        print("  • ALL decisions made automatically based on confidence")
+        print("  • High confidence: automatic assignment")
+        print("  • Conflicts resolved by highest confidence")
+        print("  • Special rule for 'amount': prioritizes ml/lm/local")
+        print("  • Same standard fields (17 fields total)")
+        print("  • Same CSV outputs as manual trainer")
+        print("  • Compatible with main_global.py")
+        print()
+        print("STANDARD FIELDS:")
+        standard_fields = [
+            'journal_entry_id', 'line_number', 'description', 'line_description',
+            'posting_date', 'fiscal_year', 'period_number', 'gl_account_number',
+            'amount', 'debit_amount', 'credit_amount', 'debit_credit_indicator',
+            'prepared_by', 'entry_date', 'entry_time', 'gl_account_name', 'vendor_id'
+        ]
+        for i, field in enumerate(standard_fields, 1):
+            print(f"  {i:2d}. {field}")
+        print()
+        print("Usage:")
+        print("  python automatic_confirmation_trainer.py <csv_file> [erp_hint]")
+        print()
+        print("Examples:")
+        print("  python automatic_confirmation_trainer.py data/ejemplo_sap_02.csv SAP")
+        print("  python automatic_confirmation_trainer.py ../merged_data.csv SAP")
+        return
+    
+    csv_file = sys.argv[1]
+    erp_hint = sys.argv[2] if len(sys.argv) > 2 else None
+    
+    result = quick_train_automatic_confirmation(csv_file, erp_hint)
+    
+    if not result['success']:
+        print(f"Training failed: {result.get('error', 'Unknown error')}")
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()

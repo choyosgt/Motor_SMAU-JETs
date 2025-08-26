@@ -1,0 +1,1591 @@
+last_updated: '2025-07-21T17:19:41.313122'
+learned_patterns:
+  amount:
+    learning_history:
+    - column_names:
+      - DMBTR
+      examples_count: 3
+      patterns_added: 2
+      timestamp: '2025-07-19T14:02:19.798448'
+    - column_names:
+      - ImporteLC
+      - ImporteTC
+      examples_count: 6
+      patterns_added: 4
+      timestamp: '2025-07-19T14:35:12.391205'
+    - column_names:
+      - Importe en moneda local
+      examples_count: 3
+      patterns_added: 4
+      timestamp: '2025-07-19T17:08:51.779511'
+    - column_names:
+      - Importe en moneda local
+      examples_count: 3
+      patterns_added: 4
+      timestamp: '2025-07-21T08:25:50.556997'
+    - column_names:
+      - Saldo
+      examples_count: 3
+      patterns_added: 5
+      timestamp: '2025-07-21T08:35:07.791267'
+    - column_names:
+      - Importe
+      examples_count: 3
+      patterns_added: 3
+      timestamp: '2025-07-21T08:42:46.370031'
+    - column_names:
+      - total
+      examples_count: 3
+      patterns_added: 5
+      timestamp: '2025-07-21T08:54:56.658600'
+    - column_names:
+      - TRANSACTION AMOUNT
+      - MONETARY AMOUNT
+      examples_count: 6
+      patterns_added: 8
+      timestamp: '2025-07-21T09:00:49.581479'
+    priority_patterns:
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T14:02:19.798442'
+      regex: \d\d\d\d[,\.]\d
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T14:02:19.798445'
+      regex: \d\d\d[,\.]\d\d
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T14:35:12.391196'
+      regex: \d\d\d[,\.]\d
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T17:08:51.779500'
+      regex: '[/\-\.]\d\d\d[,\.]\d'
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T17:08:51.779506'
+      regex: '[/\-\.]\d\d\d\d[,\.]\d'
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: HD{3}PD'
+      learned_date: '2025-07-21T08:25:50.556968'
+      original_pattern: HD{3}PD
+      regex: ^-\d{3}\.\d$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{3}PD'
+      learned_date: '2025-07-21T08:25:50.556977'
+      original_pattern: D{3}PD
+      regex: ^\d{3}\.\d$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: HD{4}PD'
+      learned_date: '2025-07-21T08:25:50.556986'
+      original_pattern: HD{4}PD
+      regex: ^-\d{4}\.\d$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{4}PD'
+      learned_date: '2025-07-21T08:25:50.556994'
+      original_pattern: D{4}PD
+      regex: ^\d{4}\.\d$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{5}PD'
+      learned_date: '2025-07-21T08:35:07.791241'
+      original_pattern: D{5}PD
+      regex: ^\d{5}\.\d$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: HD{5}PD'
+      learned_date: '2025-07-21T08:35:07.791247'
+      original_pattern: HD{5}PD
+      regex: ^-\d{5}\.\d$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{4}PD{2}'
+      learned_date: '2025-07-21T08:35:07.791253'
+      original_pattern: D{4}PD{2}
+      regex: ^\d{4}\.\d{2}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{3}PD{2}'
+      learned_date: '2025-07-21T08:35:07.791259'
+      original_pattern: D{3}PD{2}
+      regex: ^\d{3}\.\d{2}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: HD{4}PD{2}'
+      learned_date: '2025-07-21T08:35:07.791265'
+      original_pattern: HD{4}PD{2}
+      regex: ^-\d{4}\.\d{2}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: HD{3}PD{2}'
+      learned_date: '2025-07-21T08:42:46.370015'
+      original_pattern: HD{3}PD{2}
+      regex: ^-\d{3}\.\d{2}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: HD{2}PD{2}'
+      learned_date: '2025-07-21T08:42:46.370022'
+      original_pattern: HD{2}PD{2}
+      regex: ^-\d{2}\.\d{2}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: HD{2}PD{3}PD{2}'
+      learned_date: '2025-07-21T08:54:56.658566'
+      original_pattern: HD{2}PD{3}PD{2}
+      regex: ^-\d{2}\.\d{3}\.\d{2}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: HDPD{3}PD{2}'
+      learned_date: '2025-07-21T08:54:56.658574'
+      original_pattern: HDPD{3}PD{2}
+      regex: ^-\d\.\d{3}\.\d{2}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{2}PD{3}PD{2}'
+      learned_date: '2025-07-21T08:54:56.658582'
+      original_pattern: D{2}PD{3}PD{2}
+      regex: ^\d{2}\.\d{3}\.\d{2}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: DPD{2}'
+      learned_date: '2025-07-21T08:54:56.658587'
+      original_pattern: DPD{2}
+      regex: ^\d\.\d{2}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: HDPD{3}PD{3}PD{2}'
+      learned_date: '2025-07-21T08:54:56.658597'
+      original_pattern: HDPD{3}PD{3}PD{2}
+      regex: ^-\d\.\d{3}\.\d{3}\.\d{2}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: DPD{3}PD{2}'
+      learned_date: '2025-07-21T09:00:49.581438'
+      original_pattern: DPD{3}PD{2}
+      regex: ^\d\.\d{3}\.\d{2}$
+  credit_amount:
+    learning_history:
+    - column_names:
+      - HABENBETRAG
+      examples_count: 3
+      patterns_added: 2
+      timestamp: '2025-07-19T20:55:33.794949'
+    - column_names:
+      - Haber
+      examples_count: 3
+      patterns_added: 3
+      timestamp: '2025-07-21T08:35:07.791237'
+    - column_names:
+      - Importe haber
+      examples_count: 3
+      patterns_added: 3
+      timestamp: '2025-07-21T08:42:46.370072'
+    - column_names:
+      - Importe en haber en moneda de empresa
+      examples_count: 3
+      patterns_added: 3
+      timestamp: '2025-07-21T08:54:56.658559'
+    - column_names:
+      - Importe en haber en moneda de empresa
+      - Importe en haber en moneda de transacción
+      examples_count: 6
+      patterns_added: 4
+      timestamp: '2025-07-21T09:05:32.629272'
+    - column_names:
+      - HABER
+      examples_count: 3
+      patterns_added: 3
+      timestamp: '2025-07-21T09:16:40.299266'
+    priority_patterns:
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T20:55:33.794942'
+      regex: \d[,\.]\d
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T20:55:33.794946'
+      regex: \d\d\d\d[,\.]\d
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{5}PD'
+      learned_date: '2025-07-21T08:35:07.791225'
+      original_pattern: D{5}PD
+      regex: ^\d{5}\.\d$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{4}PD{2}'
+      learned_date: '2025-07-21T08:35:07.791230'
+      original_pattern: D{4}PD{2}
+      regex: ^\d{4}\.\d{2}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{3}PD{2}'
+      learned_date: '2025-07-21T08:35:07.791235'
+      original_pattern: D{3}PD{2}
+      regex: ^\d{3}\.\d{2}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{2}PD{2}'
+      learned_date: '2025-07-21T08:42:46.370065'
+      original_pattern: D{2}PD{2}
+      regex: ^\d{2}\.\d{2}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: DPD'
+      learned_date: '2025-07-21T08:42:46.370070'
+      original_pattern: DPD
+      regex: ^\d\.\d$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{2}PD{3}PD{2}'
+      learned_date: '2025-07-21T08:54:56.658541'
+      original_pattern: D{2}PD{3}PD{2}
+      regex: ^\d{2}\.\d{3}\.\d{2}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: DPD{3}PD{2}'
+      learned_date: '2025-07-21T08:54:56.658548'
+      original_pattern: DPD{3}PD{2}
+      regex: ^\d\.\d{3}\.\d{2}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: DPD{3}PD{3}PD{2}'
+      learned_date: '2025-07-21T08:54:56.658556'
+      original_pattern: DPD{3}PD{3}PD{2}
+      regex: ^\d\.\d{3}\.\d{3}\.\d{2}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{2}PD{3}PD{2}WU{3}'
+      learned_date: '2025-07-21T09:05:32.629246'
+      original_pattern: D{2}PD{3}PD{2}WU{3}
+      regex: ^\d{2}\.\d{3}\.\d{2}\s[A-Z]{3}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{2}PD{2}WU{3}'
+      learned_date: '2025-07-21T09:05:32.629254'
+      original_pattern: D{2}PD{2}WU{3}
+      regex: ^\d{2}\.\d{2}\s[A-Z]{3}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{6}PD{2}'
+      learned_date: '2025-07-21T09:16:40.299259'
+      original_pattern: D{6}PD{2}
+      regex: ^\d{6}\.\d{2}$
+  debit_amount:
+    learning_history:
+    - column_names:
+      - SOLLBETRAG
+      examples_count: 3
+      patterns_added: 2
+      timestamp: '2025-07-19T20:55:33.794937'
+    - column_names:
+      - Debe
+      examples_count: 3
+      patterns_added: 5
+      timestamp: '2025-07-21T08:35:07.791220'
+    - column_names:
+      - Importe debe
+      examples_count: 3
+      patterns_added: 2
+      timestamp: '2025-07-21T08:42:46.370055'
+    - column_names:
+      - Importe en debe en moneda de empresa
+      examples_count: 3
+      patterns_added: 5
+      timestamp: '2025-07-21T08:54:56.658534'
+    - column_names:
+      - Importe en debe en moneda de empresa
+      - Importe en debe en moneda de transacción
+      examples_count: 6
+      patterns_added: 4
+      timestamp: '2025-07-21T09:05:32.629238'
+    - column_names:
+      - DEBE
+      examples_count: 3
+      patterns_added: 2
+      timestamp: '2025-07-21T09:16:40.299249'
+    priority_patterns:
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T20:55:33.794930'
+      regex: \d\d\d\d[,\.]\d
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T20:55:33.794934'
+      regex: \d[,\.]\d
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{5}PD'
+      learned_date: '2025-07-21T08:35:07.791197'
+      original_pattern: D{5}PD
+      regex: ^\d{5}\.\d$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{4}PD{2}'
+      learned_date: '2025-07-21T08:35:07.791203'
+      original_pattern: D{4}PD{2}
+      regex: ^\d{4}\.\d{2}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{3}PD{2}'
+      learned_date: '2025-07-21T08:35:07.791208'
+      original_pattern: D{3}PD{2}
+      regex: ^\d{3}\.\d{2}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{3}PD'
+      learned_date: '2025-07-21T08:35:07.791212'
+      original_pattern: D{3}PD
+      regex: ^\d{3}\.\d$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{2}PD{2}'
+      learned_date: '2025-07-21T08:35:07.791218'
+      original_pattern: D{2}PD{2}
+      regex: ^\d{2}\.\d{2}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: DPD'
+      learned_date: '2025-07-21T08:42:46.370047'
+      original_pattern: DPD
+      regex: ^\d\.\d$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{2}PD{3}PD{2}'
+      learned_date: '2025-07-21T08:54:56.658504'
+      original_pattern: D{2}PD{3}PD{2}
+      regex: ^\d{2}\.\d{3}\.\d{2}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: DPD{2}'
+      learned_date: '2025-07-21T08:54:56.658510'
+      original_pattern: DPD{2}
+      regex: ^\d\.\d{2}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: DPD{3}PD{2}'
+      learned_date: '2025-07-21T08:54:56.658516'
+      original_pattern: DPD{3}PD{2}
+      regex: ^\d\.\d{3}\.\d{2}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: DPD{3}PD{3}PD{2}'
+      learned_date: '2025-07-21T08:54:56.658525'
+      original_pattern: DPD{3}PD{3}PD{2}
+      regex: ^\d\.\d{3}\.\d{3}\.\d{2}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{3}PD{3}PD{2}'
+      learned_date: '2025-07-21T08:54:56.658532'
+      original_pattern: D{3}PD{3}PD{2}
+      regex: ^\d{3}\.\d{3}\.\d{2}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{2}PD{3}PD{2}WU{3}'
+      learned_date: '2025-07-21T09:05:32.629211'
+      original_pattern: D{2}PD{3}PD{2}WU{3}
+      regex: ^\d{2}\.\d{3}\.\d{2}\s[A-Z]{3}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{2}PD{2}WU{3}'
+      learned_date: '2025-07-21T09:05:32.629219'
+      original_pattern: D{2}PD{2}WU{3}
+      regex: ^\d{2}\.\d{2}\s[A-Z]{3}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{6}PD{2}'
+      learned_date: '2025-07-21T09:16:40.299246'
+      original_pattern: D{6}PD{2}
+      regex: ^\d{6}\.\d{2}$
+  debit_credit_indicator:
+    learning_history:
+    - column_names:
+      - SHKZG
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-19T14:02:19.798454'
+    - column_names:
+      - Ind
+      examples_count: 3
+      patterns_added: 2
+      timestamp: '2025-07-19T14:35:12.391213'
+    - column_names:
+      - Indicador Debe/Haber
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-19T17:08:51.779497'
+    - column_names:
+      - Indicador Debe/Haber
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-21T08:25:50.556958'
+    priority_patterns:
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T14:02:19.798452'
+      regex: '[A[/\-\.]Za[/\-\.]z]'
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T14:35:12.391208'
+      regex: .
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T14:35:12.391211'
+      regex: '[/\-\.]'
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: U'
+      learned_date: '2025-07-21T08:25:50.556955'
+      original_pattern: U
+      regex: ^[A-Z]$
+  description:
+    confidence_boost: 0.2
+    field_type: line_description
+    learned_from: user_correction
+    timestamp: '2025-07-21T12:10:46.939752'
+  entry_date:
+    learning_history:
+    - column_names:
+      - FchReg
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-19T14:35:12.391264'
+    - column_names:
+      - Fecha de registro
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-19T17:08:51.779480'
+    - column_names:
+      - Fecha de registro
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-21T08:25:50.556931'
+    - column_names:
+      - Fecha registro
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-21T08:42:46.369946'
+    - column_names:
+      - Fecha doc.original
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-21T09:05:32.629202'
+    priority_patterns:
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T14:35:12.391262'
+      regex: \d\d[/\-\.]\d\d[/\-\.]\d\d\d\d.\d\d.\d\d
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T17:08:51.779478'
+      regex: \d\d[,\.]\d\d[,\.]\d\d\d\d
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{2}PD{2}PD{4}'
+      learned_date: '2025-07-21T08:25:50.556927'
+      original_pattern: D{2}PD{2}PD{4}
+      regex: ^\d{2}\.\d{2}\.\d{4}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{4}HD{2}HD{2}'
+      learned_date: '2025-07-21T08:42:46.369944'
+      original_pattern: D{4}HD{2}HD{2}
+      regex: ^\d{4}-\d{2}-\d{2}$
+  entry_time:
+    learning_history:
+    - column_names:
+      - POSTED DATE/TIME
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-21T09:00:49.581274'
+    priority_patterns:
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{2}SD{2}SD{4}WD{2}TD{2}'
+      learned_date: '2025-07-21T09:00:49.581272'
+      original_pattern: D{2}SD{2}SD{4}WD{2}TD{2}
+      regex: ^\d{2}/\d{2}/\d{4}\s\d{2}:\d{2}$
+  fiscal_year:
+    learning_history:
+    - column_names:
+      - GJAHR
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-19T14:02:19.798426'
+    - column_names:
+      - Ej
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-19T14:35:12.391239'
+    - column_names:
+      - Ejercicio
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-19T17:08:51.779431'
+    - column_names:
+      - GJAHR
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-19T20:55:33.794986'
+    - column_names:
+      - Ejercicio
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-21T08:25:50.556827'
+    - column_names:
+      - FISCAL YEAR
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-21T09:00:49.581197'
+    priority_patterns:
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T14:02:19.798423'
+      regex: \d\d\d\d
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{4}'
+      learned_date: '2025-07-21T08:25:50.556823'
+      original_pattern: D{4}
+      regex: ^\d{4}$
+  gl_account_name:
+    learning_history:
+    - column_names:
+      - KTEXT
+      examples_count: 5
+      patterns_added: 2
+      timestamp: '2025-07-19T14:02:19.798432'
+    - column_names:
+      - ACCOUNT_NAME
+      examples_count: 4
+      patterns_added: 1
+      timestamp: '2025-07-21T09:00:49.581206'
+    - column_names:
+      - Account_Description
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-21T10:15:32.445678'
+    priority_patterns:
+    - confidence_boost: 0.3
+      description: Learned from user training - Account names pattern
+      learned_date: '2025-07-19T14:02:19.798429'
+      regex: ^[A-Za-z\s\-]+$
+    - confidence_boost: 0.25
+      description: 'Learned from user training - Pattern: Text with numbers'
+      learned_date: '2025-07-21T09:00:49.581203'
+      original_pattern: TEXT_NUM
+      regex: ^[A-Za-z0-9\s\-\.]+$
+    - confidence_boost: 0.2
+      description: Learned from user training - Alphanumeric account names
+      learned_date: '2025-07-21T10:15:32.445675'
+      regex: ^[A-Za-z]+(\s[A-Za-z0-9\s\-]+)*$
+  gl_account_number:
+    learning_history:
+    - column_names:
+      - HKONT
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-19T14:02:19.798438'
+    - column_names:
+      - CtaMay
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-19T14:35:12.391189'
+    - column_names:
+      - Cuenta contable
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-19T17:08:51.779491'
+    - column_names:
+      - HKONT
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-19T20:55:33.794925'
+    - column_names:
+      - Cuenta contable
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-21T08:25:50.556949'
+    - column_names:
+      - Cuenta
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-21T08:35:07.791106'
+    - column_names:
+      - Nº cuenta
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-21T08:42:46.369932'
+    - column_names:
+      - Cuenta de mayor
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-21T08:54:56.658423'
+    - column_names:
+      - GLOBAL ACCOUNT
+      - ALTERNATE ACCOUNT
+      examples_count: 6
+      patterns_added: 2
+      timestamp: '2025-07-21T09:00:49.581388'
+    - column_names:
+      - Cuenta de contrapartida de libro mayor
+      - Cuenta de mayor
+      examples_count: 6
+      patterns_added: 2
+      timestamp: '2025-07-21T09:05:32.629170'
+    - column_names:
+      - CUENTA
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-21T09:16:40.299169'
+    priority_patterns:
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T14:02:19.798435'
+      regex: \d\d\d\d\d\d\d
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T14:35:12.391186'
+      regex: \d\d\d\d\d\d
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T17:08:51.779488'
+      regex: \d\d\d\d\d
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{5}'
+      learned_date: '2025-07-21T08:25:50.556946'
+      original_pattern: D{5}
+      regex: ^\d{5}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{10+}PD'
+      learned_date: '2025-07-21T08:35:07.791104'
+      original_pattern: D{10+}PD
+      regex: ^\d{10+}\.\d$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{12+}'
+      learned_date: '2025-07-21T08:42:46.369928'
+      original_pattern: D{12+}
+      regex: ^\d{12+}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{6}'
+      learned_date: '2025-07-21T08:54:56.658411'
+      original_pattern: D{6}
+      regex: ^\d{6}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{4}PD'
+      learned_date: '2025-07-21T09:16:40.299166'
+      original_pattern: D{4}PD
+      regex: ^\d{4}\.\d$
+  je_header_description:
+    learning_history:
+    - column_names:
+      - Observaciones
+      examples_count: 3
+      patterns_added: 3
+      timestamp: '2025-07-19T14:35:12.391234'
+    - column_names:
+      - Texto cabecera
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-19T17:08:51.779451'
+    - column_names:
+      - Texto cabecera
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-21T08:25:50.556873'
+    - column_names:
+      - Concepto
+      examples_count: 3
+      patterns_added: 2
+      timestamp: '2025-07-21T08:35:07.791192'
+    - column_names:
+      - Texto de cabecera de asiento contable
+      examples_count: 3
+      patterns_added: 2
+      timestamp: '2025-07-21T08:54:56.658478'
+    - column_names:
+      - BUSINESS LINE DESCRIPTION
+      - LONG DESCRIPTION
+      examples_count: 6
+      patterns_added: 4
+      timestamp: '2025-07-21T09:00:49.581355'
+    - column_names:
+      - Texto de cabecera de asiento contable
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-21T09:05:32.629191'
+    - column_names:
+      - CONCEPTO
+      examples_count: 3
+      patterns_added: 3
+      timestamp: '2025-07-21T09:16:40.299235'
+    priority_patterns:
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T14:35:12.391220'
+      regex: '[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z].[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z].[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z].[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z]'
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T14:35:12.391226'
+      regex: '[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z].[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z].[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z].[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z]'
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T14:35:12.391231'
+      regex: '[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z].[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z].[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z]'
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T17:08:51.779449'
+      regex: '[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z].[A[/\-\.]Za[/\-\.]z]\d\d\d'
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: U{8+}WUD{3}'
+      learned_date: '2025-07-21T08:25:50.556869'
+      original_pattern: U{8+}WUD{3}
+      regex: ^[A-Z]{8+}\s[A-Z]\d{3}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: U{8+}WU{7+}WXU{2}D{13+}X'
+      learned_date: '2025-07-21T08:35:07.791173'
+      original_pattern: U{8+}WU{7+}WXU{2}D{13+}X
+      regex: ^[A-Z]{8+}\s[A-Z]{7+}\s[^\w\s][A-Z]{2}\d{13+}[^\w\s]$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: A{2}WLSL{3}WD{10+}WXU{5}WU{7+}WU{5}X'
+      learned_date: '2025-07-21T08:35:07.791190'
+      original_pattern: A{2}WLSL{3}WD{10+}WXU{5}WU{7+}WU{5}X
+      regex: ^[A-Za-z]{2}\s[a-z]/[a-z]{3}\s\d{10+}\s[^\w\s][A-Z]{5}\s[A-Z]{7+}\s[A-Z]{5}[^\w\s]$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: A{9+}WL{2}WL{13+}WL{2}WL{6+}'
+      learned_date: '2025-07-21T08:54:56.658471'
+      original_pattern: A{9+}WL{2}WL{13+}WL{2}WL{6+}
+      regex: ^[A-Za-z]{9+}\s[a-z]{2}\s[a-z]{13+}\s[a-z]{2}\s[a-z]{6+}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D'
+      learned_date: '2025-07-21T08:54:56.658476'
+      original_pattern: D
+      regex: ^\d$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: U{2}WU{3}WHWA{4}WA{7+}'
+      learned_date: '2025-07-21T09:00:49.581295'
+      original_pattern: U{2}WU{3}WHWA{4}WA{7+}
+      regex: ^[A-Z]{2}\s[A-Z]{3}\s-\s[A-Za-z]{4}\s[A-Za-z]{7+}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: U{2}WA{4}WHWU{4}HWA{6+}WA{5}'
+      learned_date: '2025-07-21T09:00:49.581312'
+      original_pattern: U{2}WA{4}WHWU{4}HWA{6+}WA{5}
+      regex: ^[A-Z]{2}\s[A-Za-z]{4}\s-\s[A-Z]{4}-\s[A-Za-z]{6+}\s[A-Za-z]{5}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: U{2}D{3}XD{4}PD{2}XA{3}WL{5}WL{7+}XU{4}D{7}XA{9+}'
+      learned_date: '2025-07-21T09:00:49.581334'
+      original_pattern: U{2}D{3}XD{4}PD{2}XA{3}WL{5}WL{7+}XU{4}D{7}XA{9+}
+      regex: ^[A-Z]{2}\d{3}[^\w\s]\d{4}\.\d{2}[^\w\s][A-Za-z]{3}\s[a-z]{5}\s[a-z]{7+}[^\w\s][A-Z]{4}\d{7}[^\w\s][A-Za-z]{9+}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: U{2}D{3}XD{6}XU{3}XU{2}XU{4}D{7}XU{7+}'
+      learned_date: '2025-07-21T09:00:49.581352'
+      original_pattern: U{2}D{3}XD{6}XU{3}XU{2}XU{4}D{7}XU{7+}
+      regex: ^[A-Z]{2}\d{3}[^\w\s]\d{6}[^\w\s][A-Z]{3}[^\w\s][A-Z]{2}[^\w\s][A-Z]{4}\d{7}[^\w\s][A-Z]{7+}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: X'
+      learned_date: '2025-07-21T09:05:32.629188'
+      original_pattern: X
+      regex: ^[^\w\s]$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: U{6+}WU{2}'
+      learned_date: '2025-07-21T09:16:40.299220'
+      original_pattern: U{6+}WU{2}
+      regex: ^[A-Z]{6+}\s[A-Z]{2}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: U{4}WU{8+}'
+      learned_date: '2025-07-21T09:16:40.299226'
+      original_pattern: U{4}WU{8+}
+      regex: ^[A-Z]{4}\s[A-Z]{8+}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{3}HD{6}'
+      learned_date: '2025-07-21T09:16:40.299232'
+      original_pattern: D{3}HD{6}
+      regex: ^\d{3}-\d{6}$
+  journal_entry_id:
+    learning_history:
+    - column_names:
+      - BELNR
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-19T14:02:19.798406'
+    - column_names:
+      - Num
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-19T14:35:12.391163'
+    - column_names:
+      - N� documento
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-19T17:08:51.779423'
+    - column_names:
+      - BELNR
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-19T20:55:33.794889'
+    - column_names:
+      - N� documento
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-21T08:25:50.556812'
+    - column_names:
+      - Asiento
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-21T08:35:07.791097'
+    - column_names:
+      - Nº documento
+      - Nº asiento
+      examples_count: 6
+      patterns_added: 2
+      timestamp: '2025-07-21T08:42:46.369971'
+    - column_names:
+      - Asiento contable
+      examples_count: 3
+      patterns_added: 2
+      timestamp: '2025-07-21T08:54:56.658446'
+    - column_names:
+      - JOURNAL ID
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-21T09:00:49.581230'
+    - column_names:
+      - Asiento contable
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-21T09:05:32.629177'
+    - column_names:
+      - DIARIO
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-21T09:16:40.299159'
+    priority_patterns:
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T14:02:19.798394'
+      regex: \d\d\d\d\d\d\d
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T14:35:12.391148'
+      regex: \d
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T17:08:51.779418'
+      regex: \d\d\d\d\d\d\d\d\d\d
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{10+}'
+      learned_date: '2025-07-21T08:25:50.556805'
+      original_pattern: D{10+}
+      regex: ^\d{10+}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{5}PD'
+      learned_date: '2025-07-21T08:35:07.791093'
+      original_pattern: D{5}PD
+      regex: ^\d{5}\.\d$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: UD{2}HD{5}'
+      learned_date: '2025-07-21T08:42:46.369964'
+      original_pattern: UD{2}HD{5}
+      regex: ^[A-Z]\d{2}-\d{5}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{7}'
+      learned_date: '2025-07-21T08:42:46.369968'
+      original_pattern: D{7}
+      regex: ^\d{7}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{11+}PD'
+      learned_date: '2025-07-21T08:54:56.658436'
+      original_pattern: D{11+}PD
+      regex: ^\d{11+}\.\d$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{12+}PD'
+      learned_date: '2025-07-21T08:54:56.658443'
+      original_pattern: D{12+}PD
+      regex: ^\d{12+}\.\d$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: XD{10+}'
+      learned_date: '2025-07-21T09:00:49.581227'
+      original_pattern: XD{10+}
+      regex: ^[^\w\s]\d{10+}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{12+}'
+      learned_date: '2025-07-21T09:05:32.629174'
+      original_pattern: D{12+}
+      regex: ^\d{12+}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: DPD'
+      learned_date: '2025-07-21T09:16:40.299155'
+      original_pattern: DPD
+      regex: ^\d\.\d$
+  line_description:
+    learning_history:
+    - column_names:
+      - SGTXT
+      examples_count: 3
+      patterns_added: 5
+      timestamp: '2025-07-19T14:02:19.798484'
+    - column_names:
+      - Texto detalle
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-19T17:08:51.779518'
+    - column_names:
+      - SGTXT
+      examples_count: 3
+      patterns_added: 3
+      timestamp: '2025-07-19T20:55:33.794973'
+    - column_names:
+      - Texto detalle
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-21T08:25:50.557014'
+    - column_names:
+      - Descripción
+      examples_count: 3
+      patterns_added: 5
+      timestamp: '2025-07-21T08:35:07.791163'
+    - column_names:
+      - Descripción
+      examples_count: 3
+      patterns_added: 3
+      timestamp: '2025-07-21T08:42:46.370008'
+    - column_names:
+      - Texto de posición de asiento contable
+      examples_count: 3
+      patterns_added: 2
+      timestamp: '2025-07-21T08:54:56.658496'
+    - column_names:
+      - LINE DESCRIPTION
+      examples_count: 3
+      patterns_added: 3
+      timestamp: '2025-07-21T09:00:49.581522'
+    - column_names:
+      - Texto de posición de asiento contable
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-21T09:05:32.629158'
+    - column_names:
+      - TEXTO
+      examples_count: 3
+      patterns_added: 5
+      timestamp: '2025-07-21T09:16:40.299214'
+    priority_patterns:
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T14:02:19.798462'
+      regex: '[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z].[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z].[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z].[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z]'
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T14:02:19.798467'
+      regex: '[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z].[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z].[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z]'
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T14:02:19.798471'
+      regex: '[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z].[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z].[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z]'
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T14:02:19.798477'
+      regex: '[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z].[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z].[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z]'
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T14:02:19.798481'
+      regex: '[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z].[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z]'
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T17:08:51.779516'
+      regex: '[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z].[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z].[A[/\-\.]Za[/\-\.]z]\d\d\d'
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T20:55:33.794966'
+      regex: '[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z].[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z].[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z]'
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: U{6+}WU{8+}WUD{3}'
+      learned_date: '2025-07-21T08:25:50.557009'
+      original_pattern: U{6+}WU{8+}WUD{3}
+      regex: ^[A-Z]{6+}\s[A-Z]{8+}\s[A-Z]\d{3}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: U{5}WU{11+}WU{2}WU{8+}WU{12+}'
+      learned_date: '2025-07-21T08:35:07.791119'
+      original_pattern: U{5}WU{11+}WU{2}WU{8+}WU{12+}
+      regex: ^[A-Z]{5}\s[A-Z]{11+}\s[A-Z]{2}\s[A-Z]{8+}\s[A-Z]{12+}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: U{8+}WU{10+}WU{2}WU{7+}WXU{8+}WU{12+}X'
+      learned_date: '2025-07-21T08:35:07.791135'
+      original_pattern: U{8+}WU{10+}WU{2}WU{7+}WXU{8+}WU{12+}X
+      regex: ^[A-Z]{8+}\s[A-Z]{10+}\s[A-Z]{2}\s[A-Z]{7+}\s[^\w\s][A-Z]{8+}\s[A-Z]{12+}[^\w\s]$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: U{13+}WU{9+}'
+      learned_date: '2025-07-21T08:35:07.791141'
+      original_pattern: U{13+}WU{9+}
+      regex: ^[A-Z]{13+}\s[A-Z]{9+}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: U{8+}WU{7+}PU{3}WU{9+}WU{2}WD{2}X'
+      learned_date: '2025-07-21T08:35:07.791154'
+      original_pattern: U{8+}WU{7+}PU{3}WU{9+}WU{2}WD{2}X
+      regex: ^[A-Z]{8+}\s[A-Z]{7+}\.[A-Z]{3}\s[A-Z]{9+}\s[A-Z]{2}\s\d{2}[^\w\s]$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: U{5}WU{7+}WU{5}'
+      learned_date: '2025-07-21T08:35:07.791161'
+      original_pattern: U{5}WU{7+}WU{5}
+      regex: ^[A-Z]{5}\s[A-Z]{7+}\s[A-Z]{5}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: A{7+}WU{3}D{2}HD{5}'
+      learned_date: '2025-07-21T08:42:46.369980'
+      original_pattern: A{7+}WU{3}D{2}HD{5}
+      regex: ^[A-Za-z]{7+}\s[A-Z]{3}\d{2}-\d{5}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: A{9+}WL{7+}WUD{2}HD{5}WL{2}WL{7+}'
+      learned_date: '2025-07-21T08:42:46.369996'
+      original_pattern: A{9+}WL{7+}WUD{2}HD{5}WL{2}WL{7+}
+      regex: ^[A-Za-z]{9+}\s[a-z]{7+}\s[A-Z]\d{2}-\d{5}\s[a-z]{2}\s[a-z]{7+}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: A{6+}WUD{2}HD{5}SD'
+      learned_date: '2025-07-21T08:42:46.370006'
+      original_pattern: A{6+}WUD{2}HD{5}SD
+      regex: ^[A-Za-z]{6+}\s[A-Z]\d{2}-\d{5}/\d$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: A{8+}WL{2}WL{6+}TWA{7+}'
+      learned_date: '2025-07-21T08:54:56.658489'
+      original_pattern: A{8+}WL{2}WL{6+}TWA{7+}
+      regex: ^[A-Za-z]{8+}\s[a-z]{2}\s[a-z]{6+}:\s[A-Za-z]{7+}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D'
+      learned_date: '2025-07-21T08:54:56.658493'
+      original_pattern: D
+      regex: ^\d$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: A{3}WA{5}WA{6+}HA{3}HA{3}'
+      learned_date: '2025-07-21T09:00:49.581493'
+      original_pattern: A{3}WA{5}WA{6+}HA{3}HA{3}
+      regex: ^[A-Za-z]{3}\s[A-Za-z]{5}\s[A-Za-z]{6+}-[A-Za-z]{3}-[A-Za-z]{3}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: A{3}WA{5}WA{6+}HA{3}'
+      learned_date: '2025-07-21T09:00:49.581505'
+      original_pattern: A{3}WA{5}WA{6+}HA{3}
+      regex: ^[A-Za-z]{3}\s[A-Za-z]{5}\s[A-Za-z]{6+}-[A-Za-z]{3}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: U{7+}WU{3}WL{7+}WL{3}WL{5}'
+      learned_date: '2025-07-21T09:00:49.581519'
+      original_pattern: U{7+}WU{3}WL{7+}WL{3}WL{5}
+      regex: ^[A-Z]{7+}\s[A-Z]{3}\s[a-z]{7+}\s[a-z]{3}\s[a-z]{5}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{12+}'
+      learned_date: '2025-07-21T09:05:32.629153'
+      original_pattern: D{12+}
+      regex: ^\d{12+}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: A{7+}WA{6+}'
+      learned_date: '2025-07-21T09:16:40.299176'
+      original_pattern: A{7+}WA{6+}
+      regex: ^[A-Za-z]{7+}\s[A-Za-z]{6+}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: A{7+}WA{5}'
+      learned_date: '2025-07-21T09:16:40.299184'
+      original_pattern: A{7+}WA{5}
+      regex: ^[A-Za-z]{7+}\s[A-Za-z]{5}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: A{7+}WL{10+}'
+      learned_date: '2025-07-21T09:16:40.299191'
+      original_pattern: A{7+}WL{10+}
+      regex: ^[A-Za-z]{7+}\s[a-z]{10+}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: A{7+}PL{6+}WL{6+}PL{8+}'
+      learned_date: '2025-07-21T09:16:40.299202'
+      original_pattern: A{7+}PL{6+}WL{6+}PL{8+}
+      regex: ^[A-Za-z]{7+}\.[a-z]{6+}\s[a-z]{6+}\.[a-z]{8+}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: A{8+}WLWL{9+}'
+      learned_date: '2025-07-21T09:16:40.299210'
+      original_pattern: A{8+}WLWL{9+}
+      regex: ^[A-Za-z]{8+}\s[a-z]\s[a-z]{9+}$
+  line_number:
+    learning_history:
+    - column_names:
+      - Seq
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-19T14:35:12.391182'
+    - column_names:
+      - Posici�n
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-19T17:08:51.779485'
+    - column_names:
+      - BUZEI
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-19T20:55:33.794907'
+    - column_names:
+      - Posici�n
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-21T08:25:50.556940'
+    - column_names:
+      - Nº mov.
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-21T08:42:46.369918'
+    - column_names:
+      - JOURNAL LINE NUMBER
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-21T09:00:49.581281'
+    priority_patterns:
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T14:35:12.391179'
+      regex: \d
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D'
+      learned_date: '2025-07-21T08:25:50.556937'
+      original_pattern: D
+      regex: ^\d$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D{7}'
+      learned_date: '2025-07-21T08:42:46.369899'
+      original_pattern: D{7}
+      regex: ^\d{7}$
+  period_number:
+    learning_history:
+    - column_names:
+      - MONAT
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-19T14:02:19.798432'
+    - column_names:
+      - ACCOUNTING PERIOD
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-21T09:00:49.581206'
+    priority_patterns:
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T14:02:19.798429'
+      regex: \d
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: D'
+      learned_date: '2025-07-21T09:00:49.581203'
+      original_pattern: D
+      regex: ^\d$
+  prepared_by:
+    learning_history:
+    - column_names:
+      - USNAM
+      examples_count: 3
+      patterns_added: 3
+      timestamp: '2025-07-19T14:02:19.798497'
+    - column_names:
+      - UsuarioReg
+      examples_count: 3
+      patterns_added: 3
+      timestamp: '2025-07-19T14:35:12.391258'
+    - column_names:
+      - Usuario
+      examples_count: 3
+      patterns_added: 2
+      timestamp: '2025-07-19T17:08:51.779474'
+    - column_names:
+      - Usuario
+      examples_count: 3
+      patterns_added: 2
+      timestamp: '2025-07-21T08:25:50.556916'
+    - column_names:
+      - Id. usuario
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-21T08:42:46.370042'
+    - column_names:
+      - CREATED BY
+      examples_count: 3
+      patterns_added: 2
+      timestamp: '2025-07-21T09:00:49.581258'
+    - column_names:
+      - Creado por
+      examples_count: 3
+      patterns_added: 1
+      timestamp: '2025-07-21T09:05:32.629184'
+    priority_patterns:
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T14:02:19.798488'
+      regex: '[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z]'
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T14:02:19.798491'
+      regex: '[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z]'
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T14:02:19.798495'
+      regex: '[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z]'
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T14:35:12.391248'
+      regex: '[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z]\d\d'
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T14:35:12.391252'
+      regex: '[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z]\d\d'
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T14:35:12.391255'
+      regex: '[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z]\d\d'
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T17:08:51.779467'
+      regex: '[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z]'
+    - confidence_boost: 0.2
+      description: Learned from user training
+      learned_date: '2025-07-19T17:08:51.779472'
+      regex: '[A[/\-\.]Za[/\-\.]z].[A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z][A[/\-\.]Za[/\-\.]z]\d\d\d\d\d\d'
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: U{10+}'
+      learned_date: '2025-07-21T08:25:50.556900'
+      original_pattern: U{10+}
+      regex: ^[A-Z]{10+}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: UXU{4}D{6}'
+      learned_date: '2025-07-21T08:25:50.556912'
+      original_pattern: UXU{4}D{6}
+      regex: ^[A-Z][^\w\s][A-Z]{4}\d{6}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: U{6+}HU{2}DXU{5}'
+      learned_date: '2025-07-21T08:42:46.370039'
+      original_pattern: U{6+}HU{2}DXU{5}
+      regex: ^[A-Z]{6+}-[A-Z]{2}\d[^\w\s][A-Z]{5}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: U{8+}XU{7+}'
+      learned_date: '2025-07-21T09:00:49.581245'
+      original_pattern: U{8+}XU{7+}
+      regex: ^[A-Z]{8+}[^\w\s][A-Z]{7+}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: U{5}PU{14+}PU{2}'
+      learned_date: '2025-07-21T09:00:49.581255'
+      original_pattern: U{5}PU{14+}PU{2}
+      regex: ^[A-Z]{5}\.[A-Z]{14+}\.[A-Z]{2}$
+    - confidence_boost: 0.2
+      description: 'Learned from user training - Pattern: U{8+}'
+      learned_date: '2025-07-21T09:05:32.629181'
+      original_pattern: U{8+}
+      regex: ^[A-Z]{8+}$
+  vendor_id:
+    learning_history:
+    - column_names:
+      - LIFNR
+      examples_count: 6
+      patterns_added: 2
+      timestamp: '2025-07-19T14:02:19.798432'
+    - column_names:
+      - VENDOR_ID
+      examples_count: 4
+      patterns_added: 1
+      timestamp: '2025-07-21T09:00:49.581206'
+    - column_names:
+      - Vendor_No
+      examples_count: 5
+      patterns_added: 2
+      timestamp: '2025-07-21T10:15:32.445678'
+    priority_patterns:
+    - confidence_boost: 0.3
+      description: Learned from user training - Numeric vendor codes
+      learned_date: '2025-07-19T14:02:19.798429'
+      regex: ^\d{6,10}$
+    - confidence_boost: 0.25
+      description: 'Learned from user training - Pattern: Alphanumeric codes'
+      learned_date: '2025-07-21T09:00:49.581203'
+      original_pattern: ALPHANUM
+      regex: ^[A-Z0-9]{4,12}$
+    - confidence_boost: 0.2
+      description: Learned from user training - Vendor ID with prefix
+      learned_date: '2025-07-21T10:15:32.445675'
+      regex: ^[A-Z]{2,3}\d{4,8}$
+    - confidence_boost: 0.15
+      description: Learned from user training - Mixed alphanumeric vendor codes
+      learned_date: '2025-07-21T10:15:32.445675'
+      regex: ^[A-Za-z0-9\-]{3,15}$
+statistics:
+  automatic_detections: 9
+  bad_suggestions_avoided: 0
+  columns_processed: 12
+  gl_account_name_detections: 0
+  high_confidence_skipped: 9
+  low_confidence_suggested: 0
+  manual_mappings: 0
+  patterns_learned: 0
+  synonyms_added: 0
+  user_confirmations: 0
+  user_corrections: 0
+  vendor_id_detections: 0
+training_session:
+  csv_file: data/ejemplo_sap_02.csv
+  erp_hint: SAP
+  total_patterns_learned: 17
+journal_entry_id:
+  learning_history:
+  - column_names:
+    - System-Created Entry
+    examples_count: 20
+    patterns_added: 1
+    timestamp: '2025-07-21T21:01:38.754105'
+  - column_names:
+    - BatNbr
+    examples_count: 20
+    patterns_added: 1
+    timestamp: '2025-07-22T18:29:28.169707'
+  - column_names:
+    - Numero_Asiento
+    examples_count: 10
+    patterns_added: 1
+    timestamp: '2025-07-22T18:52:17.864776'
+  - column_names:
+    - Asiento contable
+    examples_count: 20
+    patterns_added: 1
+    timestamp: '2025-07-24T09:29:42.588954'
+  priority_patterns:
+  - regex: ^\d{1}$
+    confidence_boost: 0.25
+    description: Learned from manual training - Precise pattern from 20 samples
+    learned_date: '2025-07-21T21:01:38.754022'
+    sample_count: 20
+    sample_values:
+    - '1'
+    - '1'
+    - '1'
+  - regex: ^\d{6}$
+    confidence_boost: 0.25
+    description: Learned from manual training - Precise pattern from 20 samples
+    learned_date: '2025-07-22T18:29:28.169596'
+    sample_count: 20
+    sample_values:
+    - '162336'
+    - '162336'
+    - '162336'
+  - regex: ^\d{4}$
+    confidence_boost: 0.25
+    description: Learned from manual training - Precise pattern from 10 samples
+    learned_date: '2025-07-22T18:52:17.864647'
+    sample_count: 10
+    sample_values:
+    - '1001'
+    - '1001'
+    - '1002'
+  - regex: ^\d{12}$
+    confidence_boost: 0.25
+    description: Learned from manual training - Precise pattern from 20 samples
+    learned_date: '2025-07-24T09:29:42.588854'
+    sample_count: 20
+    sample_values:
+    - '100000000001'
+    - '100000000002'
+    - '100000000002'
+posting_date:
+  learning_history:
+  - column_names:
+    - Date Created
+    examples_count: 20
+    patterns_added: 1
+    timestamp: '2025-07-22T08:31:36.746131'
+  priority_patterns:
+  - regex: ^\d{2}[.,:;\-_/]{1}\d{2}[.,:;\-_/]{1}\d{4}$
+    confidence_boost: 0.25
+    description: Learned from manual training - Precise pattern from 20 samples
+    learned_date: '2025-07-22T08:31:36.746037'
+    sample_count: 20
+    sample_values:
+    - 08/07/2024
+    - 09/07/2024
+    - 30/08/2024
+entry_date:
+  learning_history:
+  - column_names:
+    - Date Created.1
+    examples_count: 20
+    patterns_added: 1
+    timestamp: '2025-07-22T08:33:12.555412'
+  priority_patterns:
+  - regex: ^\d{2}[.,:;\-_/]{1}\d{2}[.,:;\-_/]{1}\d{4}$
+    confidence_boost: 0.25
+    description: Learned from manual training - Precise pattern from 20 samples
+    learned_date: '2025-07-22T08:33:12.555333'
+    sample_count: 20
+    sample_values:
+    - 08/07/2024
+    - 09/07/2024
+    - 20/08/2024
+gl_account_number:
+  learning_history:
+  - column_names:
+    - Spanish Account
+    examples_count: 20
+    patterns_added: 1
+    timestamp: '2025-07-22T08:37:16.268290'
+  - column_names:
+    - 91Acct
+    examples_count: 20
+    patterns_added: 1
+    timestamp: '2025-07-22T18:29:04.925222'
+  - column_names:
+    - GLOBAL ACCOUNT
+    examples_count: 20
+    patterns_added: 1
+    timestamp: '2025-07-23T09:22:57.889873'
+  priority_patterns:
+  - regex: ^\d{10}$
+    confidence_boost: 0.25
+    description: Learned from manual training - Precise pattern from 20 samples
+    learned_date: '2025-07-22T08:37:16.268207'
+    sample_count: 20
+    sample_values:
+    - '6220000005'
+    - '6220000005'
+    - '6220000005'
+  - regex: ^\d{6}$
+    confidence_boost: 0.25
+    description: Learned from manual training - Precise pattern from 20 samples
+    learned_date: '2025-07-22T18:29:04.925119'
+    sample_count: 20
+    sample_values:
+    - '103201'
+    - '103201'
+    - '201000'
+  - regex: ^\d{5}$
+    confidence_boost: 0.25
+    description: Learned from manual training - Precise pattern from 20 samples
+    learned_date: '2025-07-23T09:22:57.889782'
+    sample_count: 20
+    sample_values:
+    - '24600'
+    - '24600'
+    - '45000'
+line_number:
+  learning_history:
+  - column_names:
+    - BKTXT
+    examples_count: 20
+    patterns_added: 1
+    timestamp: '2025-07-22T16:39:28.169816'
+  - column_names:
+    - linea_item
+    examples_count: 20
+    patterns_added: 1
+    timestamp: '2025-07-22T18:17:11.560752'
+  - column_names:
+    - VENDOR ID
+    examples_count: 20
+    patterns_added: 1
+    timestamp: '2025-07-23T09:43:01.192809'
+  priority_patterns:
+  - regex: ^[A-Z]{1}[a-z]{5}\s{1}[a-z]{8}$
+    confidence_boost: 0.25
+    description: Learned from manual training - Precise pattern from 20 samples
+    learned_date: '2025-07-22T16:39:28.169712'
+    sample_count: 20
+    sample_values:
+    - Travel expenses
+    - Travel expenses
+    - Travel expenses
+  - regex: ^\d{1}$
+    confidence_boost: 0.25
+    description: Learned from manual training - Precise pattern from 20 samples
+    learned_date: '2025-07-22T18:17:11.560666'
+    sample_count: 20
+    sample_values:
+    - '1'
+    - '2'
+    - '1'
+  - regex: ^\s{1}$
+    confidence_boost: 0.25
+    description: Learned from manual training - Precise pattern from 20 samples
+    learned_date: '2025-07-23T09:43:01.192724'
+    sample_count: 20
+    sample_values:
+    - ' '
+    - ' '
+    - ' '
+description:
+  learning_history:
+  - column_names:
+    - Column5
+    examples_count: 20
+    patterns_added: 1
+    timestamp: '2025-07-22T17:44:18.667743'
+  - column_names:
+    - Texto cab.documento
+    examples_count: 20
+    patterns_added: 1
+    timestamp: '2025-07-24T14:35:34.859621'
+  priority_patterns:
+  - regex: ^\d{8}\s{1}[A-Z]{3}\s{1}[A-Z]{4}$
+    confidence_boost: 0.25
+    description: Learned from manual training - Precise pattern from 20 samples
+    learned_date: '2025-07-22T17:44:18.667652'
+    sample_count: 20
+    sample_values:
+    - 80012376 PGC FALL
+    - 80012376 PGC FALL
+    - 80012376 PGC FALL
+  - regex: ^\d{13}$
+    confidence_boost: 0.25
+    description: Learned from manual training - Precise pattern from 20 samples
+    learned_date: '2025-07-24T14:35:34.859532'
+    sample_count: 20
+    sample_values:
+    - 0078154500001
+    - 0078154500001
+    - 0078154500002
+line_description:
+  learning_history:
+  - column_names:
+    - '                               Concepto '
+    examples_count: 20
+    patterns_added: 1
+    timestamp: '2025-07-22T18:06:12.619175'
+  priority_patterns:
+  - regex: ^[A-Z]{4}[^\w\s]{3}[A-Z]{2}[^\w\s]{3}[A-Z]{1}[^\w\s]{4}[A-Z]{2}[^\w\s]{18}\s{3}$
+    confidence_boost: 0.25
+    description: Learned from manual training - Precise pattern from 20 samples
+    learned_date: '2025-07-22T18:06:12.619049'
+    sample_count: 20
+    sample_values:
+    - 'CONTRAASIENTO DE CARTERAS               '
+    - 'CONTRAASIENTO DE CARTERAS               '
+    - 'BONIF.CONFIRMING PROVE.                 '
+gl_account_name:
+  learning_history:
+  - column_names:
+    - '                   Descripci¢n'
+    examples_count: 20
+    patterns_added: 1
+    timestamp: '2025-07-22T18:06:45.336066'
+  priority_patterns:
+  - regex: ^[A-Z]{1}[^\w\s]{1}[A-Za-z]{1}[^\w\s]{1}[A-Za-z]{1}[^\w\s]{6}[A-Za-z]{1}[^\w\s]{1}[A-Za-z]{1}[^\w\s]{16}$
+    confidence_boost: 0.25
+    description: Learned from manual training - Precise pattern from 20 samples
+    learned_date: '2025-07-22T18:06:45.335987'
+    sample_count: 20
+    sample_values:
+    - EFECTOS COMERCIALES DESCONTAD.
+    - 'DEUDAS P/EFCTS.CIAL.DSC.CAIXA '
+    - 'C.E.P.B. "LA CAIXA" (CUA)     '
+vendor_id:
+  learning_history:
+  - column_names:
+    - cuenta_mayor
+    examples_count: 20
+    patterns_added: 1
+    timestamp: '2025-07-22T18:17:48.485495'
+  priority_patterns:
+  - regex: ^\d{6}$
+    confidence_boost: 0.25
+    description: Learned from manual training - Precise pattern from 20 samples
+    learned_date: '2025-07-22T18:17:48.485411'
+    sample_count: 20
+    sample_values:
+    - '572016'
+    - '626000'
+    - '572016'
+prepared_by:
+  learning_history:
+  - column_names:
+    - Crtd_User
+    examples_count: 20
+    patterns_added: 1
+    timestamp: '2025-07-22T18:29:39.345561'
+  - column_names:
+    - Nombre del usuario
+    examples_count: 20
+    patterns_added: 1
+    timestamp: '2025-07-24T14:35:28.215914'
+  priority_patterns:
+  - regex: ^[a-z]{10}$
+    confidence_boost: 0.25
+    description: Learned from manual training - Precise pattern from 20 samples
+    learned_date: '2025-07-22T18:29:39.345476'
+    sample_count: 20
+    sample_values:
+    - grodriguez
+    - grodriguez
+    - grodriguez
+  - regex: ^[A-Z]{6}[.,:;\-_/]{1}\d{2}$
+    confidence_boost: 0.25
+    description: Learned from manual training - Precise pattern from 20 samples
+    learned_date: '2025-07-24T14:35:28.215628'
+    sample_count: 20
+    sample_values:
+    - UIPATH_01
+    - UIPATH_01
+    - UIPATH_01
+period_number:
+  learning_history:
+  - column_names:
+    - PerPost
+    examples_count: 20
+    patterns_added: 1
+    timestamp: '2025-07-22T18:30:30.596427'
+  priority_patterns:
+  - regex: ^\d{6}$
+    confidence_boost: 0.25
+    description: Learned from manual training - Precise pattern from 20 samples
+    learned_date: '2025-07-22T18:30:30.596228'
+    sample_count: 20
+    sample_values:
+    - '202401'
+    - '202401'
+    - '202401'

@@ -1,0 +1,241 @@
+{
+  "ledger": {
+    "examples": [
+      "ACT_LOC",
+      "ACT_LOC",
+      "ACT_LOC"
+    ],
+    "patterns": [
+      "U{3}XU{3}"
+    ],
+    "column_names": [
+      "LEDGER"
+    ]
+  },
+  "fiscal_year": {
+    "examples": [
+      2024,
+      2024,
+      2024
+    ],
+    "patterns": [
+      "D{4}"
+    ],
+    "column_names": [
+      "FISCAL YEAR"
+    ]
+  },
+  "period": {
+    "examples": [
+      1,
+      1,
+      1
+    ],
+    "patterns": [
+      "D"
+    ],
+    "column_names": [
+      "ACCOUNTING PERIOD"
+    ]
+  },
+  "effective_date": {
+    "examples": [
+      "01/01/2024",
+      "01/01/2024",
+      "01/01/2024"
+    ],
+    "patterns": [
+      "D{2}SD{2}SD{4}"
+    ],
+    "column_names": [
+      "JOURNAL DATE"
+    ]
+  },
+  "journal_id": {
+    "examples": [
+      "'0005580189",
+      "'0005580189",
+      "'0005580189"
+    ],
+    "patterns": [
+      "XD{10+}"
+    ],
+    "column_names": [
+      "JOURNAL ID"
+    ]
+  },
+  "reversal_indicator": {
+    "examples": [
+      "Reversal",
+      "Reversal",
+      "Reversal"
+    ],
+    "patterns": [
+      "A{8+}"
+    ],
+    "column_names": [
+      "REVERSAL"
+    ]
+  },
+  "entered_by": {
+    "examples": [
+      "FINBATCH@SERVICE",
+      "FINBATCH@SERVICE",
+      "FINBATCH@SERVICE"
+    ],
+    "patterns": [
+      "U{8+}XU{7+}",
+      "U{5}PU{14+}PU{2}"
+    ],
+    "column_names": [
+      "CREATED BY"
+    ]
+  },
+  "entered_time": {
+    "examples": [
+      "05/01/2024 16:54",
+      "05/01/2024 16:54",
+      "05/01/2024 16:54"
+    ],
+    "patterns": [
+      "D{2}SD{2}SD{4}WD{2}TD{2}"
+    ],
+    "column_names": [
+      "POSTED DATE/TIME"
+    ]
+  },
+  "journal_id_line_number": {
+    "examples": [
+      1,
+      2,
+      3
+    ],
+    "patterns": [
+      "D"
+    ],
+    "column_names": [
+      "JOURNAL LINE NUMBER"
+    ]
+  },
+  "je_header_description": {
+    "examples": [
+      "WD PDS - Data Centers",
+      "WD PDS - Data Centers",
+      "WD PDS - Data Centers",
+      "ES002_2023.12_Fee share accrual_RITM2369863_Shekhawat",
+      "ES002_2023.12_Fee share accrual_RITM2369863_Shekhawat",
+      "ES002_2023.12_Fee share accrual_RITM2369863_Shekhawat"
+    ],
+    "patterns": [
+      "U{2}WU{3}WHWA{4}WA{7+}",
+      "U{2}WA{4}WHWU{4}HWA{6+}WA{5}",
+      "U{2}D{3}XD{4}PD{2}XA{3}WL{5}WL{7+}XU{4}D{7}XA{9+}",
+      "U{2}D{3}XD{6}XU{3}XU{2}XU{4}D{7}XU{7+}"
+    ],
+    "column_names": [
+      "BUSINESS LINE DESCRIPTION",
+      "LONG DESCRIPTION"
+    ]
+  },
+  "business_unit_code": {
+    "examples": [
+      "ES002",
+      "ES002",
+      "ES002"
+    ],
+    "patterns": [
+      "U{2}D{3}"
+    ],
+    "column_names": [
+      "BUSINESS UNIT"
+    ]
+  },
+  "gl_account_number": {
+    "examples": [
+      "24600",
+      "24600",
+      "45000",
+      43999,
+      43999,
+      70506
+    ],
+    "patterns": [
+      "D{5}",
+      "D{5}"
+    ],
+    "column_names": [
+      "GLOBAL ACCOUNT",
+      "ALTERNATE ACCOUNT"
+    ]
+  },
+  "amount_currency": {
+    "examples": [
+      "EUR",
+      "EUR",
+      "EUR",
+      "EUR",
+      "EUR",
+      "EUR"
+    ],
+    "patterns": [
+      "U{3}",
+      "U{3}"
+    ],
+    "column_names": [
+      "TRANSACTION CURRENCY",
+      "CURRENCY CODE"
+    ]
+  },
+  "amount": {
+    "examples": [
+      "-22.128.00",
+      "-5.532.00",
+      "22.128.00",
+      "-22.128.00",
+      "-5.532.00",
+      "22.128.00"
+    ],
+    "patterns": [
+      "HD{2}PD{3}PD{2}",
+      "HDPD{3}PD{2}",
+      "D{2}PD{3}PD{2}",
+      "DPD{3}PD{2}",
+      "HD{2}PD{3}PD{2}",
+      "HDPD{3}PD{2}",
+      "D{2}PD{3}PD{2}",
+      "DPD{3}PD{2}"
+    ],
+    "column_names": [
+      "TRANSACTION AMOUNT",
+      "MONETARY AMOUNT"
+    ]
+  },
+  "je_line_description": {
+    "examples": [
+      "Fee Share Nabiax-Aug-Nov",
+      "Fee Share Nabiax-Dec",
+      "Fee Share Nabiax-Aug-Nov"
+    ],
+    "patterns": [
+      "A{3}WA{5}WA{6+}HA{3}HA{3}",
+      "A{3}WA{5}WA{6+}HA{3}",
+      "U{7+}WU{3}WL{7+}WL{3}WL{5}"
+    ],
+    "column_names": [
+      "LINE DESCRIPTION"
+    ]
+  },
+  "document_type": {
+    "examples": [
+      "JOURNAL",
+      "JOURNAL",
+      "JOURNAL"
+    ],
+    "patterns": [
+      "U{7+}"
+    ],
+    "column_names": [
+      "LINE DOC TYPE"
+    ]
+  }
+}

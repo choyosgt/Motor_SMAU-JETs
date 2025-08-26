@@ -1,0 +1,233 @@
+# config/pattern_learning_config.yaml - CONFIGURACIÓN DEL SISTEMA DE APRENDIZAJE DE PATRONES
+
+# ===============================================
+# CONFIGURACIÓN GENERAL DEL APRENDIZAJE
+# ===============================================
+pattern_learning:
+  enabled: true
+  auto_save: true
+  auto_corrections: true
+  user_feedback_weight: 0.8
+  confidence_decay_rate: 0.05  # Reducción de confianza por tiempo
+  max_patterns_per_field: 50
+  min_samples_for_learning: 3
+
+# ===============================================
+# UMBRALES DE CONFIANZA PARA APRENDIZAJE
+# ===============================================
+learning_thresholds:
+  pattern_acceptance: 0.6     # Umbral para aceptar un patrón como válido
+  auto_correction: 0.3        # Umbral para aplicar corrección automática
+  user_confirmation: 0.7      # Umbral para considerar confirmación de usuario
+  pattern_rejection: 0.2      # Umbral para rechazar un patrón
+  learning_reinforcement: 0.8 # Umbral para reforzar aprendizaje
+
+# ===============================================
+# CONFIGURACIÓN DE VALIDADORES ESPECIALIZADOS
+# ===============================================
+content_validators:
+  enabled: true
+  cache_results: true
+  cache_ttl_minutes: 60
+  max_sample_size: 20
+  validation_methods:
+    regex_patterns: true
+    statistical_analysis: true
+    format_detection: true
+    semantic_analysis: false  # Requiere librerías adicionales
+
+# ===============================================
+# CORRECCIONES AUTOMÁTICAS
+# ===============================================
+auto_corrections:
+  enabled: true
+  log_corrections: true
+  correction_rules:
+    # Regla 1: Fechas NO pueden ser journal_id
+    date_not_journal_id:
+      enabled: true
+      priority: 1
+      description: "Las fechas no pueden ser identificadores de asiento"
+      trigger_patterns:
+        - "^\\d{1,2}[/\\-\\.]\\d{1,2}[/\\-\\.]\\d{2,4}$"
+        - "^\\d{4}[/\\-\\.]\\d{1,2}[/\\-\\.]\\d{1,2}$"
+      forbidden_types: ["journal_id", "journal_id_line_number"]
+      suggested_types: ["effective_date", "entered_date"]
+    
+    # Regla 2: Importes NO pueden ser indicadores o monedas
+    amount_not_indicator:
+      enabled: true
+      priority: 2
+      description: "Los importes numéricos no pueden ser indicadores o monedas"
+      trigger_patterns:
+        - "^-?\\d+[,\\.]\\d+$"
+        - "^-?\\d{1,3}(\\.\\d{3})*,\\d{2}$"
+      forbidden_types: ["amount_credit_debit_indicator", "amount_currency"]
+      suggested_types: ["amount", "amount_debit", "amount_credit"]
+    
+    # Regla 3: Texto descriptivo NO puede ser importe
+    description_not_amount:
+      enabled: true
+      priority: 3
+      description: "El texto descriptivo no puede ser un importe"
+      trigger_conditions:
+        - "has_letters: true"
+        - "has_spaces: true"
+        - "min_length: 5"
+      forbidden_types: ["amount", "amount_debit", "amount_credit"]
+      suggested_types: ["je_header_description", "je_line_description"]
+    
+    # Regla 4: Números pequeños (1-12) probablemente son períodos
+    small_numbers_period:
+      enabled: true
+      priority: 4
+      description: "Números del 1 al 12 probablemente son períodos"
+      trigger_conditions:
+        - "numeric: true"
+        - "range: [1, 12]"
+        - "all_integers: true"
+      suggested_types: ["period"]
+      boost_confidence: 0.2
+    
+    # Regla 5: Códigos alfanuméricos cortos son probablemente cuentas
+    short_alphanum_accounts:
+      enabled: true
+      priority: 5
+      description: "Códigos alfanuméricos cortos son probablemente cuentas contables"
+      trigger_conditions:
+        - "alphanumeric: true"
+        - "length_range: [3, 8]"
+        - "all_uppercase_or_digits: true"
+      suggested_types: ["gl_account_number", "company_code", "business_unit_code"]
+
+# ===============================================
+# PATRONES DE DETECCIÓN POR TIPO DE CAMPO
+# ===============================================
+field_patterns:
+  journal_id:
+    priority_patterns:
+      - regex: "^\\d{6,15}$"
+        description: "Números largos secuenciales"
+        confidence_boost: 0.3
+      - regex: "^JE\\d{6,12}$"
+        description: "Formato JE + números"
+        confidence_boost: 0.4
+      - regex: "^AST\\d{4,10}$"
+        description: "Formato AST + números"
+        confidence_boost: 0.4
+    negative_patterns:
+      - regex: "^\\d{1,2}[/\\-\\.]\\d{1,2}[/\\-\\.]\\d{2,4}$"
+        description: "Formato de fecha"
+        confidence_penalty: 0.8
+
+  effective_date:
+    priority_patterns:
+      - regex: "^\\d{1,2}[/\\-\\.]\\d{1,2}[/\\-\\.]\\d{2,4}$"
+        description: "Fecha DD/MM/YYYY"
+        confidence_boost: 0.4
+      - regex: "^\\d{4}[/\\-\\.]\\d{1,2}[/\\-\\.]\\d{1,2}$"
+        description: "Fecha YYYY/MM/DD"
+        confidence_boost: 0.4
+      - regex: "^\\d{1,2}-[A-Za-z]{3}-\\d{2,4}$"
+        description: "Fecha DD-MMM-YYYY"
+        confidence_boost: 0.3
+
+  amount:
+    priority_patterns:
+      - regex: "^-?\\d{1,3}(\\.\\d{3})*,\\d{2}$"
+        description: "Formato europeo: 1.234.567,89"
+        confidence_boost: 0.4
+      - regex: "^-?\\d{1,3}(,\\d{3})*\\.\\d{2}$"
+        description: "Formato americano: 1,234,567.89"
+        confidence_boost: 0.4
+      - regex: "^-?\\d+[,\\.]\\d{1,4}$"
+        description: "Importe con decimales"
+        confidence_boost: 0.3
+    negative_patterns:
+      - description: "Contiene muchas letras"
+        condition: "letter_ratio > 0.5"
+        confidence_penalty: 0.6
+
+  gl_account_number:
+    priority_patterns:
+      - regex: "^\\d{3,10}$"
+        description: "Solo números 3-10 dígitos"
+        confidence_boost: 0.3
+      - regex: "^\\d{3,6}\\.\\d{2,4}$"
+        description: "Formato con punto: 1234.56"
+        confidence_boost: 0.4
+      - regex: "^\\d{3,6}-\\d{2,4}$"
+        description: "Formato con guión: 1234-56"
+        confidence_boost: 0.4
+
+  amount_credit_debit_indicator:
+    priority_patterns:
+      - values: ["D", "C", "H", "DEBE", "HABER", "DEBIT", "CREDIT", "DR", "CR"]
+        description: "Indicadores estándar"
+        confidence_boost: 0.5
+      - values: ["1", "0", "-1"]
+        description: "Indicadores numéricos"
+        confidence_boost: 0.3
+    negative_patterns:
+      - condition: "is_large_number"
+        description: "Números grandes no son indicadores"
+        confidence_penalty: 0.8
+
+# ===============================================
+# CONFIGURACIÓN DE RETROALIMENTACIÓN
+# ===============================================
+feedback_system:
+  enabled: true
+  collect_user_corrections: true
+  collect_validation_failures: true
+  collect_pattern_matches: true
+  feedback_weights:
+    user_confirmation: 1.0
+    user_correction: 0.8
+    validation_success: 0.6
+    validation_failure: -0.4
+    pattern_match: 0.3
+
+# ===============================================
+# CONFIGURACIÓN DE ARCHIVOS
+# ===============================================
+file_management:
+  learned_patterns_file: "config/learned_patterns.json"
+  validator_patterns_file: "config/validator_patterns.json"
+  correction_log_file: "logs/auto_corrections.log"
+  feedback_log_file: "logs/feedback_system.log"
+  backup_interval_hours: 24
+  max_backup_files: 10
+
+# ===============================================
+# CONFIGURACIÓN DE RENDIMIENTO
+# ===============================================
+performance:
+  max_cache_size: 2000
+  cache_ttl_hours: 12
+  max_sample_size_for_analysis: 50
+  parallel_processing: false  # Para futuras mejoras
+  batch_size: 100
+  memory_limit_mb: 512
+
+# ===============================================
+# CONFIGURACIÓN DE LOGGING
+# ===============================================
+logging:
+  level: INFO
+  log_pattern_learning: true
+  log_auto_corrections: true
+  log_user_feedback: true
+  log_performance_metrics: true
+  log_file: "logs/pattern_learning.log"
+  max_log_size_mb: 50
+
+# ===============================================
+# CONFIGURACIÓN EXPERIMENTAL
+# ===============================================
+experimental_features:
+  semantic_similarity: false    # Requiere embeddings
+  neural_pattern_learning: false # Requiere TensorFlow/PyTorch
+  cross_file_pattern_learning: true
+  adaptive_thresholds: true
+  ensemble_validation: true

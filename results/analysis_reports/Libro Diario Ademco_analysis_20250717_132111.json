@@ -1,0 +1,403 @@
+{
+  "report_metadata": {
+    "report_type": "csv_analysis",
+    "generated_at": "2025-07-17T13:22:35.898153",
+    "tool_version": "2.1.0"
+  },
+  "file_info": {
+    "original_file": "data/Libro Diario Ademco.csv",
+    "file_name": "Libro Diario Ademco.csv",
+    "file_size_bytes": 63137775,
+    "processing_timestamp": "20250717_132111",
+    "rows_count": 587776,
+    "columns_count": 20,
+    "erp_system": "Generic_ES"
+  },
+  "data_quality_analysis": {
+    " Period": {
+      "data_type": "float64",
+      "non_null_count": 587772,
+      "null_count": 4,
+      "null_percentage": 0.0006805313588850175,
+      "unique_values": 12,
+      "sample_values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "Year": {
+      "data_type": "float64",
+      "non_null_count": 587774,
+      "null_count": 2,
+      "null_percentage": 0.00034026567944250873,
+      "unique_values": 2,
+      "sample_values": [
+        2024.0,
+        2024.0,
+        2024.0,
+        2024.0,
+        2024.0
+      ]
+    },
+    "G/L": {
+      "data_type": "float64",
+      "non_null_count": 587773,
+      "null_count": 3,
+      "null_percentage": 0.0005103985191637631,
+      "unique_values": 190,
+      "sample_values": [
+        1023250.0,
+        2014110.0,
+        1031130.0,
+        1031130.0,
+        1031130.0
+      ]
+    },
+    "Unnamed: 3": {
+      "data_type": "float64",
+      "non_null_count": 0,
+      "null_count": 587776,
+      "null_percentage": 100.0,
+      "unique_values": 0,
+      "sample_values": []
+    },
+    "CoCd": {
+      "data_type": "float64",
+      "non_null_count": 587773,
+      "null_count": 3,
+      "null_percentage": 0.0005103985191637631,
+      "unique_values": 1,
+      "sample_values": [
+        2426.0,
+        2426.0,
+        2426.0,
+        2426.0,
+        2426.0
+      ]
+    },
+    "Plnt": {
+      "data_type": "float64",
+      "non_null_count": 343239,
+      "null_count": 244537,
+      "null_percentage": 41.60377422691638,
+      "unique_values": 6,
+      "sample_values": [
+        4514.0,
+        4514.0,
+        4514.0,
+        4514.0,
+        4514.0
+      ]
+    },
+    "Account": {
+      "data_type": "float64",
+      "non_null_count": 587773,
+      "null_count": 3,
+      "null_percentage": 0.0005103985191637631,
+      "unique_values": 190,
+      "sample_values": [
+        1023250.0,
+        2014110.0,
+        1031130.0,
+        1031130.0,
+        1031130.0
+      ]
+    },
+    "ID": {
+      "data_type": "float64",
+      "non_null_count": 12456,
+      "null_count": 575320,
+      "null_percentage": 97.88082534843205,
+      "unique_values": 1,
+      "sample_values": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ]
+    },
+    "Texts": {
+      "data_type": "object",
+      "non_null_count": 12456,
+      "null_count": 575320,
+      "null_percentage": 97.88082534843205,
+      "unique_values": 1,
+      "sample_values": [
+        "X",
+        "X",
+        "X",
+        "X",
+        "X"
+      ]
+    },
+    "User name": {
+      "data_type": "object",
+      "non_null_count": 587773,
+      "null_count": 3,
+      "null_percentage": 0.0005103985191637631,
+      "unique_values": 90,
+      "sample_values": [
+        "225136",
+        "225136",
+        "212433",
+        "212433",
+        "212433"
+      ]
+    },
+    "Amount in doc. curr.": {
+      "data_type": "object",
+      "non_null_count": 587773,
+      "null_count": 3,
+      "null_percentage": 0.0005103985191637631,
+      "unique_values": 109547,
+      "sample_values": [
+        "64.222.57",
+        "-64.222.57",
+        "-1.821.19",
+        "1.821.19",
+        "20.163.52"
+      ]
+    },
+    "Amount in local cur.": {
+      "data_type": "object",
+      "non_null_count": 587773,
+      "null_count": 3,
+      "null_percentage": 0.0005103985191637631,
+      "unique_values": 109412,
+      "sample_values": [
+        "64.222.57",
+        "-64.222.57",
+        "-1.821.19",
+        "1.821.19",
+        "20.163.52"
+      ]
+    },
+    "Assignment": {
+      "data_type": "object",
+      "non_null_count": 534785,
+      "null_count": 52991,
+      "null_percentage": 9.015509309668989,
+      "unique_values": 53204,
+      "sample_values": [
+        "20240102",
+        "20240102",
+        "0031469582",
+        "0031469582",
+        "0031469582"
+      ]
+    },
+    "DocumentNo": {
+      "data_type": "float64",
+      "non_null_count": 587773,
+      "null_count": 3,
+      "null_percentage": 0.0005103985191637631,
+      "unique_values": 142828,
+      "sample_values": [
+        100674687.0,
+        100674687.0,
+        100674690.0,
+        100674690.0,
+        100674690.0
+      ]
+    },
+    "LCurr": {
+      "data_type": "object",
+      "non_null_count": 587773,
+      "null_count": 3,
+      "null_percentage": 0.0005103985191637631,
+      "unique_values": 1,
+      "sample_values": [
+        "EUR",
+        "EUR",
+        "EUR",
+        "EUR",
+        "EUR"
+      ]
+    },
+    "Curr.": {
+      "data_type": "object",
+      "non_null_count": 587773,
+      "null_count": 3,
+      "null_percentage": 0.0005103985191637631,
+      "unique_values": 7,
+      "sample_values": [
+        "EUR",
+        "EUR",
+        "EUR",
+        "EUR",
+        "EUR"
+      ]
+    },
+    "Pstng Date": {
+      "data_type": "object",
+      "non_null_count": 587773,
+      "null_count": 3,
+      "null_percentage": 0.0005103985191637631,
+      "unique_values": 332,
+      "sample_values": [
+        "02.01.2024",
+        "02.01.2024",
+        "02.01.2024",
+        "02.01.2024",
+        "02.01.2024"
+      ]
+    },
+    "Text": {
+      "data_type": "object",
+      "non_null_count": 92632,
+      "null_count": 495144,
+      "null_percentage": 84.24025479094077,
+      "unique_values": 14830,
+      "sample_values": [
+        "Deferred import VAT Dec 2023",
+        "Deferred import VAT Dec 2023",
+        "W1482265",
+        "W1482265",
+        "W1482265"
+      ]
+    },
+    "Tr.Prt": {
+      "data_type": "float64",
+      "non_null_count": 47772,
+      "null_count": 540004,
+      "null_percentage": 91.87241398083623,
+      "unique_values": 27,
+      "sample_values": [
+        305421.0,
+        305421.0,
+        305421.0,
+        305421.0,
+        305421.0
+      ]
+    },
+    "Typ": {
+      "data_type": "object",
+      "non_null_count": 587773,
+      "null_count": 3,
+      "null_percentage": 0.0005103985191637631,
+      "unique_values": 29,
+      "sample_values": [
+        "Z5",
+        "Z5",
+        "ZB",
+        "ZB",
+        "ZB"
+      ]
+    }
+  },
+  "mapping_statistics": {
+    "total_columns": 20,
+    "successfully_mapped": 14,
+    "rejected_mappings": 6,
+    "mapping_rate_percent": 70.0
+  },
+  "field_type_analysis": {
+    "period": {
+      "count": 1,
+      "columns": [
+        " Period"
+      ],
+      "avg_confidence": 1.75
+    },
+    "fiscal_year": {
+      "count": 1,
+      "columns": [
+        "Year"
+      ],
+      "avg_confidence": 1.65
+    },
+    "gl_account_number": {
+      "count": 2,
+      "columns": [
+        "G/L",
+        "Account"
+      ],
+      "avg_confidence": 1.25
+    },
+    "je_line_description": {
+      "count": 2,
+      "columns": [
+        "Texts",
+        "Text"
+      ],
+      "avg_confidence": 0.95
+    },
+    "entered_by": {
+      "count": 1,
+      "columns": [
+        "User name"
+      ],
+      "avg_confidence": 1.75
+    },
+    "journal_id": {
+      "count": 1,
+      "columns": [
+        "DocumentNo"
+      ],
+      "avg_confidence": 1.75
+    },
+    "amount_currency": {
+      "count": 2,
+      "columns": [
+        "LCurr",
+        "Curr."
+      ],
+      "avg_confidence": 1.05
+    },
+    "effective_date": {
+      "count": 1,
+      "columns": [
+        "Pstng Date"
+      ],
+      "avg_confidence": 1.15
+    },
+    "document_type": {
+      "count": 1,
+      "columns": [
+        "Typ"
+      ],
+      "avg_confidence": 0.34875
+    }
+  },
+  "csv_transformation": {
+    "mapped_csv_path": "results\\mapped_csvs\\Libro Diario Ademco_mapped_20250717_132111.csv",
+    "total_columns": 28,
+    "mapped_columns": 14,
+    "unmapped_columns": 6,
+    "column_mappings": {
+      " Period": "period",
+      "Year": "fiscal_year",
+      "G/L": "gl_account_number",
+      "Account": "gl_account_number",
+      "Texts": "je_line_description",
+      "User name": "entered_by",
+      "DocumentNo": "journal_id",
+      "LCurr": "amount_currency",
+      "Curr.": "amount_currency",
+      "Pstng Date": "effective_date",
+      "Text": "je_line_description",
+      "Typ": "document_type",
+      "Amount in doc. curr.": "amount",
+      "Amount in local cur.": "amount"
+    },
+    "unmapped_column_list": [
+      "Unnamed: 3",
+      "CoCd",
+      "Plnt",
+      "ID",
+      "Assignment",
+      "Tr.Prt"
+    ],
+    "rows_count": 587776
+  },
+  "training_session_summary": {
+    "confirmed_mappings": 12,
+    "new_mappings": 0,
+    "corrected_mappings": 2,
+    "rejected_mappings": 6
+  }
+}

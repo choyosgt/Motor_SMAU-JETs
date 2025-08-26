@@ -1,0 +1,11 @@
+TxnID,TxnDate,Account,Memo,Debit,Credit,Class,Customer,Vendor,TxnType,RefNumber
+T001,01/15/2024,Checking Account,Initial deposit,5000.00,0.00,Operations,,Bank,Deposit,DEP001
+T001,01/15/2024,Owner's Equity,Initial capital,0.00,5000.00,Operations,,,Deposit,DEP001
+T002,01/18/2024,Office Supplies,Staples purchase,125.50,0.00,Admin,,Staples Inc,Bill,BILL002
+T002,01/18/2024,Accounts Payable,Office supplies vendor,0.00,125.50,Admin,,Staples Inc,Bill,BILL002
+T003,01/20/2024,Accounts Receivable,Service invoice,1875.00,0.00,Services,ABC Corp,,Invoice,INV003
+T003,01/20/2024,Service Revenue,Consulting services,0.00,1875.00,Services,ABC Corp,,Invoice,INV003
+T004,01/22/2024,Rent Expense,Monthly office rent,1200.00,0.00,Facility,,Property Mgmt,Check,CHK004
+T004,01/22/2024,Checking Account,Rent payment,0.00,1200.00,Facility,,Property Mgmt,Check,CHK004
+T005,01/25/2024,Computer Equipment,New laptops,2400.00,0.00,IT,,Tech Store,Bill,BILL005
+T005,01/25/2024,Accounts Payable,Equipment purchase,0.00,2400.00,IT,,Tech Store,Bill,BILL005

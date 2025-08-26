@@ -1,0 +1,201 @@
+{
+  "company_code": {
+    "examples": [
+      4,
+      4,
+      4
+    ],
+    "patterns": [
+      "D"
+    ],
+    "column_names": [
+      "Sociedad"
+    ]
+  },
+  "journal_id": {
+    "examples": [
+      3006776368,
+      3006776368,
+      3007085300
+    ],
+    "patterns": [
+      "D{10+}"
+    ],
+    "column_names": [
+      "N� documento"
+    ]
+  },
+  "fiscal_year": {
+    "examples": [
+      2024,
+      2024,
+      2024
+    ],
+    "patterns": [
+      "D{4}"
+    ],
+    "column_names": [
+      "Ejercicio"
+    ]
+  },
+  "document_type": {
+    "examples": [
+      "SA",
+      "SA",
+      "SA"
+    ],
+    "patterns": [
+      "U{2}"
+    ],
+    "column_names": [
+      "Tipo de documento"
+    ]
+  },
+  "effective_date": {
+    "examples": [
+      "03.04.2024",
+      "03.04.2024",
+      "02.08.2024"
+    ],
+    "patterns": [
+      "D{2}PD{2}PD{4}"
+    ],
+    "column_names": [
+      "Fecha de contabilizaci�n"
+    ]
+  },
+  "je_header_description": {
+    "examples": [
+      "PROSEGUR E222",
+      "PROSEGUR E222",
+      "PROSEGUR E167"
+    ],
+    "patterns": [
+      "U{8+}WUD{3}"
+    ],
+    "column_names": [
+      "Texto cabecera"
+    ]
+  },
+  "amount_currency": {
+    "examples": [
+      "EUR",
+      "EUR",
+      "EUR"
+    ],
+    "patterns": [
+      "U{3}"
+    ],
+    "column_names": [
+      "Moneda"
+    ]
+  },
+  "reversal_indicator": {
+    "examples": [
+      3007057821.0,
+      3007057821.0,
+      3006376326.0
+    ],
+    "patterns": [
+      "D{10+}PD"
+    ],
+    "column_names": [
+      "Anulado con"
+    ]
+  },
+  "entered_by": {
+    "examples": [
+      "LOTUSNOTES",
+      "LOTUSNOTES",
+      "T_IRAN651937"
+    ],
+    "patterns": [
+      "U{10+}",
+      "UXU{4}D{6}"
+    ],
+    "column_names": [
+      "Usuario"
+    ]
+  },
+  "entered_date": {
+    "examples": [
+      "04.04.2024",
+      "04.04.2024",
+      "09.08.2024"
+    ],
+    "patterns": [
+      "D{2}PD{2}PD{4}"
+    ],
+    "column_names": [
+      "Fecha de registro"
+    ]
+  },
+  "journal_id_line_number": {
+    "examples": [
+      2,
+      1,
+      6
+    ],
+    "patterns": [
+      "D"
+    ],
+    "column_names": [
+      "Posici�n"
+    ]
+  },
+  "gl_account_number": {
+    "examples": [
+      93700,
+      43521,
+      89606
+    ],
+    "patterns": [
+      "D{5}"
+    ],
+    "column_names": [
+      "Cuenta contable"
+    ]
+  },
+  "amount_credit_debit_indicator": {
+    "examples": [
+      "H",
+      "S",
+      "H"
+    ],
+    "patterns": [
+      "U"
+    ],
+    "column_names": [
+      "Indicador Debe/Haber"
+    ]
+  },
+  "amount": {
+    "examples": [
+      -150.0,
+      150.0,
+      -1000.0
+    ],
+    "patterns": [
+      "HD{3}PD",
+      "D{3}PD",
+      "HD{4}PD",
+      "D{4}PD"
+    ],
+    "column_names": [
+      "Importe en moneda local"
+    ]
+  },
+  "je_line_description": {
+    "examples": [
+      "CAMBIO PROSEGUR E121",
+      "CAMBIO PROSEGUR E202",
+      "CAMBIO PROSEGUR E202"
+    ],
+    "patterns": [
+      "U{6+}WU{8+}WUD{3}"
+    ],
+    "column_names": [
+      "Texto detalle"
+    ]
+  }
+}

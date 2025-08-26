@@ -1,0 +1,1996 @@
+# manual_confirmation_trainer.py - TRAINER CON CONFIRMACIÓN MANUAL OBLIGATORIA
+# ACTUALIZADO: Nuevos campos estándar, confirmación manual para todas las detecciones
+# MEJORADO: Añade sinónimos y patrones regex precisos automáticamente
+
+import pandas as pd
+import os
+import sys
+import re
+from typing import Dict, List, Optional, Tuple, Any
+import logging
+from datetime import datetime
+import json
+from pathlib import Path
+import yaml
+
+# Configurar logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+class ManualConfirmationTrainingSession:
+    """Sesión de entrenamiento con confirmación manual obligatoria para todas las detecciones"""
+    
+    def __init__(self, csv_file: str, erp_hint: str = None):
+        self.csv_file = csv_file
+        self.erp_hint = erp_hint
+        self.df = None
+        self.mapper = None
+        self.detector = None
+        
+        # NUEVOS CAMPOS ESTÁNDAR según tu lista
+        self.standard_fields = [
+            'journal_entry_id', 'line_number', 'description', 'line_description',
+            'posting_date', 'fiscal_year', 'period_number', 'gl_account_number',
+            'amount', 'debit_amount', 'credit_amount', 'debit_credit_indicator',
+            'prepared_by', 'entry_date', 'entry_time', 'gl_account_name', 'vendor_id'
+        ]
+        
+        # Estadísticas de entrenamiento
+        self.training_stats = {
+            'columns_processed': 0,
+            'patterns_learned': 0,
+            'synonyms_added': 0,
+            'user_confirmations': 0,
+            'user_corrections': 0,
+            'manual_mappings': 0,
+            'regex_patterns_added': 0,
+            'all_confirmed_manually': 0,
+            'high_confidence_decisions': 0,  # NUEVO
+            'low_confidence_decisions': 0,   # NUEVO
+            'alternatives_shown': 0          # NUEVO
+        }
+        
+        # Registro de decisiones del usuario
+        self.user_decisions = {}
+        self.learned_patterns = {}
+        self.new_synonyms = {}
+        self.new_regex_patterns = {}
+        
+        # Archivos de configuración
+        self.yaml_config_file = "config/pattern_learning_config.yaml"
+        self.dynamic_fields_file = "config/dynamic_fields_config.yaml"
+        
+    def initialize(self) -> bool:
+        """Inicializa la sesión de entrenamiento"""
+        try:
+            print(f"🚀 Initializing MANUAL CONFIRMATION Training Session...")
+            print(f"📂 File: {self.csv_file}")
+            print(f"🏢 ERP Hint: {self.erp_hint or 'Auto-detect'}")
+            print(f"⚠️ ALL detections require manual confirmation")
+            print(f"🔧 New standard fields: {len(self.standard_fields)} fields")
+            
+            # Verificar archivo
+            if not os.path.exists(self.csv_file):
+                print(f"❌ File not found: {self.csv_file}")
+                return False
+            
+            # Cargar CSV
+            self.df = pd.read_csv(self.csv_file, encoding='utf-8')
+            print(f"📊 Loaded {len(self.df)} rows x {len(self.df.columns)} columns")
+            
+            # Importar módulos del sistema
+            try:
+                from core.field_mapper import FieldMapper
+                from core.field_detector import FieldDetector
+                
+                self.mapper = FieldMapper()
+                self.detector = FieldDetector()
+                print("✓ System modules imported successfully")
+                
+            except ImportError as e:
+                print(f"❌ Failed to import system modules: {e}")
+                return False
+            
+            # Cargar configuración de patrones aprendidos
+            self._load_learned_patterns()
+            
+            return True
+            
+        except Exception as e:
+            print(f"❌ Initialization failed: {e}")
+            return False
+    
+    def _load_learned_patterns(self):
+        """Carga patrones previamente aprendidos"""
+        try:
+            if os.path.exists(self.yaml_config_file):
+                with open(self.yaml_config_file, 'r', encoding='utf-8') as f:
+                    config = yaml.safe_load(f)
+                    self.learned_patterns = config.get('learned_patterns', {})
+                    print(f"✓ Loaded {len(self.learned_patterns)} learned patterns")
+            else:
+                print("ℹ️ No previous learned patterns found")
+        except Exception as e:
+            print(f"⚠️ Could not load learned patterns: {e}")
+            self.learned_patterns = {}
+    
+    def run_interactive_training(self) -> Dict:
+        """Ejecuta el entrenamiento interactivo con confirmación manual OBLIGATORIA"""
+        try:
+            print(f"\n🎓 Starting MANUAL CONFIRMATION Training...")
+            print(f"=" * 55)
+            print(f"⚠️ IMPORTANT: ALL detections will require your confirmation")
+            print(f"🧠 System will suggest but YOU decide for every column")
+            
+            # Análisis inicial del DataFrame
+            initial_analysis = self._analyze_initial_state()
+            
+            # Procesar cada columna CON CONFIRMACIÓN OBLIGATORIA
+            for i, column_name in enumerate(self.df.columns, 1):
+                print(f"\n📋 Column {i}/{len(self.df.columns)}: '{column_name}'")
+                print("-" * 40)
+                
+                # Obtener muestra de datos
+                sample_data = self.df[column_name].dropna().head(20)
+                
+                # Intentar mapeo automático (solo para sugerencia)
+                mapping_result = self._try_automatic_mapping(column_name, sample_data)
+                
+                if mapping_result:
+                    field_type, confidence = mapping_result
+                    
+                    # SIEMPRE requerir confirmación manual
+                    print(f"🤖 SYSTEM SUGGESTION: {column_name} -> {field_type} ({confidence:.3f})")
+                    print(f"⚠️ Manual confirmation required for ALL detections")
+                    
+                    # Comportamiento diferenciado por confianza
+                    if confidence > 0.8:
+                        print(f"✨ High confidence (> 0.8) - No automatic alternatives suggested")
+                        # Alta confianza: solo confirmar o elegir manualmente
+                        final_decision = self._get_high_confidence_user_decision(
+                            column_name, field_type, confidence, sample_data
+                        )
+                        self.training_stats['high_confidence_decisions'] += 1
+                    else:
+                        print(f"🔍 Low confidence (≤ 0.8) - Searching for intelligent alternatives...")
+                        # Buscar alternativas inteligentes para baja confianza
+                        alternatives = self._find_intelligent_alternatives(column_name, sample_data, field_type)
+                        
+                        # Obtener decisión del usuario con/sin alternativas
+                        if alternatives:
+                            final_decision = self._get_mandatory_user_decision_with_alternatives(
+                                column_name, field_type, confidence, alternatives, sample_data
+                            )
+                            self.training_stats['alternatives_shown'] += 1
+                        else:
+                            final_decision = self._get_mandatory_simple_user_decision(
+                                column_name, field_type, confidence, sample_data
+                            )
+                        self.training_stats['low_confidence_decisions'] += 1
+                    
+                    if final_decision:
+                        chosen_field, final_confidence, decision_type = final_decision
+                        self._record_mapping_decision(column_name, chosen_field, final_confidence, decision_type)
+                        
+                        # Aprender nuevo patrón o sinónimo si es corrección
+                        if decision_type == 'user_correction' or chosen_field != field_type:
+                            self._learn_from_user_decision(column_name, chosen_field, sample_data)
+                        
+                        if decision_type == 'user_correction':
+                            self.training_stats['user_corrections'] += 1
+                        else:
+                            self.training_stats['user_confirmations'] += 1
+                    
+                    self.training_stats['all_confirmed_manually'] += 1
+                
+                else:
+                    # No se pudo mapear automáticamente
+                    print(f"❓ NO AUTOMATIC MAPPING for '{column_name}'")
+                    manual_decision = self._get_manual_mapping_decision(column_name, sample_data)
+                    
+                    if manual_decision:
+                        chosen_field, confidence, decision_type = manual_decision
+                        self._record_mapping_decision(column_name, chosen_field, confidence, decision_type)
+                        self._learn_from_user_decision(column_name, chosen_field, sample_data)
+                        self.training_stats['manual_mappings'] += 1
+                
+                self.training_stats['columns_processed'] += 1
+            
+            # Finalizar entrenamiento
+            return self._finalize_training()
+            
+        except Exception as e:
+            print(f"❌ Training failed: {e}")
+            return {'success': False, 'error': str(e)}
+    
+    def _try_automatic_mapping(self, column_name: str, sample_data: pd.Series) -> Optional[Tuple[str, float]]:
+        """Intenta mapeo automático (solo para sugerencia)"""
+        try:
+            # Usar el mapper existente
+            mapping_result = self.mapper.find_field_mapping(column_name, self.erp_hint, sample_data)
+            
+            if mapping_result:
+                field_type, confidence = mapping_result
+                
+                # Verificar que el field_type esté en la lista de campos estándar
+                if field_type not in self.standard_fields:
+                    print(f"   ⚠️ Field {field_type} not in standard fields, skipping")
+                    return None
+                
+                # Verificar patrones aprendidos
+                pattern_boost = self._check_learned_patterns(column_name, field_type)
+                if pattern_boost > 0:
+                    confidence = min(confidence + pattern_boost, 1.0)
+                    print(f"   🧠 Pattern boost applied: +{pattern_boost:.2f}")
+                
+                return (field_type, confidence)
+            
+            return None
+            
+        except Exception as e:
+            print(f"   ⚠️ Mapping error: {e}")
+            return None
+    
+
+    
+    def _find_intelligent_alternatives(self, column_name: str, sample_data: pd.Series, 
+                                     current_field: str) -> List[Tuple[str, float, str]]:
+        """Busca alternativas basadas en análisis de contenido"""
+        alternatives = []
+        
+        try:
+            # Análisis preliminar de tipo de datos
+            data_type_analysis = self._analyze_data_type(sample_data)
+            
+            # Solo sugerir alternativas que sean coherentes con el tipo de datos
+            relevant_field_types = self._get_relevant_standard_field_types(data_type_analysis, current_field)
+            
+            if not relevant_field_types:
+                return []
+            
+            # Analizar cada tipo de campo relevante
+            for field_type in relevant_field_types:
+                if field_type == current_field:
+                    continue
+                
+                # Análisis de contenido específico
+                content_score = self._analyze_content_for_field_type_improved(field_type, sample_data, data_type_analysis)
+                
+                if content_score > 0.4:
+                    # Calcular una confianza estimada
+                    estimated_confidence = content_score * 0.85
+                    
+                    # Justificación del análisis
+                    justification = self._get_intelligent_justification(field_type, sample_data, data_type_analysis)
+                    
+                    alternatives.append((field_type, estimated_confidence, justification))
+            
+            # Ordenar por confianza estimada
+            alternatives.sort(key=lambda x: x[1], reverse=True)
+            
+            # Limitar a top 3 alternativas
+            return alternatives[:3]
+            
+        except Exception as e:
+            print(f"   ⚠️ Error finding alternatives: {e}")
+            return []
+    
+    def _get_relevant_standard_field_types(self, data_type_analysis: Dict[str, Any], current_field: str) -> List[str]:
+        """Obtiene tipos de campo estándar relevantes basados en el análisis de datos"""
+        
+        relevant_types = []
+        
+        # Campos monetarios
+        if data_type_analysis['is_monetary']:
+            relevant_types.extend(['amount', 'debit_amount', 'credit_amount'])
+        
+        # Campos numéricos secuenciales
+        elif data_type_analysis['is_sequential']:
+            relevant_types.extend(['line_number', 'period_number'])
+        
+        # Campos numéricos repetitivos
+        elif data_type_analysis['is_repetitive'] and data_type_analysis['is_numeric']:
+            relevant_types.extend(['journal_entry_id', 'fiscal_year', 'period_number'])
+        
+        # Campos de fecha
+        elif data_type_analysis['is_date']:
+            relevant_types.extend(['posting_date', 'entry_date'])
+        
+        # Campos de texto
+        elif data_type_analysis['is_text']:
+            relevant_types.extend(['description', 'line_description', 'gl_account_name', 'prepared_by'])
+        
+        # Campos alfanuméricos
+        elif data_type_analysis['is_numeric']:
+            relevant_types.extend(['journal_entry_id', 'line_number', 'fiscal_year', 'gl_account_number', 'vendor_id'])
+        
+        # Filtrar el campo actual y solo incluir campos estándar
+        relevant_types = [ft for ft in relevant_types if ft != current_field and ft in self.standard_fields]
+        
+        return relevant_types
+    
+    def _analyze_data_type(self, sample_data: pd.Series) -> Dict[str, Any]:
+        """Análisis preliminar del tipo de datos"""
+        analysis = {
+            'is_numeric': False,
+            'is_date': False,
+            'is_text': False,
+            'is_monetary': False,
+            'is_sequential': False,
+            'is_repetitive': False,
+            'unique_ratio': 0.0,
+            'sample_values': []
+        }
+        
+        if len(sample_data) == 0:
+            return analysis
+        
+        # Muestras para análisis
+        analysis['sample_values'] = sample_data.head(5).tolist()
+        analysis['unique_ratio'] = len(sample_data.unique()) / len(sample_data)
+        
+        # Análisis numérico
+        try:
+            numeric_data = pd.to_numeric(sample_data, errors='coerce')
+            non_null_numeric = numeric_data.dropna()
+            numeric_ratio = len(non_null_numeric) / len(sample_data)
+            
+            if numeric_ratio > 0.8:
+                analysis['is_numeric'] = True
+                
+                if len(non_null_numeric) > 0:
+                    std_val = non_null_numeric.std()
+                    mean_val = abs(non_null_numeric.mean())
+                    min_val = non_null_numeric.min()
+                    max_val = non_null_numeric.max()
+                    
+                    # Detectar valores monetarios
+                    if std_val > 1 and mean_val > 1 and (max_val > 100 or min_val < -10):
+                        analysis['is_monetary'] = True
+                    
+                    # Detectar secuencias
+                    if max_val <= 100 and min_val >= 1:
+                        consecutive_count = 0
+                        sorted_values = sorted(non_null_numeric.head(10))
+                        for i in range(1, len(sorted_values)):
+                            if sorted_values[i] == sorted_values[i-1] + 1:
+                                consecutive_count += 1
+                        
+                        if consecutive_count > len(sorted_values) * 0.3:
+                            analysis['is_sequential'] = True
+                    
+                    # Detectar repetitivos
+                    if analysis['unique_ratio'] < 0.7:
+                        analysis['is_repetitive'] = True
+        
+        except Exception:
+            pass
+        
+        # Análisis de fechas
+        if not analysis['is_numeric'] or not analysis['is_monetary']:
+            try:
+                str_data = sample_data.astype(str)
+                date_patterns = [
+                    # Formatos YYYY-MM-DD
+                    r'^\d{4}-\d{2}-\d{2}',          # 2024-01-15
+                    r'^\d{4}-\d{1,2}-\d{1,2}',      # 2024-1-5 o 2024-01-05
+                    
+                    # Formatos DD/MM/YYYY
+                    r'^\d{2}/\d{2}/\d{4}',          # 15/01/2024
+                    r'^\d{1,2}/\d{1,2}/\d{4}',      # 5/1/2024 o 15/01/2024
+                    
+                    # Formatos YYYY/MM/DD
+                    r'^\d{4}/\d{2}/\d{2}',          # 2024/01/15
+                    r'^\d{4}/\d{1,2}/\d{1,2}',      # 2024/1/5 o 2024/01/05
+                    
+                    # Formatos MM/DD/YYYY (estadounidense)
+                    r'^\d{2}/\d{2}/\d{4}',          # 01/15/2024 (ya incluido arriba, pero común)
+                    r'^\d{1,2}/\d{1,2}/\d{4}',      # 1/15/2024 o 01/15/2024
+                    
+                    # Formatos con puntos
+                    r'^\d{2}\.\d{2}\.\d{4}',        # 15.01.2024
+                    r'^\d{1,2}\.\d{1,2}\.\d{4}',    # 5.1.2024 o 15.01.2024
+                    r'^\d{4}\.\d{2}\.\d{2}',        # 2024.01.15
+                    r'^\d{4}\.\d{1,2}\.\d{1,2}',    # 2024.1.5 o 2024.01.05
+                    
+                    # Formatos DD-MM-YYYY
+                    r'^\d{2}-\d{2}-\d{4}',          # 15-01-2024
+                    r'^\d{1,2}-\d{1,2}-\d{4}',      # 5-1-2024 o 15-01-2024
+                    
+                    # Formatos con espacios
+                    r'^\d{2} \d{2} \d{4}',          # 15 01 2024
+                    r'^\d{1,2} \d{1,2} \d{4}',      # 5 1 2024 o 15 01 2024
+                    
+                    # Formatos con años de 2 dígitos
+                    r'^\d{2}/\d{2}/\d{2}',          # 15/01/24
+                    r'^\d{1,2}/\d{1,2}/\d{2}',      # 5/1/24 o 15/01/24
+                    r'^\d{2}-\d{2}-\d{2}',          # 15-01-24
+                    r'^\d{1,2}-\d{1,2}-\d{2}',      # 5-1-24 o 15-01-24
+                    
+                    # Formatos con nombres de meses (inglés)
+                    r'^\d{1,2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4}',     # 15 Jan 2024
+                    r'^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{1,2}, \d{4}',    # Jan 15, 2024
+                    r'^\d{1,2}-(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)-\d{4}',     # 15-Jan-2024
+                    
+                    # Formatos con nombres de meses (español)
+                    r'^\d{1,2} de (enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre) de \d{4}',  # 15 de enero de 2024
+                    r'^\d{1,2} (ene|feb|mar|abr|may|jun|jul|ago|sep|oct|nov|dic) \d{4}',     # 15 ene 2024
+                    
+                    # Formatos ISO con tiempo (solo la parte de fecha)
+                    r'^\d{4}-\d{2}-\d{2}T',         # 2024-01-15T... (ISO datetime)
+                    r'^\d{4}-\d{2}-\d{2} ',         # 2024-01-15 ... (con espacio antes del tiempo)
+                    
+                    # Formatos compactos sin separadores
+                    r'^\d{8}',                      # 20240115 (YYYYMMDD)
+                    r'^\d{6}',                      # 240115 (YYMMDD)
+                ]
+                
+                date_like_count = 0
+                for val in str_data.head(10):
+                    if any(re.match(pattern, str(val)) for pattern in date_patterns):
+                        date_like_count += 1
+                
+                if date_like_count > len(str_data.head(10)) * 0.7:
+                    analysis['is_date'] = True
+            
+            except Exception:
+                pass
+        
+        # Análisis de texto
+        if not analysis['is_numeric'] and not analysis['is_date']:
+            try:
+                str_data = sample_data.astype(str)
+                avg_length = str_data.str.len().mean()
+                
+                if avg_length > 3:
+                    analysis['is_text'] = True
+            
+            except Exception:
+                pass
+        
+        return analysis
+    
+    def _analyze_content_for_field_type_improved(self, field_type: str, sample_data: pd.Series, 
+                                               data_type_analysis: Dict[str, Any]) -> float:
+        """Análisis de contenido mejorado usando el análisis de tipo de datos"""
+        
+        try:
+            # Verificar compatibilidad básica con campos estándar
+            if field_type in ['amount', 'debit_amount', 'credit_amount']:
+                if not data_type_analysis['is_monetary']:
+                    return 0.0
+                return self._analyze_amount_content_improved(field_type, sample_data)
+            
+            elif field_type in ['posting_date', 'entry_date']:
+                if not data_type_analysis['is_date']:
+                    return 0.0
+                return self._analyze_date_content_improved(sample_data)
+            
+            elif field_type in ['description', 'line_description', 'gl_account_name']:
+                if not data_type_analysis['is_text']:
+                    return 0.0
+                return self._analyze_description_content_improved(field_type, sample_data, data_type_analysis)
+            
+            elif field_type == 'journal_entry_id':
+                if not data_type_analysis['is_numeric'] or not data_type_analysis['is_repetitive']:
+                    return 0.0
+                return 0.8 if data_type_analysis['unique_ratio'] < 0.7 else 0.3
+            
+            elif field_type == 'line_number':
+                if not data_type_analysis['is_numeric'] or not data_type_analysis['is_sequential']:
+                    return 0.0
+                return 0.9 if data_type_analysis['is_sequential'] else 0.2
+            
+            elif field_type == 'fiscal_year':
+                return self._analyze_fiscal_year_content_improved(sample_data)
+            
+            elif field_type in ['gl_account_number', 'vendor_id']:
+                if data_type_analysis['is_monetary']:
+                    return 0.0
+                return 0.6 if data_type_analysis['is_numeric'] else 0.3
+            
+            return 0.0
+            
+        except Exception:
+            return 0.0
+    
+    def _analyze_amount_content_improved(self, field_type: str, sample_data: pd.Series) -> float:
+        """Análisis mejorado para campos de importe"""
+        try:
+            numeric_data = pd.to_numeric(sample_data, errors='coerce')
+            non_null_numeric = numeric_data.dropna()
+            
+            if len(non_null_numeric) == 0:
+                return 0.0
+            
+            zero_count = (non_null_numeric == 0).sum()
+            positive_count = (non_null_numeric > 0).sum()
+            negative_count = (non_null_numeric < 0).sum()
+            total_count = len(non_null_numeric)
+            
+            std_val = non_null_numeric.std()
+            mean_val = abs(non_null_numeric.mean())
+            
+            if std_val < 1 or mean_val < 1:
+                return 0.0
+            
+            if field_type == 'amount':
+                zero_ratio = zero_count / total_count
+                if zero_ratio < 0.4 and positive_count > 0:
+                    return 0.9
+                return 0.4
+            
+            elif field_type == 'debit_amount':
+                zero_ratio = zero_count / total_count
+                if zero_ratio > 0.4 and positive_count > negative_count:
+                    return 0.9
+                return 0.3
+            
+            elif field_type == 'credit_amount':
+                zero_ratio = zero_count / total_count
+                if zero_ratio > 0.4:
+                    return 0.8
+                return 0.3
+            
+            return 0.0
+            
+        except Exception:
+            return 0.0
+    
+    def _analyze_date_content_improved(self, sample_data: pd.Series) -> float:
+        """Análisis de fechas mejorado"""
+        try:
+            str_data = sample_data.astype(str)
+            
+            strict_date_patterns = [
+                r'^\d{4}-\d{2}-\d{2}',
+                r'^\d{2}/\d{2}/\d{4}',
+                r'^\d{4}/\d{2}/\d{2}',
+            ]
+            
+            strict_date_count = 0
+            for val in str_data.head(10):
+                if any(re.match(pattern, str(val)) for pattern in strict_date_patterns):
+                    strict_date_count += 1
+            
+            strict_ratio = strict_date_count / len(str_data.head(10))
+            
+            if strict_ratio > 0.8:
+                return 0.9
+            elif strict_ratio > 0.6:
+                return 0.7
+            else:
+                return 0.0
+            
+        except Exception:
+            return 0.0
+    
+    def _analyze_description_content_improved(self, field_type: str, sample_data: pd.Series, 
+                                            data_type_analysis: Dict[str, Any]) -> float:
+        """Análisis de descripciones mejorado"""
+        try:
+            str_data = sample_data.astype(str)
+            avg_length = str_data.str.len().mean()
+            
+            if avg_length < 5:
+                return 0.0
+            
+            unique_ratio = data_type_analysis['unique_ratio']
+            
+            if field_type == 'line_description':
+                if unique_ratio > 0.7 and avg_length > 8:
+                    return 0.9
+                elif unique_ratio > 0.5:
+                    return 0.6
+                return 0.2
+            
+            elif field_type == 'description':
+                if unique_ratio < 0.3 and avg_length > 5:
+                    return 0.9
+                elif unique_ratio < 0.5:
+                    return 0.6
+                return 0.2
+            
+            elif field_type == 'gl_account_name':
+                if unique_ratio > 0.5 and avg_length > 5:
+                    return 0.8
+                return 0.3
+            
+            return 0.0
+            
+        except Exception:
+            return 0.0
+    
+    def _analyze_fiscal_year_content_improved(self, sample_data: pd.Series) -> float:
+        """Análisis de año fiscal mejorado"""
+        try:
+            str_data = sample_data.astype(str)
+            year_pattern = re.compile(r'^\d{4}$')
+            
+            valid_years = 0
+            for val in str_data.head(10):
+                if year_pattern.match(str(val)):
+                    year = int(val)
+                    if 2000 <= year <= 2030:
+                        valid_years += 1
+            
+            validity_ratio = valid_years / len(str_data.head(10))
+            
+            if validity_ratio > 0.8:
+                return 0.9
+            elif validity_ratio > 0.6:
+                return 0.6
+            else:
+                return 0.0
+            
+        except Exception:
+            return 0.0
+    
+    def _get_intelligent_justification(self, field_type: str, sample_data: pd.Series, 
+                                     data_type_analysis: Dict[str, Any]) -> str:
+        """Genera justificación inteligente para una alternativa"""
+        try:
+            sample_str = ', '.join([str(x) for x in sample_data.head(3).tolist()])
+            
+            base_justifications = {
+                'amount': f"Monetary values detected: {sample_str}",
+                'debit_amount': f"Debit pattern (many zeros, positive values): {sample_str}",
+                'credit_amount': f"Credit pattern (many zeros, mixed values): {sample_str}",
+                'journal_entry_id': f"Repetitive numeric pattern: {sample_str}",
+                'line_number': f"Sequential numeric pattern: {sample_str}",
+                'posting_date': f"Date format detected: {sample_str}",
+                'entry_date': f"Date format detected: {sample_str}",
+                'description': f"Low variability text: {sample_str}",
+                'line_description': f"High variability text: {sample_str}",
+                'fiscal_year': f"4-digit year format: {sample_str}",
+                'gl_account_number': f"Account-like format: {sample_str}",
+                'gl_account_name': f"Account description pattern: {sample_str}",
+                'vendor_id': f"Vendor identifier pattern: {sample_str}",
+                'prepared_by': f"User identifier pattern: {sample_str}"
+            }
+            
+            justification = base_justifications.get(field_type, f"Content analysis: {sample_str}")
+            
+            # Añadir información específica del análisis
+            if data_type_analysis['is_monetary']:
+                justification += " (monetary data)"
+            elif data_type_analysis['is_sequential']:
+                justification += " (sequential)"
+            elif data_type_analysis['is_repetitive']:
+                justification += " (repetitive)"
+            elif data_type_analysis['is_date']:
+                justification += " (date format)"
+            elif data_type_analysis['is_text']:
+                justification += " (text content)"
+            
+            return justification
+            
+        except Exception:
+            return "Content analysis performed"
+    
+    def _get_high_confidence_user_decision(self, column_name: str, suggested_field: str, 
+                                         confidence: float, sample_data: pd.Series) -> Optional[Tuple[str, float, str]]:
+        """Obtiene decisión OBLIGATORIA del usuario para alta confianza (sin alternativas automáticas)"""
+        
+        sample_str = ', '.join([str(x) for x in sample_data.head(5).tolist()])
+        print(f"   📊 Sample data: {sample_str}")
+        print(f"   🎯 System suggests: {suggested_field} (HIGH confidence: {confidence:.3f})")
+        print(f"   ✨ No automatic alternatives shown due to high confidence")
+        
+        print(f"\n   Choose an option:")
+        print(f"   1. ✅ Accept high-confidence suggestion: {suggested_field}")
+        print(f"   2. 🎯 Choose different field manually")
+        print(f"   3. ⏭️ Skip this column")
+        
+        while True:
+            try:
+                user_input = input(f"   👤 Your choice (1-3): ").strip()
+                
+                if user_input.lower() in ['help', 'h']:
+                    self._show_help()
+                    continue
+                
+                choice = int(user_input)
+                
+                if choice == 1:
+                    return (suggested_field, confidence, 'user_confirmation')
+                elif choice == 2:
+                    return self._get_manual_field_selection(column_name, sample_data)
+                elif choice == 3:
+                    print(f"   ⏭️ Skipping column '{column_name}'")
+                    return None
+                else:
+                    print(f"   ❌ Invalid choice. Please enter 1-3")
+                    
+            except ValueError:
+                print(f"   ❌ Please enter a number (1-3)")
+            except KeyboardInterrupt:
+                print(f"\n   ⏹️ Training interrupted by user")
+                return None
+
+    def _get_mandatory_simple_user_decision(self, column_name: str, suggested_field: str, 
+                                          confidence: float, sample_data: pd.Series) -> Optional[Tuple[str, float, str]]:
+        """Obtiene decisión OBLIGATORIA del usuario sin alternativas"""
+        
+        sample_str = ', '.join([str(x) for x in sample_data.head(5).tolist()])
+        print(f"   📊 Sample data: {sample_str}")
+        print(f"   🎯 System suggests: {suggested_field} (confidence: {confidence:.3f})")
+        print(f"   ⚠️ MANUAL CONFIRMATION REQUIRED")
+        
+        print(f"\n   Choose an option:")
+        print(f"   1. ✅ Accept suggestion: {suggested_field}")
+        print(f"   2. 🔄 Choose different field")
+        print(f"   3. ⏭️ Skip this column")
+        
+        while True:
+            try:
+                user_input = input(f"   👤 Your choice (1-3): ").strip()
+                
+                if user_input.lower() in ['help', 'h']:
+                    self._show_help()
+                    continue
+                
+                choice = int(user_input)
+                
+                if choice == 1:
+                    return (suggested_field, confidence, 'user_confirmation')
+                elif choice == 2:
+                    return self._get_manual_field_selection(column_name, sample_data)
+                elif choice == 3:
+                    print(f"   ⏭️ Skipping column '{column_name}'")
+                    return None
+                else:
+                    print(f"   ❌ Invalid choice. Please enter 1-3")
+                    
+            except ValueError:
+                print(f"   ❌ Please enter a number (1-3)")
+            except KeyboardInterrupt:
+                print(f"\n   ⏹️ Training interrupted by user")
+                return None
+    
+    def _get_mandatory_user_decision_with_alternatives(self, column_name: str, suggested_field: str, 
+                                                     confidence: float, alternatives: List[Tuple[str, float, str]], 
+                                                     sample_data: pd.Series) -> Optional[Tuple[str, float, str]]:
+        """Obtiene decisión OBLIGATORIA del usuario mostrando alternativas"""
+        
+        sample_str = ', '.join([str(x) for x in sample_data.head(5).tolist()])
+        print(f"   📊 Sample data: {sample_str}")
+        print(f"   🎯 System suggests: {suggested_field} (confidence: {confidence:.3f})")
+        
+        # Mostrar alternativas inteligentes
+        print(f"   🧠 Intelligent alternatives based on content analysis:")
+        for i, (field_type, alt_confidence, justification) in enumerate(alternatives, 1):
+            print(f"      {i}. {field_type} (confidence: {alt_confidence:.3f}) - {justification}")
+        
+        # Opciones del usuario
+        print(f"\n   ⚠️ MANUAL CONFIRMATION REQUIRED - Choose an option:")
+        print(f"   1. ✅ Accept suggestion: {suggested_field}")
+        
+        option_map = {1: (suggested_field, confidence, 'user_confirmation')}
+        option_counter = 2
+        
+        for field_type, alt_confidence, justification in alternatives:
+            print(f"   {option_counter}. 🔄 Use alternative: {field_type}")
+            option_map[option_counter] = (field_type, alt_confidence, 'user_correction')
+            option_counter += 1
+        
+        print(f"   {option_counter}. 🎯 Manual field selection")
+        print(f"   {option_counter + 1}. ⏭️ Skip this column")
+        
+        # Obtener input del usuario
+        while True:
+            try:
+                user_input = input(f"   👤 Your choice (1-{option_counter + 1}): ").strip()
+                
+                if user_input.lower() in ['help', 'h']:
+                    self._show_help()
+                    continue
+                
+                choice = int(user_input)
+                
+                if choice in option_map:
+                    return option_map[choice]
+                
+                elif choice == option_counter:
+                    return self._get_manual_field_selection(column_name, sample_data)
+                
+                elif choice == option_counter + 1:
+                    print(f"   ⏭️ Skipping column '{column_name}'")
+                    return None
+                
+                else:
+                    print(f"   ❌ Invalid choice. Please enter 1-{option_counter + 1}")
+                    
+            except ValueError:
+                print(f"   ❌ Please enter a number (1-{option_counter + 1})")
+            except KeyboardInterrupt:
+                print(f"\n   ⏹️ Training interrupted by user")
+                return None
+    
+    def _get_manual_mapping_decision(self, column_name: str, sample_data: pd.Series) -> Optional[Tuple[str, float, str]]:
+        """Obtiene decisión manual para columnas sin mapeo automático"""
+        
+        sample_str = ', '.join([str(x) for x in sample_data.head(5).tolist()])
+        print(f"   📊 Sample data: {sample_str}")
+        print(f"   ❓ No automatic mapping found")
+        
+        print(f"\n   Choose an option:")
+        print(f"   1. 🎯 Manual field selection")
+        print(f"   2. ⏭️ Skip this column")
+        
+        while True:
+            try:
+                user_input = input(f"   👤 Your choice (1-2): ").strip()
+                
+                if user_input.lower() in ['help', 'h']:
+                    self._show_help()
+                    continue
+                
+                choice = int(user_input)
+                
+                if choice == 1:
+                    return self._get_manual_field_selection(column_name, sample_data)
+                elif choice == 2:
+                    print(f"   ⏭️ Skipping column '{column_name}'")
+                    return None
+                else:
+                    print(f"   ❌ Invalid choice. Please enter 1 or 2")
+                    
+            except ValueError:
+                print(f"   ❌ Please enter a number (1 or 2)")
+            except KeyboardInterrupt:
+                print(f"\n   ⏹️ Training interrupted by user")
+                return None
+    
+    def _get_manual_field_selection(self, column_name: str, sample_data: pd.Series) -> Optional[Tuple[str, float, str]]:
+        """Permite selección manual de tipo de campo usando SOLO campos estándar"""
+        
+        print(f"\n   📋 STANDARD FIELD TYPES:")
+        for i, field_type in enumerate(self.standard_fields, 1):
+            print(f"      {i:2d}. {field_type}")
+        
+        print(f"   99. Cancel/Skip")
+        
+        while True:
+            try:
+                user_input = input(f"   👤 Select field type number: ").strip()
+                
+                if user_input == '99':
+                    return None
+                
+                choice = int(user_input)
+                
+                if 1 <= choice <= len(self.standard_fields):
+                    field_type = self.standard_fields[choice - 1]
+                    print(f"   ✅ Selected: {field_type}")
+                    return (field_type, 0.8, 'manual_selection')
+                else:
+                    print(f"   ❌ Invalid selection. Please enter 1-{len(self.standard_fields)} or 99")
+                    
+            except ValueError:
+                print(f"   ❌ Please enter a valid number")
+            except KeyboardInterrupt:
+                return None
+    
+    def _show_help(self):
+        """Muestra ayuda detallada"""
+        print(f"\n   🆘 MANUAL CONFIRMATION TRAINER HELP")
+        print(f"   " + "=" * 40)
+        print(f"   This trainer requires MANUAL CONFIRMATION for ALL detections.")
+        print(f"   ")
+        print(f"   🔧 NEW STANDARD FIELDS ({len(self.standard_fields)}):")
+        for field in self.standard_fields:
+            print(f"   • {field}")
+        print(f"   ")
+        print(f"   🧠 INTELLIGENT ANALYSIS:")
+        print(f"   • Detects data types and suggests relevant alternatives")
+        print(f"   • High confidence (> 0.8): No automatic alternatives shown")
+        print(f"   • Low confidence (≤ 0.8): Shows intelligent alternatives")
+        print(f"   • Manual selection always available regardless of confidence")
+        print(f"   • Learns new synonyms and regex patterns automatically")
+        print(f"   • Updates YAML configuration files")
+        print(f"   ")
+        print(f"   ⚠️ MANUAL CONFIRMATION:")
+        print(f"   • ALL detections require your approval")
+        print(f"   • System provides suggestions but YOU decide")
+        print(f"   • Your decisions help improve the system")
+        print(f"   ")
+        print(f"   ⌨️ COMMANDS:")
+        print(f"   • 'help' or 'h': Show this help")
+        print(f"   • Ctrl+C: Stop training")
+        print(f"   ")
+    
+    def _check_learned_patterns(self, column_name: str, field_type: str) -> float:
+        """Verifica patrones previamente aprendidos"""
+        try:
+            normalized_name = column_name.lower().strip()
+            
+            if normalized_name in self.learned_patterns:
+                learned_field = self.learned_patterns[normalized_name].get('field_type')
+                if learned_field == field_type:
+                    return 0.2
+            
+            return 0.0
+            
+        except Exception:
+            return 0.0
+    
+    def _record_mapping_decision(self, column_name: str, field_type: str, 
+                               confidence: float, decision_type: str):
+        """Registra una decisión de mapeo para aprendizaje"""
+        
+        decision_record = {
+            'field_type': field_type,
+            'confidence': confidence,
+            'decision_type': decision_type,
+            'timestamp': datetime.now().isoformat(),
+            'erp_hint': self.erp_hint
+        }
+        
+        self.user_decisions[column_name] = decision_record
+    
+    def _learn_from_user_decision(self, column_name: str, field_type: str, sample_data: pd.Series):
+        """Aprende de la decisión del usuario añadiendo sinónimos y patrones"""
+        try:
+            # 1. Añadir sinónimo si no existe
+            self._add_new_synonym(column_name, field_type)
+            
+            # 2. Generar y añadir patrón regex preciso
+            regex_pattern = self._generate_precise_regex_pattern(sample_data)
+            if regex_pattern:
+                self._add_new_regex_pattern(field_type, regex_pattern, sample_data)
+            
+        except Exception as e:
+            print(f"   ⚠️ Error learning from decision: {e}")
+    
+    def _add_new_synonym(self, column_name: str, field_type: str):
+        """Añade nuevo sinónimo usando la función del sistema - CORREGIDO"""
+        try:
+            # Importar y usar DynamicFieldDefinition para añadir sinónimo
+            from core.dynamic_field_definition import DynamicFieldDefinition
+            from core.dynamic_field_loader import DynamicFieldLoader
+            
+            # Cargar definiciones existentes
+            loader = DynamicFieldLoader(self.dynamic_fields_file)
+            field_definitions = loader.get_field_definitions()
+            
+            if field_type in field_definitions:
+                field_def = field_definitions[field_type]
+                
+                # Verificar si el sinónimo ya existe
+                all_synonyms = field_def.get_all_synonyms()
+                normalized_column = column_name.lower().strip()
+                
+                if normalized_column not in [s.lower() for s in all_synonyms]:
+                    # Añadir nuevo sinónimo
+                    erp_system = self.erp_hint if self.erp_hint else "Generic_ES"
+                    success = field_def.add_synonym(
+                        erp_system=erp_system,
+                        synonym_name=column_name,
+                        confidence_boost=0.2,
+                        description=f"Learned from manual training - {datetime.now().strftime('%Y-%m-%d')}"
+                    )
+                    
+                    if success:
+                        # CORRECCIÓN: GUARDAR LOS CAMBIOS AL ARCHIVO YAML
+                        self._save_updated_field_definition_to_yaml(field_type, field_def)
+                        
+                        self.new_synonyms[column_name] = {
+                            'field_type': field_type,
+                            'erp_system': erp_system,
+                            'timestamp': datetime.now().isoformat()
+                        }
+                        self.training_stats['synonyms_added'] += 1
+                        print(f"   ✅ Added new synonym: '{column_name}' -> {field_type}")
+                    else:
+                        print(f"   ⚠️ Could not add synonym '{column_name}'")
+                else:
+                    print(f"   ℹ️ Synonym '{column_name}' already exists for {field_type}")
+            else:
+                print(f"   ⚠️ Field type '{field_type}' not found in definitions")
+                
+        except Exception as e:
+            print(f"   ⚠️ Error adding synonym: {e}")
+
+    def _save_updated_field_definition_to_yaml(self, field_type: str, field_def):
+        """NUEVA FUNCIÓN: Guarda la definición actualizada al archivo YAML"""
+        try:
+            # Cargar configuración actual del archivo YAML
+            if os.path.exists(self.dynamic_fields_file):
+                with open(self.dynamic_fields_file, 'r', encoding='utf-8') as f:
+                    config = yaml.safe_load(f) or {}
+            else:
+                config = {}
+            
+            # Asegurar estructura correcta
+            if 'field_definitions' not in config:
+                config['field_definitions'] = {}
+            if 'dynamic_fields' not in config['field_definitions']:
+                config['field_definitions']['dynamic_fields'] = {}
+            
+            # Actualizar la definición del campo específico
+            config['field_definitions']['dynamic_fields'][field_type] = field_def.to_dict()
+            
+            # Actualizar metadatos del sistema
+            config['system'] = config.get('system', {})
+            config['system']['last_updated'] = datetime.now().isoformat()
+            config['system']['version'] = config['system'].get('version', '2.0.0')
+            
+            # Crear directorio si no existe
+            os.makedirs(os.path.dirname(self.dynamic_fields_file), exist_ok=True)
+            
+            # Guardar archivo actualizado
+            with open(self.dynamic_fields_file, 'w', encoding='utf-8') as f:
+                yaml.dump(config, f, default_flow_style=False, allow_unicode=True, indent=2)
+            
+            print(f"   💾 Updated synonyms saved to: {self.dynamic_fields_file}")
+            
+        except Exception as e:
+            print(f"   ⚠️ Error saving field definition: {e}")
+            # Intentar guardar en archivo de backup
+            backup_file = f"config/backup_dynamic_fields_{datetime.now().strftime('%Y%m%d_%H%M%S')}.yaml"
+            try:
+                with open(backup_file, 'w', encoding='utf-8') as f:
+                    yaml.dump({'field_definitions': {'dynamic_fields': {field_type: field_def.to_dict()}}}, 
+                            f, default_flow_style=False, allow_unicode=True)
+                print(f"   💾 Backup saved to: {backup_file}")
+            except:
+                pass
+    
+    def _generate_precise_regex_pattern(self, sample_data: pd.Series) -> Optional[str]:
+        """Genera un patrón regex preciso basado en los datos de muestra"""
+        try:
+            if len(sample_data) == 0:
+                return None
+            
+            # Analizar los primeros 10 valores para encontrar patrón común
+            sample_values = [str(val) for val in sample_data.head(10) if pd.notna(val)]
+            
+            if not sample_values:
+                return None
+            
+            # Encontrar patrón común más específico
+            common_pattern = self._find_common_pattern(sample_values)
+            
+            if common_pattern:
+                # Convertir a regex preciso
+                regex_pattern = self._convert_to_precise_regex(common_pattern)
+                return regex_pattern
+            
+            return None
+            
+        except Exception as e:
+            print(f"   ⚠️ Error generating regex pattern: {e}")
+            return None
+    
+    def _find_common_pattern(self, values: List[str]) -> Optional[str]:
+        """Encuentra un patrón común en los valores"""
+        try:
+            if not values:
+                return None
+            
+            # Analizar longitudes
+            lengths = [len(v) for v in values]
+            if len(set(lengths)) == 1:
+                # Longitud fija
+                length = lengths[0]
+                
+                # Analizar tipos de caracteres por posición
+                pattern_chars = []
+                for pos in range(length):
+                    chars_at_pos = [v[pos] for v in values if len(v) > pos]
+                    
+                    if all(c.isdigit() for c in chars_at_pos):
+                        pattern_chars.append('D')
+                    elif all(c.isupper() for c in chars_at_pos):
+                        pattern_chars.append('U')
+                    elif all(c.islower() for c in chars_at_pos):
+                        pattern_chars.append('L')
+                    elif all(c.isalpha() for c in chars_at_pos):
+                        pattern_chars.append('A')
+                    elif all(c in '.,;:-_/' for c in chars_at_pos):
+                        pattern_chars.append('P')
+                    elif all(c.isspace() for c in chars_at_pos):
+                        pattern_chars.append('W')
+                    else:
+                        pattern_chars.append('X')
+                
+                return ''.join(pattern_chars)
+            
+            return None
+            
+        except Exception:
+            return None
+    
+    def _convert_to_precise_regex(self, pattern: str) -> str:
+        """Convierte patrón a regex preciso"""
+        try:
+            regex_parts = []
+            i = 0
+            
+            while i < len(pattern):
+                char = pattern[i]
+                
+                # Contar caracteres consecutivos del mismo tipo
+                count = 1
+                while i + count < len(pattern) and pattern[i + count] == char:
+                    count += 1
+                
+                # Convertir a regex
+                if char == 'D':  # Dígitos
+                    regex_parts.append(f'\\d{{{count}}}')
+                elif char == 'U':  # Mayúsculas
+                    regex_parts.append(f'[A-Z]{{{count}}}')
+                elif char == 'L':  # Minúsculas
+                    regex_parts.append(f'[a-z]{{{count}}}')
+                elif char == 'A':  # Letras
+                    regex_parts.append(f'[A-Za-z]{{{count}}}')
+                elif char == 'P':  # Puntuación
+                    regex_parts.append(f'[.,:;\\-_/]{{{count}}}')
+                elif char == 'W':  # Espacios
+                    regex_parts.append(f'\\s{{{count}}}')
+                elif char == 'X':  # Otros
+                    regex_parts.append(f'[^\\w\\s]{{{count}}}')
+                else:
+                    regex_parts.append(f'.{{{count}}}')
+                
+                i += count
+            
+            return '^' + ''.join(regex_parts) + '$'
+            
+        except Exception:
+            return '^.*$'  # Patrón genérico si falla
+    
+    def _add_new_regex_pattern(self, field_type: str, regex_pattern: str, sample_data: pd.Series):
+        """Añade nuevo patrón regex al archivo YAML"""
+        try:
+            # Cargar configuración actual
+            if os.path.exists(self.yaml_config_file):
+                with open(self.yaml_config_file, 'r', encoding='utf-8') as f:
+                    config = yaml.safe_load(f) or {}
+            else:
+                config = {}
+            
+            # Inicializar estructura si no existe
+            if field_type not in config:
+                config[field_type] = {
+                    'learning_history': [],
+                    'priority_patterns': []
+                }
+            
+            # Verificar si el patrón ya existe
+            existing_patterns = [p.get('regex', '') for p in config[field_type].get('priority_patterns', [])]
+            
+            if regex_pattern not in existing_patterns:
+                # Añadir nuevo patrón
+                new_pattern_entry = {
+                    'regex': regex_pattern,
+                    'confidence_boost': 0.25,
+                    'description': f'Learned from manual training - Precise pattern from {len(sample_data)} samples',
+                    'learned_date': datetime.now().isoformat(),
+                    'sample_count': len(sample_data),
+                    'sample_values': [str(x) for x in sample_data.head(3).tolist()]
+                }
+                
+                config[field_type]['priority_patterns'].append(new_pattern_entry)
+                
+                # Añadir entrada en learning_history
+                history_entry = {
+                    'column_names': [sample_data.name if hasattr(sample_data, 'name') else 'unknown'],
+                    'examples_count': len(sample_data),
+                    'patterns_added': 1,
+                    'timestamp': datetime.now().isoformat()
+                }
+                
+                config[field_type]['learning_history'].append(history_entry)
+                
+                # Guardar configuración actualizada
+                os.makedirs(os.path.dirname(self.yaml_config_file), exist_ok=True)
+                with open(self.yaml_config_file, 'w', encoding='utf-8') as f:
+                    yaml.dump(config, f, default_flow_style=False, allow_unicode=True, sort_keys=False)
+                
+                self.new_regex_patterns[field_type] = {
+                    'regex': regex_pattern,
+                    'timestamp': datetime.now().isoformat()
+                }
+                self.training_stats['regex_patterns_added'] += 1
+                self.training_stats['patterns_learned'] += 1
+                
+                print(f"   ✅ Added precise regex pattern for {field_type}: {regex_pattern}")
+            else:
+                print(f"   ℹ️ Regex pattern already exists for {field_type}")
+                
+        except Exception as e:
+            print(f"   ⚠️ Error adding regex pattern: {e}")
+    
+    def _analyze_initial_state(self) -> Dict:
+        """Analiza el estado inicial del DataFrame"""
+        try:
+            analysis = {
+                'total_rows': len(self.df),
+                'total_columns': len(self.df.columns),
+                'column_names': list(self.df.columns),
+                'data_types': {col: str(dtype) for col, dtype in self.df.dtypes.items()},
+                'null_counts': {col: self.df[col].isnull().sum() for col in self.df.columns}
+            }
+            
+            print(f"📊 Initial DataFrame Analysis:")
+            print(f"   • Rows: {analysis['total_rows']}")
+            print(f"   • Columns: {analysis['total_columns']}")
+            print(f"   • Column names: {', '.join(analysis['column_names'][:5])}{'...' if len(analysis['column_names']) > 5 else ''}")
+            
+            return analysis
+            
+        except Exception as e:
+            print(f"⚠️ Could not analyze initial state: {e}")
+            return {}
+    
+    def _finalize_training(self) -> Dict:
+        """Finaliza el entrenamiento y guarda resultados"""
+        try:
+            print(f"\n🎯 Finalizing MANUAL CONFIRMATION Training Session...")
+            
+            
+            # Generar reporte
+            report = self._generate_training_report()
+            
+            # Crear CSV transformados (cabecera y detalle)
+            csv_result = self._create_transformed_csv()
+            
+            return {
+                'success': True,
+                'training_stats': self.training_stats,
+                'user_decisions': self.user_decisions,
+                'learned_patterns': self.learned_patterns,
+                'report_file': report,
+                'header_csv': csv_result.get('header_file') if isinstance(csv_result, dict) else None,
+                'detail_csv': csv_result.get('detail_file') if isinstance(csv_result, dict) else None,
+                'csv_info': csv_result  # Información completa de los archivos CSV
+        }
+            
+        except Exception as e:
+            print(f"❌ Error finalizing training: {e}")
+            return {'success': False, 'error': str(e)}
+    
+    def _generate_mapping_table(self) -> List[Dict]:
+        """Genera tabla con Campo Estándar | Columna Mapeada | Confianza"""
+        
+        # Crear tabla con todos los campos estándar
+        mapping_table = []
+        
+        for standard_field in self.standard_fields:
+            # Buscar si alguna columna fue mapeada a este campo
+            mapped_column = None
+            confidence = 0.0
+            
+            for column_name, decision in self.user_decisions.items():
+                if decision['field_type'] == standard_field:
+                    mapped_column = column_name
+                    confidence = decision['confidence']
+                    break
+            
+            mapping_table.append({
+                'Campo Estándar': standard_field,
+                'Columna Mapeada': mapped_column if mapped_column else 'No mapeado',
+                'Confianza': f"{confidence:.3f}" if mapped_column else "0.000"
+            })
+        
+        # Mostrar tabla
+        print(f"\n📋 TABLA DE MAPEO FINAL:")
+        print(f"{'Campo Estándar':<25} | {'Columna Mapeada':<30} | {'Confianza':<10}")
+        print(f"{'-'*25} | {'-'*30} | {'-'*10}")
+        
+        for row in mapping_table:
+            print(f"{row['Campo Estándar']:<25} | {row['Columna Mapeada']:<30} | {row['Confianza']:<10}")
+        
+        return mapping_table
+    
+    def _generate_training_report(self) -> str:
+        """Genera reporte detallado del entrenamiento"""
+        try:
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            report_file = f"manual_confirmation_training_report_{timestamp}.txt"
+            
+            with open(report_file, 'w', encoding='utf-8') as f:
+                f.write("MANUAL CONFIRMATION TRAINING SESSION REPORT\n")
+                f.write("=" * 50 + "\n\n")
+                
+                f.write(f"Session Information:\n")
+                f.write(f"  CSV File: {self.csv_file}\n")
+                f.write(f"  ERP Hint: {self.erp_hint}\n")
+                f.write(f"  Standard Fields: {len(self.standard_fields)}\n")
+                f.write(f"  Timestamp: {datetime.now().isoformat()}\n\n")
+                
+                f.write(f"Training Statistics:\n")
+                for key, value in self.training_stats.items():
+                    f.write(f"  {key.replace('_', ' ').title()}: {value}\n")
+                f.write("\n")
+                
+                f.write(f"User Decisions:\n")
+                for column, decision in self.user_decisions.items():
+                    f.write(f"  {column}: {decision['field_type']} ")
+                    f.write(f"(confidence: {decision['confidence']:.3f}, ")
+                    f.write(f"type: {decision['decision_type']})\n")
+                f.write("\n")
+                
+                f.write(f"New Synonyms Added ({len(self.new_synonyms)}):\n")
+                for synonym, info in self.new_synonyms.items():
+                    f.write(f"  {synonym}: {info['field_type']} ")
+                    f.write(f"(ERP: {info['erp_system']})\n")
+                f.write("\n")
+                
+                f.write(f"New Regex Patterns Added ({len(self.new_regex_patterns)}):\n")
+                for field_type, pattern_info in self.new_regex_patterns.items():
+                    f.write(f"  {field_type}: {pattern_info['regex']}\n")
+                f.write("\n")
+                
+                f.write(f"Final Mapping Table:\n")
+                f.write(f"{'Campo Estándar':<25} | {'Columna Mapeada':<30} | {'Confianza':<10}\n")
+                f.write(f"{'-'*25} | {'-'*30} | {'-'*10}\n")
+                
+                for standard_field in self.standard_fields:
+                    mapped_column = "No mapeado"
+                    confidence = "0.000"
+                    
+                    for column_name, decision in self.user_decisions.items():
+                        if decision['field_type'] == standard_field:
+                            mapped_column = column_name
+                            confidence = f"{decision['confidence']:.3f}"
+                            break
+                    
+                    f.write(f"{standard_field:<25} | {mapped_column:<30} | {confidence:<10}\n")
+            
+            print(f"✓ Training report saved to: {report_file}")
+            return report_file
+            
+        except Exception as e:
+            print(f"⚠️ Could not generate report: {e}")
+            return ""
+    
+    def _create_transformed_csv(self) -> str:
+        """Crea dos CSV: uno de cabecera y otro de detalle según especificaciones"""
+        try:
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            
+            # Crear DataFrame con columnas renombradas
+            transformed_df = self.df.copy()
+            column_mapping = {}
+            
+            # Crear mapeo de columnas originales a campos estándar
+            for column, decision in self.user_decisions.items():
+                field_type = decision['field_type']
+                # Crear nombre único si ya existe
+                new_name = field_type
+                counter = 1
+                while new_name in column_mapping.values():
+                    new_name = f"{field_type}_{counter}"
+                    counter += 1
+                
+                column_mapping[column] = new_name
+            
+            # Renombrar columnas
+            transformed_df.rename(columns=column_mapping, inplace=True)
+            
+            # ========== CREAR CAMPO AMOUNT SI NO EXISTE ==========
+            if 'amount' not in transformed_df.columns:
+                # Verificar si tenemos debit_amount y credit_amount
+                if 'debit_amount' in transformed_df.columns and 'credit_amount' in transformed_df.columns:
+                    print(f"🔧 Creating 'amount' field from debit_amount - credit_amount")
+                    
+                    try:
+                        # FUNCIÓN MEJORADA para convertir valores a números
+                        def convert_to_number(value):
+                            """
+                            Convierte un valor a número manejando diferentes formatos de separadores
+                            """
+                            if pd.isna(value) or value == '' or value is None:
+                                return 0.0
+                            
+                            # Convertir a string y limpiar espacios
+                            str_value = str(value).strip()
+                            
+                            # Si no hay números, retornar 0
+                            if not any(c.isdigit() for c in str_value):
+                                return 0.0
+                            
+                            # Preservar signo negativo
+                            is_negative = str_value.startswith('-')
+                            if is_negative:
+                                str_value = str_value[1:]
+                            
+                            # Remover caracteres no numéricos excepto punto, coma
+                            cleaned_value = re.sub(r'[^\d.,]', '', str_value)
+                            
+                            if not cleaned_value:
+                                return 0.0
+                            
+                            try:
+                                # Casos específicos de identificación del separador decimal
+                                
+                                # CASO 1: No hay separadores -> número entero
+                                if '.' not in cleaned_value and ',' not in cleaned_value:
+                                    result = float(cleaned_value)
+                                
+                                # CASO 2: Solo punto
+                                elif ',' not in cleaned_value and '.' in cleaned_value:
+                                    dot_parts = cleaned_value.split('.')
+                                    if len(dot_parts) == 2:
+                                        # Si la parte después del punto tiene 1-2 dígitos -> decimal
+                                        if len(dot_parts[1]) <= 2:
+                                            result = float(cleaned_value)
+                                        # Si tiene 3+ dígitos -> separador de miles
+                                        else:
+                                            result = float(cleaned_value.replace('.', ''))
+                                    else:
+                                        # Múltiples puntos: verificar si el último es decimal
+                                        last_part = dot_parts[-1]  # Última parte después del último punto
+                                        if len(last_part) <= 2 and len(last_part) > 0:
+                                            # El último punto es decimal, los anteriores son miles
+                                            # 11.384.85 -> 11384.85
+                                            all_but_last = '.'.join(dot_parts[:-1])  # 11.384
+                                            decimal_part = dot_parts[-1]  # 85
+                                            result = float(all_but_last.replace('.', '') + '.' + decimal_part)
+                                        else:
+                                            # Todos son separadores de miles
+                                            result = float(cleaned_value.replace('.', ''))
+                                
+                                # CASO 3: Solo coma  
+                                elif '.' not in cleaned_value and ',' in cleaned_value:
+                                    comma_parts = cleaned_value.split(',')
+                                    if len(comma_parts) == 2:
+                                        # Si la parte después de la coma tiene 1-2 dígitos -> decimal
+                                        if len(comma_parts[1]) <= 2:
+                                            result = float(cleaned_value.replace(',', '.'))
+                                        # Si tiene 3+ dígitos -> separador de miles
+                                        else:
+                                            result = float(cleaned_value.replace(',', ''))
+                                    else:
+                                        # Múltiples comas -> separadores de miles
+                                        result = float(cleaned_value.replace(',', ''))
+                                
+                                # CASO 4: Tanto punto como coma
+                                else:
+                                    # Encontrar posición del último separador
+                                    last_dot_pos = cleaned_value.rfind('.')
+                                    last_comma_pos = cleaned_value.rfind(',')
+                                    
+                                    if last_dot_pos > last_comma_pos:
+                                        # Punto es el último -> punto es decimal, coma es miles
+                                        # Verificar que la parte decimal tenga 1-2 dígitos
+                                        decimal_part = cleaned_value[last_dot_pos + 1:]
+                                        if len(decimal_part) <= 2:
+                                            result = float(cleaned_value.replace(',', ''))
+                                        else:
+                                            # Demasiados dígitos después del punto -> no es decimal
+                                            result = float(cleaned_value.replace('.', '').replace(',', ''))
+                                    else:
+                                        # Coma es el último -> coma es decimal, punto es miles
+                                        # Verificar que la parte decimal tenga 1-2 dígitos
+                                        decimal_part = cleaned_value[last_comma_pos + 1:]
+                                        if len(decimal_part) <= 2:
+                                            result = float(cleaned_value.replace('.', '').replace(',', '.'))
+                                        else:
+                                            # Demasiados dígitos después de la coma -> no es decimal
+                                            result = float(cleaned_value.replace('.', '').replace(',', ''))
+                                
+                                return -result if is_negative else result
+                                
+                            except (ValueError, TypeError):
+                                return 0.0
+                        
+                        # Aplicar conversión línea a línea a las columnas
+                        print("Converting debit_amount values...")
+                        debit_values = transformed_df['debit_amount'].apply(convert_to_number)
+                        
+                        print("Converting credit_amount values...")
+                        credit_values = transformed_df['credit_amount'].apply(convert_to_number)
+                        
+                        # Calcular amount = debit_amount - credit_amount línea a línea
+                        transformed_df['amount'] = debit_values - credit_values
+                        
+                        print(f"✓ Created 'amount' field successfully")
+                        print(f"   Sample debit values: {debit_values.head(3).tolist()}")
+                        print(f"   Sample credit values: {credit_values.head(3).tolist()}")
+                        print(f"   Sample amount values: {transformed_df['amount'].head(3).tolist()}")
+                        
+                        # Estadísticas de conversión
+                        total_rows = len(transformed_df)
+                        non_zero_amounts = (transformed_df['amount'] != 0).sum()
+                        print(f"   Total rows: {total_rows}, Non-zero amounts: {non_zero_amounts}")
+                        
+                    except Exception as e:
+                        print(f"⚠️ Error creating amount field: {e}")
+                        # Crear campo con valores 0 como fallback
+                        transformed_df['amount'] = 0.0
+                else:
+                    print(f"⚠️ Cannot create 'amount' field: debit_amount and/or credit_amount not available")
+                    print(f"   Available columns: {list(transformed_df.columns)}")
+            else:
+                print(f"✓ Field 'amount' already exists in transformed data")
+            
+            # ========== SEPARAR CAMPOS DATETIME COMBINADOS ==========
+            # Detectar y separar entry_date/entry_time que contengan fecha y hora juntos
+            try:
+                print("🔧 Checking for combined DateTime fields...")
+                
+                def separate_datetime_field(df, field_name):
+                    """Separa un campo que contiene fecha y hora en dos campos separados"""
+                    if field_name not in df.columns:
+                        return False
+                    
+                    sample_values = df[field_name].dropna().head(10)
+                    if len(sample_values) == 0:
+                        return False
+                    
+                    # Verificar si contiene tanto fecha como hora
+                    datetime_detected = False
+                    for value in sample_values:
+                        str_value = str(value).strip()
+                        try:
+                            # Intentar parsear como datetime
+                            parsed_dt = pd.to_datetime(str_value, errors='raise')
+                            
+                            # Verificar si tiene componente de tiempo significativo
+                            if parsed_dt.hour != 0 or parsed_dt.minute != 0 or parsed_dt.second != 0:
+                                datetime_detected = True
+                                break
+                            # También verificar si el string original contiene indicadores de hora
+                            elif any(indicator in str_value.lower() for indicator in [':', 'am', 'pm', 'h', 'm', 's']):
+                                datetime_detected = True
+                                break
+                        except:
+                            continue
+                    
+                    if not datetime_detected:
+                        return False
+                    
+                    print(f"   📅 Detected combined DateTime in '{field_name}', separating...")
+                    
+                    # Separar fecha y hora
+                    dates = []
+                    times = []
+                    
+                    for value in df[field_name]:
+                        if pd.isna(value) or value == '':
+                            dates.append('')
+                            times.append('')
+                            continue
+                        
+                        try:
+                            str_value = str(value).strip()
+                            parsed_dt = pd.to_datetime(str_value, errors='raise')
+                            
+                            # Extraer fecha en formato estándar YYYY-MM-DD
+                            date_str = parsed_dt.strftime('%Y-%m-%d')
+                            
+                            # Extraer hora en formato estándar HH:MM:SS
+                            time_str = parsed_dt.strftime('%H:%M:%S')
+                            
+                            dates.append(date_str)
+                            times.append(time_str)
+                            
+                        except:
+                            # Si no se puede parsear, mantener valor original en fecha y vacío en hora
+                            dates.append(str(value))
+                            times.append('')
+                    
+                    # Determinar nombres de campos de destino
+                    if field_name == 'entry_date':
+                        date_field = 'entry_date'
+                        time_field = 'entry_time'
+                    elif field_name == 'entry_time':
+                        date_field = 'entry_date' 
+                        time_field = 'entry_time'
+                    else:
+                        # Para otros campos, crear nombres derivados
+                        date_field = f"{field_name}_date"
+                        time_field = f"{field_name}_time"
+                    
+                    # Asignar los valores separados
+                    df[date_field] = dates
+                    
+                    # Para entry_time, siempre reemplazar el campo original con solo la hora
+                    if field_name in ['entry_time', 'entry_date']:
+                        if field_name == 'entry_time':
+                            # Reemplazar entry_time original con solo las horas
+                            df['entry_time'] = times
+                            print(f"   ✓ Replaced 'entry_time' with time-only values")
+                        elif field_name == 'entry_date':
+                            # Si entry_time no existe, crearlo; si existe y está vacío, llenarlo
+                            if 'entry_time' not in df.columns:
+                                df['entry_time'] = times
+                            elif df['entry_time'].isna().all() or (df['entry_time'].astype(str).str.strip() == '').all():
+                                df['entry_time'] = times
+                            else:
+                                # Si entry_time ya tiene datos válidos, no sobreescribir
+                                print(f"   ⚠️ entry_time already has data, keeping original")
+                    else:
+                        # Para otros campos, crear nombres derivados
+                        if time_field not in df.columns or df[time_field].isna().all():
+                            df[time_field] = times
+                        else:
+                            # Si ya existe time_field y tiene datos, crear uno nuevo
+                            counter = 1
+                            new_time_field = f"{time_field}_{counter}"
+                            while new_time_field in df.columns:
+                                counter += 1
+                                new_time_field = f"{time_field}_{counter}"
+                            df[new_time_field] = times
+                            time_field = new_time_field
+                    
+                    print(f"   ✓ Separated into '{date_field}' and '{time_field}'")
+                    print(f"     Sample dates: {dates[:3]}")
+                    print(f"     Sample times: {times[:3]}")
+                    
+                    return True
+                    
+                # Intentar separar entry_date si existe
+                if 'entry_date' in transformed_df.columns:
+                    separate_datetime_field(transformed_df, 'entry_date')
+                
+                # Intentar separar entry_time si existe
+                if 'entry_time' in transformed_df.columns:
+                    separate_datetime_field(transformed_df, 'entry_time')
+                
+                # También verificar posting_date por si acaso
+                if 'posting_date' in transformed_df.columns:
+                    separate_datetime_field(transformed_df, 'posting_date')
+                    
+            except Exception as e:
+                print(f"⚠️ Error processing DateTime fields: {e}")
+            
+            print("✓ DateTime field separation completed")
+            
+            # Campos requeridos para cada archivo
+            header_fields = [
+                'description', 'entry_date', 'entry_time', 'fiscal_year', 
+                'journal_entry_id', 'period_number', 'posting_date', 'prepared_by'
+            ]
+            
+            detail_fields = [
+                'amount', 'debit_credit_indicator', 'gl_account_name', 'gl_account_number',
+                'journal_entry_id', 'line_description', 'line_number', 'vendor_id'
+            ]
+            
+            # ========== ARCHIVO DE CABECERA ==========
+            header_file = f"manual_confirmation_header_{timestamp}.csv"
+            
+            # Filtrar columnas disponibles para cabecera
+            available_header_cols = [col for col in header_fields if col in transformed_df.columns]
+            
+            if available_header_cols:
+                # Verificar que tengamos journal_entry_id para agrupar
+                if 'journal_entry_id' in available_header_cols:
+                    # Crear DataFrame de cabecera agrupado por journal_entry_id
+                    header_df = transformed_df[available_header_cols].groupby('journal_entry_id').first().reset_index()
+                    print(f"✓ Header file: {len(header_df)} unique journal entries")
+                else:
+                    # Si no hay journal_entry_id, tomar la primera fila como muestra
+                    header_df = transformed_df[available_header_cols].head(1)
+                    print(f"⚠️ No journal_entry_id found for grouping. Using first row as header sample.")
+                
+                # Guardar archivo de cabecera
+                header_df.to_csv(header_file, index=False, encoding='utf-8')
+                print(f"✓ Header CSV saved: {header_file}")
+                print(f"   Columns: {', '.join(available_header_cols)}")
+            else:
+                print(f"⚠️ No header fields found in mapped columns")
+                header_file = None
+            
+            # ========== ARCHIVO DE DETALLE ==========
+            detail_file = f"manual_confirmation_detail_{timestamp}.csv"
+            
+            # Filtrar columnas disponibles para detalle
+            available_detail_cols = [col for col in detail_fields if col in transformed_df.columns]
+            
+            if available_detail_cols:
+                # Crear DataFrame de detalle (todas las filas)
+                detail_df = transformed_df[available_detail_cols]
+                
+                # Guardar archivo de detalle
+                detail_df.to_csv(detail_file, index=False, encoding='utf-8')
+                print(f"✓ Detail CSV saved: {detail_file}")
+                print(f"   Rows: {len(detail_df)}, Columns: {', '.join(available_detail_cols)}")
+            else:
+                print(f"⚠️ No detail fields found in mapped columns")
+                detail_file = None
+            
+            # Retornar información de ambos archivos
+            result_info = {
+                'header_file': header_file,
+                'detail_file': detail_file,
+                'header_columns': available_header_cols if available_header_cols else [],
+                'detail_columns': available_detail_cols if available_detail_cols else [],
+                'amount_created': 'amount' not in self.df.columns and 'amount' in transformed_df.columns
+            }
+            
+            return result_info
+            
+        except Exception as e:
+            print(f"⚠️ Could not create transformed CSV files: {e}")
+            return {"header_file": None, "detail_file": None, "error": str(e)}
+
+    def _handle_datetime_fields(self, df):
+        """Maneja la separación de campos DateTime en entry_date y entry_time"""
+        try:
+            # Buscar columnas que podrían contener fecha y hora juntas
+            datetime_candidates = []
+            
+            for col in df.columns:
+                if col in ['entry_date', 'entry_time'] and col in df.columns:
+                    # Verificar si la columna contiene información de fecha y hora
+                    sample_values = df[col].dropna().head(10)
+                    
+                    for value in sample_values:
+                        if pd.notna(value):
+                            # Convertir a string para análisis
+                            str_value = str(value)
+                            
+                            # Verificar si contiene tanto fecha como hora
+                            # Patrones comunes: "YYYY-MM-DD HH:MM:SS", "DD/MM/YYYY HH:MM", etc.
+                            datetime_patterns = [
+                                r'\d{4}-\d{2}-\d{2}\s+\d{1,2}:\d{2}',  # YYYY-MM-DD HH:MM
+                                r'\d{1,2}/\d{1,2}/\d{4}\s+\d{1,2}:\d{2}',  # DD/MM/YYYY HH:MM
+                                r'\d{1,2}-\d{1,2}-\d{4}\s+\d{1,2}:\d{2}',  # DD-MM-YYYY HH:MM
+                            ]
+                            
+                            for pattern in datetime_patterns:
+                                if re.search(pattern, str_value):
+                                    datetime_candidates.append(col)
+                                    break
+                            
+                            if col in datetime_candidates:
+                                break
+            
+            # Procesar columnas con fecha y hora combinadas
+            for col in datetime_candidates:
+                print(f"🔍 Processing DateTime field: {col}")
+                
+                try:
+                    # Intentar parsear como datetime
+                    datetime_series = pd.to_datetime(df[col], errors='coerce')
+                    
+                    # Si el parseo fue exitoso y tenemos valores válidos
+                    if datetime_series.notna().sum() > 0:
+                        
+                        if col == 'entry_date' and 'entry_time' not in df.columns:
+                            # Si es entry_date y no existe entry_time, separar
+                            df['entry_date'] = datetime_series.dt.date
+                            df['entry_time'] = datetime_series.dt.time
+                            print(f"✓ Split {col} into entry_date and entry_time")
+                            
+                        elif col == 'entry_time' and 'entry_date' not in df.columns:
+                            # Si es entry_time y no existe entry_date, separar
+                            df['entry_date'] = datetime_series.dt.date
+                            df['entry_time'] = datetime_series.dt.time
+                            print(f"✓ Split {col} into entry_date and entry_time")
+                            
+                        # Si ya existen ambas columnas, mantener como están
+                        
+                except Exception as e:
+                    print(f"⚠️ Could not process DateTime field {col}: {e}")
+                    
+        except Exception as e:
+            print(f"⚠️ Error in datetime handling: {e}")
+
+
+def run_batch_analysis_manual_confirmation(csv_file: str, erp_hint: str = None) -> Dict:
+    """
+    Análisis en lote con confirmación manual requerida
+    NOTA: En modo batch, se muestran las recomendaciones pero no se requiere interacción
+    """
+    print(f"🔍 MANUAL CONFIRMATION BATCH ANALYSIS")
+    print(f"=" * 40)
+    print(f"📂 File: {csv_file}")
+    print(f"🧠 Enhanced content analysis: ACTIVE")
+    print(f"ℹ️ Showing recommendations that would require manual confirmation")
+    
+    try:
+        # Verificar archivo
+        if not os.path.exists(csv_file):
+            return {'success': False, 'error': f'File not found: {csv_file}'}
+        
+        # Cargar datos
+        df = pd.read_csv(csv_file, encoding='utf-8')
+        print(f"📊 Loaded {len(df)} rows x {len(df.columns)} columns")
+        
+        # Importar sistema corregido
+        try:
+            from core.field_mapper import FieldMapper
+            mapper = FieldMapper()
+        except ImportError:
+            return {'success': False, 'error': 'Could not import FieldMapper'}
+        
+        # Analizar cada columna
+        mappings = {}
+        analysis_results = {}
+        
+        # Lista de campos estándar
+        standard_fields = [
+            'journal_entry_id', 'line_number', 'description', 'line_description',
+            'posting_date', 'fiscal_year', 'period_number', 'gl_account_number',
+            'amount', 'debit_amount', 'credit_amount', 'debit_credit_indicator',
+            'prepared_by', 'entry_date', 'entry_time', 'gl_account_name', 'vendor_id'
+        ]
+        
+        for column_name in df.columns:
+            sample_data = df[column_name].dropna().head(100)
+            
+            # Intentar mapeo
+            mapping_result = mapper.find_field_mapping(column_name, erp_hint, sample_data)
+            
+            if mapping_result:
+                field_type, confidence = mapping_result
+                
+                # Verificar si está en campos estándar
+                if field_type not in standard_fields:
+                    print(f"⚠️ {column_name}: {field_type} -> NOT IN STANDARD FIELDS")
+                    continue
+                
+                mappings[column_name] = field_type
+                print(f"🤖 {column_name}: {field_type} ({confidence:.3f}) - WOULD REQUIRE CONFIRMATION")
+                
+                analysis_results[column_name] = {
+                    'field_type': field_type,
+                    'confidence': confidence,
+                    'sample_data': sample_data.tolist()[:3],
+                    'requires_confirmation': True
+                }
+            else:
+                sample_str = ', '.join([str(x) for x in sample_data.head(3).tolist()])
+                print(f"❓ {column_name}: No mapping found")
+                print(f"   📊 Sample: {sample_str}")
+                
+                analysis_results[column_name] = {
+                    'field_type': None,
+                    'confidence': 0.0,
+                    'sample_data': sample_data.tolist()[:3],
+                    'requires_confirmation': True
+                }
+        
+        detection_rate = len(mappings) / len(df.columns) * 100
+        
+        print(f"\n📊 MANUAL CONFIRMATION ANALYSIS RESULTS:")
+        print(f"   • Detection rate: {detection_rate:.1f}%")
+        print(f"   • All detections would require manual confirmation")
+        print(f"   • Standard fields only: {len(standard_fields)} available")
+        print(f"   • Detected columns: {len(mappings)}")
+        print(f"   • No mapping: {len(df.columns) - len(mappings)}")
+        
+        return {
+            'success': True,
+            'mappings': mappings,
+            'analysis_results': analysis_results,
+            'detection_rate': detection_rate,
+            'total_columns': len(df.columns),
+            'detected_columns': len(mappings),
+            'standard_fields': standard_fields,
+            'all_require_confirmation': True
+        }
+        
+    except Exception as e:
+        print(f"❌ Error in manual confirmation batch analysis: {e}")
+        return {'success': False, 'error': str(e)}
+
+
+def quick_train_manual_confirmation(csv_file: str, erp_hint: str = None) -> Dict:
+    """
+    Función principal para entrenamiento con confirmación manual obligatoria
+    """
+    print(f"🚀 MANUAL CONFIRMATION Interactive Training Started")
+    print(f"=" * 55)
+    print(f"⚠️ ALL detections will require manual confirmation")
+    
+    try:
+        if not os.path.exists(csv_file):
+            print(f"❌ File not found: {csv_file}")
+            
+            directory = os.path.dirname(csv_file) or "."
+            if os.path.exists(directory):
+                files = [f for f in os.listdir(directory) if f.endswith('.csv')]
+                if files:
+                    print(f"📁 Available CSV files in '{directory}':")
+                    for i, file in enumerate(files, 1):
+                        print(f"   {i}. {file}")
+            
+            return {'success': False, 'error': f'File not found: {csv_file}'}
+        
+        # Crear sesión de entrenamiento con confirmación manual
+        session = ManualConfirmationTrainingSession(csv_file, erp_hint)
+        
+        if not session.initialize():
+            return {'success': False, 'error': 'Failed to initialize training session'}
+        
+        # Ejecutar entrenamiento interactivo con confirmación manual obligatoria
+        result = session.run_interactive_training()
+        
+        if result['success']:
+            print(f"\n🎉 MANUAL CONFIRMATION TRAINING COMPLETED SUCCESSFULLY!")
+            print(f"📊 Statistics:")
+            for key, value in result['training_stats'].items():
+                print(f"   • {key.replace('_', ' ').title()}: {value}")
+            
+            if result.get('csv_info'):
+                csv_info = result['csv_info']
+                if csv_info.get('header_columns'):
+                    print(f"   • Header columns: {', '.join(csv_info['header_columns'])}")
+                if csv_info.get('detail_columns'):
+                    print(f"   • Detail columns: {', '.join(csv_info['detail_columns'])}")
+            
+            print(f"\n💡 LEARNING ACHIEVEMENTS:")
+            print(f"   • New synonyms added: {result['training_stats']['synonyms_added']}")
+            print(f"   • New regex patterns: {result['training_stats']['regex_patterns_added']}")
+            print(f"   • All confirmations manual: {result['training_stats']['all_confirmed_manually']}")
+            print(f"   • Standard fields only: {len(session.standard_fields)}")
+        
+        return result
+        
+    except Exception as e:
+        print(f"❌ Manual confirmation training failed: {e}")
+        return {'success': False, 'error': str(e)}
+
+
+def main():
+    """Función principal"""
+    if len(sys.argv) < 2:
+        print("📋 MANUAL CONFIRMATION TRAINER")
+        print("=" * 50)
+        print("Training with MANUAL CONFIRMATION for ALL detections")
+        print()
+        print("🔧 NEW FEATURES:")
+        print("  • ALL detections require manual confirmation")
+        print("  • High confidence (> 0.8): No automatic alternatives")
+        print("  • Low confidence (≤ 0.8): Shows intelligent alternatives")
+        print("  • Manual field selection always available")
+        print("  • New standard fields (17 fields total)")
+        print("  • Automatic synonym learning")
+        print("  • Precise regex pattern generation")
+        print("  • YAML configuration updates")
+        print("  • Final mapping table report")
+        print()
+        print("📋 STANDARD FIELDS:")
+        standard_fields = [
+            'journal_entry_id', 'line_number', 'description', 'line_description',
+            'posting_date', 'fiscal_year', 'period_number', 'gl_account_number',
+            'amount', 'debit_amount', 'credit_amount', 'debit_credit_indicator',
+            'prepared_by', 'entry_date', 'entry_time', 'gl_account_name', 'vendor_id'
+        ]
+        for i, field in enumerate(standard_fields, 1):
+            print(f"  {i:2d}. {field}")
+        print()
+        print("Usage:")
+        print("  1. Interactive training:")
+        print("     python manual_confirmation_trainer.py <csv_file> [erp_hint]")
+        print("  2. Batch analysis (no interaction):")
+        print("     python manual_confirmation_trainer.py --batch <csv_file> [erp_hint]")
+        print()
+        print("Examples:")
+        print("  python manual_confirmation_trainer.py data/ejemplo_sap_02.csv SAP")
+        print("  python manual_confirmation_trainer.py --batch data/ejemplo_sap_02.csv SAP")
+        return
+    
+    if sys.argv[1] == "--batch":
+        if len(sys.argv) < 3:
+            print("❌ Batch mode requires CSV file")
+            return
+        
+        csv_file = sys.argv[2]
+        erp_hint = sys.argv[3] if len(sys.argv) > 3 else None
+        
+        result = run_batch_analysis_manual_confirmation(csv_file, erp_hint)
+        
+        if not result['success']:
+            print(f"❌ Batch analysis failed: {result.get('error', 'Unknown error')}")
+            sys.exit(1)
+    else:
+        csv_file = sys.argv[1]
+        erp_hint = sys.argv[2] if len(sys.argv) > 2 else None
+        
+        result = quick_train_manual_confirmation(csv_file, erp_hint)
+        
+        if not result['success']:
+            print(f"❌ Training failed: {result.get('error', 'Unknown error')}")
+            sys.exit(1)
+
+if __name__ == "__main__":
+    main()

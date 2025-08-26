@@ -1,0 +1,172 @@
+{
+  "journal_id": {
+    "examples": [
+      1,
+      1,
+      2
+    ],
+    "patterns": [
+      "D"
+    ],
+    "column_names": [
+      "Num"
+    ]
+  },
+  "effective_date": {
+    "examples": [
+      "15-01-2024",
+      "15-01-2024",
+      "16-01-2024"
+    ],
+    "patterns": [
+      "DD-DD-DDDD"
+    ],
+    "column_names": [
+      "FchTrans"
+    ]
+  },
+  "journal_id_line_number": {
+    "examples": [
+      1,
+      2,
+      1
+    ],
+    "patterns": [
+      "D"
+    ],
+    "column_names": [
+      "Seq"
+    ]
+  },
+  "gl_account_number": {
+    "examples": [
+      430001,
+      113001,
+      620001
+    ],
+    "patterns": [
+      "DDDDDD"
+    ],
+    "column_names": [
+      "CtaMay"
+    ]
+  },
+  "amount": {
+    "examples": [
+      1425.8,
+      1425.8,
+      890.5,
+      1425.8,
+      1425.8,
+      890.5
+    ],
+    "patterns": [
+      "DDDD.D",
+      "DDD.D",
+      "DDDD.D",
+      "DDD.D"
+    ],
+    "column_names": [
+      "ImporteLC",
+      "ImporteTC"
+    ]
+  },
+  "amount_credit_debit_indicator": {
+    "examples": [
+      "+",
+      "-",
+      "+"
+    ],
+    "patterns": [
+      "S",
+      "-"
+    ],
+    "column_names": [
+      "Ind"
+    ]
+  },
+  "je_header_description": {
+    "examples": [
+      "Compra ordenador portatil Dell",
+      "Compra ordenador portatil Dell",
+      "Facebook Ads campana invierno"
+    ],
+    "patterns": [
+      "AAAAAASAAAAAAAAASAAAAAAAASAAAA",
+      "AAAAAAAASAAASAAAAAAASAAAAAAAA",
+      "AAAAAAAAAAAAASAAAAAAAAASAA"
+    ],
+    "column_names": [
+      "Observaciones"
+    ]
+  },
+  "fiscal_year": {
+    "examples": [
+      2024,
+      2024,
+      2024
+    ],
+    "patterns": [
+      "DDDD"
+    ],
+    "column_names": [
+      "Ej"
+    ]
+  },
+  "amount_currency": {
+    "examples": [
+      "EUR",
+      "EUR",
+      "EUR"
+    ],
+    "patterns": [
+      "AAA"
+    ],
+    "column_names": [
+      "Mon"
+    ]
+  },
+  "entered_by": {
+    "examples": [
+      "ADMIN01",
+      "ADMIN01",
+      "MARKETING01"
+    ],
+    "patterns": [
+      "AAAAADD",
+      "AAAAAAAAADD",
+      "AAAAAADD"
+    ],
+    "column_names": [
+      "UsuarioReg"
+    ]
+  },
+  "entered_date": {
+    "examples": [
+      "15-01-2024 09:30",
+      "15-01-2024 09:30",
+      "16-01-2024 11:45"
+    ],
+    "patterns": [
+      "DD-DD-DDDDSDDSDD"
+    ],
+    "column_names": [
+      "FchReg"
+    ]
+  },
+  "document_type": {
+    "examples": [
+      "COMPRA",
+      "COMPRA",
+      "GASTO"
+    ],
+    "patterns": [
+      "AAAAAA",
+      "AAAAA",
+      "AAAAAAA"
+    ],
+    "column_names": [
+      "TipoMov"
+    ]
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "file_info": {
+    "file_path": "data/Libro Diario Infiauto.csv",
+    "file_name": "Libro Diario Infiauto.csv",
+    "erp_system": "Generic_ES",
+    "total_columns": 11,
+    "timestamp": "20250717_170616",
+    "backup_created": "config\\backups\\dynamic_fields_config_backup_20250717_170617.yaml"
+  },
+  "original_mappings": {
+    "FECHA": {
+      "field_type": "effective_date",
+      "field_name": "Fecha efectiva",
+      "confidence": 1.75
+    },
+    "DIARIO": {
+      "field_type": "ledger",
+      "field_name": "Libro contable",
+      "confidence": 1.75
+    },
+    "CUENTA": {
+      "field_type": "gl_account_number",
+      "field_name": "Número cuenta contable",
+      "confidence": 1.85
+    },
+    "SUBCTA": {
+      "field_type": "gl_account_number",
+      "field_name": "Número cuenta contable",
+      "confidence": 0.3372222222222222
+    },
+    "TEXTO": {
+      "field_type": "je_line_description",
+      "field_name": "Descripción línea asiento",
+      "confidence": 1.15
+    },
+    "CONCEPTO": {
+      "field_type": "je_header_description",
+      "field_name": "Descripción encabezado asiento",
+      "confidence": 1.75
+    },
+    "REFERENCIA": {
+      "field_type": "effective_date",
+      "field_name": "Fecha efectiva",
+      "confidence": 0.33588235294117647
+    },
+    "DEBE": {
+      "field_type": "amount_debit",
+      "field_name": "Importe Debe",
+      "confidence": 1.85
+    },
+    "HABER": {
+      "field_type": "amount_credit",
+      "field_name": "Importe Haber",
+      "confidence": 1.85
+    }
+  },
+  "confirmed_mappings": {
+    "FECHA": {
+      "field_type": "effective_date",
+      "confidence": 1.75,
+      "source_erp": "Generic_ES",
+      "field_name": "Fecha efectiva"
+    },
+    "DIARIO": {
+      "field_type": "ledger",
+      "confidence": 1.75,
+      "source_erp": "Generic_ES",
+      "field_name": "Libro contable"
+    },
+    "CUENTA": {
+      "field_type": "gl_account_number",
+      "confidence": 1.85,
+      "source_erp": "Generic_ES",
+      "field_name": "Número cuenta contable"
+    },
+    "SUBCTA": {
+      "field_type": "gl_account_number",
+      "confidence": 0.3372222222222222,
+      "source_erp": "Generic_ES",
+      "field_name": "Número cuenta contable"
+    },
+    "TEXTO": {
+      "field_type": "je_line_description",
+      "confidence": 1.15,
+      "source_erp": "Generic_ES",
+      "field_name": "Descripción línea asiento"
+    },
+    "CONCEPTO": {
+      "field_type": "je_header_description",
+      "confidence": 1.75,
+      "source_erp": "Generic_ES",
+      "field_name": "Descripción encabezado asiento"
+    },
+    "DEBE": {
+      "field_type": "amount_debit",
+      "confidence": 1.85,
+      "source_erp": "Generic_ES",
+      "field_name": "Importe Debe"
+    },
+    "HABER": {
+      "field_type": "amount_credit",
+      "confidence": 1.85,
+      "source_erp": "Generic_ES",
+      "field_name": "Importe Haber"
+    }
+  },
+  "new_mappings": {},
+  "corrected_mappings": {},
+  "rejected_mappings": [
+    {
+      "column": "ITEM",
+      "reason": "user_rejected",
+      "original_mapping": null
+    },
+    {
+      "column": "REFERENCIA",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "effective_date",
+        "confidence": 0.33588235294117647,
+        "source_erp": "Generic_ES",
+        "field_name": "Fecha efectiva"
+      }
+    },
+    {
+      "column": "SUFIJO",
+      "reason": "user_rejected",
+      "original_mapping": null
+    }
+  ]
+}

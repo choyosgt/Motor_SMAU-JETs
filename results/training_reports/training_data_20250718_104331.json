@@ -1,0 +1,270 @@
+{
+  "file_info": {
+    "file_path": "data/Libro Diario ISPD.csv",
+    "file_name": "Libro Diario ISPD.csv",
+    "erp_system": "SAP",
+    "total_columns": 23,
+    "timestamp": "20250718_104331",
+    "backup_created": "config\\backups\\dynamic_fields_config_backup_20250718_104332.yaml"
+  },
+  "original_mappings": {
+    "Fecha de contabilización": {
+      "field_type": "effective_date",
+      "field_name": "Fecha efectiva",
+      "confidence": 0.95
+    },
+    "Texto de posición de asiento contable": {
+      "field_type": "je_line_description",
+      "field_name": "Descripción línea asiento",
+      "confidence": 1.25
+    },
+    "Cuenta de contrapartida de libro mayor": {
+      "field_type": "gl_account_number",
+      "field_name": "Número cuenta contable",
+      "confidence": 0.316
+    },
+    "Tipo de asiento contable": {
+      "field_type": "business_unit_code",
+      "field_name": "Código Unidad de Negocio",
+      "confidence": 0.36
+    },
+    "Asiento contable": {
+      "field_type": "journal_id",
+      "field_name": "ID de Asiento",
+      "confidence": 1.15
+    },
+    "Creado por": {
+      "field_type": "entered_by",
+      "field_name": "Ingresado por",
+      "confidence": 1.65
+    },
+    "Texto de cabecera de asiento contable": {
+      "field_type": "je_header_description",
+      "field_name": "Descripción encabezado asiento",
+      "confidence": 1.25
+    },
+    "Fecha doc.original": {
+      "field_type": "effective_date",
+      "field_name": "Fecha efectiva",
+      "confidence": 0.3514285714285714
+    },
+    "ID de cliente/proveedor de contrapartida": {
+      "field_type": "journal_id",
+      "field_name": "ID de Asiento",
+      "confidence": 0.31
+    },
+    "Socio comercial": {
+      "field_type": "business_unit_code",
+      "field_name": "Código Unidad de Negocio",
+      "confidence": 0.36
+    },
+    "Cuenta de mayor": {
+      "field_type": "gl_account_number",
+      "field_name": "Número cuenta contable",
+      "confidence": 0.95
+    },
+    "ID doc.original": {
+      "field_type": "journal_id",
+      "field_name": "ID de Asiento",
+      "confidence": 0.31
+    },
+    "Importe en debe en moneda de empresa": {
+      "field_type": "amount_debit",
+      "field_name": "Importe Debe",
+      "confidence": 1.25
+    },
+    "Importe en haber en moneda de empresa": {
+      "field_type": "amount_credit",
+      "field_name": "Importe Haber",
+      "confidence": 1.25
+    },
+    "Importe en debe en moneda de transacción": {
+      "field_type": "business_unit_code",
+      "field_name": "Código Unidad de Negocio",
+      "confidence": 0.36
+    },
+    "Importe en haber en moneda de transacción": {
+      "field_type": "business_unit_code",
+      "field_name": "Código Unidad de Negocio",
+      "confidence": 0.36
+    }
+  },
+  "confirmed_mappings": {
+    "Fecha de contabilización": {
+      "field_type": "effective_date",
+      "confidence": 0.95,
+      "source_erp": "SAP",
+      "field_name": "Fecha efectiva"
+    },
+    "Texto de posición de asiento contable": {
+      "field_type": "je_line_description",
+      "confidence": 1.25,
+      "source_erp": "SAP",
+      "field_name": "Descripción línea asiento"
+    },
+    "Asiento contable": {
+      "field_type": "journal_id",
+      "confidence": 1.15,
+      "source_erp": "SAP",
+      "field_name": "ID de Asiento"
+    },
+    "Creado por": {
+      "field_type": "entered_by",
+      "confidence": 1.65,
+      "source_erp": "SAP",
+      "field_name": "Ingresado por"
+    },
+    "Texto de cabecera de asiento contable": {
+      "field_type": "je_header_description",
+      "confidence": 1.25,
+      "source_erp": "SAP",
+      "field_name": "Descripción encabezado asiento"
+    },
+    "Cuenta de mayor": {
+      "field_type": "gl_account_number",
+      "confidence": 0.95,
+      "source_erp": "SAP",
+      "field_name": "Número cuenta contable"
+    },
+    "Importe en debe en moneda de empresa": {
+      "field_type": "amount_debit",
+      "confidence": 1.25,
+      "source_erp": "SAP",
+      "field_name": "Importe Debe"
+    },
+    "Importe en haber en moneda de empresa": {
+      "field_type": "amount_credit",
+      "confidence": 1.25,
+      "source_erp": "SAP",
+      "field_name": "Importe Haber"
+    }
+  },
+  "new_mappings": {},
+  "corrected_mappings": {
+    "Importe en debe en moneda de transacción": {
+      "original": {
+        "field_type": "business_unit_code",
+        "confidence": 0.36,
+        "source_erp": "SAP",
+        "field_name": "Código Unidad de Negocio"
+      },
+      "corrected": {
+        "field_type": "amount_debit",
+        "field_name": "Importe Debe",
+        "confidence": 1.0,
+        "source": "manual"
+      }
+    },
+    "Importe en haber en moneda de transacción": {
+      "original": {
+        "field_type": "business_unit_code",
+        "confidence": 0.36,
+        "source_erp": "SAP",
+        "field_name": "Código Unidad de Negocio"
+      },
+      "corrected": {
+        "field_type": "amount_credit",
+        "field_name": "Importe Haber",
+        "confidence": 1.0,
+        "source": "manual"
+      }
+    }
+  },
+  "rejected_mappings": [
+    {
+      "column": "Unnamed: 0",
+      "reason": "user_rejected",
+      "original_mapping": null
+    },
+    {
+      "column": "Cuenta de contrapartida de libro mayor",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "gl_account_number",
+        "confidence": 0.316,
+        "source_erp": "SAP",
+        "field_name": "Número cuenta contable"
+      }
+    },
+    {
+      "column": "Unnamed: 4",
+      "reason": "user_rejected",
+      "original_mapping": null
+    },
+    {
+      "column": "Tipo de asiento contable",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "business_unit_code",
+        "confidence": 0.36,
+        "source_erp": "SAP",
+        "field_name": "Código Unidad de Negocio"
+      }
+    },
+    {
+      "column": "Unnamed: 8",
+      "reason": "user_rejected",
+      "original_mapping": null
+    },
+    {
+      "column": "Fecha doc.original",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "effective_date",
+        "confidence": 0.3514285714285714,
+        "source_erp": "SAP",
+        "field_name": "Fecha efectiva"
+      }
+    },
+    {
+      "column": "ID de cliente/proveedor de contrapartida",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "journal_id",
+        "confidence": 0.31,
+        "source_erp": "SAP",
+        "field_name": "ID de Asiento"
+      }
+    },
+    {
+      "column": "Unnamed: 12",
+      "reason": "user_rejected",
+      "original_mapping": null
+    },
+    {
+      "column": "Socio comercial",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "business_unit_code",
+        "confidence": 0.36,
+        "source_erp": "SAP",
+        "field_name": "Código Unidad de Negocio"
+      }
+    },
+    {
+      "column": "Unnamed: 14",
+      "reason": "user_rejected",
+      "original_mapping": null
+    },
+    {
+      "column": "Unnamed: 16",
+      "reason": "user_rejected",
+      "original_mapping": null
+    },
+    {
+      "column": "ID doc.original",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "journal_id",
+        "confidence": 0.31,
+        "source_erp": "SAP",
+        "field_name": "ID de Asiento"
+      }
+    },
+    {
+      "column": "Unnamed: 22",
+      "reason": "user_rejected",
+      "original_mapping": null
+    }
+  ]
+}

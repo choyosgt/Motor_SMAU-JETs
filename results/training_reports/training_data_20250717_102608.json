@@ -1,0 +1,161 @@
+{
+  "file_info": {
+    "file_path": "data/ejemplo_generico_09.csv",
+    "file_name": "ejemplo_generico_09.csv",
+    "erp_system": "Generic_ES",
+    "total_columns": 13,
+    "timestamp": "20250717_102608",
+    "backup_created": "config\\backups\\dynamic_fields_config_backup_20250717_102610.yaml"
+  },
+  "original_mappings": {
+    "As": {
+      "field_type": "journal_id",
+      "field_name": "ID de Asiento",
+      "confidence": 0.6
+    },
+    "FechaTrans": {
+      "field_type": "effective_date",
+      "field_name": "Fecha efectiva",
+      "confidence": 0.6
+    },
+    "FechaReg": {
+      "field_type": "entered_date",
+      "field_name": "Fecha ingreso",
+      "confidence": 1.35
+    },
+    "Linea": {
+      "field_type": "journal_id_line_number",
+      "field_name": "Número de línea de Asiento",
+      "confidence": 1.65
+    },
+    "CuentaGL": {
+      "field_type": "gl_account_number",
+      "field_name": "Número cuenta contable",
+      "confidence": 0.6
+    },
+    "Monto": {
+      "field_type": "amount",
+      "field_name": "Importe",
+      "confidence": 1.75
+    },
+    "Tipo": {
+      "field_type": "document_type",
+      "field_name": "Tipo de documento",
+      "confidence": 1.35
+    },
+    "Empresa": {
+      "field_type": "company_code",
+      "field_name": "Código compañía",
+      "confidence": 1.75
+    },
+    "Ejercicio": {
+      "field_type": "fiscal_year",
+      "field_name": "Año fiscal",
+      "confidence": 1.85
+    },
+    "Divisa": {
+      "field_type": "amount_currency",
+      "field_name": "Moneda importe",
+      "confidence": 1.75
+    },
+    "Estado": {
+      "field_type": "reversal_indicator",
+      "field_name": "Indicador reversión",
+      "confidence": 1.05
+    },
+    "Operador": {
+      "field_type": "period",
+      "field_name": "Período",
+      "confidence": 0.6
+    }
+  },
+  "confirmed_mappings": {
+    "As": {
+      "field_type": "journal_id",
+      "confidence": 0.6,
+      "source_erp": "Generic_ES",
+      "field_name": "ID de Asiento"
+    },
+    "FechaTrans": {
+      "field_type": "effective_date",
+      "confidence": 0.6,
+      "source_erp": "Generic_ES",
+      "field_name": "Fecha efectiva"
+    },
+    "FechaReg": {
+      "field_type": "entered_date",
+      "confidence": 1.35,
+      "source_erp": "Generic_ES",
+      "field_name": "Fecha ingreso"
+    },
+    "Linea": {
+      "field_type": "journal_id_line_number",
+      "confidence": 1.65,
+      "source_erp": "Generic_ES",
+      "field_name": "Número de línea de Asiento"
+    },
+    "CuentaGL": {
+      "field_type": "gl_account_number",
+      "confidence": 0.6,
+      "source_erp": "Generic_ES",
+      "field_name": "Número cuenta contable"
+    },
+    "Monto": {
+      "field_type": "amount",
+      "confidence": 1.75,
+      "source_erp": "Generic_ES",
+      "field_name": "Importe"
+    },
+    "Tipo": {
+      "field_type": "document_type",
+      "confidence": 1.35,
+      "source_erp": "Generic_ES",
+      "field_name": "Tipo de documento"
+    },
+    "Empresa": {
+      "field_type": "company_code",
+      "confidence": 1.75,
+      "source_erp": "Generic_ES",
+      "field_name": "Código compañía"
+    },
+    "Ejercicio": {
+      "field_type": "fiscal_year",
+      "confidence": 1.85,
+      "source_erp": "Generic_ES",
+      "field_name": "Año fiscal"
+    },
+    "Divisa": {
+      "field_type": "amount_currency",
+      "confidence": 1.75,
+      "source_erp": "Generic_ES",
+      "field_name": "Moneda importe"
+    },
+    "Estado": {
+      "field_type": "reversal_indicator",
+      "confidence": 1.05,
+      "source_erp": "Generic_ES",
+      "field_name": "Indicador reversión"
+    }
+  },
+  "new_mappings": {
+    "Comentario": {
+      "field_type": "je_header_description",
+      "field_name": "Descripción encabezado asiento",
+      "confidence": 1.0,
+      "source": "manual"
+    }
+  },
+  "corrected_mappings": {},
+  "rejected_mappings": [
+    {
+      "column": "Operador",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "period",
+        "confidence": 0.6,
+        "source_erp": "Generic_ES",
+        "field_name": "Período"
+      }
+    }
+  ]
+}

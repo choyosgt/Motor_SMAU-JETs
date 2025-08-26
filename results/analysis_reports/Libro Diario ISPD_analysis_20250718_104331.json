@@ -1,0 +1,432 @@
+{
+  "report_metadata": {
+    "report_type": "csv_analysis",
+    "generated_at": "2025-07-18T10:48:53.213155",
+    "tool_version": "2.1.0"
+  },
+  "file_info": {
+    "original_file": "data/Libro Diario ISPD.csv",
+    "file_name": "Libro Diario ISPD.csv",
+    "file_size_bytes": 13762793,
+    "processing_timestamp": "20250718_104331",
+    "rows_count": 45815,
+    "columns_count": 23,
+    "erp_system": "SAP"
+  },
+  "data_quality_analysis": {
+    "Unnamed: 0": {
+      "data_type": "float64",
+      "non_null_count": 0,
+      "null_count": 45815,
+      "null_percentage": 100.0,
+      "unique_values": 0,
+      "sample_values": []
+    },
+    "Fecha de contabilización": {
+      "data_type": "object",
+      "non_null_count": 45815,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 342,
+      "sample_values": [
+        "01.01.2024",
+        "01.01.2024",
+        "01.01.2024",
+        "01.01.2024",
+        "01.01.2024"
+      ]
+    },
+    "Texto de posición de asiento contable": {
+      "data_type": "object",
+      "non_null_count": 45815,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 5113,
+      "sample_values": [
+        " 000000000000",
+        " 000200108373",
+        " 000200127502",
+        " 000200136033",
+        " 000200136837"
+      ]
+    },
+    "Cuenta de contrapartida de libro mayor": {
+      "data_type": "object",
+      "non_null_count": 45815,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 244,
+      "sample_values": [
+        "520100",
+        "520100",
+        "520100",
+        "520100",
+        "520100"
+      ]
+    },
+    "Unnamed: 4": {
+      "data_type": "object",
+      "non_null_count": 45815,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 242,
+      "sample_values": [
+        "Deudas a corto plazo por crédito dispuesto",
+        "Deudas a corto plazo por crédito dispuesto",
+        "Deudas a corto plazo por crédito dispuesto",
+        "Deudas a corto plazo por crédito dispuesto",
+        "Deudas a corto plazo por crédito dispuesto"
+      ]
+    },
+    "Tipo de asiento contable": {
+      "data_type": "object",
+      "non_null_count": 45815,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 38,
+      "sample_values": [
+        "Estado de cuenta bancaria",
+        "Estado de cuenta bancaria",
+        "Estado de cuenta bancaria",
+        "Estado de cuenta bancaria",
+        "Estado de cuenta bancaria"
+      ]
+    },
+    "Asiento contable": {
+      "data_type": "int64",
+      "non_null_count": 45815,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 13641,
+      "sample_values": [
+        100000000001,
+        100000000001,
+        100000000001,
+        100000000001,
+        100000000001
+      ]
+    },
+    "Creado por": {
+      "data_type": "object",
+      "non_null_count": 45815,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 23,
+      "sample_values": [
+        "BJIMENEZ",
+        "BJIMENEZ",
+        "BJIMENEZ",
+        "BJIMENEZ",
+        "BJIMENEZ"
+      ]
+    },
+    "Unnamed: 8": {
+      "data_type": "object",
+      "non_null_count": 45815,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 23,
+      "sample_values": [
+        "Beatriz Jimenez Del Cid",
+        "Beatriz Jimenez Del Cid",
+        "Beatriz Jimenez Del Cid",
+        "Beatriz Jimenez Del Cid",
+        "Beatriz Jimenez Del Cid"
+      ]
+    },
+    "Texto de cabecera de asiento contable": {
+      "data_type": "object",
+      "non_null_count": 45815,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 3520,
+      "sample_values": [
+        "#",
+        "#",
+        "#",
+        "#",
+        "#"
+      ]
+    },
+    "Fecha doc.original": {
+      "data_type": "object",
+      "non_null_count": 45815,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 453,
+      "sample_values": [
+        "01.01.2024",
+        "01.01.2024",
+        "01.01.2024",
+        "01.01.2024",
+        "01.01.2024"
+      ]
+    },
+    "ID de cliente/proveedor de contrapartida": {
+      "data_type": "object",
+      "non_null_count": 45815,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 323,
+      "sample_values": [
+        "#",
+        "#",
+        "#",
+        "#",
+        "#"
+      ]
+    },
+    "Unnamed: 12": {
+      "data_type": "object",
+      "non_null_count": 45815,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 323,
+      "sample_values": [
+        "Sin asignar",
+        "Sin asignar",
+        "Sin asignar",
+        "Sin asignar",
+        "Sin asignar"
+      ]
+    },
+    "Socio comercial": {
+      "data_type": "object",
+      "non_null_count": 45815,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 324,
+      "sample_values": [
+        "#",
+        "#",
+        "#",
+        "#",
+        "#"
+      ]
+    },
+    "Unnamed: 14": {
+      "data_type": "object",
+      "non_null_count": 45815,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 324,
+      "sample_values": [
+        "Sin asignar",
+        "Sin asignar",
+        "Sin asignar",
+        "Sin asignar",
+        "Sin asignar"
+      ]
+    },
+    "Cuenta de mayor": {
+      "data_type": "int64",
+      "non_null_count": 45815,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 268,
+      "sample_values": [
+        520100,
+        520100,
+        520100,
+        520100,
+        520100
+      ]
+    },
+    "Unnamed: 16": {
+      "data_type": "object",
+      "non_null_count": 45815,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 264,
+      "sample_values": [
+        "Deudas a corto plazo por crédito dispuesto",
+        "Deudas a corto plazo por crédito dispuesto",
+        "Deudas a corto plazo por crédito dispuesto",
+        "Deudas a corto plazo por crédito dispuesto",
+        "Deudas a corto plazo por crédito dispuesto"
+      ]
+    },
+    "ID doc.original": {
+      "data_type": "object",
+      "non_null_count": 45815,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 10181,
+      "sample_values": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ]
+    },
+    "Importe en debe en moneda de empresa": {
+      "data_type": "object",
+      "non_null_count": 25869,
+      "null_count": 19946,
+      "null_percentage": 43.53595983848085,
+      "unique_values": 10680,
+      "sample_values": [
+        "10.908.09 EUR",
+        "60.00 EUR",
+        "72.00 EUR",
+        "60.00 EUR",
+        "60.00 EUR"
+      ]
+    },
+    "Importe en haber en moneda de empresa": {
+      "data_type": "object",
+      "non_null_count": 25507,
+      "null_count": 20308,
+      "null_percentage": 44.32609407399323,
+      "unique_values": 10052,
+      "sample_values": [
+        "10.908.09 EUR",
+        "60.00 EUR",
+        "72.00 EUR",
+        "60.00 EUR",
+        "60.00 EUR"
+      ]
+    },
+    "Importe en debe en moneda de transacción": {
+      "data_type": "object",
+      "non_null_count": 25869,
+      "null_count": 19946,
+      "null_percentage": 43.53595983848085,
+      "unique_values": 10134,
+      "sample_values": [
+        "10.908.09 EUR",
+        "60.00 EUR",
+        "72.00 EUR",
+        "60.00 EUR",
+        "60.00 EUR"
+      ]
+    },
+    "Importe en haber en moneda de transacción": {
+      "data_type": "object",
+      "non_null_count": 25507,
+      "null_count": 20308,
+      "null_percentage": 44.32609407399323,
+      "unique_values": 9379,
+      "sample_values": [
+        "10.908.09 EUR",
+        "60.00 EUR",
+        "72.00 EUR",
+        "60.00 EUR",
+        "60.00 EUR"
+      ]
+    },
+    "Unnamed: 22": {
+      "data_type": "float64",
+      "non_null_count": 0,
+      "null_count": 45815,
+      "null_percentage": 100.0,
+      "unique_values": 0,
+      "sample_values": []
+    }
+  },
+  "mapping_statistics": {
+    "total_columns": 23,
+    "successfully_mapped": 10,
+    "rejected_mappings": 13,
+    "mapping_rate_percent": 43.47826086956522
+  },
+  "field_type_analysis": {
+    "effective_date": {
+      "count": 1,
+      "columns": [
+        "Fecha de contabilización"
+      ],
+      "avg_confidence": 0.95
+    },
+    "je_line_description": {
+      "count": 1,
+      "columns": [
+        "Texto de posición de asiento contable"
+      ],
+      "avg_confidence": 1.25
+    },
+    "journal_id": {
+      "count": 1,
+      "columns": [
+        "Asiento contable"
+      ],
+      "avg_confidence": 1.15
+    },
+    "entered_by": {
+      "count": 1,
+      "columns": [
+        "Creado por"
+      ],
+      "avg_confidence": 1.65
+    },
+    "je_header_description": {
+      "count": 1,
+      "columns": [
+        "Texto de cabecera de asiento contable"
+      ],
+      "avg_confidence": 1.25
+    },
+    "gl_account_number": {
+      "count": 1,
+      "columns": [
+        "Cuenta de mayor"
+      ],
+      "avg_confidence": 0.95
+    },
+    "amount_debit": {
+      "count": 1,
+      "columns": [
+        "Importe en debe en moneda de empresa"
+      ],
+      "avg_confidence": 1.25
+    },
+    "amount_credit": {
+      "count": 1,
+      "columns": [
+        "Importe en haber en moneda de empresa"
+      ],
+      "avg_confidence": 1.25
+    }
+  },
+  "csv_transformation": {
+    "mapped_csv_path": "results\\mapped_csvs\\Libro Diario ISPD_mapped_20250718_104331.csv",
+    "total_columns": 27,
+    "mapped_columns": 10,
+    "unmapped_columns": 13,
+    "column_mappings": {
+      "Fecha de contabilización": "effective_date",
+      "Texto de posición de asiento contable": "je_line_description",
+      "Asiento contable": "journal_id",
+      "Creado por": "entered_by",
+      "Texto de cabecera de asiento contable": "je_header_description",
+      "Cuenta de mayor": "gl_account_number",
+      "Importe en debe en moneda de empresa": "amount_debit",
+      "Importe en haber en moneda de empresa": "amount_credit",
+      "Importe en debe en moneda de transacción": "amount_debit",
+      "Importe en haber en moneda de transacción": "amount_credit"
+    },
+    "unmapped_column_list": [
+      "Unnamed: 0",
+      "Cuenta de contrapartida de libro mayor",
+      "Unnamed: 4",
+      "Tipo de asiento contable",
+      "Unnamed: 8",
+      "Fecha doc.original",
+      "ID de cliente/proveedor de contrapartida",
+      "Unnamed: 12",
+      "Socio comercial",
+      "Unnamed: 14",
+      "Unnamed: 16",
+      "ID doc.original",
+      "Unnamed: 22"
+    ],
+    "rows_count": 45815
+  },
+  "training_session_summary": {
+    "confirmed_mappings": 8,
+    "new_mappings": 0,
+    "corrected_mappings": 2,
+    "rejected_mappings": 13
+  }
+}

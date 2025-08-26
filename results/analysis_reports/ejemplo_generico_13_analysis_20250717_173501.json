@@ -1,0 +1,270 @@
+{
+  "report_metadata": {
+    "report_type": "csv_analysis",
+    "generated_at": "2025-07-17T17:36:35.240673",
+    "tool_version": "2.1.0"
+  },
+  "file_info": {
+    "original_file": "data/ejemplo_generico_13.csv",
+    "file_name": "ejemplo_generico_13.csv",
+    "file_size_bytes": 2126,
+    "processing_timestamp": "20250717_173501",
+    "rows_count": 20,
+    "columns_count": 11,
+    "erp_system": "Generic_ES"
+  },
+  "data_quality_analysis": {
+    "Ref_Asiento": {
+      "data_type": "object",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 8,
+      "sample_values": [
+        "JE001",
+        "JE001",
+        "JE001",
+        "JE002",
+        "JE002"
+      ]
+    },
+    "Fch_Operacion": {
+      "data_type": "object",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 4,
+      "sample_values": [
+        "15.01.2024",
+        "15.01.2024",
+        "15.01.2024",
+        "15.01.2024",
+        "15.01.2024"
+      ]
+    },
+    "Num_Linea": {
+      "data_type": "int64",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 3,
+      "sample_values": [
+        1,
+        2,
+        3,
+        1,
+        2
+      ]
+    },
+    "Cta_Contable": {
+      "data_type": "int64",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 16,
+      "sample_values": [
+        430001,
+        472001,
+        400001,
+        625001,
+        113001
+      ]
+    },
+    "Importe_Euros": {
+      "data_type": "float64",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 16,
+      "sample_values": [
+        1250.75,
+        262.66,
+        1513.41,
+        890.5,
+        890.5
+      ]
+    },
+    "Signo_DC": {
+      "data_type": "object",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 2,
+      "sample_values": [
+        "D",
+        "D",
+        "C",
+        "D",
+        "C"
+      ]
+    },
+    "Concepto_Movimiento": {
+      "data_type": "object",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 20,
+      "sample_values": [
+        "Compra material oficina - Facturas pendientes",
+        "IVA Soportado 21% - Material oficina",
+        "Proveedores nacionales - Papelería Martín SL",
+        "Servicios publicitarios online - Facebook Ads",
+        "Banco Santander Cta 0049-1234-12-1234567890"
+      ]
+    },
+    "Cod_Empresa": {
+      "data_type": "object",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 2,
+      "sample_values": [
+        "EMP01",
+        "EMP01",
+        "EMP01",
+        "EMP02",
+        "EMP02"
+      ]
+    },
+    "Ejercicio_Fiscal": {
+      "data_type": "int64",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 1,
+      "sample_values": [
+        2024,
+        2024,
+        2024,
+        2024,
+        2024
+      ]
+    },
+    "Divisa": {
+      "data_type": "object",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 1,
+      "sample_values": [
+        "EUR",
+        "EUR",
+        "EUR",
+        "EUR",
+        "EUR"
+      ]
+    },
+    "Periodo_Cont": {
+      "data_type": "int64",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 1,
+      "sample_values": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    }
+  },
+  "mapping_statistics": {
+    "total_columns": 11,
+    "successfully_mapped": 11,
+    "rejected_mappings": 0,
+    "mapping_rate_percent": 100.0
+  },
+  "field_type_analysis": {
+    "journal_id": {
+      "count": 1,
+      "columns": [
+        "Ref_Asiento"
+      ],
+      "avg_confidence": 0.33842105263157896
+    },
+    "journal_id_line_number": {
+      "count": 1,
+      "columns": [
+        "Num_Linea"
+      ],
+      "avg_confidence": 1.85
+    },
+    "gl_account_number": {
+      "count": 1,
+      "columns": [
+        "Cta_Contable"
+      ],
+      "avg_confidence": 0.33449999999999996
+    },
+    "amount": {
+      "count": 1,
+      "columns": [
+        "Importe_Euros"
+      ],
+      "avg_confidence": 0.34384615384615386
+    },
+    "amount_credit_debit_indicator": {
+      "count": 1,
+      "columns": [
+        "Signo_DC"
+      ],
+      "avg_confidence": 0.35857142857142854
+    },
+    "company_code": {
+      "count": 1,
+      "columns": [
+        "Cod_Empresa"
+      ],
+      "avg_confidence": 1.75
+    },
+    "fiscal_year": {
+      "count": 1,
+      "columns": [
+        "Ejercicio_Fiscal"
+      ],
+      "avg_confidence": 0.35285714285714287
+    },
+    "amount_currency": {
+      "count": 1,
+      "columns": [
+        "Divisa"
+      ],
+      "avg_confidence": 1.75
+    },
+    "period": {
+      "count": 1,
+      "columns": [
+        "Periodo_Cont"
+      ],
+      "avg_confidence": 0.34875
+    }
+  },
+  "csv_transformation": {
+    "mapped_csv_path": "results\\mapped_csvs\\ejemplo_generico_13_mapped_20250717_173501.csv",
+    "total_columns": 11,
+    "mapped_columns": 11,
+    "unmapped_columns": 0,
+    "column_mappings": {
+      "Ref_Asiento": "journal_id",
+      "Num_Linea": "journal_id_line_number",
+      "Cta_Contable": "gl_account_number",
+      "Importe_Euros": "amount",
+      "Signo_DC": "amount_credit_debit_indicator",
+      "Cod_Empresa": "company_code",
+      "Ejercicio_Fiscal": "fiscal_year",
+      "Divisa": "amount_currency",
+      "Periodo_Cont": "period",
+      "Fch_Operacion": "effective_date",
+      "Concepto_Movimiento": "je_line_description"
+    },
+    "unmapped_column_list": [],
+    "rows_count": 20
+  },
+  "training_session_summary": {
+    "confirmed_mappings": 9,
+    "new_mappings": 0,
+    "corrected_mappings": 2,
+    "rejected_mappings": 0
+  }
+}

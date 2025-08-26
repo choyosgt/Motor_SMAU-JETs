@@ -1,0 +1,127 @@
+{
+  "file_info": {
+    "file_path": "data/Libro Diario Fundacion Miro.csv",
+    "file_name": "Libro Diario Fundacion Miro.csv",
+    "erp_system": "Generic_ES",
+    "total_columns": 8,
+    "timestamp": "20250717_140546",
+    "backup_created": "config\\backups\\dynamic_fields_config_backup_20250717_140547.yaml"
+  },
+  "original_mappings": {
+    "Fecha": {
+      "field_type": "effective_date",
+      "field_name": "Fecha efectiva",
+      "confidence": 1.75
+    },
+    "Asiento": {
+      "field_type": "journal_id_line_number",
+      "field_name": "Número de línea de Asiento",
+      "confidence": 0.348
+    },
+    "NºDoc": {
+      "field_type": "journal_id",
+      "field_name": "ID de Asiento",
+      "confidence": 1.15
+    },
+    "Cuenta": {
+      "field_type": "gl_account_number",
+      "field_name": "Número cuenta contable",
+      "confidence": 1.85
+    },
+    "Descripción": {
+      "field_type": "je_header_description",
+      "field_name": "Descripción encabezado asiento",
+      "confidence": 1.05
+    },
+    "Concepto": {
+      "field_type": "je_header_description",
+      "field_name": "Descripción encabezado asiento",
+      "confidence": 1.75
+    },
+    "Debe": {
+      "field_type": "amount_debit",
+      "field_name": "Importe Debe",
+      "confidence": 1.85
+    },
+    "Haber": {
+      "field_type": "amount_credit",
+      "field_name": "Importe Haber",
+      "confidence": 1.85
+    }
+  },
+  "confirmed_mappings": {
+    "Fecha": {
+      "field_type": "effective_date",
+      "confidence": 1.75,
+      "source_erp": "Generic_ES",
+      "field_name": "Fecha efectiva"
+    },
+    "Cuenta": {
+      "field_type": "gl_account_number",
+      "confidence": 1.85,
+      "source_erp": "Generic_ES",
+      "field_name": "Número cuenta contable"
+    },
+    "Concepto": {
+      "field_type": "je_header_description",
+      "confidence": 1.75,
+      "source_erp": "Generic_ES",
+      "field_name": "Descripción encabezado asiento"
+    },
+    "Debe": {
+      "field_type": "amount_debit",
+      "confidence": 1.85,
+      "source_erp": "Generic_ES",
+      "field_name": "Importe Debe"
+    },
+    "Haber": {
+      "field_type": "amount_credit",
+      "confidence": 1.85,
+      "source_erp": "Generic_ES",
+      "field_name": "Importe Haber"
+    }
+  },
+  "new_mappings": {},
+  "corrected_mappings": {
+    "Asiento": {
+      "original": {
+        "field_type": "journal_id_line_number",
+        "confidence": 0.348,
+        "source_erp": "Generic_ES",
+        "field_name": "Número de línea de Asiento"
+      },
+      "corrected": {
+        "field_type": "journal_id",
+        "field_name": "ID de Asiento",
+        "confidence": 1.0,
+        "source": "manual"
+      }
+    },
+    "Descripción": {
+      "original": {
+        "field_type": "je_header_description",
+        "confidence": 1.05,
+        "source_erp": "Generic_ES",
+        "field_name": "Descripción encabezado asiento"
+      },
+      "corrected": {
+        "field_type": "je_line_description",
+        "field_name": "Descripción línea asiento",
+        "confidence": 1.0,
+        "source": "manual"
+      }
+    }
+  },
+  "rejected_mappings": [
+    {
+      "column": "NºDoc",
+      "reason": "user_rejected",
+      "original_mapping": {
+        "field_type": "journal_id",
+        "confidence": 1.15,
+        "source_erp": "Generic_ES",
+        "field_name": "ID de Asiento"
+      }
+    }
+  ]
+}

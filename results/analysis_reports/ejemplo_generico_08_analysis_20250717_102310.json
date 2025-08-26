@@ -1,0 +1,285 @@
+{
+  "report_metadata": {
+    "report_type": "csv_analysis",
+    "generated_at": "2025-07-17T10:24:34.643231",
+    "tool_version": "2.1.0"
+  },
+  "file_info": {
+    "original_file": "data/ejemplo_generico_08.csv",
+    "file_name": "ejemplo_generico_08.csv",
+    "file_size_bytes": 1676,
+    "processing_timestamp": "20250717_102310",
+    "rows_count": 20,
+    "columns_count": 12,
+    "erp_system": "Generic_ES"
+  },
+  "data_quality_analysis": {
+    "ID": {
+      "data_type": "object",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 10,
+      "sample_values": [
+        "A001",
+        "A001",
+        "A002",
+        "A002",
+        "A003"
+      ]
+    },
+    "Fecha": {
+      "data_type": "object",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 10,
+      "sample_values": [
+        "15/01/2024",
+        "15/01/2024",
+        "16/01/2024",
+        "16/01/2024",
+        "17/01/2024"
+      ]
+    },
+    "Pos": {
+      "data_type": "int64",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 2,
+      "sample_values": [
+        1,
+        2,
+        1,
+        2,
+        1
+      ]
+    },
+    "Cta": {
+      "data_type": "int64",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 11,
+      "sample_values": [
+        43001,
+        11301,
+        62001,
+        11301,
+        11301
+      ]
+    },
+    "Importe1": {
+      "data_type": "float64",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 11,
+      "sample_values": [
+        1500.0,
+        0.0,
+        850.75,
+        0.0,
+        2400.0
+      ]
+    },
+    "Importe2": {
+      "data_type": "float64",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 11,
+      "sample_values": [
+        0.0,
+        1500.0,
+        0.0,
+        850.75,
+        0.0
+      ]
+    },
+    "Importe3": {
+      "data_type": "float64",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 10,
+      "sample_values": [
+        1500.0,
+        1500.0,
+        850.75,
+        850.75,
+        2400.0
+      ]
+    },
+    "Descripcion": {
+      "data_type": "object",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 10,
+      "sample_values": [
+        "Compra equipos",
+        "Compra equipos",
+        "Marketing digital",
+        "Marketing digital",
+        "Cobro facturas"
+      ]
+    },
+    "Cod": {
+      "data_type": "object",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 3,
+      "sample_values": [
+        "CC01",
+        "CC01",
+        "CC02",
+        "CC02",
+        "CC01"
+      ]
+    },
+    "Año": {
+      "data_type": "int64",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 1,
+      "sample_values": [
+        2024,
+        2024,
+        2024,
+        2024,
+        2024
+      ]
+    },
+    "Mon": {
+      "data_type": "object",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 1,
+      "sample_values": [
+        "EUR",
+        "EUR",
+        "EUR",
+        "EUR",
+        "EUR"
+      ]
+    },
+    "Usr": {
+      "data_type": "object",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 10,
+      "sample_values": [
+        "ANA",
+        "ANA",
+        "LUIS",
+        "LUIS",
+        "MARIA"
+      ]
+    }
+  },
+  "mapping_statistics": {
+    "total_columns": 12,
+    "successfully_mapped": 12,
+    "rejected_mappings": 0,
+    "mapping_rate_percent": 100.0
+  },
+  "field_type_analysis": {
+    "journal_id": {
+      "count": 1,
+      "columns": [
+        "ID"
+      ],
+      "avg_confidence": 0.6
+    },
+    "effective_date": {
+      "count": 1,
+      "columns": [
+        "Fecha"
+      ],
+      "avg_confidence": 1.75
+    },
+    "journal_id_line_number": {
+      "count": 1,
+      "columns": [
+        "Pos"
+      ],
+      "avg_confidence": 1.25
+    },
+    "je_header_description": {
+      "count": 1,
+      "columns": [
+        "Descripcion"
+      ],
+      "avg_confidence": 1.65
+    },
+    "business_unit_code": {
+      "count": 1,
+      "columns": [
+        "Cod"
+      ],
+      "avg_confidence": 0.6
+    },
+    "fiscal_year": {
+      "count": 1,
+      "columns": [
+        "Año"
+      ],
+      "avg_confidence": 1.25
+    },
+    "amount_currency": {
+      "count": 1,
+      "columns": [
+        "Mon"
+      ],
+      "avg_confidence": 1.25
+    },
+    "gl_account_number": {
+      "count": 1,
+      "columns": [
+        "Cta"
+      ],
+      "avg_confidence": 1.0
+    },
+    "entered_by": {
+      "count": 1,
+      "columns": [
+        "Usr"
+      ],
+      "avg_confidence": 1.0
+    }
+  },
+  "csv_transformation": {
+    "mapped_csv_path": "results\\mapped_csvs\\ejemplo_generico_08_mapped_20250717_102310.csv",
+    "total_columns": 12,
+    "mapped_columns": 12,
+    "unmapped_columns": 0,
+    "column_mappings": {
+      "ID": "journal_id",
+      "Fecha": "effective_date",
+      "Pos": "journal_id_line_number",
+      "Descripcion": "je_header_description",
+      "Cod": "business_unit_code",
+      "Año": "fiscal_year",
+      "Mon": "amount_currency",
+      "Cta": "gl_account_number",
+      "Usr": "entered_by",
+      "Importe1": "amount_debit",
+      "Importe2": "amount_credit",
+      "Importe3": "amount"
+    },
+    "unmapped_column_list": [],
+    "rows_count": 20
+  },
+  "training_session_summary": {
+    "confirmed_mappings": 7,
+    "new_mappings": 2,
+    "corrected_mappings": 3,
+    "rejected_mappings": 0
+  }
+}

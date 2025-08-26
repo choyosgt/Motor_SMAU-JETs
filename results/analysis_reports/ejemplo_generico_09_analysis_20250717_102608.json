@@ -1,0 +1,322 @@
+{
+  "report_metadata": {
+    "report_type": "csv_analysis",
+    "generated_at": "2025-07-17T10:27:06.905076",
+    "tool_version": "2.1.0"
+  },
+  "file_info": {
+    "original_file": "data/ejemplo_generico_09.csv",
+    "file_name": "ejemplo_generico_09.csv",
+    "file_size_bytes": 1992,
+    "processing_timestamp": "20250717_102608",
+    "rows_count": 20,
+    "columns_count": 13,
+    "erp_system": "Generic_ES"
+  },
+  "data_quality_analysis": {
+    "As": {
+      "data_type": "object",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 10,
+      "sample_values": [
+        "REG001",
+        "REG001",
+        "REG002",
+        "REG002",
+        "REG003"
+      ]
+    },
+    "FechaTrans": {
+      "data_type": "object",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 5,
+      "sample_values": [
+        "2024-01-15",
+        "2024-01-15",
+        "2024-01-15",
+        "2024-01-15",
+        "2024-01-16"
+      ]
+    },
+    "FechaReg": {
+      "data_type": "object",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 10,
+      "sample_values": [
+        "2024-01-15 09:30",
+        "2024-01-15 09:30",
+        "2024-01-15 14:20",
+        "2024-01-15 14:20",
+        "2024-01-16 08:45"
+      ]
+    },
+    "Linea": {
+      "data_type": "int64",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 2,
+      "sample_values": [
+        1,
+        2,
+        1,
+        2,
+        1
+      ]
+    },
+    "CuentaGL": {
+      "data_type": "int64",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 10,
+      "sample_values": [
+        430001,
+        113001,
+        620001,
+        113001,
+        113001
+      ]
+    },
+    "Monto": {
+      "data_type": "float64",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 10,
+      "sample_values": [
+        1250.0,
+        1250.0,
+        2100.0,
+        2100.0,
+        3500.0
+      ]
+    },
+    "Tipo": {
+      "data_type": "object",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 2,
+      "sample_values": [
+        "D",
+        "H",
+        "D",
+        "H",
+        "D"
+      ]
+    },
+    "Comentario": {
+      "data_type": "object",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 10,
+      "sample_values": [
+        "Adquisicion material",
+        "Adquisicion material",
+        "Campana publicidad",
+        "Campana publicidad",
+        "Pago cliente ABC"
+      ]
+    },
+    "Empresa": {
+      "data_type": "object",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 1,
+      "sample_values": [
+        "EMP01",
+        "EMP01",
+        "EMP01",
+        "EMP01",
+        "EMP01"
+      ]
+    },
+    "Ejercicio": {
+      "data_type": "int64",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 1,
+      "sample_values": [
+        2024,
+        2024,
+        2024,
+        2024,
+        2024
+      ]
+    },
+    "Divisa": {
+      "data_type": "object",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 1,
+      "sample_values": [
+        "EUR",
+        "EUR",
+        "EUR",
+        "EUR",
+        "EUR"
+      ]
+    },
+    "Estado": {
+      "data_type": "object",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 1,
+      "sample_values": [
+        "P",
+        "P",
+        "P",
+        "P",
+        "P"
+      ]
+    },
+    "Operador": {
+      "data_type": "object",
+      "non_null_count": 20,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "unique_values": 6,
+      "sample_values": [
+        "OP001",
+        "OP001",
+        "OP002",
+        "OP002",
+        "OP003"
+      ]
+    }
+  },
+  "mapping_statistics": {
+    "total_columns": 13,
+    "successfully_mapped": 12,
+    "rejected_mappings": 1,
+    "mapping_rate_percent": 92.3076923076923
+  },
+  "field_type_analysis": {
+    "journal_id": {
+      "count": 1,
+      "columns": [
+        "As"
+      ],
+      "avg_confidence": 0.6
+    },
+    "effective_date": {
+      "count": 1,
+      "columns": [
+        "FechaTrans"
+      ],
+      "avg_confidence": 0.6
+    },
+    "entered_date": {
+      "count": 1,
+      "columns": [
+        "FechaReg"
+      ],
+      "avg_confidence": 1.35
+    },
+    "journal_id_line_number": {
+      "count": 1,
+      "columns": [
+        "Linea"
+      ],
+      "avg_confidence": 1.65
+    },
+    "gl_account_number": {
+      "count": 1,
+      "columns": [
+        "CuentaGL"
+      ],
+      "avg_confidence": 0.6
+    },
+    "amount": {
+      "count": 1,
+      "columns": [
+        "Monto"
+      ],
+      "avg_confidence": 1.75
+    },
+    "document_type": {
+      "count": 1,
+      "columns": [
+        "Tipo"
+      ],
+      "avg_confidence": 1.35
+    },
+    "company_code": {
+      "count": 1,
+      "columns": [
+        "Empresa"
+      ],
+      "avg_confidence": 1.75
+    },
+    "fiscal_year": {
+      "count": 1,
+      "columns": [
+        "Ejercicio"
+      ],
+      "avg_confidence": 1.85
+    },
+    "amount_currency": {
+      "count": 1,
+      "columns": [
+        "Divisa"
+      ],
+      "avg_confidence": 1.75
+    },
+    "reversal_indicator": {
+      "count": 1,
+      "columns": [
+        "Estado"
+      ],
+      "avg_confidence": 1.05
+    },
+    "je_header_description": {
+      "count": 1,
+      "columns": [
+        "Comentario"
+      ],
+      "avg_confidence": 1.0
+    }
+  },
+  "csv_transformation": {
+    "mapped_csv_path": "results\\mapped_csvs\\ejemplo_generico_09_mapped_20250717_102608.csv",
+    "total_columns": 13,
+    "mapped_columns": 12,
+    "unmapped_columns": 1,
+    "column_mappings": {
+      "As": "journal_id",
+      "FechaTrans": "effective_date",
+      "FechaReg": "entered_date",
+      "Linea": "journal_id_line_number",
+      "CuentaGL": "gl_account_number",
+      "Monto": "amount",
+      "Tipo": "document_type",
+      "Empresa": "company_code",
+      "Ejercicio": "fiscal_year",
+      "Divisa": "amount_currency",
+      "Estado": "reversal_indicator",
+      "Comentario": "je_header_description"
+    },
+    "unmapped_column_list": [
+      "Operador"
+    ],
+    "rows_count": 20
+  },
+  "training_session_summary": {
+    "confirmed_mappings": 11,
+    "new_mappings": 1,
+    "corrected_mappings": 0,
+    "rejected_mappings": 1
+  }
+}

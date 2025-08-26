@@ -1,0 +1,80 @@
+# Archivos de Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Entornos virtuales
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Archivos de Spyder
+.spyderproject
+.spyproject
+
+# Archivos de logs
+logs/
+*.log
+
+# Archivos temporales
+temp/
+tmp/
+*.tmp
+*.bak
+*.swp
+*.swo
+*~
+
+# Datos sensibles
+data/confidential/
+data/private/
+*.csv.backup
+*.xlsx.backup
+
+# Backups automáticos
+backups/
+*.backup
+
+# Archivos de configuración local
+config/local_*.yaml
+config/local_*.yml
+config/local_*.json
+
+# Reportes generados
+reports/
+*.pdf
+*.html
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+*.lnk
+
+# Archivos de IDE
+.vscode/
+.idea/
+*.iml
+
+# Archivos de prueba
+test_output/
+test_data/
