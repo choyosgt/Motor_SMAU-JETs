@@ -561,6 +561,12 @@ field_definitions:
           language: es
           name: IndicadorDH
         - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.6
+          deprecated: false
+          description: Synonym for Indicador Debe/Haber
+          language: es
+          name: Tipo
+        - added_at: '2025-07-16T16:11:07.454967'
           confidence_boost: 0.8
           deprecated: false
           description: Synonym for Indicador Debe/Haber
