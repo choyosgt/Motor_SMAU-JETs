@@ -10,6 +10,7 @@ import logging
 from typing import Dict, List, Optional, Tuple, Any
 from datetime import datetime
 import yaml
+import numpy as np
 
 # Importar módulos reutilizables
 from accounting_data_processor import AccountingDataProcessor
@@ -54,6 +55,7 @@ class AutomaticConfirmationTrainingSession:
             'automatic_mappings': 0,
             'conflicts_resolved': 0,
             'amount_conflicts_resolved': 0,
+            'journal_id_balance_resolutions': 0,
             'high_confidence_mappings': 0,
             'low_confidence_mappings': 0,
             'rejected_low_confidence': 0,
@@ -296,6 +298,9 @@ class AutomaticConfirmationTrainingSession:
                 }
                 
                 self.training_stats['conflicts_resolved'] += 1
+                if field_type == 'journal_entry_id' and resolution_type == 'journal_id_balance_tested':
+                    self.training_stats['journal_id_balance_resolutions'] += 1
+
                 if field_type == 'amount':
                     self.training_stats['amount_conflicts_resolved'] += 1
         
@@ -306,6 +311,12 @@ class AutomaticConfirmationTrainingSession:
         print(f"   Resolving conflict for '{field_type}':")
         for col, conf in candidates:
             print(f"     - {col}: {conf:.3f}")
+        # NUEVA REGLA ESPECIAL para 'journal_entry_id': usar balance testing
+        if field_type == 'journal_entry_id':
+            balance_result = self._resolve_journal_entry_id_conflict_with_balance(candidates)
+            if balance_result:
+                print(f"    JOURNAL_ID BALANCE RULE: '{balance_result[0]}' selected (balance rate: {balance_result[3]*100:.1f}%)")
+                return balance_result[:3]  # column, confidence, resolution_type
         
         # REGLA ESPECIAL para 'amount': priorizar columnas 'local'
         if field_type == 'amount':
@@ -320,6 +331,111 @@ class AutomaticConfirmationTrainingSession:
         
         print(f"    GENERAL RULE: '{winner_column}' has highest confidence ({winner_confidence:.3f})")
         return (winner_column, winner_confidence, 'highest_confidence')
+    
+    def _resolve_journal_entry_id_conflict_with_balance(self, candidates: List[Tuple[str, float]]) -> Optional[Tuple[str, float, str, float]]:
+        """
+        Resuelve conflictos de journal_entry_id usando balance testing.
+        
+        Returns:
+            Tuple[column, confidence, resolution_type, balance_rate] o None
+        """
+        print(f"    JOURNAL_ID BALANCE TESTING: Testing {len(candidates)} candidates...")
+        
+        # Verificar que tenemos campos de balance
+        has_balance_fields = ('debit_amount' in self.df.columns and 'credit_amount' in self.df.columns)
+        
+        if not has_balance_fields:
+            print(f"    ⚠️ No balance fields found - using confidence rule")
+            return None
+        
+        # Extraer nombres de columnas
+        candidate_columns = [col for col, conf in candidates]
+        
+        try:
+            # Ejecutar balance testing
+            balance_results = {}
+            
+            for column_name in candidate_columns:
+                balance_score = self._test_journal_id_candidate_balance(column_name)
+                balance_results[column_name] = balance_score
+                print(f"      {column_name}: balance rate = {balance_score*100:.1f}%")
+            
+            # Encontrar el mejor candidato por balance
+            best_column = max(balance_results.keys(), key=lambda x: balance_results[x])
+            best_balance_rate = balance_results[best_column]
+            
+            # Buscar la confianza original del mejor candidato
+            best_original_confidence = next(conf for col, conf in candidates if col == best_column)
+            
+            # Solo usar balance testing si hay una diferencia significativa
+            if best_balance_rate > 0.6:  # Al menos 60% de asientos balanceados
+                return (best_column, best_original_confidence, 'journal_id_balance_tested', best_balance_rate)
+            else:
+                print(f"    ⚠️ No candidate had good balance rate (best: {best_balance_rate*100:.1f}%) - using confidence")
+                return None
+                
+        except Exception as e:
+            print(f"    ⚠️ Balance testing failed: {e} - using confidence rule")
+            return None
+
+    def _test_journal_id_candidate_balance(self, candidate_column: str, sample_size: int = 3, min_entries_per_sample: int = 2) -> float:
+        """
+        Prueba un candidato individual para journal_entry_id usando balance de asientos.
+        
+        Args:
+            candidate_column: Columna candidata a probar
+            sample_size: Número de asientos únicos a probar
+            min_entries_per_sample: Mínimo líneas por asiento
+            
+        Returns:
+            float: Tasa de balance (0.0 a 1.0)
+        """
+        try:
+            # Obtener valores únicos del candidato
+            unique_entries = self.df[candidate_column].dropna().unique()
+            
+            if len(unique_entries) == 0:
+                return 0.0
+            
+            # Tomar muestra si hay muchos valores
+            if len(unique_entries) > sample_size:
+                import numpy as np
+                np.random.seed(42)  # Para reproducibilidad
+                sample_entries = np.random.choice(unique_entries, size=sample_size, replace=False)
+            else:
+                sample_entries = unique_entries
+            
+            balanced_count = 0
+            valid_entries_tested = 0
+            
+            # Probar cada asiento en la muestra
+            for entry_id in sample_entries:
+                entry_lines = self.df[self.df[candidate_column] == entry_id]
+                
+                # Verificar suficientes líneas
+                if len(entry_lines) < min_entries_per_sample:
+                    continue
+                    
+                # Calcular balance
+                total_debit = entry_lines['debit_amount'].sum()
+                total_credit = entry_lines['credit_amount'].sum()
+                balance_difference = abs(total_debit - total_credit)
+                
+                valid_entries_tested += 1
+                
+                # Considerar balanceado si diferencia < 0.01
+                if balance_difference < 0.01:
+                    balanced_count += 1
+            
+            if valid_entries_tested == 0:
+                return 0.0
+            
+            balanced_rate = balanced_count / valid_entries_tested
+            return balanced_rate
+            
+        except Exception as e:
+            print(f"    Error testing {candidate_column}: {e}")
+            return 0.0
     
     def _apply_confidence_filter(self, mappings: Dict) -> Dict:
         """Aplica filtro de confianza mínima"""

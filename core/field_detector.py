@@ -3,7 +3,7 @@
 import pandas as pd
 import time
 import logging
-from typing import Dict, List, Optional, Tuple, Any
+from typing import Dict, List, Optional
 from collections import defaultdict
 import re
 
@@ -81,7 +81,6 @@ class EnhancedFieldDetector:
             'automatic_corrections': 0,
             'erp_auto_detections': 0,
             'confidence_improvements': 0,
-            'journal_id_conflicts_resolved': 0
         }
         
         # Registro de correcciones automáticas
@@ -189,30 +188,6 @@ class EnhancedFieldDetector:
             
             # Calcular métricas de calidad
             quality_metrics = self._calculate_quality_metrics(candidates, df)
-            print(f"\n🔍 Checking for journal_entry_id conflicts...")
-
-            original_journal_candidates = len(candidates.get('journal_entry_id', []))
-
-            if original_journal_candidates > 1:
-                print(f"   Found {original_journal_candidates} journal_entry_id candidates - resolving...")
-                candidates = self._resolve_journal_entry_id_conflicts(candidates, df)
-                
-                final_journal_candidates = len(candidates.get('journal_entry_id', []))
-                if final_journal_candidates < original_journal_candidates:
-                    print(f"   ✅ Conflict resolved: {original_journal_candidates} → {final_journal_candidates} candidates")
-                else:
-                    print(f"   ⚠️ Conflict remains: keeping {final_journal_candidates} candidates")
-                
-                # Recalcular quality_metrics después de resolución
-                quality_metrics = self._calculate_quality_metrics(candidates, df)
-                
-                quality_metrics['journal_id_conflict_resolution'] = {
-                    'original_candidates': original_journal_candidates,
-                    'final_candidates': len(candidates.get('journal_entry_id', [])),
-                    'conflict_resolved': original_journal_candidates > 1 and len(candidates.get('journal_entry_id', [])) <= 1
-                }
-            else:
-                print(f"   No journal_entry_id conflicts detected")
 
             detection_time = time.time() - start_time
             self.detection_stats['successful_detections'] += 1
@@ -553,139 +528,7 @@ class EnhancedFieldDetector:
             return True
         except:
             return False
-    def _resolve_journal_entry_id_conflicts(self, candidates, df):
-        """Resuelve conflictos de journal_entry_id usando balance testing"""
-        journal_id_candidates = candidates.get('journal_entry_id', [])
-        
-        if len(journal_id_candidates) <= 1:
-            return candidates
-        
-        print(f"\n🎯 RESOLVING journal_entry_id CONFLICT")
-        print(f"   Found {len(journal_id_candidates)} candidates")
-        
-        has_balance_fields = ('debit_amount' in df.columns and 'credit_amount' in df.columns)
-        
-        if not has_balance_fields:
-            print(f"   ⚠️ No balance fields found - keeping original candidates")
-            return candidates
-        
-        candidate_columns = [c['column_name'] for c in journal_id_candidates]
-        print(f"   Testing candidates: {candidate_columns}")
-        
-        try:
-            balance_result = self._test_journal_id_candidates_balance(df, candidate_columns)
-            
-            if balance_result['success']:
-                winning_column = balance_result['selected_candidate']
-                winner_balance_rate = balance_result.get('confidence', 0.0)
-                
-                print(f"   ✅ Winner: '{winning_column}' (balance rate: {winner_balance_rate*100:.1f}%)")
-                
-                updated_candidates = []
-                for candidate in journal_id_candidates:
-                    if candidate['column_name'] == winning_column:
-                        updated_candidate = candidate.copy()
-                        updated_candidate['confidence'] = min(1.0, candidate['confidence'] + 0.2)
-                        updated_candidate['source'] += '+balance_validated'
-                        updated_candidates.append(updated_candidate)
-                        
-                        self.detection_stats['journal_id_conflicts_resolved'] += 1
-                        
-                    elif candidate['confidence'] > 0.6:
-                        updated_candidate = candidate.copy()
-                        updated_candidate['confidence'] = max(0.3, candidate['confidence'] - 0.3)
-                        updated_candidate['source'] += '+balance_rejected'
-                        updated_candidates.append(updated_candidate)
-                
-                candidates['journal_entry_id'] = updated_candidates
-                
-            else:
-                print(f"   ❌ Balance testing failed: {balance_result.get('error', 'Unknown error')}")
-                
-        except Exception as e:
-            print(f"   ⚠️ Balance testing error - keeping original candidates")
-        
-        return candidates
 
-    def _test_journal_id_candidates_balance(self, df, candidate_columns, sample_size=10, min_entries_per_sample=2):
-        """Prueba candidatos usando balance de asientos"""
-        if not candidate_columns:
-            return {'success': False, 'error': 'No candidates provided', 'selected_candidate': None}
-        
-        results = {}
-        
-        for candidate in candidate_columns:
-            if candidate not in df.columns:
-                continue
-                
-            try:
-                result = self._test_single_candidate_balance(df, candidate, sample_size, min_entries_per_sample)
-                results[candidate] = result
-            except Exception as e:
-                results[candidate] = {'valid': False, 'reason': f'Error: {str(e)}', 'balanced_rate': 0.0}
-        
-        valid_results = {k: v for k, v in results.items() if v.get('valid', False)}
-        
-        if not valid_results:
-            return {'success': False, 'error': 'No valid candidates found', 'selected_candidate': None, 'all_results': results}
-        
-        best_candidate = max(valid_results.keys(), key=lambda x: valid_results[x]['balanced_rate'])
-        
-        return {
-            'success': True,
-            'selected_candidate': best_candidate,
-            'confidence': valid_results[best_candidate]['balanced_rate'],
-            'all_results': results
-        }
-
-    def _test_single_candidate_balance(self, df, candidate_column, sample_size, min_entries_per_sample):
-        """Prueba un candidato individual usando balance"""
-        try:
-            unique_entries = df[candidate_column].dropna().unique()
-            
-            if len(unique_entries) == 0:
-                return {'valid': False, 'reason': 'No unique values found', 'balanced_rate': 0.0}
-            
-            if len(unique_entries) > sample_size:
-                import numpy as np
-                np.random.seed(42)
-                sample_entries = np.random.choice(unique_entries, size=sample_size, replace=False)
-            else:
-                sample_entries = unique_entries
-            
-            balanced_count = 0
-            valid_entries_tested = 0
-            
-            for entry_id in sample_entries:
-                entry_lines = df[df[candidate_column] == entry_id]
-                
-                if len(entry_lines) < min_entries_per_sample:
-                    continue
-                    
-                total_debit = entry_lines['debit_amount'].sum()
-                total_credit = entry_lines['credit_amount'].sum()
-                balance_difference = abs(total_debit - total_credit)
-                
-                valid_entries_tested += 1
-                
-                if balance_difference < 0.01:
-                    balanced_count += 1
-            
-            if valid_entries_tested == 0:
-                return {'valid': False, 'reason': f'No entries with {min_entries_per_sample}+ lines found', 'balanced_rate': 0.0}
-            
-            balanced_rate = balanced_count / valid_entries_tested
-            
-            return {
-                'valid': True,
-                'balanced_entries': balanced_count,
-                'total_entries': valid_entries_tested,
-                'balanced_rate': balanced_rate,
-                'unique_values_count': len(unique_entries)
-            }
-            
-        except Exception as e:
-            return {'valid': False, 'reason': f'Error during testing: {str(e)}', 'balanced_rate': 0.0}
 
     def auto_detect_erp(self, df: pd.DataFrame) -> Optional[str]:
         """Auto-detecta el sistema ERP basado en nombres de columnas"""
