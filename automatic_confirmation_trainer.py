@@ -16,6 +16,7 @@ from accounting_data_processor import AccountingDataProcessor
 from balance_validator import BalanceValidator
 from csv_transformer import CSVTransformer
 from training_reporter import TrainingReporter
+from config.custom_field_validators import check_single_date_same_year_pattern
 
 # Importar módulos existentes del core
 try:
@@ -124,7 +125,41 @@ class AutomaticConfirmationTrainingSession:
         except Exception as e:
             print(f"Could not load learned patterns: {e}")
             self.learned_patterns = {}
-    
+
+    def _apply_additional_validations(self):
+        """Aplica validaciones adicionales después del mapeo automático"""
+        try:
+
+            
+            # Aplicar validación de patrón de fechas del mismo año
+            print("📅 Checking single date same year pattern...")
+            original_decisions = self.user_decisions.copy()
+            
+            # Aplicar la validación
+            self.user_decisions = check_single_date_same_year_pattern(
+                self.user_decisions, 
+                self.df
+            )
+            
+            # Contar si hubo cambios
+            changes_count = 0
+            for column_name, decision in self.user_decisions.items():
+                original_decision = original_decisions.get(column_name, {})
+                if decision.get('field_type') != original_decision.get('field_type'):
+                    changes_count += 1
+                    print(f"   ✅ Updated: {column_name} -> {decision['field_type']}")
+            
+            if changes_count == 0:
+                print("   ℹ️ No date pattern changes needed")
+            else:
+                print(f"   🔄 Applied {changes_count} date pattern updates")
+                self.training_stats['date_pattern_updates'] = changes_count
+                
+        except Exception as e:
+            print(f"   ⚠️ Error applying additional validations: {e}")
+            # No fallar el proceso completo por esto
+            pass
+        
     def run_automatic_training(self) -> Dict:
         """Ejecuta el entrenamiento automático SIN confirmación manual"""
         try:
@@ -151,6 +186,9 @@ class AutomaticConfirmationTrainingSession:
             
             # 4. Actualizar decisiones de usuario
             self._update_user_decisions_from_mappings(filtered_mappings)
+
+            # 4.5. APLICAR VALIDACIONES ADICIONALES DE FECHAS
+            self._apply_additional_validations()
             
             # 5. Finalizar entrenamiento y generar outputs
             result = self._finalize_automatic_training()
