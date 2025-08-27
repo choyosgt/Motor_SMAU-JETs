@@ -313,10 +313,12 @@ class AutomaticConfirmationTrainingSession:
             print(f"     - {col}: {conf:.3f}")
         # NUEVA REGLA ESPECIAL para 'journal_entry_id': usar balance testing
         if field_type == 'journal_entry_id':
-            balance_result = self._resolve_journal_entry_id_conflict_with_balance(candidates)
-            if balance_result:
-                print(f"    JOURNAL_ID BALANCE RULE: '{balance_result[0]}' selected (balance rate: {balance_result[3]*100:.1f}%)")
-                return balance_result[:3]  # column, confidence, resolution_type
+            balance_fields = self._identify_balance_fields()
+            if balance_fields['found']:
+                balance_result = self._resolve_journal_entry_id_with_balance(candidates, balance_fields)
+                if balance_result:
+                    print(f"    JOURNAL_ID BALANCE RULE: '{balance_result[0]}' selected (balance rate: {balance_result[3]*100:.1f}%)")
+                    return balance_result[:3]  # column, confidence, resolution_type
         
         # REGLA ESPECIAL para 'amount': priorizar columnas 'local'
         if field_type == 'amount':
@@ -332,52 +334,202 @@ class AutomaticConfirmationTrainingSession:
         print(f"    GENERAL RULE: '{winner_column}' has highest confidence ({winner_confidence:.3f})")
         return (winner_column, winner_confidence, 'highest_confidence')
     
-    def _resolve_journal_entry_id_conflict_with_balance(self, candidates: List[Tuple[str, float]]) -> Optional[Tuple[str, float, str, float]]:
-        """
-        Resuelve conflictos de journal_entry_id usando balance testing.
+    def _identify_balance_fields(self) -> Dict[str, Any]:
+        """Identifica campos de balance usando resultados de mapeo existentes"""
+        print(f"    Identifying balance fields...")
         
-        Returns:
-            Tuple[column, confidence, resolution_type, balance_rate] o None
-        """
-        print(f"    JOURNAL_ID BALANCE TESTING: Testing {len(candidates)} candidates...")
+        # Buscar en los mapeos ya realizados durante field detection
+        amount_column = None
+        debit_column = None  
+        credit_column = None
         
-        # Verificar que tenemos campos de balance
-        has_balance_fields = ('debit_amount' in self.df.columns and 'credit_amount' in self.df.columns)
+        # Revisar los mapeos que ya se hicieron en field_analysis['mappings']
+        # Los resultados ya están en self, necesitamos acceder a ellos
         
-        if not has_balance_fields:
-            print(f"    ⚠️ No balance fields found - using confidence rule")
-            return None
+        # Buscar entre las columnas ya procesadas cuáles fueron mapeadas a balance
+        for column in self.df.columns:
+            # Hacer una consulta rápida sin procesar de nuevo
+            sample_data = self.df[column].dropna().head(5)
+            
+            # Solo verificar si contiene palabras clave para evitar remapear
+            col_lower = column.lower()
+            
+            # Buscar amount
+            if not amount_column and ('importe' in col_lower and 'debe' not in col_lower and 'haber' not in col_lower):
+                amount_column = column
+                print(f"      Found amount: '{column}'")
+                
+            # Buscar debit
+            elif not debit_column and ('debe' in col_lower or 'debit' in col_lower):
+                debit_column = column 
+                print(f"      Found debit: '{column}'")
+                
+            # Buscar credit  
+            elif not credit_column and ('haber' in col_lower or 'credit' in col_lower):
+                credit_column = column
+                print(f"      Found credit: '{column}'")
         
-        # Extraer nombres de columnas
+        # Determinar tipo de balance
+        has_debit_credit = debit_column and credit_column
+        has_amount_only = amount_column and not has_debit_credit
+        
+        if has_debit_credit:
+            balance_type = 'debit_credit'
+        elif has_amount_only:
+            balance_type = 'amount_only'
+        else:
+            balance_type = 'none'
+        
+        print(f"      Balance type: {balance_type}")
+        
+        return {
+            'found': has_debit_credit or has_amount_only,
+            'balance_type': balance_type,
+            'amount_column': amount_column,
+            'debit_column': debit_column,
+            'credit_column': credit_column
+        }
+
+    def _resolve_journal_entry_id_with_balance(self, candidates: List[Tuple[str, float]], 
+                                            balance_fields: Dict[str, Any]) -> Optional[Tuple[str, float, str, float]]:
+        """Resuelve conflictos de journal_entry_id usando balance testing"""
+        print(f"    BALANCE TESTING: Testing {len(candidates)} candidates...")
+        
         candidate_columns = [col for col, conf in candidates]
+        balance_results = {}
         
         try:
-            # Ejecutar balance testing
-            balance_results = {}
-            
             for column_name in candidate_columns:
-                balance_score = self._test_journal_id_candidate_balance(column_name)
+                if balance_fields['balance_type'] == 'debit_credit':
+                    balance_score = self._test_with_debit_credit(
+                        column_name, balance_fields['debit_column'], balance_fields['credit_column']
+                    )
+                elif balance_fields['balance_type'] == 'amount_only':
+                    balance_score = self._test_with_amount_only(
+                        column_name, balance_fields['amount_column']
+                    )
+                else:
+                    balance_score = 0.0
+                
                 balance_results[column_name] = balance_score
-                print(f"      {column_name}: balance rate = {balance_score*100:.1f}%")
+                print(f"      {column_name}: {balance_score*100:.1f}%")
             
-            # Encontrar el mejor candidato por balance
+            if not balance_results or max(balance_results.values()) == 0:
+                return None
+                
             best_column = max(balance_results.keys(), key=lambda x: balance_results[x])
             best_balance_rate = balance_results[best_column]
-            
-            # Buscar la confianza original del mejor candidato
             best_original_confidence = next(conf for col, conf in candidates if col == best_column)
             
-            # Solo usar balance testing si hay una diferencia significativa
-            if best_balance_rate > 0.6:  # Al menos 60% de asientos balanceados
+            if best_balance_rate > 0.6:
                 return (best_column, best_original_confidence, 'journal_id_balance_tested', best_balance_rate)
             else:
-                print(f"    ⚠️ No candidate had good balance rate (best: {best_balance_rate*100:.1f}%) - using confidence")
                 return None
                 
         except Exception as e:
-            print(f"    ⚠️ Balance testing failed: {e} - using confidence rule")
-            return None
+            print(f"    ⚠️ Balance testing error: {e}")
+            return None    
 
+    def _test_with_debit_credit(self, candidate_column: str, debit_column: str, credit_column: str) -> float:
+        """Prueba candidato usando campos debit/credit"""
+        try:
+            unique_entries = self.df[candidate_column].dropna().unique()
+            if len(unique_entries) == 0:
+                return 0.0
+            
+            # Tomar muestra
+            sample_size = min(20, len(unique_entries))
+            if len(unique_entries) > sample_size:
+                import numpy as np
+                np.random.seed(42)
+                sample_entries = np.random.choice(unique_entries, size=sample_size, replace=False)
+            else:
+                sample_entries = unique_entries
+            
+            balanced_count = 0
+            valid_entries = 0
+            
+            for entry_id in sample_entries:
+                entry_lines = self.df[self.df[candidate_column] == entry_id]
+                
+                if len(entry_lines) < 2:
+                    continue
+                    
+                total_debit = self._sum_column(entry_lines[debit_column])
+                total_credit = self._sum_column(entry_lines[credit_column])
+                difference = abs(total_debit - total_credit)
+                
+                valid_entries += 1
+                
+                if difference < max(0.01, max(total_debit, total_credit) * 0.01):
+                    balanced_count += 1
+            
+            return balanced_count / valid_entries if valid_entries > 0 else 0.0
+            
+        except Exception as e:
+            return 0.0
+
+    
+    def _test_with_amount_only(self, candidate_column: str, amount_column: str) -> float:
+        """Prueba candidato usando solo campo amount"""
+        try:
+            unique_entries = self.df[candidate_column].dropna().unique()
+            if len(unique_entries) == 0:
+                return 0.0
+            
+            # Tomar muestra
+            sample_size = min(3, len(unique_entries))
+            if len(unique_entries) > sample_size:
+                import numpy as np
+                np.random.seed(42)
+                sample_entries = np.random.choice(unique_entries, size=sample_size, replace=False)
+            else:
+                sample_entries = unique_entries
+            
+            balanced_count = 0
+            valid_entries = 0
+            
+            for entry_id in sample_entries:
+                entry_lines = self.df[self.df[candidate_column] == entry_id]
+                
+                if len(entry_lines) < 2:
+                    continue
+                    
+                total_amount = self._sum_column(entry_lines[amount_column])
+                valid_entries += 1
+                
+                if abs(total_amount) < 0.01:
+                    balanced_count += 1
+            
+            return balanced_count / valid_entries if valid_entries > 0 else 0.0
+            
+        except Exception as e:
+            return 0.0
+
+    
+    def _sum_column(self, series) -> float:
+        """Suma valores numéricos de una serie"""
+        total = 0.0
+        
+        for value in series.dropna():
+            try:
+                if isinstance(value, (int, float)):
+                    total += float(value)
+                    continue
+                    
+                clean_value = str(value).strip().replace(',', '.').replace(' ', '')
+                clean_value = clean_value.replace('€', '').replace('$', '').replace('£', '')
+                
+                if clean_value.startswith('(') and clean_value.endswith(')'):
+                    clean_value = '-' + clean_value[1:-1]
+                
+                if clean_value and clean_value not in ['', '-', 'nan']:
+                    total += float(clean_value)
+                    
+            except (ValueError, TypeError):
+                continue
+        
+        return total
     def _test_journal_id_candidate_balance(self, candidate_column: str, sample_size: int = 3, min_entries_per_sample: int = 2) -> float:
         """
         Prueba un candidato individual para journal_entry_id usando balance de asientos.
