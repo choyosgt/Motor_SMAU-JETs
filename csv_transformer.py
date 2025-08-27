@@ -125,6 +125,12 @@ class IntegratedCSVTransformer:
                 transformed_df, numeric_stats = self._apply_numeric_processing(transformed_df)
                 self.transformation_stats['numeric_processing_applied'] = True
                 self.transformation_stats['numeric_fields_processed'] = numeric_stats.get('fields_cleaned', 0)
+            # 2.5. *** SEPARACIÓN DE CAMPOS DATETIME ***
+            print(f"\n📅 SEPARATING DATETIME FIELDS")
+            print(f"-" * 40)
+
+            # Usar el AccountingDataProcessor para separar campos datetime
+            transformed_df = self.accounting_processor.separate_datetime_fields(transformed_df)
             
             # 3. Ordenar por journal_entry_id si existe y está habilitado
             if self.sort_by_journal_id and 'journal_entry_id' in transformed_df.columns:

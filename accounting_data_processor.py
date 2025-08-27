@@ -20,7 +20,291 @@ class AccountingDataProcessor:
             'amount_signs_adjusted': 0,
             'fields_cleaned': 0
         }
-    
+    def separate_datetime_fields(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        Separa campos que contienen fecha y hora combinados en campos separados
+        Mantiene la lógica original con patrones de fecha expandidos
+        """
+        
+        # ========== SEPARAR CAMPOS DATETIME COMBINADOS ==========
+        try:
+            print("🔧 Checking for combined DateTime fields...")
+            
+            def separate_datetime_field(df, field_name):
+                """Separa un campo que contiene fecha y hora en dos campos separados - VERSIÓN COMPLETA"""
+                if field_name not in df.columns:
+                    return False
+                
+                sample_values = df[field_name].dropna().head(10)
+                if len(sample_values) == 0:
+                    return False
+                
+                # Verificar si contiene tanto fecha como hora
+                datetime_detected = False
+                pure_date_count = 0
+                pure_time_count = 0
+                
+                for value in sample_values:
+                    str_value = str(value).strip()
+                    
+                    # PRIMERO: Verificar si es una fecha pura sin componente de tiempo
+                    # PATRONES EXPANDIDOS COMO PIDIÓ EL USUARIO
+                    pure_date_patterns = [
+                        # Formatos DD.MM.YYYY
+                        r'^\d{1,2}\.\d{1,2}\.\d{4}$',
+                        r'^\d{2}\.\d{2}\.\d{4}$',
+                        
+                        # Formatos DD/MM/YYYY
+                        r'^\d{1,2}/\d{1,2}/\d{4}$',
+                        r'^\d{2}/\d{2}/\d{4}$',
+                        r'^\d{1,2}/\d{1,2}/\d{2}$',        # DD/MM/YY
+                        
+                        # Formatos DD-MM-YYYY
+                        r'^\d{1,2}-\d{1,2}-\d{4}$',
+                        r'^\d{2}-\d{2}-\d{4}$',
+                        r'^\d{1,2}-\d{1,2}-\d{2}$',        # DD-MM-YY
+                        
+                        # Formatos YYYY-MM-DD (ISO)
+                        r'^\d{4}-\d{1,2}-\d{1,2}$',
+                        r'^\d{4}-\d{2}-\d{2}$',
+                        
+                        # Formatos YYYY/MM/DD
+                        r'^\d{4}/\d{1,2}/\d{1,2}$',
+                        r'^\d{4}/\d{2}/\d{2}$',
+                        
+                        # Formatos YYYY.MM.DD
+                        r'^\d{4}\.\d{1,2}\.\d{1,2}$',
+                        r'^\d{4}\.\d{2}\.\d{2}$',
+                        
+                        # Formatos sin separadores
+                        r'^\d{8}$',                         # YYYYMMDD
+                        r'^\d{6}$',                         # DDMMYY o YYMMDD
+                        
+                        # Formatos con espacios
+                        r'^\d{1,2}\s+\d{1,2}\s+\d{4}$',    # DD MM YYYY
+                        r'^\d{4}\s+\d{1,2}\s+\d{1,2}$',    # YYYY MM DD
+                        
+                        # Formatos de fecha con texto de mes
+                        r'^\d{1,2}\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{4}$',     # DD MMM YYYY
+                        r'^\d{1,2}\s+(January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{4}$',  # DD Month YYYY
+                        r'^\d{4}\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{1,2}$',     # YYYY MMM DD
+                        
+                        # Formatos europeos
+                        r'^\d{1,2}\s+(Ene|Feb|Mar|Abr|May|Jun|Jul|Ago|Sep|Oct|Nov|Dec)\s+\d{4}$',     # DD MMM YYYY (español)
+                        r'^\d{1,2}\s+(Janeiro|Fevereiro|Marco|Abril|Maio|Junho|Julho|Agosto|Setembro|Outubro|Novembro|Dezembro)\s+\d{4}$',  # Portugués
+                    ]
+                    
+                    # SEGUNDO: Verificar si es tiempo puro
+                    # PATRONES EXPANDIDOS PARA TIEMPO
+                    pure_time_patterns = [
+                        r'^\d{1,2}:\d{2}:\d{2}$',           # HH:MM:SS
+                        r'^\d{1,2}:\d{2}$',                 # HH:MM
+                        r'^\d{1,2}:\d{2}:\d{2}\.\d+$',      # HH:MM:SS.microseconds
+                        r'^\d{1,2}:\d{2}:\d{2} (AM|PM)$',   # HH:MM:SS AM/PM
+                        r'^\d{1,2}:\d{2} (AM|PM)$',         # HH:MM AM/PM
+                        r'^\d{1,2}h\d{2}m\d{2}s$',          # HHhMMmSSs
+                        r'^\d{1,2}h\d{2}m$',                # HHhMMm
+                        r'^\d{1,2}h\d{2}$',                 # HH:MM (con h)
+                        r'^\d{6}$',                         # HHMMSS
+                        r'^\d{4}$',                         # HHMM
+                    ]
+                    
+                    # Si coincide con patrón de fecha pura, incrementar contador
+                    if any(re.match(pattern, str_value, re.IGNORECASE) for pattern in pure_date_patterns):
+                        pure_date_count += 1
+                        continue
+                    elif any(re.match(pattern, str_value, re.IGNORECASE) for pattern in pure_time_patterns):
+                        pure_time_count += 1
+                        continue
+                    
+                    # TERCERO: Solo si NO es fecha pura NI tiempo puro, verificar datetime combinado
+                    # PATRONES EXPANDIDOS PARA DATETIME COMBINADO
+                    combined_datetime_patterns = [
+                        # Formato estándar con espacio
+                        r'\d{4}-\d{1,2}-\d{1,2}\s+\d{1,2}:\d{2}',        # YYYY-MM-DD HH:MM
+                        r'\d{1,2}/\d{1,2}/\d{4}\s+\d{1,2}:\d{2}',        # DD/MM/YYYY HH:MM
+                        r'\d{1,2}-\d{1,2}-\d{4}\s+\d{1,2}:\d{2}',        # DD-MM-YYYY HH:MM
+                        r'\d{1,2}\.\d{1,2}\.\d{4}\s+\d{1,2}:\d{2}',      # DD.MM.YYYY HH:MM
+                        
+                        # Formato ISO con T
+                        r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}',                # ISO format
+                        r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}',          # ISO format con segundos
+                        r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d+Z?',   # ISO format con microsegundos
+                        
+                        # Con múltiples espacios
+                        r'\d{1,2}/\d{1,2}/\d{4}\s{2,}\d{1,2}:\d{2}',     # DD/MM/YYYY  HH:MM (espacios múltiples)
+                        r'\d{4}-\d{2}-\d{2}\s{2,}\d{1,2}:\d{2}',         # YYYY-MM-DD  HH:MM
+                        
+                        # Con AM/PM
+                        r'\d{1,2}/\d{1,2}/\d{4}\s+\d{1,2}:\d{2}\s*(AM|PM)',  # DD/MM/YYYY HH:MM AM/PM
+                        r'\d{4}-\d{2}-\d{2}\s+\d{1,2}:\d{2}\s*(AM|PM)',      # YYYY-MM-DD HH:MM AM/PM
+                        
+                        # Formato de base de datos
+                        r'\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+',     # YYYY-MM-DD HH:MM:SS.microseconds
+                        r'\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}',          # YYYY-MM-DD HH:MM:SS
+                        
+                        # Formatos europeos con texto
+                        r'\d{1,2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4} \d{1,2}:\d{2}',  # DD MMM YYYY HH:MM
+                        r'\d{4} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{1,2} \d{1,2}:\d{2}',  # YYYY MMM DD HH:MM
+                        
+                        # Otros separadores
+                        r'\d{1,2}_\d{1,2}_\d{4}_\d{1,2}:\d{2}',          # DD_MM_YYYY_HH:MM
+                        r'\d{4}_\d{2}_\d{2}_\d{2}:\d{2}',                # YYYY_MM_DD_HH:MM
+                    ]
+                    
+                    if any(re.search(pattern, str_value, re.IGNORECASE) for pattern in combined_datetime_patterns):
+                        datetime_detected = True
+                        break
+                
+                # Evaluar resultados
+                total_samples = len(sample_values)
+                if total_samples == 0:
+                    return False
+                    
+                pure_date_ratio = pure_date_count / total_samples
+                pure_time_ratio = pure_time_count / total_samples
+                
+                # Si la mayoría son fechas puras, NO separar
+                if pure_date_ratio >= 0.7:
+                    print(f"   ℹ️ Field '{field_name}' contains pure dates (format like DD.MM.YYYY), NOT separating")
+                    return False
+                # Si la mayoría son tiempos puros, NO separar  
+                elif pure_time_ratio >= 0.7:
+                    print(f"   ℹ️ Field '{field_name}' contains pure times (format like HH:MM:SS), NOT separating")
+                    return False
+                # Solo separar si realmente detectamos datetime combinado
+                elif not datetime_detected:
+                    print(f"   ℹ️ Field '{field_name}' does not contain combined date+time, NOT separating")
+                    return False
+                
+                print(f"   📅 Detected combined DateTime in '{field_name}', separating...")
+                
+                # Separar fecha y hora SOLO para valores que realmente son datetime combinados
+                dates = []
+                times = []
+                
+                for value in df[field_name]:
+                    if pd.isna(value) or value == '':
+                        dates.append('')
+                        times.append('')
+                        continue
+                    
+                    str_value = str(value).strip()
+                    
+                    # Verificar si este valor específico es fecha pura
+                    if any(re.match(pattern, str_value, re.IGNORECASE) for pattern in pure_date_patterns):
+                        dates.append(str_value)  # Mantener formato original
+                        times.append('')
+                        continue
+                    
+                    # Verificar si este valor específico es tiempo puro
+                    if any(re.match(pattern, str_value, re.IGNORECASE) for pattern in pure_time_patterns):
+                        dates.append('')  # No hay fecha
+                        times.append(str_value)  # Mantener formato original
+                        continue
+                    
+                    # Solo procesar como datetime combinado si realmente lo es
+                    has_space_and_colon = ' ' in str_value and ':' in str_value
+                    has_t_separator = 'T' in str_value and ':' in str_value
+                    
+                    if has_space_and_colon or has_t_separator:
+                        try:
+                            parsed_dt = pd.to_datetime(str_value, errors='raise')
+                            
+                            # Para fechas que SÍ tienen hora, convertir fecha a formato deseado
+                            # Mantener formato DD.MM.YYYY si era el formato original
+                            if '.' in str_value:
+                                date_str = parsed_dt.strftime('%d.%m.%Y')
+                            elif '/' in str_value:
+                                date_str = parsed_dt.strftime('%d/%m/%Y')
+                            elif '-' in str_value and str_value.startswith(str(parsed_dt.year)):
+                                date_str = parsed_dt.strftime('%Y-%m-%d')
+                            else:
+                                date_str = parsed_dt.strftime('%d.%m.%Y')  # Default a formato con puntos
+                            
+                            # Extraer hora en formato estándar HH:MM:SS
+                            time_str = parsed_dt.strftime('%H:%M:%S')
+                            
+                            dates.append(date_str)
+                            times.append(time_str)
+                            
+                        except:
+                            # Si no se puede parsear, mantener valor original en fecha y vacío en hora
+                            dates.append(str_value)
+                            times.append('')
+                    else:
+                        # No tiene formato combinado, mantener original
+                        dates.append(str_value)
+                        times.append('')
+                
+                # Determinar nombres de campos de destino
+                if field_name == 'entry_date':
+                    date_field = 'entry_date'
+                    time_field = 'entry_time'
+                elif field_name == 'entry_time':
+                    date_field = 'entry_date' 
+                    time_field = 'entry_time'
+                else:
+                    # Para otros campos, crear nombres derivados
+                    date_field = f"{field_name}_date"
+                    time_field = f"{field_name}_time"
+                
+                # Asignar los valores separados
+                df[date_field] = dates
+                
+                # Para entry_time, siempre reemplazar el campo original con solo la hora
+                if field_name in ['entry_time', 'entry_date']:
+                    if field_name == 'entry_time':
+                        # Reemplazar entry_time original con solo las horas
+                        df['entry_time'] = times
+                        print(f"   ✓ Replaced 'entry_time' with time-only values")
+                    elif field_name == 'entry_date':
+                        # Si entry_time no existe, crearlo; si existe y está vacío, llenarlo
+                        if 'entry_time' not in df.columns:
+                            df['entry_time'] = times
+                        elif df['entry_time'].isna().all() or (df['entry_time'].astype(str).str.strip() == '').all():
+                            df['entry_time'] = times
+                        else:
+                            # Si entry_time ya tiene datos válidos, no sobreescribir
+                            print(f"   ⚠️ entry_time already has data, keeping original")
+                else:
+                    # Para otros campos, crear nombres derivados
+                    if time_field not in df.columns or df[time_field].isna().all():
+                        df[time_field] = times
+                    else:
+                        # Si ya existe time_field y tiene datos, crear uno nuevo
+                        counter = 1
+                        new_time_field = f"{time_field}_{counter}"
+                        while new_time_field in df.columns:
+                            counter += 1
+                            new_time_field = f"{time_field}_{counter}"
+                        df[new_time_field] = times
+                        time_field = new_time_field
+                
+                print(f"   ✓ Separated into '{date_field}' and '{time_field}'")
+                print(f"     Sample dates: {dates[:3]}")
+                print(f"     Sample times: {times[:3]}")
+                
+                return True
+            
+            # Intentar separar entry_date si existe
+            if 'entry_date' in df.columns:
+                separate_datetime_field(df, 'entry_date')
+                
+            # Intentar separar entry_time si existe
+            if 'entry_time' in df.columns:
+                separate_datetime_field(df, 'entry_time')
+            
+            # También verificar posting_date por si acaso
+            if 'posting_date' in df.columns:
+                separate_datetime_field(df, 'posting_date')
+                
+        except Exception as e:
+            print(f"⚠️ Error processing DateTime fields: {e}")
+
+        print("✓ DateTime field separation completed")
+        return df
+
     def process_numeric_fields_and_calculate_amounts(self, df: pd.DataFrame) -> Tuple[pd.DataFrame, Dict]:
         """
         Función principal que procesa campos numéricos y calcula amounts según disponibilidad
