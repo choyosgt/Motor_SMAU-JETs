@@ -391,17 +391,120 @@ class FieldMapper:
         try:
             # Patrones de fecha más específicos - INCLUYE DD.MM.YYYY
             date_patterns = [
-                r'^\d{4}-\d{2}-\d{2}$',          # YYYY-MM-DD
-                r'^\d{2}/\d{2}/\d{4}$',          # DD/MM/YYYY
-                r'^\d{1,2}/\d{1,2}/\d{4}$',      # D/M/YYYY
-                r'^\d{4}/\d{2}/\d{2}$',          # YYYY/MM/DD
-                r'^\d{2}-\d{2}-\d{4}$',          # DD-MM-YYYY
-                r'^\d{1,2}-\d{1,2}-\d{4}$',      # D-M-YYYY
-                r'^\d{2}\.\d{2}\.\d{4}$',        # DD.MM.YYYY 
-                r'^\d{1,2}\.\d{1,2}\.\d{4}$',    # D.M.YYYY 
-                r'^\d{4}\.\d{2}\.\d{2}$',        # YYYY.MM.DD 
-                r'^\d{8}$',                      # YYYYMMDD
-            ]
+            # ========== FORMATOS BÁSICOS CON 4 DÍGITOS DE AÑO ==========
+            r'^\d{4}-\d{2}-\d{2}$',          # YYYY-MM-DD
+            r'^\d{4}-\d{1,2}-\d{1,2}$',      # YYYY-M-D
+            r'^\d{2}/\d{2}/\d{4}$',          # DD/MM/YYYY
+            r'^\d{1,2}/\d{1,2}/\d{4}$',      # D/M/YYYY
+            r'^\d{4}/\d{2}/\d{2}$',          # YYYY/MM/DD
+            r'^\d{4}/\d{1,2}/\d{1,2}$',      # YYYY/M/D
+            r'^\d{2}-\d{2}-\d{4}$',          # DD-MM-YYYY
+            r'^\d{1,2}-\d{1,2}-\d{4}$',      # D-M-YYYY
+            r'^\d{2}\.\d{2}\.\d{4}$',        # DD.MM.YYYY 
+            r'^\d{1,2}\.\d{1,2}\.\d{4}$',    # D.M.YYYY 
+            r'^\d{4}\.\d{2}\.\d{2}$',        # YYYY.MM.DD 
+            r'^\d{4}\.\d{1,2}\.\d{1,2}$',    # YYYY.M.D
+            r'^\d{8}$',                      # YYYYMMDD
+            
+            # ========== FORMATOS CON 2 DÍGITOS DE AÑO ==========
+            r'^\d{2}/\d{2}/\d{2}$',          # DD/MM/YY
+            r'^\d{1,2}/\d{1,2}/\d{2}$',      # D/M/YY
+            r'^\d{2}-\d{2}-\d{2}$',          # DD-MM-YY
+            r'^\d{1,2}-\d{1,2}-\d{2}$',      # D-M-YY
+            r'^\d{2}\.\d{2}\.\d{2}$',        # DD.MM.YY
+            r'^\d{1,2}\.\d{1,2}\.\d{2}$',    # D.M.YY
+            r'^\d{6}$',                      # DDMMYY o YYMMDD
+            
+            # ========== FORMATOS AMERICANOS ==========
+            r'^\d{1,2}/\d{1,2}/\d{4}$',      # M/D/YYYY (duplicado pero importante)
+            r'^\d{2}/\d{2}/\d{4}$',          # MM/DD/YYYY 
+            r'^\d{1,2}-\d{1,2}-\d{4}$',      # M-D-YYYY
+            r'^\d{2}-\d{2}-\d{4}$',          # MM-DD-YYYY
+            
+            # ========== FORMATOS CON NOMBRES DE MES (ABREVIADOS) ==========
+            r'^\d{1,2}[-\s]?(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[-\s]?\d{2,4}$',  # D-Jan-YYYY
+            r'^\d{1,2}[-\s]?(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[-\s]?\d{2,4}$',  # D-jan-yyyy
+            r'^\d{1,2}[-\s]?(JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)[-\s]?\d{2,4}$',  # D-JAN-YYYY
+            r'^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[-\s]?\d{1,2}[-\s]?\d{2,4}$',  # Jan-D-YYYY
+            r'^(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[-\s]?\d{1,2}[-\s]?\d{2,4}$',  # jan-d-yyyy
+            r'^(JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)[-\s]?\d{1,2}[-\s]?\d{2,4}$',  # JAN-D-YYYY
+            r'^\d{2,4}[-\s]?(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[-\s]?\d{1,2}$',  # YYYY-Jan-D
+            
+            # ========== FORMATOS CON NOMBRES DE MES (COMPLETOS) ==========
+            r'^\d{1,2}[-\s]?(January|February|March|April|May|June|July|August|September|October|November|December)[-\s]?\d{2,4}$',
+            r'^\d{1,2}[-\s]?(january|february|march|april|may|june|july|august|september|october|november|december)[-\s]?\d{2,4}$',
+            r'^(January|February|March|April|May|June|July|August|September|October|November|December)[-\s]?\d{1,2}[-\s]?\d{2,4}$',
+            r'^(january|february|march|april|may|june|july|august|september|october|november|december)[-\s]?\d{1,2}[-\s]?\d{2,4}$',
+            
+            # ========== FORMATOS EN ESPAÑOL ==========
+            r'^\d{1,2}[-\s]?(Ene|Feb|Mar|Abr|May|Jun|Jul|Ago|Sep|Oct|Nov|Dic)[-\s]?\d{2,4}$',  # D-Ene-YYYY
+            r'^\d{1,2}[-\s]?(ene|feb|mar|abr|may|jun|jul|ago|sep|oct|nov|dic)[-\s]?\d{2,4}$',  # D-ene-yyyy
+            r'^\d{1,2}[-\s]?(Enero|Febrero|Marzo|Abril|Mayo|Junio|Julio|Agosto|Septiembre|Octubre|Noviembre|Diciembre)[-\s]?\d{2,4}$',
+            r'^\d{1,2}[-\s]?(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)[-\s]?\d{2,4}$',
+            
+            # ========== FORMATOS CON TIEMPO INCLUIDO ==========
+            r'^\d{4}-\d{2}-\d{2}\s\d{1,2}:\d{2}$',                    # YYYY-MM-DD HH:MM
+            r'^\d{4}-\d{2}-\d{2}\s\d{1,2}:\d{2}:\d{2}$',              # YYYY-MM-DD HH:MM:SS
+            r'^\d{2}/\d{2}/\d{4}\s\d{1,2}:\d{2}$',                    # DD/MM/YYYY HH:MM
+            r'^\d{2}/\d{2}/\d{4}\s\d{1,2}:\d{2}:\d{2}$',              # DD/MM/YYYY HH:MM:SS
+            r'^\d{1,2}/\d{1,2}/\d{4}\s\d{1,2}:\d{2}(:\d{2})?$',       # D/M/YYYY HH:MM(:SS)?
+            r'^\d{2}\.\d{2}\.\d{4}\s\d{1,2}:\d{2}(:\d{2})?$',         # DD.MM.YYYY HH:MM(:SS)?
+            r'^\d{4}/\d{2}/\d{2}\s\d{1,2}:\d{2}(:\d{2})?$',           # YYYY/MM/DD HH:MM(:SS)?
+            
+            # ========== FORMATOS ISO Y TÉCNICOS ==========
+            r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$',                 # ISO 8601: YYYY-MM-DDTHH:MM:SS
+            r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$',                # ISO 8601 with Z
+            r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z?$',        # ISO 8601 con milisegundos
+            r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[+-]\d{2}:\d{2}$',  # ISO 8601 con timezone
+            
+            # ========== FORMATOS CON SEPARADORES ALTERNATIVOS ==========
+            r'^\d{1,2}\s\d{1,2}\s\d{2,4}$',           # D M YYYY (espacios)
+            r'^\d{2,4}\s\d{1,2}\s\d{1,2}$',           # YYYY M D (espacios)
+            r'^\d{1,2}_\d{1,2}_\d{2,4}$',             # D_M_YYYY (guiones bajos)
+            r'^\d{2,4}_\d{1,2}_\d{1,2}$',             # YYYY_M_D (guiones bajos)
+            r'^\d{1,2}\|\d{1,2}\|\d{2,4}$',           # D|M|YYYY (pipes)
+            r'^\d{2,4}\|\d{1,2}\|\d{1,2}$',           # YYYY|M|D (pipes)
+            
+            # ========== FORMATOS ESPECÍFICOS DE ERP ==========
+            r'^\d{4}\d{2}\d{2}$',                     # YYYYMMDD (SAP típico)
+            r'^\d{2}\d{2}\d{4}$',                     # DDMMYYYY
+            r'^\d{2}\d{2}\d{2}$',                     # DDMMYY
+            r'^\d{6}$',                               # YYMMDD o DDMMYY
+            r'^\d{4}-\d{3}$',                         # YYYY-DDD (día juliano)
+            r'^\d{2}/\d{4}$',                         # MM/YYYY (solo mes y año)
+            r'^\d{1,2}/\d{4}$',                       # M/YYYY
+            r'^\d{4}/\d{2}$',                         # YYYY/MM
+            r'^\d{4}/\d{1,2}$',                       # YYYY/M
+            r'^\d{4}-\d{2}$',                         # YYYY-MM
+            r'^\d{4}-\d{1,2}$',                       # YYYY-M
+            
+            # ========== FORMATOS DE TIMESTAMPS ==========
+            r'^\d{10}$',                              # Unix timestamp (10 dígitos)
+            r'^\d{13}$',                              # Unix timestamp milisegundos (13 dígitos)
+            r'^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+$',  # YYYY-MM-DD HH:MM:SS.microseconds
+            
+            # ========== FORMATOS REGIONALES ESPECÍFICOS ==========
+            # Alemán
+            r'^\d{1,2}\.\d{1,2}\.\d{4}$',             # D.M.YYYY (alemán)
+            r'^\d{2}\.\d{2}\.\d{2}$',                 # DD.MM.YY (alemán)
+            
+            # Francés  
+            r'^\d{1,2}/\d{1,2}/\d{4}$',               # D/M/YYYY (francés)
+            r'^\d{1,2}-\d{1,2}-\d{4}$',               # D-M-YYYY (francés)
+            
+            # Reino Unido
+            r'^\d{1,2}/\d{1,2}/\d{4}$',               # DD/MM/YYYY (UK)
+            r'^\d{1,2}-\d{1,2}-\d{4}$',               # DD-MM-YYYY (UK)
+            
+            # ========== FORMATOS POCO COMUNES PERO POSIBLES ==========
+            r'^\d{1,2}st|nd|rd|th\s\w+\s\d{4}$',      # 1st January 2024
+            r'^\w+\s\d{1,2}st|nd|rd|th,?\s\d{4}$',    # January 1st, 2024
+            r'^\w{3}\s\d{1,2},?\s\d{4}$',             # Jan 1, 2024
+            r'^\d{1,2}\s\w{3}\s\d{4}$',               # 1 Jan 2024
+            r'^\d{4}年\d{1,2}月\d{1,2}日$',             # Formato japonés: 2024年1月1日
+            r'^\d{4}.\d{1,2}.\d{1,2}$',               # YYYY.M.D (punto como separador genérico)
+            ]   
+
             
             date_like_count = 0
             total_checked = min(len(str_data), 20)  # Limitar la verificación
