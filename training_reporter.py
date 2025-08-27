@@ -10,6 +10,13 @@ logger = logging.getLogger(__name__)
 
 class TrainingReporter:
     """Generador reutilizable de reportes de entrenamiento"""
+    def _ensure_results_directory(self):
+        """Crea la carpeta results si no existe"""
+        results_dir = "results"
+        if not os.path.exists(results_dir):
+            os.makedirs(results_dir)
+            print(f"📁 Created directory: {results_dir}/")
+        return results_dir
     
     def __init__(self, report_prefix: str = "training_report"):
         """
@@ -18,6 +25,7 @@ class TrainingReporter:
         """
         self.report_prefix = report_prefix
         self.report_sections = []
+        self.results_dir = self._ensure_results_directory()
     
     def generate_comprehensive_training_report(
         self, 
@@ -43,8 +51,11 @@ class TrainingReporter:
             # Determinar archivo de salida
             if not output_file:
                 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-                output_file = f"{self.report_prefix}_{timestamp}.txt"
-            
+                output_file = os.path.join(self.results_dir, f"{self.report_prefix}_{timestamp}.txt")
+            else:
+                # Si se proporciona output_file, asegurar que vaya a results/
+                output_file = os.path.join(self.results_dir, os.path.basename(output_file))
+
             # Construir contenido del reporte
             report_content = self._build_report_content(training_data)
             

@@ -14,6 +14,13 @@ logger = logging.getLogger(__name__)
 
 class IntegratedCSVTransformer:
     """Transformador CSV con limpieza numérica automática integrada"""
+    def _ensure_results_directory(self):
+        """Crea la carpeta results si no existe"""
+        results_dir = "results"
+        if not os.path.exists(results_dir):
+            os.makedirs(results_dir)
+            print(f"📁 Created directory: {results_dir}/")
+        return results_dir
     
     def __init__(self, output_prefix: str = "transformed", sort_by_journal_id: bool = True,
                  apply_numeric_processing: bool = True):
@@ -26,7 +33,8 @@ class IntegratedCSVTransformer:
         self.output_prefix = output_prefix
         self.sort_by_journal_id = sort_by_journal_id
         self.apply_numeric_processing = apply_numeric_processing
-        
+        self.results_dir = self._ensure_results_directory()
+
         # Inicializar procesador de datos contables
         self.accounting_processor = AccountingDataProcessor()
         
@@ -39,7 +47,7 @@ class IntegratedCSVTransformer:
             'numeric_processing_applied': False,
             'numeric_fields_processed': 0
         }
-    
+
     def _handle_amount_only_scenario(self, df: pd.DataFrame) -> pd.DataFrame:
         """
         Maneja el escenario donde solo hay campo 'amount' sin indicador ni debit/credit.
@@ -235,7 +243,8 @@ class IntegratedCSVTransformer:
             print(f"   ⚠️ No journal_entry_id for grouping: {len(header_df)} rows")
         
         # Guardar archivo
-        header_file = f"{self.output_prefix}_header_{timestamp}.csv"
+        header_file = os.path.join(self.results_dir, f"{self.output_prefix}_header_{timestamp}.csv")
+    
         header_df.to_csv(header_file, index=False, encoding='utf-8')
         print(f"   ✅ Header CSV saved: {header_file}")
         print(f"   📊 Columns: {', '.join(header_fields)}")
@@ -259,7 +268,7 @@ class IntegratedCSVTransformer:
             print(f"   ✅ Detail sorted by journal_entry_id")
         
         # Guardar archivo
-        detail_file = f"{self.output_prefix}_detail_{timestamp}.csv"
+        detail_file = os.path.join(self.results_dir, f"{self.output_prefix}_detail_{timestamp}.csv")
         detail_df.to_csv(detail_file, index=False, encoding='utf-8')
         print(f"   ✅ Detail CSV saved: {detail_file}")
         print(f"   📊 Rows: {len(detail_df)}, Columns: {', '.join(detail_fields)}")
@@ -338,7 +347,7 @@ class IntegratedCSVTransformer:
             
             # Guardar archivo
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            output_file = f"{self.output_prefix}_{suffix}_{timestamp}.csv"
+            output_file = os.path.join(self.results_dir, f"{self.output_prefix}_{suffix}_{timestamp}.csv")
             
             transformed_df.to_csv(output_file, index=False, encoding='utf-8')
             print(f"   ✅ File saved: {output_file} ({len(transformed_df)} rows, {len(transformed_df.columns)} columns)")
