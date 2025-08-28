@@ -540,9 +540,7 @@ class FieldMapper:
                     analysis['posting_date'] = 0.5
                     analysis['entry_date'] = 0.45
                     
-            # También marcar como fecha generalmente
-            if date_like_count > total_checked * 0.7:
-                analysis['is_date'] = True
+
                 
         except Exception as e:
             logger.debug(f"Error in date analysis: {e}")
@@ -665,8 +663,30 @@ class FieldMapper:
         for field_type, confidence in exact_matches:
             all_candidates[field_type] = confidence
         
+        # FILTRAR banderas internas antes de procesar
+        internal_flags = {
+            'is_date', 'is_numeric', 'is_text', 'is_monetary', 
+            'is_repetitive', 'is_sequential', 'date_like', 'amount_like'
+        }
+        
+        # Lista de field_types válidos (puedes obtenerla dinámicamente si tienes acceso)
+        valid_field_types = {
+            'journal_entry_id', 'line_number', 'description', 'line_description',
+            'posting_date', 'fiscal_year', 'period_number', 'gl_account_number',
+            'amount', 'debit_amount', 'credit_amount', 'debit_credit_indicator',
+            'prepared_by', 'entry_date', 'entry_time', 'gl_account_name', 'vendor_id'
+        }
+        
         # Añadir/mejorar con análisis de contenido
         for field_type, content_confidence in content_analysis.items():
+            # FILTRO: Omitir banderas internas
+            if field_type in internal_flags:
+                continue
+                
+            # FILTRO: Solo field_types válidos
+            if field_type not in valid_field_types:
+                continue
+                
             if field_type in all_candidates:
                 # Combinar confianzas (promedio ponderado)
                 existing_conf = all_candidates[field_type]

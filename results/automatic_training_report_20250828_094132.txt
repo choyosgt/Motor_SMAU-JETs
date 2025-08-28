@@ -1,0 +1,86 @@
+FIELD TRAINING SESSION REPORT - AUTOMATIC
+============================================================
+
+Generated: 2025-08-28T09:41:32.134676
+Training Mode: automatic
+
+SESSION INFORMATION:
+  CSV File: .\data\Libro_Diario_Dielectro_Detalle.csv
+  ERP Hint: None
+  Standard Fields: 9
+  Timestamp: 2025-08-28T09:41:32.134716
+
+TRAINING STATISTICS:
+  Columns Processed: 13
+  Automatic Mappings: 9
+  Conflicts Resolved: 1
+  Amount Conflicts Resolved: 1
+  Journal Id Balance Resolutions: 0
+  High Confidence Mappings: 8
+  Low Confidence Mappings: 1
+  Rejected Low Confidence: 1
+  Unmapped Columns: 0
+  Synonyms Added: 0
+  Regex Patterns Added: 0
+  Zero Filled Fields: 0
+  Debit Credit Calculated: 490378
+  Debit Amounts From Indicator: 254635
+  Credit Amounts From Indicator: 235743
+  Amount Signs Adjusted: 490378
+  Fields Cleaned: 1
+  Balance Checks Performed: 1
+  Total Entries Checked: 88329
+  Balanced Entries: 88329
+  Unbalanced Entries: 0
+
+MAPPING DECISIONS:
+  Automatic Decisions:
+    Nº doc. → journal_entry_id (confidence: 0.880, type: automatic_no_conflict)
+     Año → fiscal_year (confidence: 0.893, type: automatic_no_conflict)
+    Pos → line_number (confidence: 0.890, type: automatic_no_conflict)
+    Compens. → is_date (confidence: 0.800, type: automatic_no_conflict)
+        Importe → amount (confidence: 0.928, type: automatic_highest_confidence)
+    D/H → debit_credit_indicator (confidence: 0.860, type: automatic_no_conflict)
+    Texto → line_description (confidence: 0.880, type: automatic_no_conflict)
+    LibrMay → gl_account_number (confidence: 0.880, type: automatic_no_conflict)
+    Acreedor → vendor_id (confidence: 0.870, type: automatic_no_conflict)
+
+CONFLICT RESOLUTIONS:
+  amount:
+    Winner:     Importe
+    Resolution type: highest_confidence
+    All candidates: ['Doc.comp.(0.720)', '    Importe(0.928)']
+
+FINAL MAPPING TABLE:
+Standard Field            | Mapped Column                  | Confidence
+------------------------- | ------------------------------ | ----------
+journal_entry_id          | Nº doc.                        | 0.880     
+line_number               | Pos                            | 0.890     
+description               | No mapeado                     | 0.000     
+line_description          | Texto                          | 0.880     
+posting_date              | No mapeado                     | 0.000     
+fiscal_year               |  Año                           | 0.893     
+period_number             | No mapeado                     | 0.000     
+gl_account_number         | LibrMay                        | 0.880     
+amount                    |     Importe                    | 0.928     
+debit_amount              | No mapeado                     | 0.000     
+credit_amount             | No mapeado                     | 0.000     
+debit_credit_indicator    | D/H                            | 0.860     
+prepared_by               | No mapeado                     | 0.000     
+entry_date                | No mapeado                     | 0.000     
+entry_time                | No mapeado                     | 0.000     
+gl_account_name           | No mapeado                     | 0.000     
+vendor_id                 | Acreedor                       | 0.870     
+
+BALANCE VALIDATION RESULTS:
+  Total Balance: ✅ BALANCED
+  Total Debit: 162,188,700.63
+  Total Credit: 162,188,700.63
+  Difference: 0.00
+  Entries Checked: 88329
+  Balanced Entries: 88329
+  Unbalanced Entries: 0
+
+OUTPUT FILES CREATED:
+  Header CSV: results\automatic_training_header_20250828_094120.csv
+  Detail CSV: results\automatic_training_detail_20250828_094120.csv
