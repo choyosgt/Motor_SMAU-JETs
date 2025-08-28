@@ -134,8 +134,13 @@ class IntegratedCSVTransformer:
             
             # 3. Ordenar por journal_entry_id si existe y está habilitado
             if self.sort_by_journal_id and 'journal_entry_id' in transformed_df.columns:
-                transformed_df = transformed_df.sort_values('journal_entry_id', ascending=True)
-                print(f"✅ Data sorted by journal_entry_id in ascending order")
+                # Ordenamiento seguro que maneja tipos mixtos
+                try:
+                    transformed_df = transformed_df.sort_values('journal_entry_id', ascending=True)
+                except TypeError:
+                    print("⚠️ Mixed data types in journal_entry_id, converting to string for sorting")
+                    transformed_df['journal_entry_id'] = transformed_df['journal_entry_id'].astype(str)
+                    transformed_df = transformed_df.sort_values('journal_entry_id', ascending=True)
             
             # 4. LÓGICA SIMPLE: Definir campos fijos para header y detail
             header_field_definitions = [
