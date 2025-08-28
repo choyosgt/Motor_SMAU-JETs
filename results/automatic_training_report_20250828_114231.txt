@@ -1,0 +1,95 @@
+FIELD TRAINING SESSION REPORT - AUTOMATIC
+============================================================
+
+Generated: 2025-08-28T11:42:31.410834
+Training Mode: automatic
+
+SESSION INFORMATION:
+  CSV File: .\data\Libro_Diario_Taver.csv
+  ERP Hint: None
+  Standard Fields: 8
+  Timestamp: 2025-08-28T11:42:31.410860
+
+TRAINING STATISTICS:
+  Columns Processed: 13
+  Automatic Mappings: 8
+  Conflicts Resolved: 2
+  Amount Conflicts Resolved: 0
+  Journal Id Balance Resolutions: 0
+  High Confidence Mappings: 8
+  Low Confidence Mappings: 0
+  Rejected Low Confidence: 1
+  Unmapped Columns: 0
+  Synonyms Added: 0
+  Regex Patterns Added: 0
+  Zero Filled Fields: 41904
+  Debit Credit Calculated: 0
+  Debit Amounts From Indicator: 0
+  Credit Amounts From Indicator: 0
+  Amount Signs Adjusted: 0
+  Fields Cleaned: 2
+  Balance Checks Performed: 1
+  Total Entries Checked: 11169
+  Balanced Entries: 11160
+  Unbalanced Entries: 9
+
+MAPPING DECISIONS:
+  Automatic Decisions:
+                                   Concepto  → description (confidence: 0.891, type: automatic_highest_confidence)
+    Asiento → journal_entry_id (confidence: 0.893, type: automatic_no_conflict)
+                  Debe  → debit_amount (confidence: 0.943, type: automatic_highest_confidence)
+        Fecha  → posting_date (confidence: 0.921, type: automatic_no_conflict)
+         Cuenta  → gl_account_number (confidence: 0.928, type: automatic_no_conflict)
+         Externo → vendor_id (confidence: 0.870, type: automatic_no_conflict)
+                       Descripci¢n → line_description (confidence: 0.831, type: automatic_no_conflict)
+               Haber  → credit_amount (confidence: 0.943, type: automatic_no_conflict)
+
+CONFLICT RESOLUTIONS:
+  description:
+    Winner:                                Concepto 
+    Resolution type: highest_confidence
+    All candidates: ['               Cia Descripcion(0.560)', '                               Concepto (0.891)']
+  debit_amount:
+    Winner:               Debe 
+    Resolution type: highest_confidence
+    All candidates: ['Dr(0.920)', '              Debe (0.943)']
+
+FINAL MAPPING TABLE:
+Standard Field            | Mapped Column                  | Confidence
+------------------------- | ------------------------------ | ----------
+journal_entry_id          | Asiento                        | 0.893     
+line_number               | No mapeado                     | 0.000     
+description               |                                Concepto  | 0.891     
+line_description          |                    Descripci¢n | 0.831     
+posting_date              |     Fecha                      | 0.921     
+fiscal_year               | No mapeado                     | 0.000     
+period_number             | No mapeado                     | 0.000     
+gl_account_number         |      Cuenta                    | 0.928     
+amount                    | No mapeado                     | 0.000     
+debit_amount              |               Debe             | 0.943     
+credit_amount             |            Haber               | 0.943     
+debit_credit_indicator    | No mapeado                     | 0.000     
+prepared_by               | No mapeado                     | 0.000     
+entry_date                | No mapeado                     | 0.000     
+entry_time                | No mapeado                     | 0.000     
+gl_account_name           | No mapeado                     | 0.000     
+vendor_id                 |      Externo                   | 0.870     
+
+BALANCE VALIDATION RESULTS:
+  Total Balance: ❌ UNBALANCED
+  Total Debit: 244,054,634.57
+  Total Credit: 244,053,837.49
+  Difference: 797.08
+  Entries Checked: 11169
+  Balanced Entries: 11160
+  Unbalanced Entries: 9
+  Unbalanced Entry Examples:
+    Entry 11151.0: Debit 81,914.76 - Credit 80,027.27 = 1,887.49
+    Entry 11153.0: Debit 862,872.28 - Credit 661,500.00 = 201,372.28
+    Entry 11156.0: Debit 755,879.23 - Credit 757,224.45 = -1,345.22
+    Entry 11158.0: Debit 97,236.10 - Credit 100,894.31 = -3,658.21
+    Entry 11159.0: Debit 83,578.27 - Credit 83,686.77 = -108.50
+
+OUTPUT FILES CREATED:
+  Header CSV: results\automatic_training_header_20250828_114230.csv
+  Detail CSV: results\automatic_training_detail_20250828_114230.csv
