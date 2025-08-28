@@ -1,0 +1,87 @@
+FIELD TRAINING SESSION REPORT - AUTOMATIC
+============================================================
+
+Generated: 2025-08-28T09:13:16.602996
+Training Mode: automatic
+
+SESSION INFORMATION:
+  CSV File: .\data\Libro_Diario_Unify_SAP.csv
+  ERP Hint: SAP
+  Standard Fields: 13
+  Timestamp: 2025-08-28T09:13:16.603050
+
+TRAINING STATISTICS:
+  Columns Processed: 22
+  Automatic Mappings: 13
+  Conflicts Resolved: 0
+  Amount Conflicts Resolved: 0
+  Journal Id Balance Resolutions: 0
+  High Confidence Mappings: 12
+  Low Confidence Mappings: 1
+  Rejected Low Confidence: 1
+  Unmapped Columns: 0
+  Synonyms Added: 0
+  Regex Patterns Added: 0
+  Zero Filled Fields: 12
+  Debit Credit Calculated: 92548
+  Debit Amounts From Indicator: 44440
+  Credit Amounts From Indicator: 48108
+  Amount Signs Adjusted: 92548
+  Fields Cleaned: 1
+  Balance Checks Performed: 1
+  Total Entries Checked: 17368
+  Balanced Entries: 17366
+  Unbalanced Entries: 2
+
+MAPPING DECISIONS:
+  Automatic Decisions:
+    Ld → ledger (confidence: 0.955, type: automatic_no_conflict)
+    Year → fiscal_year (confidence: 0.939, type: automatic_no_conflict)
+    DocumentNo → journal_entry_id (confidence: 0.990, type: automatic_no_conflict)
+    Pstng Date → posting_date (confidence: 0.946, type: automatic_no_conflict)
+    CreatnTime → entry_date (confidence: 0.934, type: automatic_no_conflict)
+    User Name → prepared_by (confidence: 0.955, type: automatic_no_conflict)
+    Amount in Comp Cd Crcy → amount (confidence: 0.970, type: automatic_no_conflict)
+    Itm → line_number (confidence: 0.965, type: automatic_no_conflict)
+    D/C → debit_credit_indicator (confidence: 0.955, type: automatic_no_conflict)
+    Account → gl_account_number (confidence: 0.949, type: automatic_no_conflict)
+    Text → line_description (confidence: 0.955, type: automatic_no_conflict)
+    Clearing → is_date (confidence: 0.800, type: automatic_no_conflict)
+    Supplier → vendor_id (confidence: 0.854, type: automatic_no_conflict)
+
+FINAL MAPPING TABLE:
+Standard Field            | Mapped Column                  | Confidence
+------------------------- | ------------------------------ | ----------
+journal_entry_id          | DocumentNo                     | 0.990     
+line_number               | Itm                            | 0.965     
+description               | No mapeado                     | 0.000     
+line_description          | Text                           | 0.955     
+posting_date              | Pstng Date                     | 0.946     
+fiscal_year               | Year                           | 0.939     
+period_number             | No mapeado                     | 0.000     
+gl_account_number         | Account                        | 0.949     
+amount                    | Amount in Comp Cd Crcy         | 0.970     
+debit_amount              | No mapeado                     | 0.000     
+credit_amount             | No mapeado                     | 0.000     
+debit_credit_indicator    | D/C                            | 0.955     
+prepared_by               | User Name                      | 0.955     
+entry_date                | CreatnTime                     | 0.934     
+entry_time                | No mapeado                     | 0.000     
+gl_account_name           | No mapeado                     | 0.000     
+vendor_id                 | Supplier                       | 0.854     
+
+BALANCE VALIDATION RESULTS:
+  Total Balance: ✅ BALANCED
+  Total Debit: 1,174,542,851.12
+  Total Credit: 1,174,542,851.12
+  Difference: -0.00
+  Entries Checked: 17368
+  Balanced Entries: 17366
+  Unbalanced Entries: 2
+  Unbalanced Entry Examples:
+    Entry B000225123: Debit 580,017,114.48 - Credit 578,248,544.44 = 1,768,570.04
+    Entry B000225162: Debit 72,456,762.62 - Credit 74,225,332.66 = -1,768,570.04
+
+OUTPUT FILES CREATED:
+  Header CSV: results\automatic_training_header_20250828_091256.csv
+  Detail CSV: results\automatic_training_detail_20250828_091256.csv
