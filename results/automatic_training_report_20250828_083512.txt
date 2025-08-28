@@ -1,0 +1,72 @@
+FIELD TRAINING SESSION REPORT - AUTOMATIC
+============================================================
+
+Generated: 2025-08-28T08:35:12.606491
+Training Mode: automatic
+
+SESSION INFORMATION:
+  CSV File: .\data\Libro_Diario_ZTE_MSSE.csv
+  ERP Hint: SAP
+  Standard Fields: 8
+  Timestamp: 2025-08-28T08:35:12.606539
+
+TRAINING STATISTICS:
+  Columns Processed: 16
+  Automatic Mappings: 8
+  Conflicts Resolved: 0
+  Amount Conflicts Resolved: 0
+  Journal Id Balance Resolutions: 0
+  High Confidence Mappings: 8
+  Low Confidence Mappings: 0
+  Rejected Low Confidence: 1
+  Unmapped Columns: 0
+  Synonyms Added: 0
+  Regex Patterns Added: 0
+  Zero Filled Fields: 0
+  Debit Credit Calculated: 0
+  Debit Amounts From Indicator: 0
+  Credit Amounts From Indicator: 0
+  Amount Signs Adjusted: 0
+  Fields Cleaned: 0
+
+MAPPING DECISIONS:
+  Automatic Decisions:
+    GJAHR → fiscal_year (confidence: 0.967, type: automatic_no_conflict)
+    BELNR → journal_entry_id (confidence: 0.995, type: automatic_no_conflict)
+    BUDAT → posting_date (confidence: 0.967, type: automatic_no_conflict)
+    CPUDT → entry_date (confidence: 0.952, type: automatic_no_conflict)
+    CPUTM → entry_time (confidence: 0.995, type: automatic_no_conflict)
+    USNAM → prepared_by (confidence: 0.995, type: automatic_no_conflict)
+    BKTXT → description (confidence: 0.847, type: automatic_no_conflict)
+    STBLG → reversal_indicator (confidence: 0.995, type: automatic_no_conflict)
+
+FINAL MAPPING TABLE:
+Standard Field            | Mapped Column                  | Confidence
+------------------------- | ------------------------------ | ----------
+journal_entry_id          | BELNR                          | 0.995     
+line_number               | No mapeado                     | 0.000     
+description               | BKTXT                          | 0.847     
+line_description          | No mapeado                     | 0.000     
+posting_date              | BUDAT                          | 0.967     
+fiscal_year               | GJAHR                          | 0.967     
+period_number             | No mapeado                     | 0.000     
+gl_account_number         | No mapeado                     | 0.000     
+amount                    | No mapeado                     | 0.000     
+debit_amount              | No mapeado                     | 0.000     
+credit_amount             | No mapeado                     | 0.000     
+debit_credit_indicator    | No mapeado                     | 0.000     
+prepared_by               | USNAM                          | 0.995     
+entry_date                | CPUDT                          | 0.952     
+entry_time                | CPUTM                          | 0.995     
+gl_account_name           | No mapeado                     | 0.000     
+vendor_id                 | No mapeado                     | 0.000     
+
+BALANCE VALIDATION RESULTS:
+  Total Balance: ❌ UNBALANCED
+  Total Debit: 0.00
+  Total Credit: 0.00
+  Difference: 0.00
+
+OUTPUT FILES CREATED:
+  Header CSV: results\automatic_training_header_20250828_083512.csv
+  Detail CSV: results\automatic_training_detail_20250828_083512.csv

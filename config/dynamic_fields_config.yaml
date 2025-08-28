@@ -1942,12 +1942,6 @@ field_definitions:
           description: Synonym for ID de Asiento
           language: en
           name: AWKEY
-        - added_at: '2025-07-16T16:11:07.454967'
-          confidence_boost: 0.8
-          deprecated: false
-          description: Synonym for ID de Asiento
-          language: en
-          name: BKTXT
         - added_at: '2025-07-16T23:22:51.835894'
           confidence_boost: 0.3
           deprecated: false
@@ -2437,12 +2431,7 @@ field_definitions:
           description: Synonym for Número de línea de Asiento
           language: es
           name: Itm
-        - added_at: '2025-07-22T16:39:27.727265'
-          confidence_boost: 0.2
-          deprecated: false
-          description: Learned from manual training - 2025-07-22
-          language: es
-          name: BKTXT
+
       timestamps:
         created_at: '2025-07-16T16:11:07.454967'
         updated_at: '2025-07-23T09:43:00.759344'
