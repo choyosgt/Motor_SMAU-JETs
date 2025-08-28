@@ -18,6 +18,12 @@ field_definitions:
           language: es
           name: Importe
         - added_at: '2025-07-16T16:11:07.454967'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for Importe
+          language: es
+          name: importe_neto
+        - added_at: '2025-07-16T16:11:07.454967'
           confidence_boost: 0.8
           deprecated: false
           description: Synonym for Importe
