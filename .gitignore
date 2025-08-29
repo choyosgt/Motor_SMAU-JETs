@@ -80,3 +80,4 @@ test_output/
 test_data/
 data/Libro_Diario_Ara_1.csv
 data/Libro_Diario_Fromageries_Cabecera.csv
+data/Libro_Diario_*.csv
