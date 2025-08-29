@@ -1,0 +1,89 @@
+FIELD TRAINING SESSION REPORT - AUTOMATIC
+============================================================
+
+Generated: 2025-08-29T09:08:57.358635
+Training Mode: automatic
+
+SESSION INFORMATION:
+  CSV File: .\data\Libro_Diario_Adventure_Marzo.csv
+  ERP Hint: SAP
+  Standard Fields: 8
+  Timestamp: 2025-08-29T09:08:57.358714
+
+TRAINING STATISTICS:
+  Columns Processed: 23
+  Automatic Mappings: 8
+  Conflicts Resolved: 2
+  Amount Conflicts Resolved: 1
+  Journal Id Balance Resolutions: 0
+  High Confidence Mappings: 8
+  Low Confidence Mappings: 0
+  Rejected Low Confidence: 0
+  Unmapped Columns: 0
+  Synonyms Added: 0
+  Regex Patterns Added: 0
+  Zero Filled Fields: 4889
+  Debit Credit Calculated: 0
+  Debit Amounts From Indicator: 137484
+  Credit Amounts From Indicator: 139874
+  Amount Signs Adjusted: 0
+  Fields Cleaned: 1
+  Balance Checks Performed: 1
+  Total Entries Checked: 65359
+  Balanced Entries: 65359
+  Unbalanced Entries: 0
+
+MAPPING DECISIONS:
+  Automatic Decisions:
+    DocumentNo → journal_entry_id (confidence: 0.990, type: automatic_highest_confidence)
+    Year → fiscal_year (confidence: 0.939, type: automatic_no_conflict)
+    Pstng Date → posting_date (confidence: 0.946, type: automatic_no_conflict)
+    User → prepared_by (confidence: 0.920, type: automatic_no_conflict)
+    HeaderText → description (confidence: 0.847, type: automatic_no_conflict)
+    Type → gl_account_name (confidence: 0.870, type: automatic_no_conflict)
+    Account → gl_account_number (confidence: 0.949, type: automatic_no_conflict)
+            Amount → amount (confidence: 0.940, type: automatic_highest_confidence)
+
+CONFLICT RESOLUTIONS:
+  journal_entry_id:
+    Winner: DocumentNo
+    Resolution type: highest_confidence
+    All candidates: ['CoCd(0.560)', 'DocumentNo(0.990)']
+  amount:
+    Winner:         Amount
+    Resolution type: highest_confidence
+    All candidates: ['G/L Acct(0.720)', '        Amount(0.940)']
+
+FINAL MAPPING TABLE:
+Standard Field            | Mapped Column                  | Confidence
+------------------------- | ------------------------------ | ----------
+journal_entry_id          | DocumentNo                     | 0.990     
+line_number               | No mapeado                     | 0.000     
+description               | HeaderText                     | 0.847     
+line_description          | No mapeado                     | 0.000     
+posting_date              | Pstng Date                     | 0.946     
+fiscal_year               | Year                           | 0.939     
+period_number             | No mapeado                     | 0.000     
+gl_account_number         | Account                        | 0.949     
+amount                    |         Amount                 | 0.940     
+debit_amount              | No mapeado                     | 0.000     
+credit_amount             | No mapeado                     | 0.000     
+debit_credit_indicator    | No mapeado                     | 0.000     
+prepared_by               | User                           | 0.920     
+entry_date                | No mapeado                     | 0.000     
+entry_time                | No mapeado                     | 0.000     
+gl_account_name           | Type                           | 0.870     
+vendor_id                 | No mapeado                     | 0.000     
+
+BALANCE VALIDATION RESULTS:
+  Total Balance: ✅ BALANCED
+  Total Debit: 140,645,486.44
+  Total Credit: 140,645,486.44
+  Difference: 0.00
+  Entries Checked: 65359
+  Balanced Entries: 65359
+  Unbalanced Entries: 0
+
+OUTPUT FILES CREATED:
+  Header CSV: results\automatic_training_header_20250829_090849.csv
+  Detail CSV: results\automatic_training_detail_20250829_090849.csv

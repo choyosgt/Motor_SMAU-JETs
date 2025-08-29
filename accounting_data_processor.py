@@ -442,6 +442,57 @@ class AccountingDataProcessor:
         
         return df
     
+    def _handle_amount_only_scenario(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        Maneja el escenario donde solo hay campo 'amount' sin indicador ni debit/credit.
+        
+        Regla de negocio:
+        - Si amount es positivo: debit_amount = amount, credit_amount = 0
+        - Si amount es negativo: debit_amount = 0, credit_amount = abs(amount)  
+        - Si amount es cero: ambos = 0
+        """
+        print(f"💡 HANDLING AMOUNT-ONLY SCENARIO: No debit_credit_indicator found")
+        print(f"   Creating debit_amount and credit_amount based on amount sign")
+        
+        # Inicializar columnas con 0.0
+        df['debit_amount'] = 0.0
+        df['credit_amount'] = 0.0
+        
+        # Limpiar la columna amount si es necesario
+        df['amount'] = df['amount'].apply(self._clean_numeric_value_with_zero_fill)
+        
+        # Crear máscaras basadas en el signo de amount
+        positive_amounts = df['amount'] > 0
+        negative_amounts = df['amount'] < 0
+        zero_amounts = df['amount'] == 0
+        
+        # Asignar valores según el signo
+        # Positivos van a debe (debit)
+        df.loc[positive_amounts, 'debit_amount'] = df.loc[positive_amounts, 'amount'].abs()
+        df.loc[positive_amounts, 'credit_amount'] = 0.0
+        
+        # Negativos van a haber (credit)  
+        df.loc[negative_amounts, 'debit_amount'] = 0.0
+        df.loc[negative_amounts, 'credit_amount'] = df.loc[negative_amounts, 'amount'].abs()
+        
+        # Ceros quedan en cero (ya inicializados)
+        df.loc[zero_amounts, 'debit_amount'] = 0.0
+        df.loc[zero_amounts, 'credit_amount'] = 0.0
+        
+        # Actualizar estadísticas
+        positive_count = positive_amounts.sum()
+        negative_count = negative_amounts.sum()
+        zero_count = zero_amounts.sum()
+        
+        print(f"   ✅ Debit amounts created: {positive_count} (positive amounts)")
+        print(f"   ✅ Credit amounts created: {negative_count} (negative amounts)")
+        print(f"   ℹ️  Zero amounts: {zero_count}")
+        
+        self.stats['debit_amounts_from_indicator'] += positive_count
+        self.stats['credit_amounts_from_indicator'] += negative_count
+        
+        return df
+    
     def _show_calculation_samples(self, df: pd.DataFrame, is_debit: pd.Series, is_credit: pd.Series):
         """Muestra muestras de los cálculos realizados"""
         print(f"   Sample results:")
