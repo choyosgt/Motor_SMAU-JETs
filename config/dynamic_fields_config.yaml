@@ -219,6 +219,12 @@ field_definitions:
           description: Synonym for Importe
           language: es
           name: Importe en moneda de sociedad
+        - added_at: '2025-07-17T12:45:51.183725'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Importe
+          language: es
+          name: Importe ML
       timestamps:
         created_at: '2025-07-16T16:11:07.454967'
         updated_at: '2025-07-18T11:38:29.924541'
@@ -455,12 +461,6 @@ field_definitions:
           description: Synonym for Importe Debe
           language: es
           name: Deure
-        - added_at: '2025-07-17T10:24:32.460525'
-          confidence_boost: 0.4
-          deprecated: false
-          description: Synonym for Importe Debe
-          language: es
-          name: Importe1
         - added_at: '2025-07-17T13:12:27.600822'
           confidence_boost: 0.1
           deprecated: false

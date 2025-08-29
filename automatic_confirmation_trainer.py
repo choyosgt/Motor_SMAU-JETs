@@ -323,7 +323,7 @@ class AutomaticConfirmationTrainingSession:
         # REGLA ESPECIAL para 'amount': priorizar columnas 'local'
         if field_type == 'amount':
             for column, confidence in candidates:
-                if 'local' in column.lower():
+                if 'local' in column.lower() or 'ml' in column.lower() or 'loc' in column.lower():
                     print(f"    AMOUNT SPECIAL RULE: '{column}' selected (contains 'local')")
                     return (column, confidence, 'amount_local_priority')
         
