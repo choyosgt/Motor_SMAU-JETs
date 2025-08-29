@@ -1,0 +1,96 @@
+FIELD TRAINING SESSION REPORT - AUTOMATIC
+============================================================
+
+Generated: 2025-08-29T09:53:28.628122
+Training Mode: automatic
+
+SESSION INFORMATION:
+  CSV File: .\data\Libro_Diario_Air_Logistics.csv
+  ERP Hint: SAP
+  Standard Fields: 10
+  Timestamp: 2025-08-29T09:53:28.628175
+
+TRAINING STATISTICS:
+  Columns Processed: 32
+  Automatic Mappings: 10
+  Conflicts Resolved: 3
+  Amount Conflicts Resolved: 1
+  Journal Id Balance Resolutions: 0
+  High Confidence Mappings: 10
+  Low Confidence Mappings: 0
+  Rejected Low Confidence: 2
+  Unmapped Columns: 0
+  Synonyms Added: 0
+  Regex Patterns Added: 0
+  Zero Filled Fields: 109082
+  Debit Credit Calculated: 0
+  Debit Amounts From Indicator: 0
+  Credit Amounts From Indicator: 0
+  Amount Signs Adjusted: 0
+  Fields Cleaned: 3
+  Parentheses Negatives Processed: 51241
+  Balance Checks Performed: 1
+  Total Entries Checked: 26386
+  Balanced Entries: 26386
+  Unbalanced Entries: 0
+
+MAPPING DECISIONS:
+  Automatic Decisions:
+    Journal number → journal_entry_id (confidence: 0.921, type: automatic_no_conflict)
+    Document date → posting_date (confidence: 0.921, type: automatic_highest_confidence)
+    Account → gl_account_number (confidence: 0.949, type: automatic_highest_confidence)
+    Amount → amount (confidence: 0.940, type: automatic_highest_confidence)
+    Account name → gl_account_name (confidence: 0.928, type: automatic_no_conflict)
+    Description → line_description (confidence: 0.940, type: automatic_no_conflict)
+    Debe → debit_amount (confidence: 0.943, type: automatic_no_conflict)
+    Haber → credit_amount (confidence: 0.943, type: automatic_no_conflict)
+    Vendor name → vendor_id (confidence: 0.903, type: automatic_no_conflict)
+    Created by → prepared_by (confidence: 0.990, type: automatic_no_conflict)
+
+CONFLICT RESOLUTIONS:
+  posting_date:
+    Winner: Document date
+    Resolution type: highest_confidence
+    All candidates: ['Date(0.720)', 'Document date(0.921)']
+  gl_account_number:
+    Winner: Account
+    Resolution type: highest_confidence
+    All candidates: ['Ledger account(0.720)', 'Account(0.949)']
+  amount:
+    Winner: Amount
+    Resolution type: highest_confidence
+    All candidates: ['3D(0.720)', 'Amount in transaction currency(0.720)', 'Amount(0.940)']
+
+FINAL MAPPING TABLE:
+Standard Field            | Mapped Column                  | Confidence
+------------------------- | ------------------------------ | ----------
+journal_entry_id          | Journal number                 | 0.921     
+line_number               | No mapeado                     | 0.000     
+description               | No mapeado                     | 0.000     
+line_description          | Description                    | 0.940     
+posting_date              | Document date                  | 0.921     
+fiscal_year               | No mapeado                     | 0.000     
+period_number             | No mapeado                     | 0.000     
+gl_account_number         | Account                        | 0.949     
+amount                    | Amount                         | 0.940     
+debit_amount              | Debe                           | 0.943     
+credit_amount             | Haber                          | 0.943     
+debit_credit_indicator    | No mapeado                     | 0.000     
+prepared_by               | Created by                     | 0.990     
+entry_date                | No mapeado                     | 0.000     
+entry_time                | No mapeado                     | 0.000     
+gl_account_name           | Account name                   | 0.928     
+vendor_id                 | Vendor name                    | 0.903     
+
+BALANCE VALIDATION RESULTS:
+  Total Balance: ✅ BALANCED
+  Total Debit: 143,716,005.75
+  Total Credit: 143,716,005.75
+  Difference: 0.00
+  Entries Checked: 26386
+  Balanced Entries: 26386
+  Unbalanced Entries: 0
+
+OUTPUT FILES CREATED:
+  Header CSV: results\automatic_training_header_20250829_095318.csv
+  Detail CSV: results\automatic_training_detail_20250829_095318.csv

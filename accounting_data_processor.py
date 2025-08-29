@@ -19,7 +19,8 @@ class AccountingDataProcessor:
             'debit_amounts_from_indicator': 0,
             'credit_amounts_from_indicator': 0,
             'amount_signs_adjusted': 0,
-            'fields_cleaned': 0
+            'fields_cleaned': 0,
+            'parentheses_negatives_processed': 0
         }
     def separate_datetime_fields(self, df: pd.DataFrame) -> pd.DataFrame:
         """
@@ -336,6 +337,9 @@ class AccountingDataProcessor:
                 original_samples = df[field].dropna().head(3).tolist()
                 print(f"   Original values: {original_samples}")
                 
+                # Contar valores con paréntesis ANTES del procesamiento
+                parentheses_count = df[field].astype(str).str.contains(r'\(', na=False).sum()
+                
                 # Aplicar limpieza con zero-fill
                 df[field] = df[field].apply(self._clean_numeric_value_with_zero_fill)
                 
@@ -346,7 +350,11 @@ class AccountingDataProcessor:
                 zero_count = (df[field] == 0.0).sum()
                 self.stats['zero_filled_fields'] += zero_count
                 self.stats['fields_cleaned'] += 1
+                self.stats['parentheses_negatives_processed'] += parentheses_count
                 print(f"   Zero-filled count: {zero_count}")
+
+                if parentheses_count > 0:
+                    print(f"   📌 Paréntesis procesados: {parentheses_count}")
         
         return df
 
@@ -527,7 +535,10 @@ class AccountingDataProcessor:
                     print(f"   {field}: {non_null_count} valid values, {zero_count} zeros")
     
     def _clean_numeric_value_with_zero_fill(self, value) -> float:
-        """Limpia un valor numérico eliminando texto de moneda y convirtiendo a float, RELLENANDO CON 0"""
+        """
+        Limpia un valor numérico eliminando texto de moneda y convirtiendo a float, RELLENANDO CON 0
+        MEJORADO: Maneja paréntesis como valores negativos (ej: '(81.23)' = -81.23)
+        """
         try:
             if pd.isna(value) or value == '' or value is None:
                 return 0.0  # CAMBIO PRINCIPAL: Devolver 0.0 en lugar de None
@@ -541,46 +552,58 @@ class AccountingDataProcessor:
             # Remover espacios múltiples
             str_value = re.sub(r'\s+', ' ', str_value)
             
+            # NUEVA FUNCIONALIDAD: Detectar paréntesis (más eficiente - solo busca si hay al menos uno)
+            is_parentheses_negative = False
+            if '(' in str_value:  # Verificación eficiente - solo si hay al menos un paréntesis
+                # Extraer contenido de los paréntesis
+                parentheses_match = re.search(r'\(([^)]+)\)', str_value)
+                if parentheses_match:
+                    # Tomar el contenido dentro de los paréntesis
+                    str_value = parentheses_match.group(1).strip()
+                    is_parentheses_negative = True
+            
             # Patrones para limpiar monedas y texto
             # Ejemplos: "1000 EUR", "1,500.50 USD", "$1000", "1000€", "EUR 1000"
             currency_patterns = [
                 r'\b[A-Z]{3}\b',        # EUR, USD, GBP, etc.
-                r'[$€£¥₹₽¢]',          # Símbolos de moneda
-                r'\b(USD|EUR|GBP|JPY|CAD|AUD|CHF|CNY|SEK|NOK|DKK|PLN|CZK|HUF|BGN|RON|HRK|RUB|TRY|BRL|MXN|ARS|CLP|PEN|COP|UYU|PYG|BOB|VEF|GYD|SRD|TTD|JMD|BBD|BSD|KYD|XCD|AWG|ANG|CUP|DOP|GTQ|HNL|NIO|CRC|PAB|BZD|SVC|HTG)\b',  # Códigos ISO comunes
-                r'\b(DOLLAR|EURO|POUND|YEN|PESO|REAL|FRANC|KRONA|KRONE|ZLOTY|FORINT|LEU|LIRA|RUBLE|YUAN|RUPEE)\b',  # Nombres de monedas en inglés
-                r'\b(DOLAR|EUROS|LIBRA|YENES|PESOS|REALES|FRANCOS|CORONAS|RUBLOS|YUANES|RUPIAS)\b'  # Nombres en español
+                r'[€$£¥¢₡₹₽₩₪₨₦₧₫₴]',  # Símbolos de moneda
+                r'\b(euro|euros|dollar|dollars|pound|pounds)\b',  # Palabras de moneda
             ]
             
-            # Aplicar limpieza de monedas
+            # Limpiar monedas y texto
             cleaned_value = str_value
             for pattern in currency_patterns:
                 cleaned_value = re.sub(pattern, '', cleaned_value, flags=re.IGNORECASE)
             
-            # Limpiar caracteres no numéricos excepto punto, coma y signo menos
-            cleaned_value = re.sub(r'[^0-9.,-]', '', cleaned_value)
+            # Limpiar caracteres no numéricos pero conservar signos, comas y puntos
+            cleaned_value = re.sub(r'[^\d\-+.,]', '', cleaned_value).strip()
             
-            # Manejar signos negativos
-            is_negative = cleaned_value.count('-') % 2 == 1  # Impar = negativo
-            cleaned_value = cleaned_value.replace('-', '')
+            if not cleaned_value:
+                return 0.0
             
-            if not cleaned_value or not any(c.isdigit() for c in cleaned_value):
-                return 0.0  # CAMBIO PRINCIPAL: Devolver 0.0 en lugar de None
+            # Detectar signo negativo tradicional (además de los paréntesis)
+            is_traditional_negative = cleaned_value.startswith('-')
+            is_negative = is_parentheses_negative or is_traditional_negative
             
-            # Detectar formato de número mejorado
-            if '.' in cleaned_value and ',' in cleaned_value:
-                # Ambos presentes: detectar cuál es el decimal
-                last_dot = cleaned_value.rfind('.')
+            # Remover signo inicial para procesamiento
+            if cleaned_value.startswith(('-', '+')):
+                cleaned_value = cleaned_value[1:]
+            
+            # Manejar diferentes formatos numéricos
+            if ',' in cleaned_value and '.' in cleaned_value:
+                # Formato mixto: determinar cuál es decimal
                 last_comma = cleaned_value.rfind(',')
+                last_dot = cleaned_value.rfind('.')
                 
-                if last_dot > last_comma:
-                    # Punto como decimal: "1,234.56"
-                    cleaned_value = cleaned_value.replace(',', '')
-                else:
-                    # Coma como decimal: "1.234,56"
+                if last_comma > last_dot:
+                    # Coma es decimal: "1.234,56" -> "1234.56"
                     cleaned_value = cleaned_value.replace('.', '').replace(',', '.')
+                else:
+                    # Punto es decimal: "1,234.56" -> "1234.56"
+                    cleaned_value = cleaned_value.replace(',', '')
             
             elif ',' in cleaned_value:
-                # Solo comas
+                # Solo comas - decidir si es decimal o separador de miles
                 comma_parts = cleaned_value.split(',')
                 if len(comma_parts) == 2 and len(comma_parts[1]) <= 3:
                     # Probablemente decimal: "1234,56"
@@ -588,22 +611,6 @@ class AccountingDataProcessor:
                 else:
                     # Probablemente separador de miles: "1,234"
                     cleaned_value = cleaned_value.replace(',', '')
-            
-            elif '.' in cleaned_value:
-                # Solo puntos - LÓGICA MEJORADA
-                dot_parts = cleaned_value.split('.')
-                if len(dot_parts) >= 2:
-                    last_part = dot_parts[-1]
-                    # Si la última parte tiene 1-3 dígitos, probablemente es decimal
-                    if len(last_part) <= 3 and last_part.isdigit():
-                        # Formato europeo: "229.006.45" -> separadores de miles + decimal
-                        # Unir todas las partes excepto la última como entero
-                        integer_part = ''.join(dot_parts[:-1])
-                        decimal_part = last_part
-                        cleaned_value = f"{integer_part}.{decimal_part}"
-                    else:
-                        # Todos los puntos son separadores de miles: "1.234.567"
-                        cleaned_value = cleaned_value.replace('.', '')
             
             elif '.' in cleaned_value:
                 # Solo puntos - LÓGICA MEJORADA
@@ -636,7 +643,11 @@ class AccountingDataProcessor:
                 if numbers:
                     # Tomar el primer número encontrado y limpiarlo recursivamente
                     first_num = numbers[0].replace(',', '.')
-                    return float(first_num)
+                    result = float(first_num)
+                    # Si originalmente había paréntesis, aplicar signo negativo
+                    if is_parentheses_negative:
+                        result = -abs(result)  # Asegurar que sea negativo
+                    return result
                 return 0.0  # CAMBIO PRINCIPAL: Devolver 0.0 en lugar de None
             except:
                 return 0.0  # CAMBIO PRINCIPAL: Devolver 0.0 en lugar de None

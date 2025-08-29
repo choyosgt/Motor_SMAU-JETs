@@ -3298,6 +3298,12 @@ field_definitions:
           description: Synonym for ID Tercero
           language: en
           name: VENDOR_ID
+        - added_at: '2025-08-29T09:33:17.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for ID Tercero
+          language: en
+          name: Vendor name
         - added_at: '2025-07-21T16:11:07.454967'
           confidence_boost: 0.7
           deprecated: false
