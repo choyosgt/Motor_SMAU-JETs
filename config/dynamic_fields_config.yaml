@@ -378,6 +378,12 @@ field_definitions:
           description: Synonym for Importe Haber
           language: es
           name: Importe en haber en moneda de transacción
+        - added_at: '2025-07-18T10:48:51.375420'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Importe Haber
+          language: es
+          name: Haver         
       timestamps:
         created_at: '2025-07-16T16:11:07.454967'
         updated_at: '2025-07-22T18:30:11.914798'
@@ -437,6 +443,12 @@ field_definitions:
           description: Synonym for Importe Debe
           language: es
           name: Importe debe
+        - added_at: '2025-07-17T08:48:01.173521'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Importe Debe
+          language: es
+          name: Deure
         - added_at: '2025-07-17T10:24:32.460525'
           confidence_boost: 0.4
           deprecated: false
@@ -679,11 +691,17 @@ field_definitions:
           language: es
           name: D/H
         - added_at: '2025-07-17T12:45:51.169126'
-          confidence_boost: 0.1
+          confidence_boost: 0.8
           deprecated: false
           description: Synonym for Indicador Debe/Haber
           language: es
           name: D/C
+        - added_at: '2025-07-17T12:45:51.169126'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Indicador Debe/Haber
+          language: es
+          name: Indicador Deure/Haver
       timestamps:
         created_at: '2025-07-16T16:11:07.454967'
         updated_at: '2025-07-18T11:38:29.924541'
