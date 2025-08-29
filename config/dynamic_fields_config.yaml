@@ -183,6 +183,12 @@ field_definitions:
           description: Synonym for Importe
           language: en
           name: KBETR
+        - added_at: '2025-08-29T16:11:07.454967'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Importe
+          language: fr
+          name: ValDevSté
         - added_at: '2025-07-16T23:25:00.581040'
           confidence_boost: 0.5
           deprecated: false
@@ -1704,6 +1710,12 @@ field_definitions:
           description: Synonym for Número cuenta contable
           language: es
           name: LibrMay
+        - added_at: '2025-08-29T23:25:00.587510'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Número cuenta contable
+          language: fr
+          name: CptGén.
         - added_at: '2025-07-17T12:45:51.184613'
           confidence_boost: 0.4
           deprecated: false
@@ -1965,6 +1977,12 @@ field_definitions:
           description: Synonym for ID de Asiento
           language: es
           name: Nº doc.
+        - added_at: '2025-08-29T23:22:51.835894'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: fr
+          name: Nº pièce
         - added_at: '2025-07-17T12:45:51.169126'
           confidence_boost: 0.8
           deprecated: false
@@ -2271,6 +2289,12 @@ field_definitions:
           description: Synonym for Descripción línea asiento
           language: es
           name: Text
+        - added_at: '2025-08-29T12:45:51.180051'
+          confidence_boost: 0.5
+          deprecated: false
+          description: Synonym for Descripción línea asiento
+          language: fr
+          name: Texte
         - added_at: '2025-07-18T10:48:51.370572'
           confidence_boost: 0.1
           deprecated: false
@@ -2833,6 +2857,12 @@ field_definitions:
           description: Synonym for Fecha efectiva
           language: es
           name: Pstng Date
+        - added_at: '2025-08-29T12:45:51.180051'
+          confidence_boost: 0.5
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: fr
+          name: Date cpt.
         - added_at: '2025-07-17T12:45:51.181476'
           confidence_boost: 0.3
           deprecated: false

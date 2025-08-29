@@ -1,0 +1,88 @@
+FIELD TRAINING SESSION REPORT - AUTOMATIC
+============================================================
+
+Generated: 2025-08-29T11:44:29.424134
+Training Mode: automatic
+
+SESSION INFORMATION:
+  CSV File: .\data\Libro_Diario_Courir.csv
+  ERP Hint: SAP
+  Standard Fields: 6
+  Timestamp: 2025-08-29T11:44:29.424155
+
+TRAINING STATISTICS:
+  Columns Processed: 15
+  Automatic Mappings: 6
+  Conflicts Resolved: 2
+  Amount Conflicts Resolved: 1
+  Journal Id Balance Resolutions: 0
+  High Confidence Mappings: 6
+  Low Confidence Mappings: 0
+  Rejected Low Confidence: 0
+  Unmapped Columns: 0
+  Synonyms Added: 0
+  Regex Patterns Added: 0
+  Zero Filled Fields: 33
+  Debit Credit Calculated: 0
+  Debit Amounts From Indicator: 154528
+  Credit Amounts From Indicator: 161457
+  Amount Signs Adjusted: 0
+  Fields Cleaned: 1
+  Parentheses Negatives Processed: 0
+  Balance Checks Performed: 1
+  Total Entries Checked: 77247
+  Balanced Entries: 77247
+  Unbalanced Entries: 0
+
+MAPPING DECISIONS:
+  Automatic Decisions:
+    Nº pièce → journal_entry_id (confidence: 0.990, type: automatic_highest_confidence)
+    CptGén. → gl_account_number (confidence: 0.990, type: automatic_no_conflict)
+    Date cpt. → posting_date (confidence: 0.953, type: automatic_no_conflict)
+    ValDevSté → amount (confidence: 0.990, type: automatic_highest_confidence)
+    Type → gl_account_name (confidence: 0.870, type: automatic_no_conflict)
+    Texte → line_description (confidence: 0.975, type: automatic_no_conflict)
+
+CONFLICT RESOLUTIONS:
+  journal_entry_id:
+    Winner: Nº pièce
+    Resolution type: highest_confidence
+    All candidates: ['Sté(0.560)', 'Nº pièce(0.990)']
+  amount:
+    Winner: ValDevSté
+    Resolution type: highest_confidence
+    All candidates: ['Référence(0.720)', 'ValDevSté(0.990)']
+
+FINAL MAPPING TABLE:
+Standard Field            | Mapped Column                  | Confidence
+------------------------- | ------------------------------ | ----------
+journal_entry_id          | Nº pièce                       | 0.990     
+line_number               | No mapeado                     | 0.000     
+description               | No mapeado                     | 0.000     
+line_description          | Texte                          | 0.975     
+posting_date              | Date cpt.                      | 0.953     
+fiscal_year               | No mapeado                     | 0.000     
+period_number             | No mapeado                     | 0.000     
+gl_account_number         | CptGén.                        | 0.990     
+amount                    | ValDevSté                      | 0.990     
+debit_amount              | No mapeado                     | 0.000     
+credit_amount             | No mapeado                     | 0.000     
+debit_credit_indicator    | No mapeado                     | 0.000     
+prepared_by               | No mapeado                     | 0.000     
+entry_date                | No mapeado                     | 0.000     
+entry_time                | No mapeado                     | 0.000     
+gl_account_name           | Type                           | 0.870     
+vendor_id                 | No mapeado                     | 0.000     
+
+BALANCE VALIDATION RESULTS:
+  Total Balance: ✅ BALANCED
+  Total Debit: 101,115,440.27
+  Total Credit: 101,115,440.27
+  Difference: 0.00
+  Entries Checked: 77247
+  Balanced Entries: 77247
+  Unbalanced Entries: 0
+
+OUTPUT FILES CREATED:
+  Header CSV: results\automatic_training_header_20250829_114423.csv
+  Detail CSV: results\automatic_training_detail_20250829_114423.csv
