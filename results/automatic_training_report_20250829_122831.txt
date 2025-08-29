@@ -1,0 +1,95 @@
+FIELD TRAINING SESSION REPORT - AUTOMATIC
+============================================================
+
+Generated: 2025-08-29T12:28:31.510735
+Training Mode: automatic
+
+SESSION INFORMATION:
+  CSV File: .\data\Libro_Diario_Ara_1.csv
+  ERP Hint: SAP
+  Standard Fields: 8
+  Timestamp: 2025-08-29T12:28:31.510791
+
+TRAINING STATISTICS:
+  Columns Processed: 41
+  Automatic Mappings: 8
+  Conflicts Resolved: 4
+  Amount Conflicts Resolved: 1
+  Journal Id Balance Resolutions: 0
+  High Confidence Mappings: 8
+  Low Confidence Mappings: 0
+  Rejected Low Confidence: 3
+  Unmapped Columns: 0
+  Synonyms Added: 0
+  Regex Patterns Added: 0
+  Zero Filled Fields: 554267
+  Debit Credit Calculated: 0
+  Debit Amounts From Indicator: 0
+  Credit Amounts From Indicator: 0
+  Amount Signs Adjusted: 0
+  Fields Cleaned: 3
+  Parentheses Negatives Processed: 0
+  Balance Checks Performed: 1
+  Total Entries Checked: 0
+  Balanced Entries: 0
+  Unbalanced Entries: 0
+
+MAPPING DECISIONS:
+  Automatic Decisions:
+    Saldo → amount (confidence: 0.943, type: automatic_highest_confidence)
+    Text capçalera document → description (confidence: 0.819, type: automatic_highest_confidence)
+    DataEntr. → entry_date (confidence: 0.885, type: automatic_no_conflict)
+    Debe → debit_amount (confidence: 0.943, type: automatic_highest_confidence)
+    Haver → credit_amount (confidence: 0.970, type: automatic_highest_confidence)
+    D/H → debit_credit_indicator (confidence: 0.955, type: automatic_no_conflict)
+    Pos → line_number (confidence: 0.980, type: automatic_no_conflict)
+    Cuenta → gl_account_number (confidence: 0.928, type: automatic_no_conflict)
+
+CONFLICT RESOLUTIONS:
+  amount:
+    Winner: Saldo
+    Resolution type: highest_confidence
+    All candidates: ['Núm.doc.(0.720)', 'Saldo(0.943)']
+  description:
+    Winner: Text capçalera document
+    Resolution type: highest_confidence
+    All candidates: ['Classe de document(0.400)', 'Text capçalera document(0.819)']
+  debit_amount:
+    Winner: Debe
+    Resolution type: highest_confidence
+    All candidates: ['Deure(0.842)', 'Debe(0.943)']
+  credit_amount:
+    Winner: Haver
+    Resolution type: highest_confidence
+    All candidates: ['Haver(0.970)', 'Haber(0.943)']
+
+FINAL MAPPING TABLE:
+Standard Field            | Mapped Column                  | Confidence
+------------------------- | ------------------------------ | ----------
+journal_entry_id          | No mapeado                     | 0.000     
+line_number               | Pos                            | 0.980     
+description               | Text capçalera document        | 0.819     
+line_description          | No mapeado                     | 0.000     
+posting_date              | No mapeado                     | 0.000     
+fiscal_year               | No mapeado                     | 0.000     
+period_number             | No mapeado                     | 0.000     
+gl_account_number         | Cuenta                         | 0.928     
+amount                    | Saldo                          | 0.943     
+debit_amount              | Debe                           | 0.943     
+credit_amount             | Haver                          | 0.970     
+debit_credit_indicator    | D/H                            | 0.955     
+prepared_by               | No mapeado                     | 0.000     
+entry_date                | DataEntr.                      | 0.885     
+entry_time                | No mapeado                     | 0.000     
+gl_account_name           | No mapeado                     | 0.000     
+vendor_id                 | No mapeado                     | 0.000     
+
+BALANCE VALIDATION RESULTS:
+  Total Balance: ❌ UNBALANCED
+  Total Debit: 217,002,480.79
+  Total Credit: 179,933,447.41
+  Difference: 37,069,033.38
+
+OUTPUT FILES CREATED:
+  Header CSV: results\automatic_training_header_20250829_122815.csv
+  Detail CSV: results\automatic_training_detail_20250829_122815.csv

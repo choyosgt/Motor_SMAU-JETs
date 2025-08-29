@@ -1,0 +1,79 @@
+FIELD TRAINING SESSION REPORT - AUTOMATIC
+============================================================
+
+Generated: 2025-08-29T13:42:29.213666
+Training Mode: automatic
+
+SESSION INFORMATION:
+  CSV File: .\data\Libro_Diario_Kitz_Cabecera.csv
+  ERP Hint: SAP
+  Standard Fields: 8
+  Timestamp: 2025-08-29T13:42:29.213708
+
+TRAINING STATISTICS:
+  Columns Processed: 111
+  Automatic Mappings: 8
+  Conflicts Resolved: 1
+  Amount Conflicts Resolved: 0
+  Journal Id Balance Resolutions: 0
+  High Confidence Mappings: 7
+  Low Confidence Mappings: 1
+  Rejected Low Confidence: 2
+  Unmapped Columns: 0
+  Synonyms Added: 0
+  Regex Patterns Added: 0
+  Zero Filled Fields: 0
+  Debit Credit Calculated: 0
+  Debit Amounts From Indicator: 0
+  Credit Amounts From Indicator: 0
+  Amount Signs Adjusted: 0
+  Fields Cleaned: 0
+  Parentheses Negatives Processed: 0
+
+MAPPING DECISIONS:
+  Automatic Decisions:
+    Nº documento → journal_entry_id (confidence: 0.860, type: automatic_no_conflict)
+    Ejercicio → fiscal_year (confidence: 0.928, type: automatic_no_conflict)
+    Fe.contabilización → posting_date (confidence: 0.956, type: automatic_highest_confidence)
+    Fecha de entrada → entry_date (confidence: 0.934, type: automatic_no_conflict)
+    Hora de entrada → entry_time (confidence: 0.975, type: automatic_no_conflict)
+    Nombre del usuario → prepared_by (confidence: 0.870, type: automatic_no_conflict)
+    Texto cab.documento → description (confidence: 0.759, type: automatic_no_conflict)
+    Ledger → ledger (confidence: 0.990, type: automatic_no_conflict)
+
+CONFLICT RESOLUTIONS:
+  posting_date:
+    Winner: Fe.contabilización
+    Resolution type: highest_confidence
+    All candidates: ['Fecha de documento(0.720)', 'Fe.contabilización(0.956)', 'Fecha de conversión(0.720)']
+
+FINAL MAPPING TABLE:
+Standard Field            | Mapped Column                  | Confidence
+------------------------- | ------------------------------ | ----------
+journal_entry_id          | Nº documento                   | 0.860     
+line_number               | No mapeado                     | 0.000     
+description               | Texto cab.documento            | 0.759     
+line_description          | No mapeado                     | 0.000     
+posting_date              | Fe.contabilización             | 0.956     
+fiscal_year               | Ejercicio                      | 0.928     
+period_number             | No mapeado                     | 0.000     
+gl_account_number         | No mapeado                     | 0.000     
+amount                    | No mapeado                     | 0.000     
+debit_amount              | No mapeado                     | 0.000     
+credit_amount             | No mapeado                     | 0.000     
+debit_credit_indicator    | No mapeado                     | 0.000     
+prepared_by               | Nombre del usuario             | 0.870     
+entry_date                | Fecha de entrada               | 0.934     
+entry_time                | Hora de entrada                | 0.975     
+gl_account_name           | No mapeado                     | 0.000     
+vendor_id                 | No mapeado                     | 0.000     
+
+BALANCE VALIDATION RESULTS:
+  Total Balance: ❌ UNBALANCED
+  Total Debit: 0.00
+  Total Credit: 0.00
+  Difference: 0.00
+
+OUTPUT FILES CREATED:
+  Header CSV: results\automatic_training_header_20250829_134228.csv
+  Detail CSV: results\automatic_training_detail_20250829_134228.csv

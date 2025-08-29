@@ -213,6 +213,12 @@ field_definitions:
           description: Synonym for Importe
           language: es
           name: Amnt in Balance Tr Crcy
+        - added_at: '2025-07-17T12:45:51.183725'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Importe
+          language: es
+          name: Importe en moneda de sociedad
       timestamps:
         created_at: '2025-07-16T16:11:07.454967'
         updated_at: '2025-07-18T11:38:29.924541'
@@ -702,6 +708,12 @@ field_definitions:
           description: Synonym for Indicador Debe/Haber
           language: es
           name: Indicador Deure/Haver
+        - added_at: '2025-07-17T12:45:51.169126'
+          confidence_boost: 0.8
+          deprecated: false
+          description: Synonym for Indicador Debe/Haber
+          language: es
+          name: Indicador Debe/Haber
       timestamps:
         created_at: '2025-07-16T16:11:07.454967'
         updated_at: '2025-07-18T11:38:29.924541'
@@ -921,6 +933,12 @@ field_definitions:
           description: Synonym for Descripción encabezado asiento
           language: es
           name: Texto de cabecera de asiento contable
+        - added_at: '2025-07-18T10:48:51.370572'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Descripción encabezado asiento
+          language: es
+          name: Text capçalera document
       timestamps:
         created_at: '2025-07-16T16:11:07.454967'
         updated_at: '2025-07-24T14:35:34.398854'
@@ -1004,6 +1022,12 @@ field_definitions:
           description: Learned from manual training - 2025-07-22
           language: es
           name: Date Created.1
+        - added_at: '2025-07-22T08:56:43.480736'
+          confidence_boost: 0.5
+          deprecated: false
+          description: Learned from manual training - 2025-07-22
+          language: es
+          name: DataEntr.
         Navision:
         - added_at: '2025-07-16T16:11:07.454967'
           confidence_boost: 0.9
@@ -1068,6 +1092,12 @@ field_definitions:
           description: Synonym for Fecha ingreso
           language: es
           name: CreatnTime
+        - added_at: '2025-07-17T12:45:51.182506'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Fecha ingreso
+          language: es
+          name: Fecha de Entrada
       timestamps:
         created_at: '2025-07-16T16:11:07.454967'
         updated_at: '2025-07-22T08:56:43.480745'
@@ -1180,11 +1210,17 @@ field_definitions:
           language: en
           name: CREATED_TIME
         - added_at: '2025-07-16T23:22:51.830982'
-          confidence_boost: 0.1
+          confidence_boost: 0.5
           deprecated: false
           description: Synonym for Hora ingreso
           language: es
           name: Hora
+        - added_at: '2025-07-16T23:22:51.830982'
+          confidence_boost: 0.5
+          deprecated: false
+          description: Synonym for Hora ingreso
+          language: es
+          name: Hora de entrada
       timestamps:
         created_at: '2025-07-16T16:11:07.454967'
         updated_at: '2025-07-18T11:38:29.924541'
@@ -1257,11 +1293,17 @@ field_definitions:
           language: es
           name: Ejercicio_Fiscal
         - added_at: '2025-07-18T11:38:29.620236'
-          confidence_boost: 0.1
+          confidence_boost: 0.5
           deprecated: false
           description: Synonym for Año fiscal
           language: es
           name: FISCAL YEAR
+        - added_at: '2025-07-18T11:38:29.620236'
+          confidence_boost: 0.5
+          deprecated: false
+          description: Synonym for Año fiscal
+          language: es
+          name: Ex.
         Navision:
         - added_at: '2025-07-16T16:11:07.454967'
           confidence_boost: 0.9
@@ -2473,7 +2515,7 @@ field_definitions:
           language: en
           name: LINE_ITEM
         - added_at: '2025-07-16T23:25:00.587510'
-          confidence_boost: 0.4
+          confidence_boost: 0.6
           deprecated: false
           description: Synonym for Número de línea de Asiento
           language: es
@@ -2888,11 +2930,23 @@ field_definitions:
           language: es
           name: Doc. Date
         - added_at: '2025-07-18T10:48:51.368500'
-          confidence_boost: 0.1
+          confidence_boost: 0.6
           deprecated: false
           description: Synonym for Fecha efectiva
           language: es
           name: Fecha de contabilización
+        - added_at: '2025-07-18T10:48:51.368500'
+          confidence_boost: 0.6
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: es
+          name: Dat.doc.
+        - added_at: '2025-07-18T10:48:51.368500'
+          confidence_boost: 0.6
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: es
+          name: Fe.contabilización
       timestamps:
         created_at: '2025-07-16T16:11:07.454967'
         updated_at: '2025-07-22T08:56:18.460178'
