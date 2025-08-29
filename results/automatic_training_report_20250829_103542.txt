@@ -1,0 +1,71 @@
+FIELD TRAINING SESSION REPORT - AUTOMATIC
+============================================================
+
+Generated: 2025-08-29T10:35:42.295646
+Training Mode: automatic
+
+SESSION INFORMATION:
+  CSV File: .\data\Libro_Diario_AZ_CAPITAL.csv
+  ERP Hint: SAP
+  Standard Fields: 6
+  Timestamp: 2025-08-29T10:35:42.295673
+
+TRAINING STATISTICS:
+  Columns Processed: 6
+  Automatic Mappings: 6
+  Conflicts Resolved: 0
+  Amount Conflicts Resolved: 0
+  Journal Id Balance Resolutions: 0
+  High Confidence Mappings: 5
+  Low Confidence Mappings: 1
+  Rejected Low Confidence: 0
+  Unmapped Columns: 0
+  Synonyms Added: 0
+  Regex Patterns Added: 0
+  Zero Filled Fields: 0
+  Debit Credit Calculated: 0
+  Debit Amounts From Indicator: 0
+  Credit Amounts From Indicator: 0
+  Amount Signs Adjusted: 0
+  Fields Cleaned: 0
+  Parentheses Negatives Processed: 0
+
+MAPPING DECISIONS:
+  Automatic Decisions:
+    Asiento → journal_entry_id (confidence: 0.893, type: automatic_no_conflict)
+    Comentario → description (confidence: 0.766, type: automatic_no_conflict)
+    Descripción → line_description (confidence: 0.831, type: automatic_no_conflict)
+    Cuenta → gl_account_number (confidence: 0.928, type: automatic_no_conflict)
+    Debe → debit_amount (confidence: 0.943, type: automatic_no_conflict)
+    Haber → credit_amount (confidence: 0.943, type: automatic_no_conflict)
+
+FINAL MAPPING TABLE:
+Standard Field            | Mapped Column                  | Confidence
+------------------------- | ------------------------------ | ----------
+journal_entry_id          | Asiento                        | 0.893     
+line_number               | No mapeado                     | 0.000     
+description               | Comentario                     | 0.766     
+line_description          | Descripción                    | 0.831     
+posting_date              | No mapeado                     | 0.000     
+fiscal_year               | No mapeado                     | 0.000     
+period_number             | No mapeado                     | 0.000     
+gl_account_number         | Cuenta                         | 0.928     
+amount                    | No mapeado                     | 0.000     
+debit_amount              | Debe                           | 0.943     
+credit_amount             | Haber                          | 0.943     
+debit_credit_indicator    | No mapeado                     | 0.000     
+prepared_by               | No mapeado                     | 0.000     
+entry_date                | No mapeado                     | 0.000     
+entry_time                | No mapeado                     | 0.000     
+gl_account_name           | No mapeado                     | 0.000     
+vendor_id                 | No mapeado                     | 0.000     
+
+BALANCE VALIDATION RESULTS:
+  Total Balance: ❌ UNBALANCED
+  Total Debit: 0.00
+  Total Credit: 0.00
+  Difference: 0.00
+
+OUTPUT FILES CREATED:
+  Header CSV: results\automatic_training_header_20250829_103542.csv
+  Detail CSV: results\automatic_training_detail_20250829_103542.csv

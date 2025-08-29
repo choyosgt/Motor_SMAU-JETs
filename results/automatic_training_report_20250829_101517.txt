@@ -1,0 +1,89 @@
+FIELD TRAINING SESSION REPORT - AUTOMATIC
+============================================================
+
+Generated: 2025-08-29T10:15:17.330247
+Training Mode: automatic
+
+SESSION INFORMATION:
+  CSV File: .\data\Libro_Diario_Atos_1.csv
+  ERP Hint: SAP
+  Standard Fields: 12
+  Timestamp: 2025-08-29T10:15:17.330288
+
+TRAINING STATISTICS:
+  Columns Processed: 22
+  Automatic Mappings: 12
+  Conflicts Resolved: 0
+  Amount Conflicts Resolved: 0
+  Journal Id Balance Resolutions: 0
+  High Confidence Mappings: 12
+  Low Confidence Mappings: 0
+  Rejected Low Confidence: 0
+  Unmapped Columns: 0
+  Synonyms Added: 0
+  Regex Patterns Added: 0
+  Zero Filled Fields: 8
+  Debit Credit Calculated: 89617
+  Debit Amounts From Indicator: 44839
+  Credit Amounts From Indicator: 44778
+  Amount Signs Adjusted: 89617
+  Fields Cleaned: 1
+  Parentheses Negatives Processed: 0
+  Balance Checks Performed: 1
+  Total Entries Checked: 6163
+  Balanced Entries: 6159
+  Unbalanced Entries: 4
+
+MAPPING DECISIONS:
+  Automatic Decisions:
+    Ld → ledger (confidence: 0.955, type: automatic_no_conflict)
+    Year → fiscal_year (confidence: 0.939, type: automatic_no_conflict)
+    DocumentNo → journal_entry_id (confidence: 0.990, type: automatic_no_conflict)
+    Pstng Date → posting_date (confidence: 0.946, type: automatic_no_conflict)
+    CreatnTime → entry_date (confidence: 0.934, type: automatic_no_conflict)
+    User Name → prepared_by (confidence: 0.955, type: automatic_no_conflict)
+    Amount in Comp Cd Crcy → amount (confidence: 0.970, type: automatic_no_conflict)
+    Itm → line_number (confidence: 0.965, type: automatic_no_conflict)
+    D/C → debit_credit_indicator (confidence: 0.955, type: automatic_no_conflict)
+    Account → gl_account_number (confidence: 0.949, type: automatic_no_conflict)
+    Text → line_description (confidence: 0.955, type: automatic_no_conflict)
+    Supplier → vendor_id (confidence: 0.854, type: automatic_no_conflict)
+
+FINAL MAPPING TABLE:
+Standard Field            | Mapped Column                  | Confidence
+------------------------- | ------------------------------ | ----------
+journal_entry_id          | DocumentNo                     | 0.990     
+line_number               | Itm                            | 0.965     
+description               | No mapeado                     | 0.000     
+line_description          | Text                           | 0.955     
+posting_date              | Pstng Date                     | 0.946     
+fiscal_year               | Year                           | 0.939     
+period_number             | No mapeado                     | 0.000     
+gl_account_number         | Account                        | 0.949     
+amount                    | Amount in Comp Cd Crcy         | 0.970     
+debit_amount              | No mapeado                     | 0.000     
+credit_amount             | No mapeado                     | 0.000     
+debit_credit_indicator    | D/C                            | 0.955     
+prepared_by               | User Name                      | 0.955     
+entry_date                | CreatnTime                     | 0.934     
+entry_time                | No mapeado                     | 0.000     
+gl_account_name           | No mapeado                     | 0.000     
+vendor_id                 | Supplier                       | 0.854     
+
+BALANCE VALIDATION RESULTS:
+  Total Balance: ✅ BALANCED
+  Total Debit: 1,246,388,792.00
+  Total Credit: 1,246,388,792.00
+  Difference: 0.00
+  Entries Checked: 6163
+  Balanced Entries: 6159
+  Unbalanced Entries: 4
+  Unbalanced Entry Examples:
+    Entry 9400000416: Debit 2,956.88 - Credit 1,726.44 = 1,230.44
+    Entry 9400000416: Debit 0.00 - Credit 1,230.44 = -1,230.44
+    Entry B000225133: Debit 188,758,931.83 - Credit 188,340,498.65 = 418,433.18
+    Entry B000225169: Debit 58,212,072.10 - Credit 58,630,505.28 = -418,433.18
+
+OUTPUT FILES CREATED:
+  Header CSV: results\automatic_training_header_20250829_101505.csv
+  Detail CSV: results\automatic_training_detail_20250829_101505.csv

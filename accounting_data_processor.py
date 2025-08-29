@@ -290,7 +290,7 @@ class AccountingDataProcessor:
             df = self._clean_existing_numeric_fields(df)
 
             # Asegurar valores absolutos en columnas de crédito
-            df = self._ensure_credit_absolute_values(df)
+            df = self._ensure_debit_credit_absolute_values(df)
             
             # 2. Detectar escenarios y aplicar cálculos apropiados
             has_amount = 'amount' in df.columns
@@ -336,7 +336,7 @@ class AccountingDataProcessor:
                 print(f"Cleaning numeric field: {field}")
                 original_samples = df[field].dropna().head(3).tolist()
                 print(f"   Original values: {original_samples}")
-                
+    
                 # Contar valores con paréntesis ANTES del procesamiento
                 parentheses_count = df[field].astype(str).str.contains(r'\(', na=False).sum()
                 
@@ -358,11 +358,11 @@ class AccountingDataProcessor:
         
         return df
 
-    def _ensure_credit_absolute_values(self, df: pd.DataFrame) -> pd.DataFrame:
+    def _ensure_debit_credit_absolute_values(self, df: pd.DataFrame) -> pd.DataFrame:
         """Asegura que cualquier columna 'credit' esté siempre en valor absoluto"""
-        credit_columns = ['credit', 'credit_amount']
+        columns = ['credit', 'credit_amount','debit','debit_amount']
         
-        for col in credit_columns:
+        for col in columns:
             if col in df.columns:
                 print(f"🔧 Ensuring absolute values for column: {col}")
                 # Mostrar valores originales como muestra
