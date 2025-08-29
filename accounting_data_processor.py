@@ -287,6 +287,9 @@ class AccountingDataProcessor:
             
             # 1. Limpiar campos numéricos existentes
             df = self._clean_existing_numeric_fields(df)
+
+            # Asegurar valores absolutos en columnas de crédito
+            df = self._ensure_credit_absolute_values(df)
             
             # 2. Detectar escenarios y aplicar cálculos apropiados
             has_amount = 'amount' in df.columns
@@ -346,6 +349,31 @@ class AccountingDataProcessor:
                 print(f"   Zero-filled count: {zero_count}")
         
         return df
+
+    def _ensure_credit_absolute_values(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Asegura que cualquier columna 'credit' esté siempre en valor absoluto"""
+        credit_columns = ['credit', 'credit_amount']
+        
+        for col in credit_columns:
+            if col in df.columns:
+                print(f"🔧 Ensuring absolute values for column: {col}")
+                # Mostrar valores originales como muestra
+                original_sample = df[col].dropna().head(3).tolist()
+                print(f"   Original sample: {original_sample}")
+                
+                # Aplicar valor absoluto
+                df[col] = df[col].apply(lambda x: abs(float(x)) if pd.notna(x) and str(x).strip() != '' else 0.0)
+                
+                # Mostrar valores corregidos
+                corrected_sample = df[col].head(3).tolist()
+                print(f"   Corrected sample: {corrected_sample}")
+                
+                # Contar valores que fueron convertidos
+                negative_count = (df[col] < 0).sum()
+                if negative_count > 0:
+                    print(f"   ✅ Converted {negative_count} negative values to positive")
+        
+        return df  
     
     def _calculate_amount_from_debit_credit(self, df: pd.DataFrame) -> pd.DataFrame:
         """Calcula amount = debit_amount - credit_amount"""

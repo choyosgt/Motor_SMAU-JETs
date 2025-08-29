@@ -1793,7 +1793,12 @@ field_definitions:
           description: Synonym for ID de Asiento
           language: es
           name: NumDoc
-
+        - added_at: '2025-08-28T12:58:02.982089'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: es
+          name: Doc Ref.
         - added_at: '2025-07-17T10:27:02.982089'
           confidence_boost: 0.1
           deprecated: false
