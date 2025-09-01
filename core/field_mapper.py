@@ -827,6 +827,11 @@ class FieldMapper:
                 return None
             
             print(f"   🧮 Testing balance validation with amount columns: {list(amount_columns.keys())}")
+
+            if len(amount_columns) == 0:
+                print(f"   ❌ No amount columns with confidence >= 0.75 found")
+                print(f"      Cannot perform reliable balance validation - skipping")
+                return None
             
             # Probar candidato existente
             existing_score = self._test_journal_entry_candidate(existing_column, amount_columns)
@@ -922,34 +927,61 @@ class FieldMapper:
 
     # 7. MÉTODO AUXILIAR: Identificar columnas de amount
     def _identify_amount_columns(self) -> Dict[str, str]:
-        """Identifica qué columnas contienen amounts usando mapeos existentes y análisis"""
+        """CORREGIDO: Identifica qué columnas contienen amounts usando SOLO mapeos con alta confianza"""
         amount_columns = {}
         
-        # Primero, buscar en mapeos ya realizados
+        # Primero, buscar en mapeos ya realizados CON VERIFICACIÓN DE CONFIANZA
         for field_type, column_name in self._used_field_mappings.items():
             if field_type in ['debit_amount', 'credit_amount', 'amount']:
-                amount_columns[field_type] = column_name
+                # ✅ CORRECCIÓN SIMPLE: Verificar que existe _confidence_by_column
+                try:
+                    column_confidence = getattr(self, '_confidence_by_column', {}).get(column_name, 0.0)
+                    if column_confidence >= 0.75:
+                        amount_columns[field_type] = column_name
+                        print(f"      ✅ {field_type}: '{column_name}' (confidence: {column_confidence:.3f})")
+                    else:
+                        print(f"      ❌ {field_type}: '{column_name}' skipped (confidence: {column_confidence:.3f} < 0.75)")
+                except Exception as e:
+                    # Si hay error, simplemente no usar este campo
+                    print(f"      ❌ {field_type}: '{column_name}' skipped (error checking confidence)")
+                    continue
         
         # Si no tenemos suficientes, analizar otras columnas
         if len(amount_columns) < 2:
+            print(f"      🔍 Need more amount fields, analyzing other columns...")
+            
             for column in self._dataframe_for_balance.columns:
                 if column in amount_columns.values():
                     continue
-                    
-                # Usar análisis numérico existente
-                sample_data = self._dataframe_for_balance[column].dropna().head(100)
-                numeric_analysis = self._analyze_numeric_content(sample_data)
                 
-                # Agregar si parece ser amount y no tenemos ese tipo
-                for field_type, confidence in numeric_analysis.items():
-                    if field_type in ['debit_amount', 'credit_amount', 'amount'] and confidence > 0.6:
-                        if field_type not in amount_columns:
-                            amount_columns[field_type] = column
-                            break
-                            
-                if len(amount_columns) >= 3:  # debit, credit, amount
-                    break
+                try:
+                    # Usar análisis numérico existente
+                    sample_data = self._dataframe_for_balance[column].dropna().head(100)
+                    numeric_analysis = self._analyze_numeric_content(sample_data)
+                    
+                    # Agregar SOLO si parece ser amount Y confianza sería alta
+                    for field_type, confidence in numeric_analysis.items():
+                        if field_type in ['debit_amount', 'credit_amount', 'amount'] and confidence >= 0.75:
+                            if field_type not in amount_columns:
+                                amount_columns[field_type] = column
+                                print(f"      ✅ {field_type}: '{column}' (analyzed confidence: {confidence:.3f})")
+                                break
+                    
+                    if len(amount_columns) >= 3:  # debit, credit, amount
+                        break
+                        
+                except Exception as e:
+                    # Si hay error analizando esta columna, continuar con la siguiente
+                    continue
         
+        # Mostrar resumen
+        if len(amount_columns) == 0:
+            print(f"      ❌ No amount fields found with confidence >= 0.75")
+        elif len(amount_columns) == 1:
+            print(f"      ⚠️ Only 1 amount field found - balance validation may be limited")
+        else:
+            print(f"      ✅ Found {len(amount_columns)} amount fields for balance validation")
+                    
         return amount_columns
 
     # 8. MÉTODO AUXILIAR: Probar un candidato de journal_entry_id
