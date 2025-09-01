@@ -7,10 +7,11 @@ ACTUALIZADO: Nuevos campos gl_account_name y vendor_id, nombres de campos actual
 import re
 import pandas as pd
 from pathlib import Path
-from typing import Dict, List, Optional, Union, Tuple
+from typing import Dict, List, Optional, Union, Tuple, Any
 from datetime import datetime
 import logging
 from collections import Counter
+
 
 # Import local con manejo de errores mejorado
 try:
@@ -65,6 +66,17 @@ class FieldMapper:
         self._mapping_cache = {}
         self._erp_synonyms_cache = {}
         self._content_analysis_cache = {}
+
+        self._dataframe_for_balance = None
+        self._balance_validator = None
+        self._numeric_fields_prepared = False
+
+        try:
+            from balance_validator import BalanceValidator
+            self._balance_validator = BalanceValidator(tolerance=0.01)
+        except ImportError:
+            print("⚠️ BalanceValidator not available - journal_entry_id balance validation disabled")
+            self._balance_validator = None
         
         # MEJORADO: Control de mapeo único más inteligente
         self._used_field_mappings = {}  # {field_type: column_name}
@@ -157,6 +169,12 @@ class FieldMapper:
         # Cache del resultado
         self._erp_synonyms_cache[cache_key] = synonyms
         return synonyms
+    def set_dataframe_for_balance_validation(self, df: pd.DataFrame):
+        """Configura el DataFrame completo para poder hacer balance validation en journal_entry_id conflicts"""
+        self._dataframe_for_balance = df.copy()
+        self._numeric_fields_prepared = False
+        
+        print(f"🗃️ DataFrame set for balance validation: {df.shape[0]} rows, {df.shape[1]} columns")
     
     def find_field_mapping(self, field_name: str, erp_system: str = None, 
                           sample_data: pd.Series = None) -> Optional[Tuple[str, float]]:
@@ -711,17 +729,50 @@ class FieldMapper:
     
     def _resolve_mapping_conflict(self, field_name: str, field_type: str, confidence: float, 
                                 sample_data: pd.Series) -> Optional[Tuple[str, float]]:
-        """MEJORADO: Resuelve conflictos de mapeo único de manera inteligente"""
+        """ENHANCED: Resuelve conflictos con balance validation para journal_entry_id"""
         
         # Si el campo no está usado, asignar directamente
         if field_type not in self._used_field_mappings:
             return (field_type, confidence)
         
-        # Hay conflicto - comparar confianzas y calidad de mapeo
+        # Hay conflicto - obtener información del mapeo existente
         existing_column = self._used_field_mappings[field_type]
         existing_confidence = self._confidence_by_column.get(existing_column, 0.0)
         
-        # MEJORADO: Verificar si el mapeo actual es realmente correcto
+        # ✨ NUEVA LÓGICA ESPECIAL PARA JOURNAL_ENTRY_ID
+        if field_type == 'journal_entry_id' and self._balance_validator and self._dataframe_for_balance is not None:
+            print(f"🔍 JOURNAL_ENTRY_ID BALANCE VALIDATION CONFLICT:")
+            print(f"   Existing: '{existing_column}' (confidence: {existing_confidence:.3f})")
+            print(f"   New:      '{field_name}' (confidence: {confidence:.3f})")
+            
+            # Probar balance validation con ambos candidatos
+            balance_winner = self._resolve_journal_entry_id_by_balance(
+                existing_column, existing_confidence,
+                field_name, confidence
+            )
+            
+            if balance_winner:
+                winner_column, winner_confidence, reason = balance_winner
+                
+                # Si el ganador es diferente al existente, hacer reassignment
+                if winner_column != existing_column:
+                    # Liberar el mapeo anterior
+                    del self._used_field_mappings[field_type]
+                    del self._column_mappings[existing_column]
+                    if existing_column in self._confidence_by_column:
+                        del self._confidence_by_column[existing_column]
+                    
+                    self.mapping_stats['balance_validation_wins'] = self.mapping_stats.get('balance_validation_wins', 0) + 1
+                    print(f"🏆 BALANCE VALIDATION WINNER: '{winner_column}' ({reason})")
+                    
+                    return (field_type, winner_confidence)
+                else:
+                    print(f"✅ Existing mapping '{existing_column}' confirmed by balance validation")
+                    return None  # Mantener mapeo existente
+            else:
+                print(f"⚠️ Balance validation inconclusive - using confidence comparison")
+        
+        # LÓGICA ORIGINAL para otros campos o fallback
         should_reassign = False
         
         # Razón 1: La nueva confianza es significativamente mayor
@@ -729,15 +780,14 @@ class FieldMapper:
             should_reassign = True
             reason = f"higher confidence ({confidence:.3f} vs {existing_confidence:.3f})"
         
-        # Razón 2: Análisis de contenido específico para amounts
-        elif field_type == 'amount' and sample_data is not None:
-            # Verificar si la nueva columna es realmente un amount
+        # Razón 2: Análisis de contenido específico para amounts (si existe el método)
+        elif field_type == 'amount' and hasattr(self, '_is_better_amount_candidate') and sample_data is not None:
             if self._is_better_amount_candidate(field_name, sample_data):
                 should_reassign = True
                 reason = "better amount candidate based on content"
         
-        # Razón 3: Nombre del campo más específico
-        elif self._has_better_field_name(field_name, existing_column, field_type):
+        # Razón 3: Nombre del campo más específico (si existe el método)
+        elif hasattr(self, '_has_better_field_name') and self._has_better_field_name(field_name, existing_column, field_type):
             should_reassign = True
             reason = "more specific field name"
         
@@ -748,16 +798,224 @@ class FieldMapper:
             if existing_column in self._confidence_by_column:
                 del self._confidence_by_column[existing_column]
             
-            self.mapping_stats['smart_reassignments'] += 1
+            self.mapping_stats['smart_reassignments'] = self.mapping_stats.get('smart_reassignments', 0) + 1
             print(f"🔄 SMART REASSIGNMENT: '{field_name}' takes '{field_type}' from '{existing_column}' ({reason})")
             
             return (field_type, confidence)
         else:
             # Mantener el mapeo existente
-            self.mapping_stats['unique_mapping_conflicts'] += 1
+            self.mapping_stats['unique_mapping_conflicts'] = self.mapping_stats.get('unique_mapping_conflicts', 0) + 1
             print(f"⚠️ Field '{field_type}' already mapped to '{existing_column}' with better confidence, skipping '{field_name}'")
             return None
     
+    def _resolve_journal_entry_id_by_balance(self, existing_column: str, existing_confidence: float,
+                                        new_column: str, new_confidence: float) -> Optional[Tuple[str, float, str]]:
+        """
+        Resuelve conflicto de journal_entry_id usando balance validation
+        Reutiliza la lógica existente del balance_validator.py
+        """
+        try:
+            # Preparar campos numéricos si es necesario
+            if not self._numeric_fields_prepared:
+                self._prepare_numeric_fields()
+            
+            # Identificar campos amount para balance validation
+            amount_columns = self._identify_amount_columns()
+            
+            if not amount_columns:
+                print(f"   ⚠️ No amount columns identified - cannot perform balance validation")
+                return None
+            
+            print(f"   🧮 Testing balance validation with amount columns: {list(amount_columns.keys())}")
+            
+            # Probar candidato existente
+            existing_score = self._test_journal_entry_candidate(existing_column, amount_columns)
+            print(f"   📊 '{existing_column}': balance_score = {existing_score:.3f}")
+            
+            # Probar nuevo candidato  
+            new_score = self._test_journal_entry_candidate(new_column, amount_columns)
+            print(f"   📊 '{new_column}': balance_score = {new_score:.3f}")
+            
+            # Determinar ganador
+            score_diff = abs(existing_score - new_score)
+            
+            if score_diff < 0.1:  # Scores muy similares, usar confianza
+                if new_confidence > existing_confidence:
+                    return (new_column, new_confidence, f"balance_tie_confidence_wins")
+                else:
+                    return (existing_column, existing_confidence, f"balance_tie_confidence_wins")
+            elif new_score > existing_score:
+                return (new_column, new_confidence, f"better_balance_score_{new_score:.3f}")
+            else:
+                return (existing_column, existing_confidence, f"better_balance_score_{existing_score:.3f}")
+        
+        except Exception as e:
+            print(f"   ❌ Balance validation error: {e}")
+            return None
+
+    # 5. MÉTODO AUXILIAR: Preparar campos numéricos (reutiliza _analyze_numeric_content existente)  
+    def _prepare_numeric_fields(self):
+        """Prepara campos numéricos usando las funciones de análisis existentes"""
+        if self._dataframe_for_balance is None:
+            return
+            
+        print(f"   🔢 Preparing numeric fields for balance validation...")
+        
+        # Usar el método existente _analyze_numeric_content para identificar campos
+        for column in self._dataframe_for_balance.columns:
+            try:
+                sample_data = self._dataframe_for_balance[column].dropna().head(100)
+                
+                # Usar la función existente de análisis numérico
+                numeric_analysis = self._analyze_numeric_content(sample_data)
+                
+                # Si el análisis sugiere que es un campo amount, prepararlo
+                if any(field_type in ['amount', 'debit_amount', 'credit_amount'] for field_type in numeric_analysis.keys()):
+                    # Limpiar campo numérico usando lógica similar al automatic_confirmation_trainer
+                    cleaned_series = self._clean_numeric_column(self._dataframe_for_balance[column])
+                    self._dataframe_for_balance[f"{column}_numeric"] = cleaned_series
+                    
+            except Exception as e:
+                continue
+        
+        self._numeric_fields_prepared = True
+
+    # 6. MÉTODO AUXILIAR: Limpiar columna numérica (extraído del automatic_confirmation_trainer)
+    def _clean_numeric_column(self, series: pd.Series) -> pd.Series:
+        """Limpia una columna numérica - ADAPTADO del automatic_confirmation_trainer"""
+        def clean_numeric_value(val):
+            if pd.isna(val) or val == '':
+                return 0.0
+            
+            try:
+                val_str = str(val).strip()
+                
+                # Remover símbolos comunes de moneda y espacios
+                import re
+                val_str = re.sub(r'[€$£¥₹\s]', '', val_str)
+                
+                # Extraer primer número encontrado
+                numbers = re.findall(r'-?\d{1,3}(?:[.,]\d{3})*(?:[.,]\d+)?', val_str)
+                if numbers:
+                    first_num = numbers[0]
+                    # Normalizar formato decimal
+                    if ',' in first_num and '.' in first_num:
+                        # 1,234.56 vs 1.234,56
+                        if first_num.rfind('.') > first_num.rfind(','):
+                            first_num = first_num.replace(',', '')
+                        else:
+                            first_num = first_num.replace('.', '').replace(',', '.')
+                    elif first_num.count(',') == 1 and len(first_num.split(',')[1]) <= 2:
+                        # Decimal europeo: 1234,56
+                        first_num = first_num.replace(',', '.')
+                    else:
+                        # Separador de miles
+                        first_num = first_num.replace(',', '')
+                    
+                    return float(first_num)
+                
+                return 0.0
+            except:
+                return 0.0
+        
+        return series.apply(clean_numeric_value)
+
+    # 7. MÉTODO AUXILIAR: Identificar columnas de amount
+    def _identify_amount_columns(self) -> Dict[str, str]:
+        """Identifica qué columnas contienen amounts usando mapeos existentes y análisis"""
+        amount_columns = {}
+        
+        # Primero, buscar en mapeos ya realizados
+        for field_type, column_name in self._used_field_mappings.items():
+            if field_type in ['debit_amount', 'credit_amount', 'amount']:
+                amount_columns[field_type] = column_name
+        
+        # Si no tenemos suficientes, analizar otras columnas
+        if len(amount_columns) < 2:
+            for column in self._dataframe_for_balance.columns:
+                if column in amount_columns.values():
+                    continue
+                    
+                # Usar análisis numérico existente
+                sample_data = self._dataframe_for_balance[column].dropna().head(100)
+                numeric_analysis = self._analyze_numeric_content(sample_data)
+                
+                # Agregar si parece ser amount y no tenemos ese tipo
+                for field_type, confidence in numeric_analysis.items():
+                    if field_type in ['debit_amount', 'credit_amount', 'amount'] and confidence > 0.6:
+                        if field_type not in amount_columns:
+                            amount_columns[field_type] = column
+                            break
+                            
+                if len(amount_columns) >= 3:  # debit, credit, amount
+                    break
+        
+        return amount_columns
+
+    # 8. MÉTODO AUXILIAR: Probar un candidato de journal_entry_id
+    def _test_journal_entry_candidate(self, journal_column: str, amount_columns: Dict[str, str]) -> float:
+        """Prueba un candidato de journal_entry_id y retorna balance score"""
+        try:
+            # Crear DataFrame de prueba
+            test_df = pd.DataFrame()
+            test_df['journal_entry_id'] = self._dataframe_for_balance[journal_column]
+            
+            # Agregar campos amount limpios
+            for field_type, column_name in amount_columns.items():
+                if f"{column_name}_numeric" in self._dataframe_for_balance.columns:
+                    test_df[field_type] = self._dataframe_for_balance[f"{column_name}_numeric"]
+                else:
+                    test_df[field_type] = self._clean_numeric_column(self._dataframe_for_balance[column_name])
+            
+            # Asegurar que tenemos debit_amount y credit_amount
+            if 'debit_amount' not in test_df.columns:
+                test_df['debit_amount'] = 0.0
+            if 'credit_amount' not in test_df.columns:
+                test_df['credit_amount'] = 0.0
+                
+            # Si solo tenemos 'amount', distribuir en debit/credit
+            if 'amount' in test_df.columns and test_df['debit_amount'].sum() == 0 and test_df['credit_amount'].sum() == 0:
+                test_df['debit_amount'] = test_df['amount'].apply(lambda x: x if x > 0 else 0)
+                test_df['credit_amount'] = test_df['amount'].apply(lambda x: -x if x < 0 else 0)
+            
+            # Ejecutar balance validation usando el validator existente
+            balance_report = self._balance_validator.perform_comprehensive_balance_validation(test_df)
+            
+            # Calcular score (0-1) basado en el reporte
+            return self._calculate_balance_score(balance_report)
+            
+        except Exception as e:
+            print(f"     Error testing candidate '{journal_column}': {e}")
+            return 0.0
+
+    # 9. MÉTODO AUXILIAR: Calcular score de balance 
+    def _calculate_balance_score(self, balance_report: Dict[str, Any]) -> float:
+        """Calcula score 0-1 basado en balance validation results"""
+        try:
+            score = 0.0
+            
+            # Factor 1: Balance total (40% del score)
+            if balance_report.get('is_balanced', False):
+                score += 0.4
+            else:
+                # Penalizar por diferencia relativa
+                total_diff = abs(balance_report.get('total_balance_difference', float('inf')))
+                total_sum = balance_report.get('total_debit_sum', 0) + balance_report.get('total_credit_sum', 0)
+                if total_sum > 0:
+                    diff_ratio = total_diff / total_sum
+                    score += 0.4 * max(0, 1 - diff_ratio * 5)  # Penalizar diferencias
+            
+            # Factor 2: Tasa de asientos balanceados (60% del score)  
+            entries_count = balance_report.get('entries_count', 0)
+            if entries_count > 0:
+                balanced_count = balance_report.get('balanced_entries_count', 0)
+                balance_rate = balanced_count / entries_count
+                score += 0.6 * balance_rate
+            
+            return min(score, 1.0)
+            
+        except Exception as e:
+            return 0.0
     def _is_better_amount_candidate(self, field_name: str, sample_data: pd.Series) -> bool:
         """Verifica si una columna es mejor candidata para amount"""
         try:

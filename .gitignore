@@ -96,3 +96,12 @@ data/Libro_Diario_Fromageries_Cabecera.csv
 data/
 !data/sample_*.csv
 !data/ejemplo_*.csv
+automatic_confirmation_trainer.py
+results/automatic_training_detail_20250901_131804.csv
+results/automatic_training_detail_20250901_135307.csv
+results/automatic_training_header_20250901_130733.csv
+results/automatic_training_header_20250901_131804.csv
+results/automatic_training_header_20250901_135307.csv
+results/automatic_training_report_20250901_130901.txt
+results/automatic_training_report_20250901_131928.txt
+results/automatic_training_report_20250901_135424.txt

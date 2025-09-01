@@ -138,6 +138,12 @@ field_definitions:
           description: Synonym for Importe
           language: en
           name: Additional_Currency_Amount
+        - added_at: '2025-09-01T16:11:07.454967'
+          confidence_boost: 0.5
+          deprecated: false
+          description: Synonym for Importe
+          language: en
+          name: EXPR1
         Oracle:
         - added_at: '2025-07-16T16:11:07.454967'
           confidence_boost: 0.8
@@ -1981,19 +1987,19 @@ field_definitions:
           name: Nº Asiento
         Navision:
         - added_at: '2025-07-16T16:11:07.454967'
-          confidence_boost: 0.9
+          confidence_boost: 0.8
           deprecated: false
           description: Synonym for ID de Asiento
           language: en
           name: Document_No
         - added_at: '2025-07-16T16:11:07.454967'
-          confidence_boost: 0.9
+          confidence_boost: 0.8
           deprecated: false
           description: Synonym for ID de Asiento
           language: en
           name: Entry_No
         - added_at: '2025-07-16T16:11:07.454967'
-          confidence_boost: 0.8
+          confidence_boost: 0.6
           deprecated: false
           description: Synonym for ID de Asiento
           language: en
@@ -2004,6 +2010,12 @@ field_definitions:
           description: Synonym for ID de Asiento
           language: es
           name: DOCUMENTNO
+        - added_at: '2025-07-17T09:51:03.214167'
+          confidence_boost: 0.9
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: es
+          name: Transaction No_
         Oracle:
         - added_at: '2025-07-16T16:11:07.454967'
           confidence_boost: 0.9
@@ -3403,6 +3415,12 @@ field_definitions:
           description: Learned from manual training - 2025-07-22
           language: es
           name: Cta. contrapartida
+        - added_at: '2025-07-22T16:59:48.952988'
+          confidence_boost: 0.5
+          deprecated: false
+          description: Learned from manual training - 2025-07-22
+          language: es
+          name: NOMBRE_CLIENTE_PROVEEDOR_BANCO
         Oracle:
         - added_at: '2025-07-21T16:11:07.454967'
           confidence_boost: 0.9

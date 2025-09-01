@@ -103,6 +103,7 @@ class AutomaticConfirmationTrainingSession:
             # Inicializar detector y mapper
             self.detector = FieldDetector()
             self.mapper = FieldMapper()
+            self.enhanced_mapper_initialization()
             
             # Cargar patrones aprendidos
             self._load_learned_patterns()
@@ -639,6 +640,20 @@ class AutomaticConfirmationTrainingSession:
                 self.training_stats['low_confidence_mappings'] += 1
                 
             self.training_stats['automatic_mappings'] += 1
+
+    def enhanced_mapper_initialization(self):
+        """Configura el mapper para usar balance validation en journal_entry_id conflicts"""
+        try:
+            if hasattr(self.mapper, 'set_dataframe_for_balance_validation'):
+                self.mapper.set_dataframe_for_balance_validation(self.df)
+                print("✅ Mapper configured for balance validation")
+                self.training_stats['balance_validation_enabled'] = True
+            else:
+                print("⚠️ Mapper does not support balance validation - update field_mapper.py first")
+                self.training_stats['balance_validation_enabled'] = False
+        except Exception as e:
+            print(f"⚠️ Balance validation setup failed: {e}")
+            self.training_stats['balance_validation_enabled'] = False
     
     def _finalize_automatic_training(self) -> Dict:
         """Finaliza el entrenamiento automático usando módulos reutilizables"""
