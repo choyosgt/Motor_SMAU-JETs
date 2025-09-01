@@ -91,3 +91,8 @@ data/Libro_Diario_*.csv
 data/Libro_Diario_Ara_1.csv
 data/Libro_Diario_Fromageries_Cabecera.csv
 # Archivos CSV grandes excluidos
+
+# Ignorar todos los datos
+data/
+!data/sample_*.csv
+!data/ejemplo_*.csv
