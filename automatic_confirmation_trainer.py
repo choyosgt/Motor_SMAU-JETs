@@ -192,7 +192,7 @@ class AutomaticConfirmationTrainingSession:
                 sample_data = self.df[column].dropna().head(100)
                 
                 # Usar find_field_mapping del mapper (que ahora tiene balance validation)
-                mapping_result = self.mapper.find_field_mapping(
+                mapping_result = self.mapper.find_field_mapping_simple(
                     field_name=column,
                     erp_system=self.erp_hint,
                     sample_data=sample_data

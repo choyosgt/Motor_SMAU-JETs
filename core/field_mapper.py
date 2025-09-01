@@ -175,9 +175,11 @@ class FieldMapper:
         self._numeric_fields_prepared = False
         
         print(f"🗃️ DataFrame set for balance validation: {df.shape[0]} rows, {df.shape[1]} columns")
+
     
     def find_field_mapping(self, field_name: str, erp_system: str = None, 
-                          sample_data: pd.Series = None) -> Optional[Tuple[str, float]]:
+                      sample_data: pd.Series = None,
+                      skip_conflict_resolution: bool = False) -> Optional[Tuple[str, float]]:
         """
         Busca mapeo mejorado con análisis de contenido y MAPEO ÚNICO INTELIGENTE
         ACTUALIZADO: Nuevos campos y nombres actualizados
@@ -217,24 +219,30 @@ class FieldMapper:
         
         if best_match:
             field_type, confidence = best_match
-            
-            # MEJORADO: Verificar si hay conflicto y resolverlo inteligentemente
-            conflict_resolution = self._resolve_mapping_conflict(field_name, field_type, confidence, sample_data)
-            
-            if conflict_resolution:
-                final_field_type, final_confidence = conflict_resolution
+            if not skip_conflict_resolution:
+                # MEJORADO: Verificar si hay conflicto y resolverlo inteligentemente
+                conflict_resolution = self._resolve_mapping_conflict(field_name, field_type, confidence, sample_data)
                 
-                # Registrar mapeo único
-                self._used_field_mappings[final_field_type] = field_name
-                self._column_mappings[field_name] = final_field_type
-                self._confidence_by_column[field_name] = final_confidence
-                
-                self.mapping_stats['successful_mappings'] += 1
-                return (final_field_type, final_confidence)
+                if conflict_resolution:
+                    final_field_type, final_confidence = conflict_resolution
+                    
+                    # Registrar mapeo único
+                    self._used_field_mappings[final_field_type] = field_name
+                    self._column_mappings[field_name] = final_field_type
+                    self._confidence_by_column[field_name] = final_confidence
+                    
+                    self.mapping_stats['successful_mappings'] += 1
+                    return (final_field_type, final_confidence)
+            else:
+                return (field_type, confidence)
         
         # No se pudo mapear
         self.mapping_stats['failed_mappings'] += 1
         return None
+    
+    def find_field_mapping_simple(self, field_name: str, erp_system: str = None, 
+                              sample_data: pd.Series = None) -> Optional[Tuple[str, float]]:
+        return self.find_field_mapping(field_name, erp_system, sample_data, skip_conflict_resolution=True)
     
     def _enhanced_content_analysis(self, field_name: str, sample_data: pd.Series) -> Dict[str, float]:
         """MEJORADO: Análisis de contenido más preciso con nuevos campos"""
