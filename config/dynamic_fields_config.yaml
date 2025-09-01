@@ -225,6 +225,12 @@ field_definitions:
           description: Synonym for Importe
           language: es
           name: Importe ML
+        - added_at: '2025-07-17T12:45:51.183725'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Importe
+          language: es
+          name: EnteredAmount
       timestamps:
         created_at: '2025-07-16T16:11:07.454967'
         updated_at: '2025-07-18T11:38:29.924541'
@@ -320,6 +326,12 @@ field_definitions:
           description: Learned from manual training - 2025-07-22
           language: es
           name: CrAmt
+        - added_at: '2025-07-22T18:30:11.914776'
+          confidence_boost: 0.3
+          deprecated: false
+          description: Learned from manual training - 2025-07-22
+          language: es
+          name: EnteredCr
         Navision:
         - added_at: '2025-07-16T16:11:07.454967'
           confidence_boost: 0.9
@@ -561,6 +573,12 @@ field_definitions:
           description: Synonym for Importe Debe
           language: es
           name: Importe en debe en moneda de transacción
+        - added_at: '2025-07-18T10:48:51.375420'
+          confidence_boost: 0.4
+          deprecated: false
+          description: Synonym for Importe Debe
+          language: es
+          name: EnteredDeb
       timestamps:
         created_at: '2025-07-16T16:11:07.454967'
         updated_at: '2025-07-22T18:29:48.260323'
@@ -939,6 +957,12 @@ field_definitions:
           description: Synonym for Descripción encabezado asiento
           language: es
           name: Text capçalera document
+        - added_at: '2025-07-18T10:48:51.370572'
+          confidence_boost: 0.1
+          deprecated: false
+          description: Synonym for Descripción encabezado asiento
+          language: es
+          name: Header 
       timestamps:
         created_at: '2025-07-16T16:11:07.454967'
         updated_at: '2025-07-24T14:35:34.398854'
@@ -2055,6 +2079,12 @@ field_definitions:
           description: Synonym for ID de Asiento
           language: es
           name: Asiento contable
+        - added_at: '2025-07-18T10:48:51.370572'
+          confidence_boost: 0.5
+          deprecated: false
+          description: Synonym for ID de Asiento
+          language: es
+          name: Number
       timestamps:
         created_at: '2025-07-16T16:11:07.454967'
         updated_at: '2025-07-22T18:52:17.433492'
@@ -2532,6 +2562,12 @@ field_definitions:
           description: Synonym for Número de línea de Asiento
           language: es
           name: Itm
+        - added_at: '2025-07-17T12:45:51.181476'
+          confidence_boost: 0.5
+          deprecated: false
+          description: Synonym for Número de línea de Asiento
+          language: es
+          name: Line
 
       timestamps:
         created_at: '2025-07-16T16:11:07.454967'
@@ -2947,6 +2983,12 @@ field_definitions:
           description: Synonym for Fecha efectiva
           language: es
           name: Fe.contabilización
+        - added_at: '2025-07-18T10:48:51.368500'
+          confidence_boost: 0.6
+          deprecated: false
+          description: Synonym for Fecha efectiva
+          language: es
+          name: AcctDate
       timestamps:
         created_at: '2025-07-16T16:11:07.454967'
         updated_at: '2025-07-22T08:56:18.460178'
@@ -3412,6 +3454,12 @@ field_definitions:
           description: Synonym for ID Tercero
           language: en
           name: KUNNR
+        - added_at: '2025-09-01T16:11:07.454967'
+          confidence_boost: 0.7
+          deprecated: false
+          description: Synonym for ID Tercero
+          language: en
+          name: Vendor/Custome
       timestamps:
         created_at: '2025-07-21T16:11:07.454967'
         updated_at: '2025-07-24T14:34:52.912911'
@@ -3428,4 +3476,4 @@ system:
   auto_reload: true
   last_updated: '2025-07-24T15:55:58.140772'
   reload_interval_seconds: 30
-  version: 2.0.2
+  version: 3.0.2
