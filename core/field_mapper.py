@@ -927,14 +927,14 @@ class FieldMapper:
 
     # 7. MÉTODO AUXILIAR: Identificar columnas de amount
     def _identify_amount_columns(self) -> Dict[str, str]:
-        """CORREGIDO: Identifica qué columnas contienen amounts usando SOLO mapeos con alta confianza"""
+        """CORREGIDO: Identifica qué columnas contienen amounts usando SOLO la confianza original"""
         amount_columns = {}
         
-        # Primero, buscar en mapeos ya realizados CON VERIFICACIÓN DE CONFIANZA
+        # SOLO usar mapeos ya realizados con verificación de confianza ORIGINAL
         for field_type, column_name in self._used_field_mappings.items():
             if field_type in ['debit_amount', 'credit_amount', 'amount']:
-                # ✅ CORRECCIÓN SIMPLE: Verificar que existe _confidence_by_column
                 try:
+                    # ✅ USAR SIEMPRE la confianza original (la que está registrada)
                     column_confidence = getattr(self, '_confidence_by_column', {}).get(column_name, 0.0)
                     if column_confidence >= 0.75:
                         amount_columns[field_type] = column_name
@@ -942,41 +942,16 @@ class FieldMapper:
                     else:
                         print(f"      ❌ {field_type}: '{column_name}' skipped (confidence: {column_confidence:.3f} < 0.75)")
                 except Exception as e:
-                    # Si hay error, simplemente no usar este campo
                     print(f"      ❌ {field_type}: '{column_name}' skipped (error checking confidence)")
                     continue
         
-        # Si no tenemos suficientes, analizar otras columnas
-        if len(amount_columns) < 2:
-            print(f"      🔍 Need more amount fields, analyzing other columns...")
-            
-            for column in self._dataframe_for_balance.columns:
-                if column in amount_columns.values():
-                    continue
-                
-                try:
-                    # Usar análisis numérico existente
-                    sample_data = self._dataframe_for_balance[column].dropna().head(100)
-                    numeric_analysis = self._analyze_numeric_content(sample_data)
-                    
-                    # Agregar SOLO si parece ser amount Y confianza sería alta
-                    for field_type, confidence in numeric_analysis.items():
-                        if field_type in ['debit_amount', 'credit_amount', 'amount'] and confidence >= 0.75:
-                            if field_type not in amount_columns:
-                                amount_columns[field_type] = column
-                                print(f"      ✅ {field_type}: '{column}' (analyzed confidence: {confidence:.3f})")
-                                break
-                    
-                    if len(amount_columns) >= 3:  # debit, credit, amount
-                        break
-                        
-                except Exception as e:
-                    # Si hay error analizando esta columna, continuar con la siguiente
-                    continue
+        # ✅ SIMPLIFICACIÓN: NO analizar otras columnas para evitar inconsistencias
+        # Si no hay suficientes campos con alta confianza, mejor no usar balance validation
         
         # Mostrar resumen
         if len(amount_columns) == 0:
             print(f"      ❌ No amount fields found with confidence >= 0.75")
+            print(f"      🔍 Balance validation requires pre-mapped fields with high confidence")
         elif len(amount_columns) == 1:
             print(f"      ⚠️ Only 1 amount field found - balance validation may be limited")
         else:
