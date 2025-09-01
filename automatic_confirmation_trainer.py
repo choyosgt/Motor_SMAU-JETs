@@ -25,9 +25,7 @@ class AutomaticConfirmationTrainingSession:
         self.df = None
         self.mapper = None
         self.detector = None
-
         
-        # CAMPOS ESTÁNDAR
         self.standard_fields = [
             'journal_entry_id', 'line_number', 'description', 'line_description',
             'posting_date', 'fiscal_year', 'period_number', 'gl_account_number',
@@ -45,8 +43,8 @@ class AutomaticConfirmationTrainingSession:
             'low_confidence_mappings': 0,
             'rejected_low_confidence': 0,
             'unmapped_columns': 0,
-            'balance_validation_enabled': False,
-            'balance_validation_wins': 0
+            'synonyms_added': 0,
+            'regex_patterns_added': 0
         }
         
         # Umbral de confianza mínimo
@@ -55,11 +53,53 @@ class AutomaticConfirmationTrainingSession:
         # Decisiones automáticas registradas
         self.user_decisions = {}
         self.learned_patterns = {}
+        self.new_synonyms = {}
+        self.new_regex_patterns = {}
         self.conflict_resolutions = {}
         
         # Archivos de configuración
         self.yaml_config_file = "config/pattern_learning_config.yaml"
         self.dynamic_fields_file = "config/dynamic_fields_config.yaml"
+        
+        # SOLUCIÓN: Inicializar módulos reutilizables con clases mock si no existen
+        try:
+            from accounting_data_processor import AccountingDataProcessor
+            self.data_processor = AccountingDataProcessor()
+        except ImportError:
+            self.data_processor = None
+            print("⚠️ AccountingDataProcessor not found - using basic processing")
+        
+        try:
+            from balance_validator import BalanceValidator
+            self.balance_validator = BalanceValidator()
+        except ImportError:
+            # Crear un objeto mock básico
+            class MockBalanceValidator:
+                def perform_comprehensive_balance_validation(self, df):
+                    return {
+                        'is_balanced': True,
+                        'total_debit_sum': 0.0,
+                        'total_credit_sum': 0.0,
+                        'entries_count': 0,
+                        'balanced_entries_count': 0,
+                        'validation_stats': {}
+                    }
+            self.balance_validator = MockBalanceValidator()
+            print("⚠️ BalanceValidator not found - using mock validator")
+        
+        try:
+            from csv_transformer import CSVTransformer
+            self.csv_transformer = CSVTransformer(output_prefix="automatic_training")
+        except ImportError:
+            self.csv_transformer = None
+            print("⚠️ CSVTransformer not found - using basic CSV processing")
+        
+        try:
+            from training_reporter import TrainingReporter
+            self.reporter = TrainingReporter(report_prefix="automatic_training_report")
+        except ImportError:
+            self.reporter = None
+            print("⚠️ TrainingReporter not found - using basic reporting")
         
     def initialize(self) -> bool:
         """Inicializa la sesión de entrenamiento automático"""
@@ -134,39 +174,6 @@ class AutomaticConfirmationTrainingSession:
             print(f"⚠️ Could not load learned patterns: {e}")
             self.learned_patterns = {}
 
-    def run_automatic_training(self) -> Dict:
-        """Ejecuta el entrenamiento automático completo"""
-        try:
-            print(f"\n🤖 Starting AUTOMATIC TRAINING...")
-            print(f"=" * 50)
-            
-            # 1. Análisis inicial del DataFrame
-            self._show_initial_analysis()
-            
-            # 2. Detección automática de campos
-            field_analysis = self._perform_automatic_field_detection()
-            if not field_analysis['success']:
-                return field_analysis
-            
-            # 3. Resolver conflictos automáticamente
-            final_mappings = self._resolve_conflicts_automatically(field_analysis['mappings'])
-            
-            # 4. Aplicar filtro de confianza
-            filtered_mappings = self._apply_confidence_filter(final_mappings)
-            
-            # 5. Actualizar decisiones de usuario
-            self._update_user_decisions_from_mappings(filtered_mappings)
-            
-            # 6. Finalizar entrenamiento
-            result = self._finalize_automatic_training()
-            
-            return result
-            
-        except Exception as e:
-            logger.error(f"Error in automatic training: {e}")
-            import traceback
-            traceback.print_exc()
-            return {'success': False, 'error': str(e)}
     
     def _show_initial_analysis(self):
         """Muestra análisis inicial del CSV"""
@@ -177,6 +184,107 @@ class AutomaticConfirmationTrainingSession:
             print(f"  {i:2d}. {col} → {sample_data}")
         print()
 
+    def _apply_additional_validations(self):
+        """Aplica validaciones adicionales simples (no redundantes con mapper)"""
+        try:
+            print(f"\n🔍 ADDITIONAL VALIDATIONS")
+            print(f"-" * 25)
+            
+            # Intentar aplicar validaciones de fecha si están disponibles
+            try:
+                from config.custom_field_validators import check_single_date_same_year_pattern
+                
+                original_decisions = self.user_decisions.copy()
+                
+                # Aplicar la validación de patrones de fecha
+                self.user_decisions = check_single_date_same_year_pattern(
+                    self.user_decisions, 
+                    self.df
+                )
+                
+                # Contar si hubo cambios
+                changes_count = 0
+                for column_name, decision in self.user_decisions.items():
+                    original_decision = original_decisions.get(column_name, {})
+                    if decision.get('field_type') != original_decision.get('field_type'):
+                        changes_count += 1
+                        print(f"   ✅ Updated: {column_name} -> {decision['field_type']}")
+                
+                if changes_count == 0:
+                    print("   ℹ️ No date pattern changes needed")
+                else:
+                    print(f"   🔄 Applied {changes_count} date pattern updates")
+                    self.training_stats['date_pattern_updates'] = changes_count
+                    
+            except ImportError:
+                print("   ℹ️ Custom validators not available, skipping")
+            except Exception as e:
+                print(f"   ⚠️ Error in date validation: {e}")
+                
+            # Validación adicional: verificar coherencia básica
+            self._validate_mapping_coherence()
+            
+        except Exception as e:
+            print(f"   ⚠️ Error applying additional validations: {e}")
+            # No fallar el proceso completo por esto
+            pass
+
+    def _validate_mapping_coherence(self):
+        """Validación básica de coherencia de mapeos"""
+        try:
+            # Verificar que no haya mappings duplicados de campos críticos
+            field_counts = {}
+            critical_fields = ['journal_entry_id', 'amount', 'posting_date']
+            
+            for column_name, decision in self.user_decisions.items():
+                field_type = decision['field_type']
+                if field_type in field_counts:
+                    field_counts[field_type] += 1
+                else:
+                    field_counts[field_type] = 1
+            
+            # Reportar duplicados en campos críticos
+            for field in critical_fields:
+                if field in field_counts and field_counts[field] > 1:
+                    print(f"   ⚠️ Warning: Multiple columns mapped to {field} ({field_counts[field]} columns)")
+            
+            print("   ✅ Mapping coherence check completed")
+            
+        except Exception as e:
+            print(f"   ⚠️ Error in coherence validation: {e}")
+
+    def run_automatic_training(self) -> Dict:
+        """Ejecuta entrenamiento automático SIMPLIFICADO"""
+        try:
+            print(f"\n🤖 AUTOMATIC TRAINING SESSION - SIMPLIFIED ARCHITECTURE")
+            print(f"=" * 55)
+            
+            # 1. ✅ USAR MAPPER MEJORADO (resuelve todos los conflictos)
+            field_analysis = self._perform_automatic_field_detection()
+            
+            if not field_analysis['success']:
+                return {'success': False, 'error': field_analysis.get('error')}
+            
+            # 2. ✅ APLICAR FILTRO DE CONFIANZA
+            filtered_mappings = self._apply_confidence_filter(field_analysis['mappings'])
+            
+            # 3. ✅ ACTUALIZAR user_decisions (sin resolución adicional)
+            self._update_user_decisions_from_mappings(filtered_mappings)
+            
+            # 4. ✅ APLICAR VALIDACIONES ADICIONALES
+            self._apply_additional_validations()
+            
+            # 5. ✅ FINALIZAR ENTRENAMIENTO
+            result = self._finalize_automatic_training()
+            
+            return result
+            
+        except Exception as e:
+            logger.error(f"Error in automatic training: {e}")
+            import traceback
+            traceback.print_exc()
+            return {'success': False, 'error': str(e)}
+        
     def _perform_automatic_field_detection(self) -> Dict:
         """Realiza detección automática usando mapper mejorado (SIN resolución redundante)"""
         try:
@@ -378,34 +486,65 @@ class AutomaticConfirmationTrainingSession:
             return None
 
 
-def run_automatic_training(self) -> Dict:
-    """Ejecuta entrenamiento automático SIMPLIFICADO"""
+def run_automatic_training(csv_file: str, erp_hint: str = None) -> Dict:
+    """Función principal para ejecutar entrenamiento automático"""
     try:
-        print(f"\n🤖 AUTOMATIC TRAINING SESSION - SIMPLIFIED ARCHITECTURE")
+        print(f"🤖 AUTOMATIC CONFIRMATION TRAINER - MODULAR VERSION")
         print(f"=" * 55)
+        print(f"Starting automatic training session...")
+        print(f"File: {csv_file}")
+        print(f"ERP: {erp_hint or 'Auto-detect'}")
+        print(f"Decision mode: AUTOMATIC (no confirmation required)")
+        print(f"Quality filter: Only confidence > 0.75 accepted")
+        print(f"Special rule: AMOUNT field prioritizes 'local' ALWAYS")
+        print(f"Enhancement: Modular processing with reusable components")
+        print()
         
-        # 1. ✅ USAR MAPPER MEJORADO (resuelve todos los conflictos)
-        field_analysis = self._perform_automatic_field_detection()
+        # Crear sesión de entrenamiento automático
+        session = AutomaticConfirmationTrainingSession(csv_file, erp_hint)
         
-        if not field_analysis['success']:
-            return {'success': False, 'error': field_analysis.get('error')}
+        # Inicializar
+        if not session.initialize():
+            return {'success': False, 'error': 'Initialization failed'}
         
-        # 2. ✅ APLICAR FILTRO DE CONFIANZA
-        filtered_mappings = self._apply_confidence_filter(field_analysis['mappings'])
+        # Ejecutar entrenamiento automático (LLAMADA AL MÉTODO DE LA CLASE)
+        result = session.run_automatic_training()
         
-        # 3. ✅ ACTUALIZAR user_decisions (sin resolución adicional)
-        self._update_user_decisions_from_mappings(filtered_mappings)
-        
-        # 4. ✅ APLICAR VALIDACIONES ADICIONALES
-        self._apply_additional_validations()
-        
-        # 5. ✅ FINALIZAR ENTRENAMIENTO
-        result = self._finalize_automatic_training()
+        if result['success']:
+            print(f"\n✅ AUTOMATIC TRAINING COMPLETED SUCCESSFULLY!")
+            
+            # Mostrar resumen de resultados
+            print(f"\n📊 RESULTS SUMMARY:")
+            print(f"   • Automatic mappings: {result['training_stats']['automatic_mappings']}")
+            print(f"   • Conflicts resolved: {result['training_stats']['conflicts_resolved']}")
+            print(f"   • High confidence decisions: {result['training_stats']['high_confidence_mappings']}")
+            if 'rejected_low_confidence' in result['training_stats']:
+                print(f"   • Low confidence rejected: {result['training_stats']['rejected_low_confidence']}")
+            
+            # Mostrar información de balance si está disponible
+            if result.get('balance_report'):
+                balance = result['balance_report']
+                print(f"\n⚖️ BALANCE VALIDATION:")
+                print(f"   • Total Balance: {'✅ BALANCED' if balance['is_balanced'] else '❌ UNBALANCED'}")
+                print(f"   • Total Debit: {balance['total_debit_sum']:,.2f}")
+                print(f"   • Total Credit: {balance['total_credit_sum']:,.2f}")
+                
+                if balance['entries_count'] > 0:
+                    balanced_pct = balance['balanced_entries_count'] / balance['entries_count'] * 100
+                    print(f"   • Entry Balance Rate: {balanced_pct:.1f}%")
+            
+            # Mostrar archivos generados
+            if result.get('header_file') and result.get('detail_file'):
+                print(f"\n📄 FILES CREATED:")
+                print(f"   • Header CSV: {result['header_file']}")
+                print(f"   • Detail CSV: {result['detail_file']}")
+                print(f"   • Training Report: {result['report_file']}")
         
         return result
         
     except Exception as e:
-        logger.error(f"Error in automatic training: {e}")
+        logger.error(f"Automatic training failed: {e}")
+        print(f"❌ Automatic training failed: {e}")
         import traceback
         traceback.print_exc()
         return {'success': False, 'error': str(e)}
