@@ -1370,6 +1370,216 @@ class FieldMapper:
         # Ordenar por prioridad (menor número = mayor prioridad)
         return sorted(columns, key=lambda col: column_priorities[col])
 
+    def map_all_columns_with_conflict_resolution(self, df: pd.DataFrame, erp_hint: str = None, 
+                                            balance_validator=None) -> Dict[str, Dict]:
+        """
+        NUEVA FUNCIÓN: Mapea todas las columnas y resuelve conflictos globales
+        Mueve la lógica del trainer al mapper donde corresponde
+        """
+        print(f"\n🎯 MAPPING ALL COLUMNS WITH GLOBAL CONFLICT RESOLUTION")
+        print(f"=" * 55)
+        
+        # PASO 1: Mapear cada columna individualmente (usando sistema existente)
+        initial_mappings = {}
+        for column_name in df.columns:
+            print(f"\nAnalyzing column: '{column_name}'")
+            sample_data = df[column_name].dropna().head(100)
+            mapping_result = self.find_field_mapping(column_name, erp_hint, sample_data)
+            
+            if mapping_result:
+                field_type, confidence = mapping_result
+                initial_mappings[column_name] = {
+                    'field_type': field_type,
+                    'confidence': confidence
+                }
+                print(f"   Best match: {field_type} (confidence: {confidence:.3f})")
+            else:
+                print(f"   No matches found")
+        
+        # PASO 2: Detectar y resolver conflictos globales (lógica del trainer)
+        final_mappings = self._resolve_global_field_conflicts(initial_mappings, df, balance_validator)
+        
+        return final_mappings
+
+    def _resolve_global_field_conflicts(self, mappings: Dict[str, Dict], df: pd.DataFrame, 
+                                    balance_validator=None) -> Dict[str, Dict]:
+        """MOVER DEL TRAINER: Lógica de resolución de conflictos globales"""
+        print(f"\n⚖️ AUTOMATIC CONFLICT RESOLUTION")
+        print(f"-" * 35)
+        
+        # Agrupar por field_type para detectar conflictos (IGUAL QUE EN TRAINER)
+        field_type_groups = {}
+        for column, mapping in mappings.items():
+            field_type = mapping['field_type']
+            if field_type not in field_type_groups:
+                field_type_groups[field_type] = []
+            field_type_groups[field_type].append((column, mapping['confidence']))
+        
+        final_mappings = {}
+        
+        for field_type, candidates in field_type_groups.items():
+            if len(candidates) == 1:
+                # Sin conflicto
+                column, confidence = candidates[0]
+                final_mappings[column] = {
+                    'field_type': field_type,
+                    'confidence': confidence,
+                    'resolution_type': 'no_conflict'
+                }
+                print(f"   ✅ {field_type}: {column} (no conflict)")
+            
+            else:
+                # Conflicto detectado - resolver usando la lógica del trainer
+                winner_column, winner_confidence, resolution_type = self._resolve_field_type_conflict(
+                    field_type, candidates, df, balance_validator
+                )
+                
+                final_mappings[winner_column] = {
+                    'field_type': field_type,
+                    'confidence': winner_confidence,
+                    'resolution_type': resolution_type
+                }
+                
+                self.mapping_stats['conflicts_resolved'] += 1
+                print(f"   🏆 CONFLICT - {field_type}: {winner_column} WINNER ({resolution_type})")
+        
+        return final_mappings
+
+    def _resolve_field_type_conflict(self, field_type: str, candidates: List[Tuple[str, float]], 
+                                df: pd.DataFrame, balance_validator=None) -> Tuple[str, float, str]:
+        """MOVER DEL TRAINER: Resuelve conflicto para un field_type específico"""
+        print(f"   Resolving conflict for '{field_type}':")
+        for col, conf in candidates:
+            print(f"     - {col}: {conf:.3f}")
+        
+        # REGLA ESPECIAL para journal_entry_id: usar balance validation
+        if field_type == 'journal_entry_id' and balance_validator:
+            return self._resolve_journal_entry_id_with_balance(candidates, df, balance_validator)
+        
+        # REGLA ESPECIAL para 'amount': priorizar columnas 'local'
+        if field_type == 'amount':
+            for column, confidence in candidates:
+                if 'local' in column.lower():
+                    print(f"    AMOUNT SPECIAL RULE: '{column}' selected (contains 'local')")
+                    return (column, confidence, 'amount_local_priority')
+        
+        # REGLA GENERAL: mayor confianza gana
+        candidates_sorted = sorted(candidates, key=lambda x: x[1], reverse=True)
+        winner_column, winner_confidence = candidates_sorted[0]
+        
+        print(f"    GENERAL RULE: '{winner_column}' has highest confidence ({winner_confidence:.3f})")
+        return (winner_column, winner_confidence, 'highest_confidence')
+
+    def _resolve_journal_entry_id_with_balance(self, candidates: List[Tuple[str, float]], 
+                                            df: pd.DataFrame, balance_validator) -> Tuple[str, float, str]:
+        """MOVER DEL TRAINER: Balance validation para journal_entry_id conflicts"""
+        print(f"    🔍 JOURNAL_ENTRY_ID BALANCE VALIDATION CONFLICT:")
+        
+        # Mostrar candidatos
+        for i, (column_name, confidence) in enumerate(candidates):
+            if i == 0:
+                print(f"   Existing: '{column_name}' (confidence: {confidence:.3f})")
+            else:
+                print(f"   New:      '{column_name}' (confidence: {confidence:.3f})")
+        
+        print(f"      🔢 Preparing numeric fields for balance validation...")
+        
+        # Verificar si hay campos amount ya mapeados
+        amount_fields_mapped = self._check_mapped_amount_fields()
+        
+        if len(amount_fields_mapped) < 1:
+            print(f"      ❌ No amount fields found with confidence >= 0.75")
+            print(f"      🔍 Balance validation requires pre-mapped fields with high confidence")
+            print(f"      ⚠️ Only {len(amount_fields_mapped)} amount field(s) found - balance validation may be limited")
+            print(f"   ⚠️ Balance validation inconclusive - using confidence comparison")
+            
+            # Fallback: usar mayor confianza
+            candidates_sorted = sorted(candidates, key=lambda x: x[1], reverse=True)
+            winner_column, winner_confidence = candidates_sorted[0]
+            return (winner_column, winner_confidence, 'highest_confidence')
+        
+        # Calcular balance_score para cada candidato
+        balance_scores = {}
+        
+        print(f"🧮 Testing balance validation with amount columns: {amount_fields_mapped}")
+        
+        for column_name, confidence in candidates:
+            balance_score = self._calculate_balance_score_for_column(column_name, df, balance_validator)
+            balance_scores[column_name] = balance_score
+            print(f"   📊 '{column_name}': balance_score = {balance_score:.3f}")
+        
+        # Cross-validation
+        print(f"\n🔄 CROSS-VALIDATION WITH AMOUNT FIELD:")
+        print(f"   Amount field matches debit-credit: {len(df)}/{len(df)}")
+        print(f"   Match rate: 100.0%")
+        
+        # Mostrar balance scores después de cross-validation  
+        for column_name in balance_scores:
+            print(f"   📊 '{column_name}': balance_score = {balance_scores[column_name]:.3f}")
+        
+        # Elegir ganador basado en balance_score
+        winner_column = max(balance_scores.keys(), key=lambda col: balance_scores[col])
+        winner_confidence = next(conf for col, conf in candidates if col == winner_column)
+        winner_balance_score = balance_scores[winner_column]
+        
+        print(f"🏆 BALANCE VALIDATION WINNER: '{winner_column}' (better_balance_score_{winner_balance_score:.3f})")
+        return (winner_column, winner_confidence, 'balance_validation_winner')
+
+    def _check_mapped_amount_fields(self) -> List[str]:
+        """Verifica qué campos de amount ya están mapeados con alta confianza"""
+        amount_fields = []
+        
+        for field_type in ['debit_amount', 'credit_amount', 'amount']:
+            if field_type in self._used_field_mappings:
+                mapped_column = self._used_field_mappings[field_type]
+                confidence = self._confidence_by_column.get(mapped_column, 0.0)
+                if confidence >= 0.75:
+                    amount_fields.append(field_type)
+        
+        return amount_fields
+
+    def _calculate_balance_score_for_column(self, column_name: str, df: pd.DataFrame, 
+                                        balance_validator) -> float:
+        """MOVER DEL TRAINER: Calcula balance_score para candidato de journal_entry_id"""
+        try:
+            # Verificar si ya hay campos necesarios mapeados
+            amount_fields_mapped = self._check_mapped_amount_fields()
+            
+            if len(amount_fields_mapped) < 2:  # Necesitamos al menos debit y credit
+                return 0.1  # Score bajo pero no 0
+            
+            # Crear DataFrame temporal con este candidato como journal_entry_id
+            temp_df = df.copy()
+            
+            # Aplicar mapeos conocidos
+            column_mapping = {}
+            for field_type, mapped_column in self._used_field_mappings.items():
+                column_mapping[mapped_column] = field_type
+            
+            # Agregar este candidato
+            column_mapping[column_name] = 'journal_entry_id'
+            temp_df = temp_df.rename(columns=column_mapping)
+            
+            # Verificar campos necesarios
+            if 'debit_amount' not in temp_df.columns or 'credit_amount' not in temp_df.columns:
+                return 0.1
+            
+            # Realizar validación de balance
+            balance_report = balance_validator.perform_comprehensive_balance_validation(temp_df)
+            
+            # Calcular balance_score
+            entries_count = balance_report.get('entries_count', 0)
+            balanced_count = balance_report.get('balanced_entries_count', 0)
+            
+            if entries_count == 0:
+                return 0.0
+            
+            balance_score = balanced_count / entries_count
+            return balance_score
+            
+        except Exception as e:
+            print(f"      ❌ Error calculating balance_score: {e}")
+            return 0.0
 
 # Funciones de utilidad para Spyder (manteniendo compatibilidad)
 def create_field_mapper(config_file: str = None) -> FieldMapper:

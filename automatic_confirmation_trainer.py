@@ -25,6 +25,7 @@ class AutomaticConfirmationTrainingSession:
         self.df = None
         self.mapper = None
         self.detector = None
+
         
         # CAMPOS ESTÁNDAR
         self.standard_fields = [
@@ -177,126 +178,37 @@ class AutomaticConfirmationTrainingSession:
         print()
 
     def _perform_automatic_field_detection(self) -> Dict:
-        """Realiza detección automática de campos usando el field_mapper"""
+        """Realiza detección automática usando mapper mejorado (SIN resolución redundante)"""
         try:
-            print(f"🔍 AUTOMATIC FIELD DETECTION")
-            print(f"-" * 30)
+            print(f"🔍 AUTOMATIC FIELD DETECTION - USING ENHANCED MAPPER")
+            print(f"-" * 50)
             
-            mappings = {}
+            # ✅ USAR MAPPER MEJORADO que resuelve conflictos globalmente
+            final_mappings = self.mapper.map_all_columns_with_conflict_resolution(
+                df=self.df,
+                erp_hint=self.erp_hint,
+                balance_validator=self.balance_validator
+            )
+            
+            # Actualizar estadísticas básicas
             self.training_stats['columns_processed'] = len(self.df.columns)
+            self.training_stats['automatic_mappings'] = len(final_mappings)
+            self.training_stats['rejected_low_confidence'] = len(self.df.columns) - len(final_mappings)
             
-            for column in self.df.columns:
-                print(f"\nAnalyzing column: '{column}'")
-                
-                # Obtener datos de muestra para el análisis
-                sample_data = self.df[column].dropna().head(100)
-                
-                # Usar find_field_mapping del mapper (que ahora tiene balance validation)
-                mapping_result = self.mapper.find_field_mapping_simple(
-                    field_name=column,
-                    erp_system=self.erp_hint,
-                    sample_data=sample_data
-                )
-                
-                if mapping_result:
-                    field_type, confidence = mapping_result
-                    print(f"   Best match: {field_type} (confidence: {confidence:.3f})")
-                    
-                    mappings[column] = {
-                        'field_type': field_type,
-                        'confidence': confidence
-                    }
+            # Contar por tipo de confianza
+            for mapping_info in final_mappings.values():
+                confidence = mapping_info['confidence']
+                if confidence > 0.8:
+                    self.training_stats['high_confidence_mappings'] += 1
                 else:
-                    print(f"   No matches found")
+                    self.training_stats['low_confidence_mappings'] += 1
             
-            return {'success': True, 'mappings': mappings}
+            return {'success': True, 'mappings': final_mappings}
             
         except Exception as e:
             logger.error(f"Error in field detection: {e}")
             return {'success': False, 'error': str(e)}
 
-    def _resolve_conflicts_automatically(self, mappings: Dict) -> Dict:
-        """Resuelve conflictos automáticamente usando reglas predefinidas"""
-        print(f"\n⚖️ AUTOMATIC CONFLICT RESOLUTION")
-        print(f"-" * 35)
-        
-        # Agrupar por field_type para detectar conflictos
-        field_type_groups = {}
-        for column, mapping in mappings.items():
-            field_type = mapping['field_type']
-            if field_type not in field_type_groups:
-                field_type_groups[field_type] = []
-            field_type_groups[field_type].append((column, mapping['confidence']))
-        
-        final_mappings = {}
-        
-        for field_type, candidates in field_type_groups.items():
-            if len(candidates) == 1:
-                # Sin conflicto
-                column, confidence = candidates[0]
-                final_mappings[column] = {
-                    'field_type': field_type,
-                    'confidence': confidence,
-                    'resolution_type': 'no_conflict'
-                }
-                print(f"   ✅ {field_type}: {column} (no conflict)")
-            
-            else:
-                # Conflicto detectado - resolver automáticamente
-                print(f"   ⚠️ CONFLICT - {field_type}: {len(candidates)} candidates")
-                for col, conf in candidates:
-                    print(f"      - {col}: {conf:.3f}")
-                
-                winner_column, winner_confidence, resolution_type = self._resolve_field_conflict(
-                    field_type, candidates
-                )
-                
-                final_mappings[winner_column] = {
-                    'field_type': field_type,
-                    'confidence': winner_confidence,
-                    'resolution_type': resolution_type
-                }
-                
-                # Registrar resolución para el reporte
-                self.conflict_resolutions[field_type] = {
-                    'winner': winner_column,
-                    'resolution_type': resolution_type,
-                    'all_candidates': [f"{col}({conf:.3f})" for col, conf in candidates]
-                }
-                
-                self.training_stats['conflicts_resolved'] += 1
-                
-                if field_type == 'amount':
-                    self.training_stats['amount_conflicts_resolved'] += 1
-                    
-                print(f"      🏆 WINNER: {winner_column} ({resolution_type})")
-        
-        return final_mappings
-
-    def _resolve_field_conflict(self, field_type: str, candidates: List[Tuple[str, float]]) -> Tuple[str, float, str]:
-        """Resuelve conflicto para un field_type específico usando reglas automáticas"""
-        
-        # REGLA ESPECIAL para 'amount': priorizar columnas 'local'
-        if field_type == 'amount':
-            for column, confidence in candidates:
-                if 'local' in column.lower():
-                    print(f"      💡 AMOUNT SPECIAL RULE: '{column}' selected (contains 'local')")
-                    return (column, confidence, 'amount_local_priority')
-        
-        # REGLA ESPECIAL para 'journal_entry_id': 
-        # Si balance validation está enabled, ya se resolvió en el field_mapper
-        # Solo llegamos aquí si no se pudo resolver con balance validation
-        if field_type == 'journal_entry_id':
-            # Verificar si hubo balance validation wins
-            balance_wins = self.training_stats.get('balance_validation_wins', 0)
-            if balance_wins > 0:
-                print(f"      🏆 Balance validation already resolved this conflict")
-        
-        # REGLA GENERAL: mayor confianza gana
-        candidates_sorted = sorted(candidates, key=lambda x: x[1], reverse=True)
-        winner_column, winner_confidence = candidates_sorted[0]
-        
-        return (winner_column, winner_confidence, 'highest_confidence')
 
     def _apply_confidence_filter(self, mappings: Dict) -> Dict:
         """Aplica filtro de confianza mínima"""
@@ -466,48 +378,34 @@ class AutomaticConfirmationTrainingSession:
             return None
 
 
-def run_automatic_training(csv_file: str, erp_hint: str = None) -> Dict:
-    """Función principal para ejecutar entrenamiento automático"""
+def run_automatic_training(self) -> Dict:
+    """Ejecuta entrenamiento automático SIMPLIFICADO"""
     try:
-        print(f"🤖 AUTOMATIC CONFIRMATION TRAINER - SIMPLE VERSION")
+        print(f"\n🤖 AUTOMATIC TRAINING SESSION - SIMPLIFIED ARCHITECTURE")
         print(f"=" * 55)
-        print(f"Training with balance validation for journal_entry_id conflicts")
-        print()
         
-        # Crear sesión de entrenamiento automático
-        session = AutomaticConfirmationTrainingSession(csv_file, erp_hint)
+        # 1. ✅ USAR MAPPER MEJORADO (resuelve todos los conflictos)
+        field_analysis = self._perform_automatic_field_detection()
         
-        # Inicializar
-        if not session.initialize():
-            return {'success': False, 'error': 'Initialization failed'}
+        if not field_analysis['success']:
+            return {'success': False, 'error': field_analysis.get('error')}
         
-        # Ejecutar entrenamiento automático
-        result = session.run_automatic_training()
+        # 2. ✅ APLICAR FILTRO DE CONFIANZA
+        filtered_mappings = self._apply_confidence_filter(field_analysis['mappings'])
         
-        if result['success']:
-            print(f"\n✅ AUTOMATIC TRAINING COMPLETED SUCCESSFULLY!")
-            print(f"\n📊 RESULTS SUMMARY:")
-            print(f"   • Automatic mappings: {result['training_stats']['automatic_mappings']}")
-            print(f"   • Conflicts resolved: {result['training_stats']['conflicts_resolved']}")
-            print(f"   • High confidence decisions: {result['training_stats']['high_confidence_mappings']}")
-            print(f"   • Low confidence rejected: {result['training_stats']['rejected_low_confidence']}")
-            print(f"   • Balance validation: {'✅ ENABLED' if result['training_stats']['balance_validation_enabled'] else '❌ DISABLED'}")
-            
-            if result['training_stats']['balance_validation_enabled']:
-                print(f"   • Balance validation wins: {result['training_stats'].get('balance_validation_wins', 0)}")
-            
-            # Mostrar archivos generados
-            if result.get('header_file') and result.get('detail_file'):
-                print(f"\n📄 FILES CREATED:")
-                print(f"   • Header CSV: {result['header_file']}")
-                print(f"   • Detail CSV: {result['detail_file']}")
-                print(f"   • Training Report: {result['report_file']}")
+        # 3. ✅ ACTUALIZAR user_decisions (sin resolución adicional)
+        self._update_user_decisions_from_mappings(filtered_mappings)
+        
+        # 4. ✅ APLICAR VALIDACIONES ADICIONALES
+        self._apply_additional_validations()
+        
+        # 5. ✅ FINALIZAR ENTRENAMIENTO
+        result = self._finalize_automatic_training()
         
         return result
         
     except Exception as e:
-        logger.error(f"Automatic training failed: {e}")
-        print(f"Automatic training failed: {e}")
+        logger.error(f"Error in automatic training: {e}")
         import traceback
         traceback.print_exc()
         return {'success': False, 'error': str(e)}
@@ -516,24 +414,26 @@ def run_automatic_training(csv_file: str, erp_hint: str = None) -> Dict:
 def main():
     """Función principal"""
     if len(sys.argv) < 2:
-        print("AUTOMATIC CONFIRMATION TRAINER - SIMPLE VERSION WITH BALANCE VALIDATION")
-        print("=" * 70)
-        print("Usage:")
-        print("  python automatic_confirmation_trainer.py <csv_file> [erp_hint]")
+        print("AUTOMATIC CONFIRMATION TRAINER - SIMPLIFIED ARCHITECTURE")
+        print("=" * 58)
+        print("Training with AUTOMATIC DECISIONS - no manual confirmation required")
         print()
-        print("Examples:")
-        print("  python automatic_confirmation_trainer.py data/journal.csv")
-        print("  python automatic_confirmation_trainer.py data/journal.csv SAP")
-        print("  python automatic_confirmation_trainer.py data/journal.csv Navision")
+        print("ARCHITECTURE:")
+        print("  • MAPPER: Handles ALL field detection + conflict resolution")
+        print("  • TRAINER: Applies confidence filter + data processing only")
+        print("  • CLEAN SEPARATION: No redundant conflict resolution")
         print()
-        print("Features:")
-        print("  ✅ Automatic field detection and mapping")
-        print("  ✅ Balance validation for journal_entry_id conflicts")
-        print("  ✅ Confidence-based filtering (threshold: 0.75)")
-        print("  ✅ Special rules for 'amount' field (prioritizes 'local')")
-        print("  ✅ Automatic conflict resolution")
-        print("  ✅ CSV output generation (header + detail)")
-        print("  ✅ Comprehensive training reports")
+        print("CONFLICT RESOLUTION RULES (handled by mapper):")
+        print("  • journal_entry_id: Balance validation (best balance_score wins)")
+        print("  • amount: Local priority ('local' in name wins)")
+        print("  • others: Highest confidence wins")
+        print()
+        print("FEATURES:")
+        print("  • Same 17 standard fields")
+        print("  • Same CSV outputs")
+        print("  • Same balance validation")
+        print("  • Same numeric processing")
+        print("  • Compatible with main_global.py")
         return
     
     # Extraer parámetros
