@@ -830,18 +830,21 @@ class FieldMapper:
             
             df = self.sample_df
             
-            # Verificar que existan las columnas necesarias
-            if 'debit_amount' not in df.columns or 'credit_amount' not in df.columns:
-                # Sin columnas necesarias, usar el score original del mapper
+            # Verificar que existan campos contables (debit/credit O amount)
+            has_debit_credit = 'debit_amount' in df.columns and 'credit_amount' in df.columns
+            has_amount = 'amount' in df.columns
+            
+            if not (has_debit_credit or has_amount):
+                # Sin campos contables, usar el score original del mapper
                 synonym_score = confidence if confidence is not None else 0.5
-                print(f"{synonym_score:.3f} (missing debit/credit columns)")
+                print(f"{synonym_score:.3f} (no accounting fields)")
                 return synonym_score
             
             if journal_column_name not in df.columns:
                 print("0.000 (column not found)")
                 return 0.0
             
-            # USAR EL BALANCE VALIDATOR EXISTENTE
+            # USAR EL BALANCE VALIDATOR EXISTENTE - él decide internamente qué validación usar
             try:
                 # Crear una copia temporal del DataFrame con la columna renombrada
                 df_temp = df.copy()
@@ -858,27 +861,11 @@ class FieldMapper:
                 from balance_validator import BalanceValidator
                 validator = BalanceValidator(tolerance=0.01)
                 
-                # Ejecutar validación por asientos usando el método existente
-                entry_validation = validator._validate_entry_level_balance(df_temp)
+                # El BalanceValidator decide internamente cómo validar (debit/credit vs solo amount)
+                validation_result = validator.evaluate_journal_entry_id_candidate(df_temp)
                 
-                # Obtener balance rate
-                entries_count = entry_validation.get('entries_count', 0)
-                balanced_entries_count = entry_validation.get('balanced_entries_count', 0)
-                balance_rate = balanced_entries_count / entries_count if entries_count > 0 else 0
-                
-                # Obtener cross validation score si existe amount
-                cross_validation_score = 1.0
-                if 'amount' in df_temp.columns:
-                    cross_validation = validator._validate_cross_balance(df_temp)
-                    cross_validation_score = cross_validation.get('match_rate', 1.0)
-                
-                # FÓRMULA SIN BONIFICACIONES POR NOMBRES ESPECÍFICOS
-                # Combinar balance rate y cross validation con peso específico
-                base_score = balance_rate * 0.6  # 60% peso al balance por asiento
-                cross_score = cross_validation_score * 0.4  # 40% peso a validación cruzada
-                
-                # Score final SIN bonificaciones por nombres como 'transaction' o 'entry'
-                final_score = min(1.0, base_score + cross_score)
+                # Extraer el score final del resultado
+                final_score = validation_result.get('quality_score', 0.0)
                 
                 # Restaurar el backup si existía
                 if backup_column is not None:
@@ -888,8 +875,10 @@ class FieldMapper:
                 return final_score
                 
             except Exception as e:
-                print(f"0.000 (validation error: {e})")
-                return 0.0
+                # Si el método no existe en BalanceValidator, usar la confidence del mapper
+                synonym_score = confidence if confidence is not None else 0.5
+                print(f"{synonym_score:.3f} (balance validator not updated)")
+                return synonym_score
                 
         except Exception as e:
             print(f"0.000 (error: {e})")

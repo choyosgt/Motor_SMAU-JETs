@@ -86,6 +86,119 @@ class BalanceValidator:
             print(f"Error performing balance validations: {e}")
             return balance_report
     
+    def evaluate_journal_entry_id_candidate(self, df: pd.DataFrame) -> Dict[str, Any]:
+        '''
+        Evalúa qué tan bueno es el journal_entry_id actual para agrupar datos contables
+        Maneja tanto el caso con debit/credit como solo amount
+        
+        Args:
+            df: DataFrame que debe tener 'journal_entry_id' y campos contables
+            
+        Returns:
+            Dict con quality_score y detalles de la evaluación
+        '''
+        try:
+            if 'journal_entry_id' not in df.columns:
+                return {'quality_score': 0.0, 'error': 'No journal_entry_id column found'}
+            
+            # CASO 1: CON DEBIT Y CREDIT - usar validación completa
+            if 'debit_amount' in df.columns and 'credit_amount' in df.columns:
+                return self._evaluate_journal_id_with_debit_credit(df)
+            
+            # CASO 2: SOLO CON AMOUNT - validación alternativa  
+            elif 'amount' in df.columns:
+                return self._evaluate_journal_id_with_amount_only(df)
+            
+            # CASO 3: SIN CAMPOS CONTABLES
+            else:
+                return {'quality_score': 0.0, 'error': 'No accounting fields found'}
+                
+        except Exception as e:
+            return {'quality_score': 0.0, 'error': f'Evaluation failed: {e}'}
+
+    def _evaluate_journal_id_with_debit_credit(self, df: pd.DataFrame) -> Dict[str, Any]:
+        '''Evaluación completa usando debit/credit + amount'''
+        try:
+            # Usar validación existente por asientos
+            entry_validation = self._validate_entry_level_balance(df)
+            
+            # Obtener balance rate
+            entries_count = entry_validation.get('entries_count', 0)
+            balanced_entries_count = entry_validation.get('balanced_entries_count', 0)
+            balance_rate = balanced_entries_count / entries_count if entries_count > 0 else 0
+            
+            # Obtener cross validation score si existe amount
+            cross_validation_score = 1.0
+            if 'amount' in df.columns:
+                cross_validation = self._validate_cross_balance(df)
+                cross_validation_score = cross_validation.get('match_rate', 1.0)
+            
+            # FÓRMULA FINAL: 60% balance + 40% cross validation
+            quality_score = min(1.0, balance_rate * 0.6 + cross_validation_score * 0.4)
+            
+            return {
+                'quality_score': quality_score,
+                'balance_rate': balance_rate,
+                'cross_validation_rate': cross_validation_score,
+                'entries_count': entries_count,
+                'validation_type': 'debit_credit'
+            }
+            
+        except Exception as e:
+            return {'quality_score': 0.0, 'error': f'Debit/credit validation failed: {e}'}
+
+    def _evaluate_journal_id_with_amount_only(self, df: pd.DataFrame) -> Dict[str, Any]:
+        '''Evaluación alternativa usando solo campo amount'''
+        try:
+            # Agrupar por journal_entry_id
+            grouped = df.groupby('journal_entry_id').agg({
+                'amount': ['count', 'sum', 'std']
+            }).reset_index()
+            
+            # Aplanar columnas multi-nivel
+            grouped.columns = ['journal_entry_id', 'line_count', 'amount_sum', 'amount_std']
+            
+            total_entries = len(grouped)
+            if total_entries == 0:
+                return {'quality_score': 0.0, 'error': 'No entries found'}
+            
+            # CRITERIO 1: Consistencia de líneas por asiento
+            avg_lines_per_entry = grouped['line_count'].mean()
+            line_consistency_score = min(1.0, avg_lines_per_entry / 10.0)
+            
+            # CRITERIO 2: Variabilidad de amounts por asiento  
+            valid_stds = grouped['amount_std'].fillna(0)
+            entries_with_variation = (valid_stds > 0.01).sum()
+            variation_score = entries_with_variation / total_entries
+            
+            # CRITERIO 3: Distribución de sumas por asiento
+            amount_sums = grouped['amount_sum'].abs()
+            if len(amount_sums) > 1:
+                sum_variation = amount_sums.std() / amount_sums.mean() if amount_sums.mean() > 0 else 0
+                distribution_score = min(1.0, sum_variation)
+            else:
+                distribution_score = 0.5
+            
+            # SCORE COMBINADO: 40% líneas + 30% variación + 30% distribución
+            quality_score = (line_consistency_score * 0.4 + 
+                            variation_score * 0.3 + 
+                            distribution_score * 0.3)
+            
+            quality_score = min(1.0, max(0.1, quality_score))
+            
+            return {
+                'quality_score': quality_score,
+                'line_consistency_score': line_consistency_score,
+                'variation_score': variation_score,
+                'distribution_score': distribution_score,
+                'avg_lines_per_entry': avg_lines_per_entry,
+                'entries_count': total_entries,
+                'validation_type': 'amount_only'
+            }
+            
+        except Exception as e:
+            return {'quality_score': 0.0, 'error': f'Amount-only validation failed: {e}'}
+    
     def _check_required_fields(self, df: pd.DataFrame) -> Dict[str, Any]:
         """Verifica que existan los campos necesarios para validación"""
         has_debit = 'debit_amount' in df.columns
