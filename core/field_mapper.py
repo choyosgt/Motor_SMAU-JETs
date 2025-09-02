@@ -815,8 +815,7 @@ class FieldMapper:
 
     def _evaluate_journal_entry_id_balance_score(self, journal_column_name: str, confidence: float = None) -> float:
         """
-        Evalúa la calidad de un candidato a journal_entry_id usando el BalanceValidator existente
-        Fallback: usa la confidence del mapper (basada en sinónimos)
+        Evalúa la calidad de un candidato a journal_entry_id usando tu BalanceValidator existente
         """
         try:
             print(f"   📊 '{journal_column_name}': balance_score = ", end="")
@@ -830,7 +829,11 @@ class FieldMapper:
             
             df = self.sample_df
             
-            # Verificar que existan campos contables (debit/credit O amount)
+            if journal_column_name not in df.columns:
+                print("0.000 (column not found)")
+                return 0.0
+            
+            # Verificar que existan campos contables - CORREGIDO
             has_debit_credit = 'debit_amount' in df.columns and 'credit_amount' in df.columns
             has_amount = 'amount' in df.columns
             
@@ -840,16 +843,12 @@ class FieldMapper:
                 print(f"{synonym_score:.3f} (no accounting fields)")
                 return synonym_score
             
-            if journal_column_name not in df.columns:
-                print("0.000 (column not found)")
-                return 0.0
-            
-            # USAR EL BALANCE VALIDATOR EXISTENTE - él decide internamente qué validación usar
+            # USAR TU BALANCE VALIDATOR EXISTENTE con evaluate_journal_entry_id_candidate
             try:
-                # Crear una copia temporal del DataFrame con la columna renombrada
+                # Crear DataFrame temporal con la columna candidata
                 df_temp = df.copy()
                 
-                # Si ya existe journal_entry_id, respaldarlo temporalmente
+                # Respaldar journal_entry_id si existe
                 backup_column = None
                 if 'journal_entry_id' in df_temp.columns:
                     backup_column = df_temp['journal_entry_id'].copy()
@@ -857,28 +856,35 @@ class FieldMapper:
                 # Asignar la columna candidata como journal_entry_id temporalmente
                 df_temp['journal_entry_id'] = df_temp[journal_column_name]
                 
-                # Usar el BalanceValidator existente
+                # Usar el BalanceValidator con TU método evaluate_journal_entry_id_candidate
                 from balance_validator import BalanceValidator
                 validator = BalanceValidator(tolerance=0.01)
                 
-                # El BalanceValidator decide internamente cómo validar (debit/credit vs solo amount)
+                # Llamar a TU método que ya está implementado
                 validation_result = validator.evaluate_journal_entry_id_candidate(df_temp)
                 
                 # Extraer el score final del resultado
                 final_score = validation_result.get('quality_score', 0.0)
                 
-                # Restaurar el backup si existía
+                # Restaurar backup si existía
                 if backup_column is not None:
                     df_temp['journal_entry_id'] = backup_column
                     
                 print(f"{final_score:.3f}")
                 return final_score
                 
+            except AttributeError as e:
+                # Si tu método no existe con ese nombre exacto, probar otros nombres
+                if 'evaluate_journal_entry_id_candidate' in str(e):
+                    print(f"0.500 (method not found: {e})")
+                    # Usar score de sinónimos como fallback
+                    return confidence if confidence is not None else 0.5
+                else:
+                    raise e
+                    
             except Exception as e:
-                # Si el método no existe en BalanceValidator, usar la confidence del mapper
-                synonym_score = confidence if confidence is not None else 0.5
-                print(f"{synonym_score:.3f} (balance validator not updated)")
-                return synonym_score
+                print(f"0.100 (validation error: {e})")
+                return 0.1
                 
         except Exception as e:
             print(f"0.000 (error: {e})")
@@ -1482,7 +1488,7 @@ class FieldMapper:
         # REGLA ESPECIAL para 'amount': priorizar columnas 'local'
         if field_type == 'amount':
             for column, confidence in candidates:
-                if 'local' in column.lower():
+                if any(x in column.lower() for x in ['local', 'loc.', 'ml', 'lm']):
                     print(f"    AMOUNT SPECIAL RULE: '{column}' selected (contains 'local')")
                     return (column, confidence, 'amount_local_priority')
         
