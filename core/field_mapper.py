@@ -1402,15 +1402,36 @@ class FieldMapper:
     def map_all_columns_with_conflict_resolution(self, df: pd.DataFrame, erp_hint: str = None, 
                                             balance_validator=None) -> Dict[str, Dict]:
         """
-        NUEVA FUNCIÓN: Mapea todas las columnas y resuelve conflictos globales
-        Mueve la lógica del trainer al mapper donde corresponde
+        Mapea todas las columnas y resuelve conflictos globales
+        Ajuste temporal: necesita mapear antes las columnas de importes para pasárselo al balance validator
         """
         print(f"\n🎯 MAPPING ALL COLUMNS WITH GLOBAL CONFLICT RESOLUTION")
         print(f"=" * 55)
         
-        # PASO 1: Mapear cada columna individualmente (usando sistema existente)
         initial_mappings = {}
+
+        # Mapear primero los campos críticos de amount/debit/credit
+        amount_priority = [col for col in df.columns if any(
+            kw in col.lower() for kw in ['amount', 'importe', 'saldo','debe', 'haber', 'debit', 'credit']
+        )]
+
+        for column_name in amount_priority:
+            sample_data = df[column_name].dropna().head(100)
+            mapping_result = self.find_field_mapping(column_name, erp_hint, sample_data)
+            
+            if mapping_result:
+                field_type, confidence = mapping_result
+                initial_mappings[column_name] = {
+                    'field_type': field_type,
+                    'confidence': confidence
+                }
+                print(f"   [Amount-first] Best match: {field_type} (confidence: {confidence:.3f})")
+        
+        # Mapear el resto de columnas normalmente
         for column_name in df.columns:
+            if column_name in initial_mappings:  # ya mapeado en fase amount
+                continue
+
             print(f"\nAnalyzing column: '{column_name}'")
             sample_data = df[column_name].dropna().head(100)
             mapping_result = self.find_field_mapping(column_name, erp_hint, sample_data)
@@ -1425,18 +1446,19 @@ class FieldMapper:
             else:
                 print(f"   No matches found")
         
-        # PASO 2: Detectar y resolver conflictos globales (lógica del trainer)
+        # Resolver conflictos globales con amounts ya disponibles
         final_mappings = self._resolve_global_field_conflicts(initial_mappings, df, balance_validator)
         
         return final_mappings
 
+
     def _resolve_global_field_conflicts(self, mappings: Dict[str, Dict], df: pd.DataFrame, 
                                     balance_validator=None) -> Dict[str, Dict]:
-        """MOVER DEL TRAINER: Lógica de resolución de conflictos globales"""
+        """Lógica de resolución de conflictos globales"""
         print(f"\n⚖️ AUTOMATIC CONFLICT RESOLUTION")
         print(f"-" * 35)
         
-        # Agrupar por field_type para detectar conflictos (IGUAL QUE EN TRAINER)
+        # Agrupar por field_type para detectar conflictos 
         field_type_groups = {}
         for column, mapping in mappings.items():
             field_type = mapping['field_type']
@@ -1537,11 +1559,6 @@ class FieldMapper:
             balance_scores[column_name] = balance_score
             print(f"   📊 '{column_name}': balance_score = {balance_score:.3f}")
         
-        # Cross-validation
-        print(f"\n🔄 CROSS-VALIDATION WITH AMOUNT FIELD:")
-        print(f"   Amount field matches debit-credit: {len(df)}/{len(df)}")
-        print(f"   Match rate: 100.0%")
-        
         # Mostrar balance scores después de cross-validation  
         for column_name in balance_scores:
             print(f"   📊 '{column_name}': balance_score = {balance_scores[column_name]:.3f}")
@@ -1567,45 +1584,23 @@ class FieldMapper:
         
         return amount_fields
 
-    def _calculate_balance_score_for_column(self, column_name: str, df: pd.DataFrame, 
-                                        balance_validator) -> float:
-        """MOVER DEL TRAINER: Calcula balance_score para candidato de journal_entry_id"""
+    def _calculate_balance_score_for_column(self, column_name: str, df: pd.DataFrame, balance_validator) -> float:
+        """Calcula balance_score para candidato de journal_entry_id (soporta SOLO amount)."""
         try:
-            # Verificar si ya hay campos necesarios mapeados
-            amount_fields_mapped = self._check_mapped_amount_fields()
-            
-            if len(amount_fields_mapped) < 2:  # Necesitamos al menos debit y credit
-                return 0.1  # Score bajo pero no 0
-            
-            # Crear DataFrame temporal con este candidato como journal_entry_id
+            # Copia temporal y aplica mapeos conocidos
             temp_df = df.copy()
-            
-            # Aplicar mapeos conocidos
-            column_mapping = {}
-            for field_type, mapped_column in self._used_field_mappings.items():
-                column_mapping[mapped_column] = field_type
-            
-            # Agregar este candidato
+            column_mapping = {mapped_col: ftype for ftype, mapped_col in self._used_field_mappings.items()}
             column_mapping[column_name] = 'journal_entry_id'
             temp_df = temp_df.rename(columns=column_mapping)
-            
-            # Verificar campos necesarios
-            if 'debit_amount' not in temp_df.columns or 'credit_amount' not in temp_df.columns:
-                return 0.1
-            
-            # Realizar validación de balance
-            balance_report = balance_validator.perform_comprehensive_balance_validation(temp_df)
-            
-            # Calcular balance_score
-            entries_count = balance_report.get('entries_count', 0)
-            balanced_count = balance_report.get('balanced_entries_count', 0)
-            
-            if entries_count == 0:
-                return 0.0
-            
-            balance_score = balanced_count / entries_count
-            return balance_score
-            
+
+            # Asegurar que columnas contables sean numéricas (si existen)
+            for col in ('debit_amount', 'credit_amount', 'amount'):
+                if col in temp_df.columns:
+                    temp_df[col] = pd.to_numeric(temp_df[col], errors='coerce')
+
+            # Usar el validador que soporta: (debit+credit) o solo amount
+            result = balance_validator.evaluate_journal_entry_id_candidate(temp_df)
+            return float(result.get('quality_score', 0.0))
         except Exception as e:
             print(f"      ❌ Error calculating balance_score: {e}")
             return 0.0
