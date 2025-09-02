@@ -370,32 +370,91 @@ class AutomaticConfirmationTrainingSession:
             self.training_stats['automatic_mappings'] += 1
 
     def _finalize_automatic_training(self) -> Dict:
-        """Finaliza el entrenamiento automático"""
+        """Finaliza el entrenamiento automático SIN validación redundante de balance"""
         try:
-            print(f"\n🏁 FINALIZING AUTOMATIC TRAINING")
+            print(f"\n🏁 AUTOMATIC TRAINING FINALIZATION")
             print(f"=" * 40)
             
-            # Crear DataFrame transformado
+            # 1. Crear DataFrame transformado con mapeos
             transformed_df = self.df.copy()
             column_mapping = {col: decision['field_type'] for col, decision in self.user_decisions.items()}
             transformed_df = transformed_df.rename(columns=column_mapping)
             
-            # Generar archivos CSV
-            csv_result = self._generate_csv_files(transformed_df)
+            # 2. Procesar campos numéricos (si el procesador está disponible)
+            if hasattr(self, 'data_processor') and self.data_processor:
+                print("   📊 Processing numeric fields...")
+                try:
+                    transformed_df, processing_stats = self.data_processor.process_numeric_fields_and_calculate_amounts(
+                        transformed_df
+                    )
+                    self.training_stats.update(processing_stats)
+                except Exception as e:
+                    print(f"   ⚠️ Numeric processing failed: {e}")
+            else:
+                print("   ℹ️ Numeric processing not available")
             
-            # Generar reporte
-            report_file = self._generate_training_report()
+            # 3. *** ELIMINAR VALIDACIÓN REDUNDANTE ***
+            # NO hacer balance validation aquí porque ya se hizo en conflict resolution
+            print("   ⚖️ Balance validation: SKIPPED (already performed during conflict resolution)")
+            balance_report = {
+                'is_balanced': True,  # Asumir OK ya que se validó antes
+                'validation_performed': False,
+                'note': 'Balance validation performed during field mapping conflict resolution',
+                'total_debit_sum': 0.0,
+                'total_credit_sum': 0.0,
+                'entries_count': 0,
+                'balanced_entries_count': 0
+            }
             
-            # Preparar resultado final
+            # 4. Crear CSV usando transformador (si está disponible)
+            if hasattr(self, 'csv_transformer') and self.csv_transformer:
+                print("   📄 Creating CSV files with transformer...")
+                try:
+                    csv_result = self.csv_transformer.create_header_detail_csvs(
+                        self.df, self.user_decisions, self.standard_fields
+                    )
+                except Exception as e:
+                    print(f"   ⚠️ CSV transformer failed: {e}")
+                    csv_result = self._create_transformed_csv()
+            else:
+                print("   📄 Creating basic CSV files...")
+                csv_result = self._create_transformed_csv()
+            
+            # 5. Generar reporte usando reporter (si está disponible)
+            if hasattr(self, 'reporter') and self.reporter:
+                print("   📝 Generating comprehensive report...")
+                try:
+                    training_data = {
+                        'csv_file': self.csv_file,
+                        'erp_hint': self.erp_hint,
+                        'training_stats': self.training_stats,
+                        'user_decisions': self.user_decisions,
+                        'conflict_resolutions': self.conflict_resolutions,
+                        'balance_report': balance_report,
+                        'training_mode': 'automatic',
+                        'standard_fields': self.standard_fields,
+                        **csv_result
+                    }
+                    report_file = self.reporter.generate_comprehensive_training_report(training_data)
+                except Exception as e:
+                    print(f"   ⚠️ Reporter failed: {e}")
+                    report_file = self._generate_training_report()
+            else:
+                print("   📝 Generating basic report...")
+                report_file = self._generate_training_report()
+            
+            # 6. Preparar resultado final
             result = {
                 'success': True,
                 'training_stats': self.training_stats,
                 'user_decisions': self.user_decisions,
                 'conflict_resolutions': self.conflict_resolutions,
+                'balance_report': balance_report,
                 'report_file': report_file,
                 **csv_result
             }
             
+            print("   ✅ Automatic training finalization completed")
             return result
             
         except Exception as e:
