@@ -318,6 +318,46 @@ test: nuevos tests
 ### Contacto
 - 📧 Email: [carolina.hoyos@es.gt.com]
 
+## CREAR FEATURES 
+
+```bash
+python features.py
+```
+
+## ENTRENAR MODELO
+
+```bash
+python entrenamiento.py
+```
+
+## PREDICCIÓN DE LINEAS LIBRO DIARIO
+
+```bash
+python test_model.py --model-dir modelo --file data/raw/Ejemplo2.txt --out predicciones/predicciones_ej2.csv
+python test_model.py --model-dir modelo --file data/raw/Ejemplo3.csv --out predicciones/predicciones_ej3.csv
+python test_model.py --model-dir modelo --file data/raw/ejemplo4.1.txt --out predicciones/predicciones_ej4.1.csv
+python test_model.py --model-dir modelo --file data/raw/ejemplo4.2.txt --out predicciones/predicciones_ej4.2.csv
+python test_model.py --model-dir modelo --file data/raw/Ejemplo5.txt --out predicciones/predicciones_ej5.csv
+python test_model.py --model-dir modelo --file data/raw/Ejemplo6.xlsx --out predicciones/predicciones_ej6.csv
+python test_model.py --model-dir modelo --file data/raw/Ejemplo8.xlsx --out predicciones/predicciones_ej8.csv
+python test_model.py --model-dir modelo --file data/raw/Ejemplo9.xlsx --out predicciones/predicciones_ej9.csv
+python test_model.py --model-dir modelo --file data/raw/Ejemplo10.csv --out predicciones/predicciones_ej10.csv
+```
+
+## PROCESAMIENTO DE LINEAS LIBRO DIARIO Y ESTRUCTURA
+
+```bash
+python procesador_predicciones.py predicciones/predicciones_ej2.csv --salida resultados/resultado_ej2.csv
+python procesador_predicciones.py predicciones/predicciones_ej3.csv --salida resultados/resultado_ej3.csv
+python procesador_predicciones.py predicciones/predicciones_ej4.1.csv --salida resultados/resultado_ej4.1.csv
+python procesador_predicciones.py predicciones/predicciones_ej4.2.csv --salida resultados/resultado_ej4.2.csv
+python procesador_predicciones.py predicciones/predicciones_ej5.csv --salida resultados/resultado_ej5.csv
+python procesador_predicciones.py predicciones/predicciones_ej6.csv --salida resultados/resultado_ej6.csv
+python procesador_predicciones.py predicciones/predicciones_ej8.csv --salida resultados/resultado_ej8.csv
+python procesador_predicciones.py predicciones/predicciones_ej9.csv --salida resultados/resultado_ej9.csv
+python procesador_predicciones.py predicciones/predicciones_ej10.csv --salida resultados/resultado_ej10.csv
+```
+
 
 ---
 
