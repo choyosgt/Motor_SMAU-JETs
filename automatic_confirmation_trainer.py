@@ -125,6 +125,7 @@ class AutomaticConfirmationTrainingSession:
                 from core.field_detector import FieldDetector
                 
                 self.mapper = FieldMapper()
+                self.mapper.set_sample_dataframe(self.df)
                 self.detector = FieldDetector()
                 print("✅ System modules imported successfully")
                 
