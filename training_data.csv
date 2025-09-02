@@ -1,0 +1,1681 @@
+file,line_no,text,label
+ejemplo4.1.txt,1,"|BUKRS|GJAHR|BELNR     |BUDAT   |CPUDT   |CPUTM |USNAM     |BKTXT                    |WAERS|BSTAT|TCODE              |STBLG     |BLART|BLDAT   |UPDDT   |",HEADER
+ejemplo4.1.txt,2,"|1700 |2024 |0102000000|20240105|20240105|095346|PGONZALEZ |                         |USD  |     |FB01               |          |KR   |20240104|00000000|",DATA
+ejemplo4.1.txt,3,"|1700 |2024 |0102000001|20240108|20240108|113029|PGONZALEZ |Factura                  |EUR  |     |FBVB               |          |KR   |20240108|00000000|",DATA
+ejemplo4.1.txt,4,"|1700 |2024 |0102000002|20240108|20240108|160514|PGONZALEZ |                         |EUR  |     |FB60               |          |KR   |20231229|00000000|",DATA
+ejemplo4.1.txt,5,"|1700 |2024 |0102000003|20240108|20240108|160804|PGONZALEZ |                         |EUR  |     |FB60               |          |KR   |20231229|00000000|",DATA
+ejemplo4.1.txt,6,"|1700 |2024 |0102000004|20240108|20240108|161026|PGONZALEZ |                         |EUR  |     |FB60               |          |KR   |20231229|00000000|",DATA
+ejemplo4.1.txt,7,"|1700 |2024 |0102000005|20240108|20240108|161337|PGONZALEZ |                         |EUR  |     |FB60               |          |KR   |20231229|00000000|",DATA
+ejemplo4.1.txt,8,"|1700 |2024 |0102000006|20240110|20240110|090221|PGONZALEZ |                         |EUR  |     |FB60               |          |KR   |20231214|00000000|",DATA
+ejemplo4.1.txt,9,"|1700 |2024 |0102000007|20240110|20240110|090403|PGONZALEZ |                         |EUR  |     |FB60               |          |KR   |20231221|00000000|",DATA
+ejemplo4.1.txt,10,"|1700 |2024 |0102000008|20240116|20240116|095938|PGONZALEZ |                         |EUR  |     |FB60               |          |KR   |20240109|00000000|",DATA
+ejemplo4.1.txt,11,"|1700 |2024 |0102000009|20240116|20240117|090108|PGONZALEZ |Factura                  |EUR  |     |FBVB               |          |KR   |20240116|00000000|",DATA
+ejemplo4.1.txt,12,"|1700 |2024 |0102000010|20240117|20240117|165634|PGONZALEZ |                         |EUR  |     |FB60               |          |KR   |20231205|00000000|",DATA
+ejemplo4.1.txt,13,"|1700 |2024 |0102000011|20240117|20240117|165826|PGONZALEZ |                         |EUR  |     |FB60               |          |KR   |20231205|00000000|",DATA
+ejemplo4.1.txt,14,"|1700 |2024 |0102000012|20240119|20240119|113043|PGONZALEZ |                         |EUR  |     |FB60               |          |KR   |20230908|00000000|",DATA
+ejemplo4.1.txt,15,"|1700 |2024 |0102000013|20240119|20240119|113605|PGONZALEZ |                         |EUR  |     |FB60               |          |KR   |20230908|00000000|",DATA
+ejemplo4.1.txt,16,"|1700 |2024 |0102000014|20240122|20240122|164721|PGONZALEZ |                         |EUR  |     |FB60               |          |KR   |20231201|00000000|",DATA
+ejemplo4.1.txt,17,"|1700 |2024 |0102000015|20240122|20240122|165036|PGONZALEZ |                         |EUR  |     |FB60               |          |KR   |20240101|00000000|",DATA
+ejemplo4.1.txt,18,"|1700 |2024 |0102000016|20240131|20240202|101803|PGONZALEZ |                         |EUR  |     |FB60               |          |KR   |20240131|00000000|",DATA
+ejemplo4.1.txt,19,"|1700 |2024 |0102000017|20240202|20240202|103005|PGONZALEZ |                         |EUR  |     |FB60               |          |KR   |20240131|00000000|",DATA
+ejemplo4.1.txt,20,"|1700 |2024 |0102000018|20240131|20240202|124356|ALOPEZ    |Factura                  |EUR  |     |FBVB               |          |KR   |20240131|00000000|",DATA
+ejemplo4.1.txt,21,"|1700 |2024 |0102000019|20240205|20240205|093251|PGONZALEZ |                         |USD  |     |FB01               |          |KR   |20240202|00000000|",DATA
+ejemplo4.1.txt,22,"|1700 |2024 |0102000020|20240131|20240205|111800|ALOPEZ    |Factura                  |EUR  |     |FBVB               |          |KR   |20240131|00000000|",DATA
+ejemplo4.1.txt,23,"|1700 |2024 |0102000021|20240206|20240206|093257|PGONZALEZ |                         |EUR  |     |FB60               |          |KR   |20240201|00000000|",DATA
+ejemplo4.1.txt,24,"|1700 |2024 |0102000022|20240206|20240206|102645|PGONZALEZ |                         |EUR  |     |FB60               |          |KR   |20240131|00000000|",DATA
+ejemplo4.1.txt,25,"|1700 |2024 |0102000023|20240131|20240206|112446|PGONZALEZ |Factura                  |EUR  |     |FBVB               |          |KR   |20240131|00000000|",DATA
+ejemplo4.1.txt,26,"|1700 |2024 |0102000024|20240208|20240208|113447|PGONZALEZ |Factura                  |EUR  |     |FBVB               |          |KR   |20240208|00000000|",DATA
+ejemplo4.1.txt,27,"|1700 |2024 |0102000025|20240212|20240212|155716|PGONZALEZ |Factura                  |EUR  |     |FBVB               |          |KR   |20240212|00000000|",DATA
+ejemplo4.1.txt,28,"|1700 |2024 |0102000026|20240131|20240214|114433|PGONZALEZ |Factura                  |EUR  |     |FBVB               |          |KR   |20240131|00000000|",DATA
+ejemplo4.1.txt,29,"|1700 |2024 |0102000027|20240222|20240223|095250|PGONZALEZ |Factura                  |EUR  |     |FBVB               |          |KR   |20240222|00000000|",DATA
+ejemplo4.1.txt,30,"|1700 |2024 |0102000028|20240229|20240301|142441|ALOPEZ    |Factura                  |EUR  |     |FBVB               |          |KR   |20240229|00000000|",DATA
+ejemplo4.1.txt,31,"|1700 |2024 |0102000029|20240229|20240304|104554|ALOPEZ    |Factura                  |EUR  |     |FBVB               |          |KR   |20240229|00000000|",DATA
+ejemplo4.1.txt,32,"|1700 |2024 |0102000030|20240304|20240304|113749|PGONZALEZ |                         |EUR  |     |FB60               |          |KR   |20240229|00000000|",DATA
+ejemplo4.1.txt,33,"|1700 |2024 |0102000031|20240304|20240304|114830|PGONZALEZ |                         |EUR  |     |FB60               |          |KR   |20240229|00000000|",DATA
+ejemplo4.1.txt,34,"|1700 |2024 |0102000032|20240304|20240304|115846|PGONZALEZ |                         |EUR  |     |FB60               |          |KR   |20240229|00000000|",DATA
+ejemplo4.1.txt,35,"|1700 |2024 |0102000033|20240304|20240304|120659|PGONZALEZ |                         |EUR  |     |FB60               |          |KR   |20240301|00000000|",DATA
+ejemplo4.1.txt,36,"|1700 |2024 |0102000034|20240305|20240305|112622|PGONZALEZ |                         |EUR  |     |FB60               |          |KR   |20240301|00000000|",DATA
+ejemplo4.1.txt,37,"|1700 |2024 |0102000035|20240229|20240305|130251|PGONZALEZ |Factura                  |EUR  |     |FBVB               |          |KR   |20240229|00000000|",DATA
+ejemplo4.1.txt,38,"|1700 |2024 |0102000036|20240307|20240308|093805|PGONZALEZ |Factura                  |EUR  |     |FBVB               |          |KR   |20240307|00000000|",DATA
+ejemplo4.1.txt,39,"|1700 |2024 |0102000037|20240307|20240307|151320|PGONZALEZ |                         |EUR  |     |FB60               |          |KG   |20240307|00000000|",DATA
+ejemplo4.2.txt,1,"|BUKRS|GJAHR|BELNR     |BUZEI|SHKZG|        DMBTR|        WRBTR|HKONT     |SGTXT                                             |AUGDT   |AUGCP   |AUGBL     |LIFNR     |",HEADER
+ejemplo4.2.txt,2,"|1700 |2024 |0102000000|001  |H    |    8.834,82 |    9.752,00 |0041300000|SERVICIO RHM DICIEMBRE 23                         |20240129|20240129|0110027017|80A394    |",DATA
+ejemplo4.2.txt,3,"|1700 |2024 |0102000000|002  |S    |    8.834,82 |    9.752,00 |0041309999|SERVICIO RHM DICIEMBRE 23                         |20240105|20240105|0110009383|          |",DATA
+ejemplo4.2.txt,4,"|1700 |2024 |0102000000|003  |H    |    1.855,31 |    2.047,92 |0047700000|RHM 127 - Reservas Hoteleras Mexico SA de CV      |00000000|00000000|          |          |",DATA
+ejemplo4.2.txt,5,"|1700 |2024 |0102000000|004  |S    |    1.855,31 |    2.047,92 |0047200000|RHM 127 - Reservas Hoteleras Mexico SA de CV      |00000000|00000000|          |          |",DATA
+ejemplo4.2.txt,6,"|1700 |2024 |0102000001|001  |H    |       43,56 |       43,56 |0041300000|SERVICIOS ASESORAMIENTO LABORAL DICIEMBRE 2023    |20240131|20240214|0110054615|80A222    |",DATA
+ejemplo4.2.txt,7,"|1700 |2024 |0102000001|002  |S    |       36,00 |       36,00 |0041309999|SERVICIOS ASESORAMIENTO LABORAL DICIEMBR          |20240108|20240108|0110009401|          |",DATA
+ejemplo4.2.txt,8,"|1700 |2024 |0102000001|003  |S    |        7,56 |        7,56 |0047200000|4300-24000002 - CITADEL S.L.                      |00000000|00000000|          |          |",DATA
+ejemplo4.2.txt,9,"|1700 |2024 |0102000002|001  |H    |       36,30 |       36,30 |0041000000|PLAN DE FORMACION BONIFICADA 2023 - DERIVALYA     |20240129|20240129|0103000006|0000531203|",DATA
+ejemplo4.2.txt,10,"|1700 |2024 |0102000002|002  |S    |       30,00 |       30,00 |0041099999|PLAN DE FORMACION BONIFICADA 2023 - DERIVALYA     |20240108|20240108|0110009402|          |",DATA
+ejemplo4.2.txt,11,"|1700 |2024 |0102000002|003  |S    |        6,30 |        6,30 |0047200000|3763-2023 - DERIVALYA FORMACION, DESARROLLO       |00000000|00000000|          |          |",DATA
+ejemplo4.2.txt,12,"|1700 |2024 |0102000003|001  |H    |        3,63 |        3,63 |0041000000|PLAN DE FORMACION BONIFICADA 2023 - DERIVALYA     |20240129|20240129|0103000006|0000531203|",DATA
+ejemplo4.2.txt,13,"|1700 |2024 |0102000003|002  |S    |        3,00 |        3,00 |0041099999|PLAN DE FORMACION BONIFICADA 2023 - DERIVALYA     |20240108|20240108|0110009402|          |",DATA
+ejemplo4.2.txt,14,"|1700 |2024 |0102000003|003  |S    |        0,63 |        0,63 |0047200000|3764-2023 - DERIVALYA FORMACION, DESARROLLO       |00000000|00000000|          |          |",DATA
+ejemplo4.2.txt,15,"|1700 |2024 |0102000004|001  |H    |      487,63 |      487,63 |0041000000|PLAN DE FORMACION BONIFICADA 2023 - DERIVALYA     |20240129|20240129|0103000006|0000531203|",DATA
+ejemplo4.2.txt,16,"|1700 |2024 |0102000004|002  |S    |      403,00 |      403,00 |0041099999|PLAN DE FORMACION BONIFICADA 2023 - DERIVALYA     |20240108|20240108|0110009402|          |",DATA
+ejemplo4.2.txt,17,"|1700 |2024 |0102000004|003  |S    |       84,63 |       84,63 |0047200000|3797-2023 - DERIVALYA FORMACION, DESARROLLO       |00000000|00000000|          |          |",DATA
+ejemplo4.2.txt,18,"|1700 |2024 |0102000005|001  |H    |       48,76 |       48,76 |0041000000|PLAN DE FORMACION BONIFICADA 2023 - DERIVALYA     |20240129|20240129|0103000006|0000531203|",DATA
+ejemplo4.2.txt,19,"|1700 |2024 |0102000005|002  |S    |       40,30 |       40,30 |0041099999|PLAN DE FORMACION BONIFICADA 2023 - DERIVALYA     |20240108|20240108|0110009402|          |",DATA
+ejemplo4.2.txt,20,"|1700 |2024 |0102000005|003  |S    |        8,46 |        8,46 |0047200000|3798-2023 - DERIVALYA FORMACION, DESARROLLO       |00000000|00000000|          |          |",DATA
+ejemplo4.2.txt,21,"|1700 |2024 |0102000006|001  |H    |       60,50 |       60,50 |0040000000|LOTES DE NAVIDAD 2023 - CAMPOFR O                 |20240307|20240307|0110077023|0000501131|",DATA
+ejemplo4.2.txt,22,"|1700 |2024 |0102000006|002  |S    |       55,00 |       55,00 |0041099999|LOTES DE NAVIDAD 2023 - CAMPOFR O                 |20240307|20240307|0110077024|          |",DATA
+ejemplo4.2.txt,23,"|1700 |2024 |0102000006|003  |S    |        5,50 |        5,50 |0047200000|5309562232 - CAMPOFRIO FOOD GROUP S.A             |00000000|00000000|          |          |",DATA
+ejemplo4.2.txt,24,"|1700 |2024 |0102000007|001  |H    |      121,00 |      121,00 |0040000000|LOTES DE NAVIDAD 2023 - CAMPOFR O                 |20240307|20240307|0110077023|0000501131|",DATA
+ejemplo4.2.txt,25,"|1700 |2024 |0102000007|002  |S    |      110,00 |      110,00 |0041099999|LOTES DE NAVIDAD 2023 - CAMPOFR O                 |20240307|20240307|0110077024|          |",DATA
+ejemplo4.2.txt,26,"|1700 |2024 |0102000007|003  |S    |       11,00 |       11,00 |0047200000|5309575067 - CAMPOFRIO FOOD GROUP S.A             |00000000|00000000|          |          |",DATA
+ejemplo4.2.txt,27,"|1700 |2024 |0102000008|001  |H    |      121,24 |      121,24 |0040000000|FOTOCOPIAS OCT - DIC 23 - RICOH                   |20240129|20240129|0103000003|0000504172|",DATA
+ejemplo4.2.txt,28,"|1700 |2024 |0102000008|002  |S    |      100,20 |      100,20 |0041099999|FOTOCOPIAS OCT - DIC 23 - RICOH                   |20240116|20240116|0110026749|          |",DATA
+ejemplo4.2.txt,29,"|1700 |2024 |0102000008|003  |S    |       21,04 |       21,04 |0047200000|844485229 - RICOH ESPA A S.L.                     |00000000|00000000|          |          |",DATA
+ejemplo4.2.txt,30,"|1700 |2024 |0102000009|001  |H    |      605,00 |      605,00 |0041300000|Prestaci n servicios centrales corporativos 2023  |20240213|20240213|0110054605|80A223    |",DATA
+ejemplo4.2.txt,31,"|1700 |2024 |0102000009|002  |S    |      500,00 |      500,00 |0041309999|Prestaci n servicios centrales corporativos 2023  |20240117|20240117|0110026750|          |",DATA
+ejemplo4.2.txt,32,"|1700 |2024 |0102000009|003  |S    |      105,00 |      105,00 |0047200000|4200-24000088 - Hoteles Tur sticos Unidos, S.A.   |00000000|00000000|          |          |",DATA
+ejemplo4.2.txt,33,"|1700 |2024 |0102000010|001  |H    |      121,21 |      121,21 |0041000000|MINUTA AA/232510 EI                               |20240117|20240117|0110026752|0000524354|",DATA
+ejemplo4.2.txt,34,"|1700 |2024 |0102000010|002  |S    |      112,37 |      112,37 |0041099999|MINUTA AA/232510 EI                               |20240117|20240117|0110026751|          |",DATA
+ejemplo4.2.txt,35,"|1700 |2024 |0102000010|003  |S    |        2,10 |        2,10 |0041099999|MINUTA AA/232510 EI                               |20240117|20240117|0110026751|          |",DATA
+ejemplo4.2.txt,36,"|1700 |2024 |0102000010|004  |S    |       23,60 |       23,60 |0047200000|AA/232510 - ANTONIO BOSCH CARRERA                 |00000000|00000000|          |          |",DATA
+ejemplo4.2.txt,37,"|1700 |2024 |0102000010|005  |H    |       16,86 |       16,86 |0047510001|AA/232510 - ANTONIO BOSCH CARRERA                 |20240422|20240515|0110166398|          |",DATA
+ejemplo4.2.txt,38,"|1700 |2024 |0102000011|001  |H    |      183,74 |      183,74 |0041000000|MINUTA AA/232511 EI                               |20240117|20240117|0110026753|0000524354|",DATA
+ejemplo4.2.txt,39,"|1700 |2024 |0102000011|002  |S    |      170,51 |      170,51 |0041099999|MINUTA AA/232511 EI                               |20240117|20240117|0110026751|          |",DATA
+ejemplo4.2.txt,40,"|1700 |2024 |0102000011|003  |S    |        3,00 |        3,00 |0041099999|MINUTA AA/232511 EI                               |20240117|20240117|0110026751|          |",DATA
+Ejemplo3.csv,1,"CINARA PROPERTIES, SL                             Diario de documentos (acc 01.01.2024 - 31.12.2024                             Hora 17:04:01     Fecha 27.03.2025",META
+Ejemplo3.csv,2,"MADRID                 Ledger 0L                                                                     RFBELJ10/SCAMPELO Página           1",META
+Ejemplo3.csv,3,"",BLANK
+Ejemplo3.csv,4,"	Referencia		    Número	Registrado		Nº doc.		Período			Fe.contab.	Fecha doc.	Clase	Texto cab.documento			Usuario	Nº doc.LM	EjLM	Anulación	 Ej.",HEADER
+Ejemplo3.csv,5,"	Cuenta				CC		Lib.mayor		II	  Debe en moneda local			 Haber en moneda local		ML	Texto",HEADER
+Ejemplo3.csv,6,"",BLANK
+Ejemplo3.csv,7,"	.		         1	01.02.2024		102000001		      1			01.01.2024	01.01.2024	AA	Factura Activo Fijo			JGARCIA	102000001	2024",PARENT
+Ejemplo3.csv,8,"	0022000000	Inver terr y bie nat			75				-9.094.913,01				EUR	RECLASIFICACION PALACIO DE LA TINTA MALAGA TASACION",CHILD
+Ejemplo3.csv,9,"	0023100000	Construc. En Curso			70				         9.094.913,01				EUR	RECLASIFICACION PALACIO DE LA TINTA MALAGA TASACION",CHILD
+Ejemplo3.csv,10,"",BLANK
+Ejemplo3.csv,11,"			         2	24.01.2024		110000009		      1			01.01.2024	01.01.2024	SA	Documento cta.mayor			SCAMPELO	110000009	2024	110000017	2024",PARENT
+Ejemplo3.csv,12,"	0057221500	EBN0040000784			50					               444,01		EUR	Retención sobre intereses abonados 21/12/23 - 31/",CHILD
+Ejemplo3.csv,13,"	0057221502	EBN0040000784			40					               444,01			EUR	Retención sobre intereses abonados 21/12/23 - 31/",CHILD
+Ejemplo3.csv,14,"",BLANK
+Ejemplo3.csv,15,"			         3	24.01.2024		110000010		      1			01.01.2024	01.01.2024	SA	Documento cta.mayor			SCAMPELO	110000010	2024	110000016	2024",PARENT
+Ejemplo3.csv,16,"	0057221500	EBN0040000784			50					             1.112,98		EUR	Retención sobre intereses abonados 01/10/23 - 20/",CHILD
+Ejemplo3.csv,17,"	0057221502	EBN0040000784			40					             1.112,98			EUR	Retención sobre intereses abonados 01/10/23 - 20/",CHILD
+Ejemplo3.csv,18,"",BLANK
+Ejemplo3.csv,19,"			         4	24.01.2024		110000011		      1			01.01.2024	01.01.2024	SA	Documento cta.mayor			SCAMPELO	110000011	2024	110000015	2024",PARENT
+Ejemplo3.csv,20,"	0057221500	EBN0040000784			50					             3.127,13		EUR	Retención sobre intereses abonados 01/07/23 - 30/",CHILD
+Ejemplo3.csv,21,"	0057221502	EBN0040000784			40					             3.127,13			EUR	Retención sobre intereses abonados 01/07/23 - 30/",CHILD
+Ejemplo3.csv,22,"",BLANK
+Ejemplo3.csv,23,"			         5	24.01.2024		110000012		      1			01.01.2024	01.01.2024	SA	Documento cta.mayor			SCAMPELO	110000012	2024	110000014	2024",PARENT
+Ejemplo3.csv,24,"	0057221500	EBN0040000784			50					             2.675,34		EUR	Retención sobre intereses abonados 01/04/23 - 30/",CHILD
+Ejemplo3.csv,25,"	0057221502	EBN0040000784			40					             2.675,34			EUR	Retención sobre intereses abonados 01/04/23 - 30/",CHILD
+Ejemplo3.csv,26,"",BLANK
+Ejemplo3.csv,27,"			         6	24.01.2024		110000013		      1			01.01.2024	01.01.2024	SA	Documento cta.mayor			SCAMPELO	110000013	2024	110000013	2024",PARENT
+Ejemplo3.csv,28,"	0057221500	EBN0040000784			50					             1.756,35		EUR	Retención sobre intereses abonados 01/01/23 - 31/",CHILD
+Ejemplo3.csv,29,"	0057221502	EBN0040000784			40					             1.756,35			EUR	Retención sobre intereses abonados 01/01/23 - 31/",CHILD
+Ejemplo3.csv,30,"",BLANK
+Ejemplo3.csv,31,"			         7	24.01.2024		110000014		      1			01.01.2024	01.01.2024	SA	Documento cta.mayor			SCAMPELO	110000014	2024	110000012	2024",PARENT
+Ejemplo3.csv,32,"	0057221500	EBN0040000784			50				-2.675,34					EUR	Retención sobre intereses abonados 01/04/23 - 30/",CHILD
+Ejemplo3.csv,33,"	0057221502	EBN0040000784			40				-2.675,34					EUR	Retención sobre intereses abonados 01/04/23 - 30/",CHILD
+Ejemplo3.csv,34,"",BLANK
+Ejemplo3.csv,35,"			         8	24.01.2024		110000015		      1			01.01.2024	01.01.2024	SA	Documento cta.mayor			SCAMPELO	110000015	2024	110000011	2024",PARENT
+Ejemplo3.csv,36,"	0057221500	EBN0040000784			50				-3.127,13					EUR	Retención sobre intereses abonados 01/07/23 - 30/",CHILD
+Ejemplo3.csv,37,"	0057221502	EBN0040000784			40				-3.127,13					EUR	Retención sobre intereses abonados 01/07/23 - 30/",CHILD
+Ejemplo3.csv,38,"",BLANK
+Ejemplo3.csv,39,"			         9	24.01.2024		110000016		      1			01.01.2024	01.01.2024	SA	Documento cta.mayor			SCAMPELO	110000016	2024	110000010	2024",PARENT
+Ejemplo3.csv,40,"	0057221500	EBN0040000784			50				-1.112,98					EUR	Retención sobre intereses abonados 01/10/23 - 20/",CHILD
+Ejemplo3.csv,41,"	0057221502	EBN0040000784			40				-1.112,98					EUR	Retención sobre intereses abonados 01/10/23 - 20/",CHILD
+Ejemplo3.csv,42,"",BLANK
+Ejemplo3.csv,43,"			        10	24.01.2024		110000017		      1			01.01.2024	01.01.2024	SA	Documento cta.mayor			SCAMPELO	110000017	2024	110000009	2024",PARENT
+Ejemplo3.csv,44,"	0057221500	EBN0040000784			50					  -444,01					EUR	Retención sobre intereses abonados 21/12/23 - 31/",CHILD
+Ejemplo3.csv,45,"	0057221502	EBN0040000784			40					  -444,01					EUR	Retención sobre intereses abonados 21/12/23 - 31/",CHILD
+Ejemplo3.csv,46,"",BLANK
+Ejemplo3.csv,47,"			        11	31.01.2024		120000135		      1			15.01.2024	15.01.2024	KR	Factura Proveedor			SCAMPELO	120000135	2024",PARENT
+Ejemplo3.csv,48,"	0062300000	CUOTA ENERO 2024 MADR			50					            15.125,00		EUR	CUOTA MENSUAL ENERO 2024 MADRID",CHILD
+Ejemplo3.csv,49,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,50,"",BLANK
+Ejemplo3.csv,51,"			        12	31.01.2024		120000136		      1			15.01.2024	15.01.2024	KR	Factura Proveedor			SCAMPELO	120000136	2024",PARENT
+Ejemplo3.csv,52,"	0062300000	CUOTA ENERO 2024 VALE			50					            15.125,00		EUR	CUOTA MENSUAL ENERO 2024 VALENCIA",CHILD
+Ejemplo3.csv,53,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,54,"",BLANK
+Ejemplo3.csv,55,"			        13	31.01.2024		120000137		      1			15.01.2024	15.01.2024	KR	Factura Proveedor			SCAMPELO	120000137	2024",PARENT
+Ejemplo3.csv,56,"	0062300000	CUOTA ENERO 2024 BARC			50					            15.125,00		EUR	CUOTA MENSUAL ENERO 2024 BARCELONA",CHILD
+Ejemplo3.csv,57,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,58,"",BLANK
+Ejemplo3.csv,59,"			        14	31.01.2024		120000138		      1			15.01.2024	15.01.2024	KR	Factura Proveedor			SCAMPELO	120000138	2024",PARENT
+Ejemplo3.csv,60,"	0062300000	CUOTA ENERO 2024 SEVI			50					            15.125,00		EUR	CUOTA MENSUAL ENERO 2024 SEVILLA",CHILD
+Ejemplo3.csv,61,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,62,"",BLANK
+Ejemplo3.csv,63,"			        15	31.01.2024		120000139		      1			15.01.2024	15.01.2024	KR	Factura Proveedor			SCAMPELO	120000139	2024",PARENT
+Ejemplo3.csv,64,"	0062300000	CUOTA ENERO 2024 BILL			50					            15.125,00		EUR	CUOTA MENSUAL ENERO 2024 BILBAO",CHILD
+Ejemplo3.csv,65,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,66,"",BLANK
+Ejemplo3.csv,67,"			        16	31.01.2024		120000140		      1			15.01.2024	15.01.2024	KR	Factura Proveedor			SCAMPELO	120000140	2024",PARENT
+Ejemplo3.csv,68,"	0062300000	CUOTA ENERO 2024 ZARA			50					            15.125,00		EUR	CUOTA MENSUAL ENERO 2024 ZARAGOZA",CHILD
+Ejemplo3.csv,69,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,70,"",BLANK
+Ejemplo3.csv,71,"			        17	31.01.2024		120000141		      1			15.01.2024	15.01.2024	KR	Factura Proveedor			SCAMPELO	120000141	2024",PARENT
+Ejemplo3.csv,72,"	0062300000	CUOTA ENERO 2024 VIGO			50					            15.125,00		EUR	CUOTA MENSUAL ENERO 2024 VIGO",CHILD
+Ejemplo3.csv,73,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,74,"",BLANK
+Ejemplo3.csv,75,"			        18	31.01.2024		120000142		      1			15.01.2024	15.01.2024	KR	Factura Proveedor			SCAMPELO	120000142	2024",PARENT
+Ejemplo3.csv,76,"	0062300000	CUOTA ENERO 2024 MALA			50					            15.125,00		EUR	CUOTA MENSUAL ENERO 2024 MALAGA",CHILD
+Ejemplo3.csv,77,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,78,"",BLANK
+Ejemplo3.csv,79,"			        19	31.01.2024		120000143		      1			15.01.2024	15.01.2024	KR	Factura Proveedor			SCAMPELO	120000143	2024",PARENT
+Ejemplo3.csv,80,"	0062300000	CUOTA ENERO 2024 CORU			50					            15.125,00		EUR	CUOTA MENSUAL ENERO 2024 CORUÑA",CHILD
+Ejemplo3.csv,81,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,82,"",BLANK
+Ejemplo3.csv,83,"			        20	31.01.2024		120000144		      1			15.01.2024	15.01.2024	KR	Factura Proveedor			SCAMPELO	120000144	2024",PARENT
+Ejemplo3.csv,84,"	0062300000	CUOTA ENERO 2024 MURC			50					            15.125,00		EUR	CUOTA MENSUAL ENERO 2024 MURCIA",CHILD
+Ejemplo3.csv,85,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,86,"",BLANK
+Ejemplo3.csv,87,"			        21	31.01.2024		120000145		      1			15.01.2024	15.01.2024	KR	Factura Proveedor			SCAMPELO	120000145	2024",PARENT
+Ejemplo3.csv,88,"	0062300000	CUOTA ENERO 2024 PALM			50					            15.125,00		EUR	CUOTA MENSUAL ENERO 2024 PALMA",CHILD
+Ejemplo3.csv,89,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,90,"",BLANK
+Ejemplo3.csv,91,"			        22	31.01.2024		120000146		      1			15.01.2024	15.01.2024	KR	Factura Proveedor			SCAMPELO	120000146	2024",PARENT
+Ejemplo3.csv,92,"	0062300000	CUOTA ENERO 2024 SANC			50					            15.125,00		EUR	CUOTA MENSUAL ENERO 2024 SANTANDER",CHILD
+Ejemplo3.csv,93,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,94,"",BLANK
+Ejemplo3.csv,95,"			        23	31.01.2024		120000147		      1			15.01.2024	15.01.2024	KR	Factura Proveedor			SCAMPELO	120000147	2024",PARENT
+Ejemplo3.csv,96,"	0062300000	CUOTA ENERO 2024 GIRO			50					            15.125,00		EUR	CUOTA MENSUAL ENERO 2024 GIRONA",CHILD
+Ejemplo3.csv,97,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,98,"",BLANK
+Ejemplo3.csv,99,"			        24	31.01.2024		120000148		      1			15.01.2024	15.01.2024	KR	Factura Proveedor			SCAMPELO	120000148	2024",PARENT
+Ejemplo3.csv,100,"	0062300000	CUOTA ENERO 2024 LEON			50					            15.125,00		EUR	CUOTA MENSUAL ENERO 2024 LEON",CHILD
+Ejemplo3.csv,101,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,102,"",BLANK
+Ejemplo3.csv,103,"			        25	31.01.2024		120000149		      1			15.01.2024	15.01.2024	KR	Factura Proveedor			SCAMPELO	120000149	2024",PARENT
+Ejemplo3.csv,104,"	0062300000	CUOTA ENERO 2024 CAST			50					            15.125,00		EUR	CUOTA MENSUAL ENERO 2024 CASTELLON",CHILD
+Ejemplo3.csv,105,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,106,"",BLANK
+Ejemplo3.csv,107,"			        26	31.01.2024		120000150		      1			31.01.2024	31.01.2024	KR	Factura Proveedor			SCAMPELO	120000150	2024",PARENT
+Ejemplo3.csv,108,"	0062300000	Agua ENERO 2024			50					             2.380,95		EUR	Factura agua Enero 2024",CHILD
+Ejemplo3.csv,109,"	0047200000	Agua ENERO 2024			50					               500,00		EUR	Factura agua Enero 2024",CHILD
+Ejemplo3.csv,110,"	0077200000				50				-2.880,95					EUR",CHILD
+Ejemplo3.csv,111,"",BLANK
+Ejemplo3.csv,112,"			        27	31.01.2024		120000151		      1			31.01.2024	31.01.2024	KR	Factura Proveedor			SCAMPELO	120000151	2024",PARENT
+Ejemplo3.csv,113,"	0062800000	Luz ENERO 2024			50					             8.450,25		EUR	Factura electricidad Enero 2024",CHILD
+Ejemplo3.csv,114,"	0047200000	Luz ENERO 2024			50					             1.774,55		EUR	Factura electricidad Enero 2024",CHILD
+Ejemplo3.csv,115,"	0077200000				50				-10.224,80					EUR",CHILD
+Ejemplo3.csv,116,"",BLANK
+Ejemplo3.csv,117,"			        28	31.01.2024		120000152		      1			31.01.2024	31.01.2024	KR	Factura Proveedor			SCAMPELO	120000152	2024",PARENT
+Ejemplo3.csv,118,"	0062900000	Gas ENERO 2024			50					             3.245,75		EUR	Factura gas Enero 2024",CHILD
+Ejemplo3.csv,119,"	0047200000	Gas ENERO 2024			50					               681,61		EUR	Factura gas Enero 2024",CHILD
+Ejemplo3.csv,120,"	0077200000				50				-3.927,36					EUR",CHILD
+Ejemplo3.csv,121,"",BLANK
+Ejemplo3.csv,122,"			        29	31.01.2024		120000153		      1			31.01.2024	31.01.2024	KR	Factura Proveedor			SCAMPELO	120000153	2024",PARENT
+Ejemplo3.csv,123,"	0063100000	Telefono ENERO 2024			50					               845,30		EUR	Factura telefono Enero 2024",CHILD
+Ejemplo3.csv,124,"	0047200000	Telefono ENERO 2024			50					               177,51		EUR	Factura telefono Enero 2024",CHILD
+Ejemplo3.csv,125,"	0077200000				50				-1.022,81					EUR",CHILD
+Ejemplo3.csv,126,"",BLANK
+Ejemplo3.csv,127,"			        30	31.01.2024		120000154		      1			31.01.2024	31.01.2024	KR	Factura Proveedor			SCAMPELO	120000154	2024",PARENT
+Ejemplo3.csv,128,"	0063200000	Internet ENERO 2024			50					               325,75		EUR	Factura internet Enero 2024",CHILD
+Ejemplo3.csv,129,"	0047200000	Internet ENERO 2024			50					                68,41		EUR	Factura internet Enero 2024",CHILD
+Ejemplo3.csv,130,"	0077200000				50					  -394,16					EUR",CHILD
+Ejemplo3.csv,131,"",BLANK
+Ejemplo3.csv,132,"			        31	31.01.2024		120000155		      1			31.01.2024	31.01.2024	KR	Factura Proveedor			SCAMPELO	120000155	2024",PARENT
+Ejemplo3.csv,133,"	0064000000	Seguros ENERO 2024			50					             1.245,80		EUR	Prima seguros Enero 2024",CHILD
+Ejemplo3.csv,134,"	0047200000	Seguros ENERO 2024			50					               261,62		EUR	Prima seguros Enero 2024",CHILD
+Ejemplo3.csv,135,"	0077200000				50				-1.507,42					EUR",CHILD
+Ejemplo3.csv,136,"",BLANK
+Ejemplo3.csv,137,"			        32	31.01.2024		120000156		      1			31.01.2024	31.01.2024	KR	Factura Proveedor			SCAMPELO	120000156	2024",PARENT
+Ejemplo3.csv,138,"	0064100000	Mantenimiento ENERO 2024			50					             2.850,45		EUR	Gastos mantenimiento Enero 2024",CHILD
+Ejemplo3.csv,139,"	0047200000	Mantenimiento ENERO 2024			50					               598,59		EUR	Gastos mantenimiento Enero 2024",CHILD
+Ejemplo3.csv,140,"	0077200000				50				-3.449,04					EUR",CHILD
+Ejemplo3.csv,141,"",BLANK
+Ejemplo3.csv,142,"			        33	29.02.2024		220000157		      2			15.02.2024	15.02.2024	KR	Factura Proveedor			SCAMPELO	220000157	2024",PARENT
+Ejemplo3.csv,143,"	0062300000	CUOTA FEBRERO 2024 MADR			50					            15.125,00		EUR	CUOTA MENSUAL FEBRERO 2024 MADRID",CHILD
+Ejemplo3.csv,144,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,145,"",BLANK
+Ejemplo3.csv,146,"			        34	29.02.2024		220000158		      2			15.02.2024	15.02.2024	KR	Factura Proveedor			SCAMPELO	220000158	2024",PARENT
+Ejemplo3.csv,147,"	0062300000	CUOTA FEBRERO 2024 VALE			50					            15.125,00		EUR	CUOTA MENSUAL FEBRERO 2024 VALENCIA",CHILD
+Ejemplo3.csv,148,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,149,"",BLANK
+Ejemplo3.csv,150,"			        35	29.02.2024		220000159		      2			15.02.2024	15.02.2024	KR	Factura Proveedor			SCAMPELO	220000159	2024",PARENT
+Ejemplo3.csv,150,"	0057221500	EBN0040000784			50					            14.575,09		EUR	FACTURA N°23127",CHILD
+Ejemplo3.csv,151,"	0057221502	EBN0040000784			40					            14.575,09			EUR	FACTURA N°23127",CHILD
+Ejemplo3.csv,152,"",BLANK
+Ejemplo3.csv,153,"			        37	24.01.2024		110000028		      1			12.01.2024	12.01.2024	Z6	Compensación			SCAMPELO	110000028	2024",PARENT
+Ejemplo3.csv,154,"	0000569362	UTE PALACIO DE LA TINTA			27		41000000			           242.891,81				EUR",CHILD
+Ejemplo3.csv,155,"	0057221502	EBN0040000784			50					           242.891,81		EUR",CHILD
+Ejemplo3.csv,156,"",BLANK
+Ejemplo3.csv,157,"			        38	24.01.2024		110000029		      1			12.01.2024	12.01.2024	Z6	Compensación			SCAMPELO	110000029	2024",PARENT
+Ejemplo3.csv,158,"	0000532724	ESTUDI ISERN ASSOCIATS SL			27		40000000			            14.575,09				EUR",CHILD
+Ejemplo3.csv,159,"	0057221502	EBN0040000784			50					            14.575,09		EUR",CHILD
+Ejemplo3.csv,160,"",BLANK
+Ejemplo3.csv,161,"			        39	25.01.2024		110000037		      1			12.01.2024	12.01.2024	Z6	Compensación			SCAMPELO	110000037	2024	110000125	2024",PARENT
+Ejemplo3.csv,162,"	0000532724	ESTUDI ISERN ASSOCIATS SL			27		40000000			-14.575,09					EUR",CHILD
+Ejemplo3.csv,163,"	0057221502	EBN0040000784			50				-14.575,09					EUR",CHILD
+Ejemplo3.csv,164,"",BLANK
+Ejemplo3.csv,165,"			        40	25.01.2024		110000038		      1			12.01.2024	12.01.2024	Z6	Compensación			SCAMPELO	110000038	2024	110000124	2024",PARENT
+Ejemplo3.csv,166,"	0000569362	UTE PALACIO DE LA TINTA			27		41000000			-242.891,81					EUR",CHILD
+Ejemplo3.csv,167,"	0057221502	EBN0040000784			50				-242.891,81					EUR",CHILD
+Ejemplo3.csv,168,"",BLANK
+Ejemplo3.csv,169,"			        41	25.01.2024		110000039		      1			12.01.2024	12.01.2024	Z6	Compensación			SCAMPELO	110000039	2024	110000123	2024",PARENT
+Ejemplo3.csv,170,"	0057221500	EBN0040000784			50				-14.575,09					EUR	FACTURA N°23127",CHILD
+Ejemplo3.csv,171,"	0057221502	EBN0040000784			40				-14.575,09					EUR	FACTURA N°23127",CHILD
+Ejemplo3.csv,172,"",BLANK
+Ejemplo3.csv,173,"			        42	29.02.2024		220000160		      2			15.02.2024	15.02.2024	KR	Factura Proveedor			SCAMPELO	220000160	2024",PARENT
+Ejemplo3.csv,174,"	0062300000	CUOTA FEBRERO 2024 BARC			50					            15.125,00		EUR	CUOTA MENSUAL FEBRERO 2024 BARCELONA",CHILD
+Ejemplo3.csv,175,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,176,"",BLANK
+Ejemplo3.csv,177,"			        43	29.02.2024		220000161		      2			15.02.2024	15.02.2024	KR	Factura Proveedor			SCAMPELO	220000161	2024",PARENT
+Ejemplo3.csv,178,"	0062300000	CUOTA FEBRERO 2024 SEVI			50					            15.125,00		EUR	CUOTA MENSUAL FEBRERO 2024 SEVILLA",CHILD
+Ejemplo3.csv,179,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,180,"",BLANK
+Ejemplo3.csv,181,"			        44	29.02.2024		220000162		      2			15.02.2024	15.02.2024	KR	Factura Proveedor			SCAMPELO	220000162	2024",PARENT
+Ejemplo3.csv,182,"	0062300000	CUOTA FEBRERO 2024 BILL			50					            15.125,00		EUR	CUOTA MENSUAL FEBRERO 2024 BILBAO",CHILD
+Ejemplo3.csv,183,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,184,"",BLANK
+Ejemplo3.csv,185,"			        45	29.02.2024		220000163		      2			15.02.2024	15.02.2024	KR	Factura Proveedor			SCAMPELO	220000163	2024",PARENT
+Ejemplo3.csv,186,"	0062300000	CUOTA FEBRERO 2024 ZARA			50					            15.125,00		EUR	CUOTA MENSUAL FEBRERO 2024 ZARAGOZA",CHILD
+Ejemplo3.csv,187,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,188,"",BLANK
+Ejemplo3.csv,189,"			        46	29.02.2024		220000164		      2			15.02.2024	15.02.2024	KR	Factura Proveedor			SCAMPELO	220000164	2024",PARENT
+Ejemplo3.csv,190,"	0062300000	CUOTA FEBRERO 2024 VIGO			50					            15.125,00		EUR	CUOTA MENSUAL FEBRERO 2024 VIGO",CHILD
+Ejemplo3.csv,191,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,192,"",BLANK
+Ejemplo3.csv,193,"			        47	29.02.2024		220000165		      2			15.02.2024	15.02.2024	KR	Factura Proveedor			SCAMPELO	220000165	2024",PARENT
+Ejemplo3.csv,194,"	0062300000	CUOTA FEBRERO 2024 MALA			50					            15.125,00		EUR	CUOTA MENSUAL FEBRERO 2024 MALAGA",CHILD
+Ejemplo3.csv,195,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,196,"",BLANK
+Ejemplo3.csv,197,"			        48	29.02.2024		220000166		      2			15.02.2024	15.02.2024	KR	Factura Proveedor			SCAMPELO	220000166	2024",PARENT
+Ejemplo3.csv,198,"	0062300000	CUOTA FEBRERO 2024 CORU			50					            15.125,00		EUR	CUOTA MENSUAL FEBRERO 2024 CORUÑA",CHILD
+Ejemplo3.csv,199,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,200,"",BLANK
+Ejemplo3.csv,201,"			        49	29.02.2024		220000167		      2			15.02.2024	15.02.2024	KR	Factura Proveedor			SCAMPELO	220000167	2024",PARENT
+Ejemplo3.csv,202,"	0062300000	CUOTA FEBRERO 2024 MURC			50					            15.125,00		EUR	CUOTA MENSUAL FEBRERO 2024 MURCIA",CHILD
+Ejemplo3.csv,203,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,204,"",BLANK
+Ejemplo3.csv,205,"			        50	29.02.2024		220000168		      2			15.02.2024	15.02.2024	KR	Factura Proveedor			SCAMPELO	220000168	2024",PARENT
+Ejemplo3.csv,206,"	0062300000	CUOTA FEBRERO 2024 PALM			50					            15.125,00		EUR	CUOTA MENSUAL FEBRERO 2024 PALMA",CHILD
+Ejemplo3.csv,207,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,208,"",BLANK
+Ejemplo3.csv,209,"			        51	29.02.2024		220000169		      2			15.02.2024	15.02.2024	KR	Factura Proveedor			SCAMPELO	220000169	2024",PARENT
+Ejemplo3.csv,210,"	0062300000	CUOTA FEBRERO 2024 SANC			50					            15.125,00		EUR	CUOTA MENSUAL FEBRERO 2024 SANTANDER",CHILD
+Ejemplo3.csv,211,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,212,"",BLANK
+Ejemplo3.csv,213,"			        52	29.02.2024		220000170		      2			15.02.2024	15.02.2024	KR	Factura Proveedor			SCAMPELO	220000170	2024",PARENT
+Ejemplo3.csv,214,"	0062300000	CUOTA FEBRERO 2024 GIRO			50					            15.125,00		EUR	CUOTA MENSUAL FEBRERO 2024 GIRONA",CHILD
+Ejemplo3.csv,215,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,216,"",BLANK
+Ejemplo3.csv,217,"			        53	29.02.2024		220000171		      2			15.02.2024	15.02.2024	KR	Factura Proveedor			SCAMPELO	220000171	2024",PARENT
+Ejemplo3.csv,218,"	0062300000	CUOTA FEBRERO 2024 LEON			50					            15.125,00		EUR	CUOTA MENSUAL FEBRERO 2024 LEON",CHILD
+Ejemplo3.csv,219,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,220,"",BLANK
+Ejemplo3.csv,221,"			        54	29.02.2024		220000172		      2			15.02.2024	15.02.2024	KR	Factura Proveedor			SCAMPELO	220000172	2024",PARENT
+Ejemplo3.csv,222,"	0062300000	CUOTA FEBRERO 2024 CAST			50					            15.125,00		EUR	CUOTA MENSUAL FEBRERO 2024 CASTELLON",CHILD
+Ejemplo3.csv,223,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,224,"",BLANK
+Ejemplo3.csv,225,"			        55	29.02.2024		220000173		      2			29.02.2024	29.02.2024	KR	Factura Proveedor			SCAMPELO	220000173	2024",PARENT
+Ejemplo3.csv,226,"	0062300000	Agua FEBRERO 2024			50					             2.380,95		EUR	Factura agua Febrero 2024",CHILD
+Ejemplo3.csv,227,"	0047200000	Agua FEBRERO 2024			50					               500,00		EUR	Factura agua Febrero 2024",CHILD
+Ejemplo3.csv,228,"	0077200000				50				-2.880,95					EUR",CHILD
+Ejemplo3.csv,229,"",BLANK
+Ejemplo3.csv,230,"			        56	29.02.2024		220000174		      2			29.02.2024	29.02.2024	KR	Factura Proveedor			SCAMPELO	220000174	2024",PARENT
+Ejemplo3.csv,231,"	0062800000	Luz FEBRERO 2024			50					             8.450,25		EUR	Factura electricidad Febrero 2024",CHILD
+Ejemplo3.csv,232,"	0047200000	Luz FEBRERO 2024			50					             1.774,55		EUR	Factura electricidad Febrero 2024",CHILD
+Ejemplo3.csv,233,"	0077200000				50				-10.224,80					EUR",CHILD
+Ejemplo3.csv,234,"",BLANK
+Ejemplo3.csv,235,"			        57	29.02.2024		220000175		      2			29.02.2024	29.02.2024	KR	Factura Proveedor			SCAMPELO	220000175	2024",PARENT
+Ejemplo3.csv,236,"	0062900000	Gas FEBRERO 2024			50					             3.245,75		EUR	Factura gas Febrero 2024",CHILD
+Ejemplo3.csv,237,"	0047200000	Gas FEBRERO 2024			50					               681,61		EUR	Factura gas Febrero 2024",CHILD
+Ejemplo3.csv,238,"	0077200000				50				-3.927,36					EUR",CHILD
+Ejemplo3.csv,239,"",BLANK
+Ejemplo3.csv,240,"			        58	29.02.2024		220000176		      2			29.02.2024	29.02.2024	KR	Factura Proveedor			SCAMPELO	220000176	2024",PARENT
+Ejemplo3.csv,241,"	0063100000	Telefono FEBRERO 2024			50					               845,30		EUR	Factura telefono Febrero 2024",CHILD
+Ejemplo3.csv,242,"	0047200000	Telefono FEBRERO 2024			50					               177,51		EUR	Factura telefono Febrero 2024",CHILD
+Ejemplo3.csv,243,"	0077200000				50				-1.022,81					EUR",CHILD
+Ejemplo3.csv,244,"",BLANK
+Ejemplo3.csv,245,"			        59	29.02.2024		220000177		      2			29.02.2024	29.02.2024	KR	Factura Proveedor			SCAMPELO	220000177	2024",PARENT
+Ejemplo3.csv,246,"	0063200000	Internet FEBRERO 2024			50					               325,75		EUR	Factura internet Febrero 2024",CHILD
+Ejemplo3.csv,247,"	0047200000	Internet FEBRERO 2024			50					                68,41		EUR	Factura internet Febrero 2024",CHILD
+Ejemplo3.csv,248,"	0077200000				50					  -394,16					EUR",CHILD
+Ejemplo3.csv,249,"",BLANK
+Ejemplo3.csv,250,"			        60	29.02.2024		220000178		      2			29.02.2024	29.02.2024	KR	Factura Proveedor			SCAMPELO	220000178	2024",PARENT
+Ejemplo3.csv,251,"	0064000000	Seguros FEBRERO 2024			50					             1.245,80		EUR	Prima seguros Febrero 2024",CHILD
+Ejemplo3.csv,252,"	0047200000	Seguros FEBRERO 2024			50					               261,62		EUR	Prima seguros Febrero 2024",CHILD
+Ejemplo3.csv,253,"	0077200000				50				-1.507,42					EUR",CHILD
+Ejemplo3.csv,254,"",BLANK
+Ejemplo3.csv,255,"			        61	29.02.2024		220000179		      2			29.02.2024	29.02.2024	KR	Factura Proveedor			SCAMPELO	220000179	2024",PARENT
+Ejemplo3.csv,256,"	0064100000	Mantenimiento FEBRERO 2024			50					             2.850,45		EUR	Gastos mantenimiento Febrero 2024",CHILD
+Ejemplo3.csv,257,"	0047200000	Mantenimiento FEBRERO 2024			50					               598,59		EUR	Gastos mantenimiento Febrero 2024",CHILD
+Ejemplo3.csv,258,"	0077200000				50				-3.449,04					EUR",CHILD
+Ejemplo3.csv,259,"",BLANK
+Ejemplo3.csv,260,"			        62	31.03.2024		320000180		      3			15.03.2024	15.03.2024	KR	Factura Proveedor			SCAMPELO	320000180	2024",PARENT
+Ejemplo3.csv,261,"	0062300000	CUOTA MARZO 2024 MADR			50					            15.125,00		EUR	CUOTA MENSUAL MARZO 2024 MADRID",CHILD
+Ejemplo3.csv,262,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,263,"",BLANK
+Ejemplo3.csv,264,"			        63	31.03.2024		320000181		      3			15.03.2024	15.03.2024	KR	Factura Proveedor			SCAMPELO	320000181	2024",PARENT
+Ejemplo3.csv,265,"	0062300000	CUOTA MARZO 2024 VALE			50					            15.125,00		EUR	CUOTA MENSUAL MARZO 2024 VALENCIA",CHILD
+Ejemplo3.csv,266,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,267,"",BLANK
+Ejemplo3.csv,268,"			        64	31.03.2024		320000182		      3			15.03.2024	15.03.2024	KR	Factura Proveedor			SCAMPELO	320000182	2024",PARENT
+Ejemplo3.csv,269,"	0062300000	CUOTA MARZO 2024 BARC			50					            15.125,00		EUR	CUOTA MENSUAL MARZO 2024 BARCELONA",CHILD
+Ejemplo3.csv,270,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,271,"",BLANK
+Ejemplo3.csv,272,"			        65	31.03.2024		320000183		      3			15.03.2024	15.03.2024	KR	Factura Proveedor			SCAMPELO	320000183	2024",PARENT
+Ejemplo3.csv,273,"	0062300000	CUOTA MARZO 2024 SEVI			50					            15.125,00		EUR	CUOTA MENSUAL MARZO 2024 SEVILLA",CHILD
+Ejemplo3.csv,274,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,275,"",BLANK
+Ejemplo3.csv,276,"			        66	31.03.2024		320000184		      3			15.03.2024	15.03.2024	KR	Factura Proveedor			SCAMPELO	320000184	2024",PARENT
+Ejemplo3.csv,277,"	0062300000	CUOTA MARZO 2024 BILL			50					            15.125,00		EUR	CUOTA MENSUAL MARZO 2024 BILBAO",CHILD
+Ejemplo3.csv,278,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,279,"",BLANK
+Ejemplo3.csv,280,"			        67	31.03.2024		320000185		      3			15.03.2024	15.03.2024	KR	Factura Proveedor			SCAMPELO	320000185	2024",PARENT
+Ejemplo3.csv,281,"	0062300000	CUOTA MARZO 2024 ZARA			50					            15.125,00		EUR	CUOTA MENSUAL MARZO 2024 ZARAGOZA",CHILD
+Ejemplo3.csv,282,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,283,"",BLANK
+Ejemplo3.csv,284,"			        68	31.03.2024		320000186		      3			15.03.2024	15.03.2024	KR	Factura Proveedor			SCAMPELO	320000186	2024",PARENT
+Ejemplo3.csv,285,"	0062300000	CUOTA MARZO 2024 VIGO			50					            15.125,00		EUR	CUOTA MENSUAL MARZO 2024 VIGO",CHILD
+Ejemplo3.csv,286,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,287,"",BLANK
+Ejemplo3.csv,288,"			        69	31.03.2024		320000187		      3			15.03.2024	15.03.2024	KR	Factura Proveedor			SCAMPELO	320000187	2024",PARENT
+Ejemplo3.csv,289,"	0062300000	CUOTA MARZO 2024 MALA			50					            15.125,00		EUR	CUOTA MENSUAL MARZO 2024 MALAGA",CHILD
+Ejemplo3.csv,290,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,291,"",BLANK
+Ejemplo3.csv,292,"			        70	31.03.2024		320000188		      3			15.03.2024	15.03.2024	KR	Factura Proveedor			SCAMPELO	320000188	2024",PARENT
+Ejemplo3.csv,293,"	0062300000	CUOTA MARZO 2024 CORU			50					            15.125,00		EUR	CUOTA MENSUAL MARZO 2024 CORUÑA",CHILD
+Ejemplo3.csv,294,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,295,"",BLANK
+Ejemplo3.csv,296,"			        71	31.03.2024		320000189		      3			15.03.2024	15.03.2024	KR	Factura Proveedor			SCAMPELO	320000189	2024",PARENT
+Ejemplo3.csv,297,"	0062300000	CUOTA MARZO 2024 MURC			50					            15.125,00		EUR	CUOTA MENSUAL MARZO 2024 MURCIA",CHILD
+Ejemplo3.csv,298,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,299,"",BLANK
+Ejemplo3.csv,300,"			        72	31.03.2024		320000190		      3			15.03.2024	15.03.2024	KR	Factura Proveedor			SCAMPELO	320000190	2024",PARENT
+Ejemplo3.csv,301,"	0062300000	CUOTA MARZO 2024 PALM			50					            15.125,00		EUR	CUOTA MENSUAL MARZO 2024 PALMA",CHILD
+Ejemplo3.csv,302,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,303,"",BLANK
+Ejemplo3.csv,304,"			        73	31.03.2024		320000191		      3			15.03.2024	15.03.2024	KR	Factura Proveedor			SCAMPELO	320000191	2024",PARENT
+Ejemplo3.csv,305,"	0062300000	CUOTA MARZO 2024 SANC			50					            15.125,00		EUR	CUOTA MENSUAL MARZO 2024 SANTANDER",CHILD
+Ejemplo3.csv,306,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,307,"",BLANK
+Ejemplo3.csv,308,"			        74	31.03.2024		320000192		      3			15.03.2024	15.03.2024	KR	Factura Proveedor			SCAMPELO	320000192	2024",PARENT
+Ejemplo3.csv,309,"	0062300000	CUOTA MARZO 2024 GIRO			50					            15.125,00		EUR	CUOTA MENSUAL MARZO 2024 GIRONA",CHILD
+Ejemplo3.csv,310,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,311,"",BLANK
+Ejemplo3.csv,312,"			        75	31.03.2024		320000193		      3			15.03.2024	15.03.2024	KR	Factura Proveedor			SCAMPELO	320000193	2024",PARENT
+Ejemplo3.csv,313,"	0062300000	CUOTA MARZO 2024 LEON			50					            15.125,00		EUR	CUOTA MENSUAL MARZO 2024 LEON",CHILD
+Ejemplo3.csv,314,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,315,"",BLANK
+Ejemplo3.csv,316,"			        76	31.03.2024		320000194		      3			15.03.2024	15.03.2024	KR	Factura Proveedor			SCAMPELO	320000194	2024",PARENT
+Ejemplo3.csv,317,"	0062300000	CUOTA MARZO 2024 CAST			50					            15.125,00		EUR	CUOTA MENSUAL MARZO 2024 CASTELLON",CHILD
+Ejemplo3.csv,318,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,319,"",BLANK
+Ejemplo3.csv,320,"			        77	31.03.2024		320000195		      3			31.03.2024	31.03.2024	KR	Factura Proveedor			SCAMPELO	320000195	2024",PARENT
+Ejemplo3.csv,321,"	0062300000	Agua MARZO 2024			50					             2.380,95		EUR	Factura agua Marzo 2024",CHILD
+Ejemplo3.csv,322,"	0047200000	Agua MARZO 2024			50					               500,00		EUR	Factura agua Marzo 2024",CHILD
+Ejemplo3.csv,323,"	0077200000				50				-2.880,95					EUR",CHILD
+Ejemplo3.csv,324,"",BLANK
+Ejemplo3.csv,325,"			        78	31.03.2024		320000196		      3			31.03.2024	31.03.2024	KR	Factura Proveedor			SCAMPELO	320000196	2024",PARENT
+Ejemplo3.csv,326,"	0062800000	Luz MARZO 2024			50					             8.450,25		EUR	Factura electricidad Marzo 2024",CHILD
+Ejemplo3.csv,327,"	0047200000	Luz MARZO 2024			50					             1.774,55		EUR	Factura electricidad Marzo 2024",CHILD
+Ejemplo3.csv,328,"	0077200000				50				-10.224,80					EUR",CHILD
+Ejemplo3.csv,329,"",BLANK
+Ejemplo3.csv,330,"			        79	31.03.2024		320000197		      3			31.03.2024	31.03.2024	KR	Factura Proveedor			SCAMPELO	320000197	2024",PARENT
+Ejemplo3.csv,331,"	0062900000	Gas MARZO 2024			50					             3.245,75		EUR	Factura gas Marzo 2024",CHILD
+Ejemplo3.csv,332,"	0047200000	Gas MARZO 2024			50					               681,61		EUR	Factura gas Marzo 2024",CHILD
+Ejemplo3.csv,333,"	0077200000				50				-3.927,36					EUR",CHILD
+Ejemplo3.csv,334,"",BLANK
+Ejemplo3.csv,335,"			        80	31.03.2024		320000198		      3			31.03.2024	31.03.2024	KR	Factura Proveedor			SCAMPELO	320000198	2024",PARENT
+Ejemplo3.csv,336,"	0063100000	Telefono MARZO 2024			50					               845,30		EUR	Factura telefono Marzo 2024",CHILD
+Ejemplo3.csv,337,"	0047200000	Telefono MARZO 2024			50					               177,51		EUR	Factura telefono Marzo 2024",CHILD
+Ejemplo3.csv,338,"	0077200000				50				-1.022,81					EUR",CHILD
+Ejemplo3.csv,339,"",BLANK
+Ejemplo3.csv,340,"			        81	31.03.2024		320000199		      3			31.03.2024	31.03.2024	KR	Factura Proveedor			SCAMPELO	320000199	2024",PARENT
+Ejemplo3.csv,341,"	0063200000	Internet MARZO 2024			50					               325,75		EUR	Factura internet Marzo 2024",CHILD
+Ejemplo3.csv,342,"	0047200000	Internet MARZO 2024			50					                68,41		EUR	Factura internet Marzo 2024",CHILD
+Ejemplo3.csv,343,"	0077200000				50					  -394,16					EUR",CHILD
+Ejemplo3.csv,344,"",BLANK
+Ejemplo3.csv,345,"			        82	31.03.2024		320000200		      3			31.03.2024	31.03.2024	KR	Factura Proveedor			SCAMPELO	320000200	2024",PARENT
+Ejemplo3.csv,346,"	0064000000	Seguros MARZO 2024			50					             1.245,80		EUR	Prima seguros Marzo 2024",CHILD
+Ejemplo3.csv,347,"	0047200000	Seguros MARZO 2024			50					               261,62		EUR	Prima seguros Marzo 2024",CHILD
+Ejemplo3.csv,348,"	0077200000				50				-1.507,42					EUR",CHILD
+Ejemplo3.csv,349,"",BLANK
+Ejemplo3.csv,350,"			        83	31.03.2024		320000201		      3			31.03.2024	31.03.2024	KR	Factura Proveedor			SCAMPELO	320000201	2024",PARENT
+Ejemplo3.csv,351,"	0064100000	Mantenimiento MARZO 2024			50					             2.850,45		EUR	Gastos mantenimiento Marzo 2024",CHILD
+Ejemplo3.csv,352,"	0047200000	Mantenimiento MARZO 2024			50					               598,59		EUR	Gastos mantenimiento Marzo 2024",CHILD
+Ejemplo3.csv,353,"	0077200000				50				-3.449,04					EUR",CHILD
+Ejemplo3.csv,354,"",BLANK
+Ejemplo3.csv,355,"			        84	30.04.2024		420000202		      4			15.04.2024	15.04.2024	KR	Factura Proveedor			SCAMPELO	420000202	2024",PARENT
+Ejemplo3.csv,356,"	0062300000	CUOTA ABRIL 2024 MADR			50					            15.125,00		EUR	CUOTA MENSUAL ABRIL 2024 MADRID",CHILD
+Ejemplo3.csv,357,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,358,"",BLANK
+Ejemplo3.csv,359,"			        85	30.04.2024		420000203		      4			15.04.2024	15.04.2024	KR	Factura Proveedor			SCAMPELO	420000203	2024",PARENT
+Ejemplo3.csv,360,"	0062300000	CUOTA ABRIL 2024 VALE			50					            15.125,00		EUR	CUOTA MENSUAL ABRIL 2024 VALENCIA",CHILD
+Ejemplo3.csv,361,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,362,"",BLANK
+Ejemplo3.csv,363,"			        86	30.04.2024		420000204		      4			15.04.2024	15.04.2024	KR	Factura Proveedor			SCAMPELO	420000204	2024",PARENT
+Ejemplo3.csv,364,"	0062300000	CUOTA ABRIL 2024 BARC			50					            15.125,00		EUR	CUOTA MENSUAL ABRIL 2024 BARCELONA",CHILD
+Ejemplo3.csv,365,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,366,"",BLANK
+Ejemplo3.csv,367,"			        87	30.04.2024		420000205		      4			15.04.2024	15.04.2024	KR	Factura Proveedor			SCAMPELO	420000205	2024",PARENT
+Ejemplo3.csv,368,"	0062300000	CUOTA ABRIL 2024 SEVI			50					            15.125,00		EUR	CUOTA MENSUAL ABRIL 2024 SEVILLA",CHILD
+Ejemplo3.csv,369,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,370,"",BLANK
+Ejemplo3.csv,371,"			        88	30.04.2024		420000206		      4			15.04.2024	15.04.2024	KR	Factura Proveedor			SCAMPELO	420000206	2024",PARENT
+Ejemplo3.csv,372,"	0062300000	CUOTA ABRIL 2024 BILL			50					            15.125,00		EUR	CUOTA MENSUAL ABRIL 2024 BILBAO",CHILD
+Ejemplo3.csv,373,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,374,"",BLANK
+Ejemplo3.csv,375,"			        89	30.04.2024		420000207		      4			15.04.2024	15.04.2024	KR	Factura Proveedor			SCAMPELO	420000207	2024",PARENT
+Ejemplo3.csv,376,"	0062300000	CUOTA ABRIL 2024 ZARA			50					            15.125,00		EUR	CUOTA MENSUAL ABRIL 2024 ZARAGOZA",CHILD
+Ejemplo3.csv,377,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,378,"",BLANK
+Ejemplo3.csv,379,"			        90	30.04.2024		420000208		      4			15.04.2024	15.04.2024	KR	Factura Proveedor			SCAMPELO	420000208	2024",PARENT
+Ejemplo3.csv,380,"	0062300000	CUOTA ABRIL 2024 VIGO			50					            15.125,00		EUR	CUOTA MENSUAL ABRIL 2024 VIGO",CHILD
+Ejemplo3.csv,381,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,382,"",BLANK
+Ejemplo3.csv,383,"			        91	30.04.2024		420000209		      4			15.04.2024	15.04.2024	KR	Factura Proveedor			SCAMPELO	420000209	2024",PARENT
+Ejemplo3.csv,384,"	0062300000	CUOTA ABRIL 2024 MALA			50					            15.125,00		EUR	CUOTA MENSUAL ABRIL 2024 MALAGA",CHILD
+Ejemplo3.csv,385,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,386,"",BLANK
+Ejemplo3.csv,387,"			        92	30.04.2024		420000210		      4			15.04.2024	15.04.2024	KR	Factura Proveedor			SCAMPELO	420000210	2024",PARENT
+Ejemplo3.csv,388,"	0062300000	CUOTA ABRIL 2024 CORU			50					            15.125,00		EUR	CUOTA MENSUAL ABRIL 2024 CORUÑA",CHILD
+Ejemplo3.csv,389,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,390,"",BLANK
+Ejemplo3.csv,391,"			        93	30.04.2024		420000211		      4			15.04.2024	15.04.2024	KR	Factura Proveedor			SCAMPELO	420000211	2024",PARENT
+Ejemplo3.csv,392,"	0062300000	CUOTA ABRIL 2024 MURC			50					            15.125,00		EUR	CUOTA MENSUAL ABRIL 2024 MURCIA",CHILD
+Ejemplo3.csv,393,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,394,"",BLANK
+Ejemplo3.csv,395,"			        94	30.04.2024		420000212		      4			15.04.2024	15.04.2024	KR	Factura Proveedor			SCAMPELO	420000212	2024",PARENT
+Ejemplo3.csv,396,"	0062300000	CUOTA ABRIL 2024 PALM			50					            15.125,00		EUR	CUOTA MENSUAL ABRIL 2024 PALMA",CHILD
+Ejemplo3.csv,397,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,398,"",BLANK
+Ejemplo3.csv,399,"			        95	30.04.2024		420000213		      4			15.04.2024	15.04.2024	KR	Factura Proveedor			SCAMPELO	420000213	2024",PARENT
+Ejemplo3.csv,400,"	0062300000	CUOTA ABRIL 2024 SANC			50					            15.125,00		EUR	CUOTA MENSUAL ABRIL 2024 SANTANDER",CHILD
+Ejemplo3.csv,401,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,402,"",BLANK
+Ejemplo3.csv,403,"			        96	30.04.2024		420000214		      4			15.04.2024	15.04.2024	KR	Factura Proveedor			SCAMPELO	420000214	2024",PARENT
+Ejemplo3.csv,404,"	0062300000	CUOTA ABRIL 2024 GIRO			50					            15.125,00		EUR	CUOTA MENSUAL ABRIL 2024 GIRONA",CHILD
+Ejemplo3.csv,405,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,406,"",BLANK
+Ejemplo3.csv,407,"			        97	30.04.2024		420000215		      4			15.04.2024	15.04.2024	KR	Factura Proveedor			SCAMPELO	420000215	2024",PARENT
+Ejemplo3.csv,408,"	0062300000	CUOTA ABRIL 2024 LEON			50					            15.125,00		EUR	CUOTA MENSUAL ABRIL 2024 LEON",CHILD
+Ejemplo3.csv,409,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,410,"",BLANK
+Ejemplo3.csv,411,"			        98	30.04.2024		420000216		      4			15.04.2024	15.04.2024	KR	Factura Proveedor			SCAMPELO	420000216	2024",PARENT
+Ejemplo3.csv,412,"	0062300000	CUOTA ABRIL 2024 CAST			50					            15.125,00		EUR	CUOTA MENSUAL ABRIL 2024 CASTELLON",CHILD
+Ejemplo3.csv,413,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,414,"",BLANK
+Ejemplo3.csv,415,"			        99	30.04.2024		420000217		      4			30.04.2024	30.04.2024	KR	Factura Proveedor			SCAMPELO	420000217	2024",PARENT
+Ejemplo3.csv,416,"	0062300000	Agua ABRIL 2024			50					             2.380,95		EUR	Factura agua Abril 2024",CHILD
+Ejemplo3.csv,417,"	0047200000	Agua ABRIL 2024			50					               500,00		EUR	Factura agua Abril 2024",CHILD
+Ejemplo3.csv,418,"	0077200000				50				-2.880,95					EUR",CHILD
+Ejemplo3.csv,419,"",BLANK
+Ejemplo3.csv,420,"			       100	30.04.2024		420000218		      4			30.04.2024	30.04.2024	KR	Factura Proveedor			SCAMPELO	420000218	2024",PARENT
+Ejemplo3.csv,421,"	0062800000	Luz ABRIL 2024			50					             8.450,25		EUR	Factura electricidad Abril 2024",CHILD
+Ejemplo3.csv,422,"	0047200000	Luz ABRIL 2024			50					             1.774,55		EUR	Factura electricidad Abril 2024",CHILD
+Ejemplo3.csv,423,"	0077200000				50				-10.224,80					EUR",CHILD
+Ejemplo3.csv,424,"",BLANK
+Ejemplo3.csv,425,"			       101	30.04.2024		420000219		      4			30.04.2024	30.04.2024	KR	Factura Proveedor			SCAMPELO	420000219	2024",PARENT
+Ejemplo3.csv,426,"	0062900000	Gas ABRIL 2024			50					             3.245,75		EUR	Factura gas Abril 2024",CHILD
+Ejemplo3.csv,427,"	0047200000	Gas ABRIL 2024			50					               681,61		EUR	Factura gas Abril 2024",CHILD
+Ejemplo3.csv,428,"	0077200000				50				-3.927,36					EUR",CHILD
+Ejemplo3.csv,429,"",BLANK
+Ejemplo3.csv,430,"			       102	30.04.2024		420000220		      4			30.04.2024	30.04.2024	KR	Factura Proveedor			SCAMPELO	420000220	2024",PARENT
+Ejemplo3.csv,431,"	0063100000	Telefono ABRIL 2024			50					               845,30		EUR	Factura telefono Abril 2024",CHILD
+Ejemplo3.csv,432,"	0047200000	Telefono ABRIL 2024			50					               177,51		EUR	Factura telefono Abril 2024",CHILD
+Ejemplo3.csv,433,"	0077200000				50				-1.022,81					EUR",CHILD
+Ejemplo3.csv,434,"",BLANK
+Ejemplo3.csv,435,"			       103	30.04.2024		420000221		      4			30.04.2024	30.04.2024	KR	Factura Proveedor			SCAMPELO	420000221	2024",PARENT
+Ejemplo3.csv,436,"	0063200000	Internet ABRIL 2024			50					               325,75		EUR	Factura internet Abril 2024",CHILD
+Ejemplo3.csv,437,"	0047200000	Internet ABRIL 2024			50					                68,41		EUR	Factura internet Abril 2024",CHILD
+Ejemplo3.csv,438,"	0077200000				50					  -394,16					EUR",CHILD
+Ejemplo3.csv,439,"",BLANK
+Ejemplo3.csv,440,"			       104	30.04.2024		420000222		      4			30.04.2024	30.04.2024	KR	Factura Proveedor			SCAMPELO	420000222	2024",PARENT
+Ejemplo3.csv,441,"	0064000000	Seguros ABRIL 2024			50					             1.245,80		EUR	Prima seguros Abril 2024",CHILD
+Ejemplo3.csv,442,"	0047200000	Seguros ABRIL 2024			50					               261,62		EUR	Prima seguros Abril 2024",CHILD
+Ejemplo3.csv,443,"	0077200000				50				-1.507,42					EUR",CHILD
+Ejemplo3.csv,444,"",BLANK
+Ejemplo3.csv,445,"			       105	30.04.2024		420000223		      4			30.04.2024	30.04.2024	KR	Factura Proveedor			SCAMPELO	420000223	2024",PARENT
+Ejemplo3.csv,446,"	0064100000	Mantenimiento ABRIL 2024			50					             2.850,45		EUR	Gastos mantenimiento Abril 2024",CHILD
+Ejemplo3.csv,447,"	0047200000	Mantenimiento ABRIL 2024			50					               598,59		EUR	Gastos mantenimiento Abril 2024",CHILD
+Ejemplo3.csv,448,"	0077200000				50				-3.449,04					EUR",CHILD
+Ejemplo3.csv,449,"",BLANK
+Ejemplo3.csv,450,"			       106	31.05.2024		520000224		      5			15.05.2024	15.05.2024	KR	Factura Proveedor			SCAMPELO	520000224	2024",PARENT
+Ejemplo3.csv,451,"	0062300000	CUOTA MAYO 2024 MADR			50					            15.125,00		EUR	CUOTA MENSUAL MAYO 2024 MADRID",CHILD
+Ejemplo3.csv,452,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,453,"",BLANK
+Ejemplo3.csv,454,"			       107	31.05.2024		520000225		      5			15.05.2024	15.05.2024	KR	Factura Proveedor			SCAMPELO	520000225	2024",PARENT
+Ejemplo3.csv,455,"	0062300000	CUOTA MAYO 2024 VALE			50					            15.125,00		EUR	CUOTA MENSUAL MAYO 2024 VALENCIA",CHILD
+Ejemplo3.csv,456,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,457,"",BLANK
+Ejemplo3.csv,458,"			       108	31.05.2024		520000226		      5			15.05.2024	15.05.2024	KR	Factura Proveedor			SCAMPELO	520000226	2024",PARENT
+Ejemplo3.csv,459,"	0062300000	CUOTA MAYO 2024 BARC			50					            15.125,00		EUR	CUOTA MENSUAL MAYO 2024 BARCELONA",CHILD
+Ejemplo3.csv,460,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,461,"",BLANK
+Ejemplo3.csv,462,"			       109	31.05.2024		520000227		      5			15.05.2024	15.05.2024	KR	Factura Proveedor			SCAMPELO	520000227	2024",PARENT
+Ejemplo3.csv,463,"	0062300000	CUOTA MAYO 2024 SEVI			50					            15.125,00		EUR	CUOTA MENSUAL MAYO 2024 SEVILLA",CHILD
+Ejemplo3.csv,464,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,465,"",BLANK
+Ejemplo3.csv,466,"			       110	31.05.2024		520000228		      5			15.05.2024	15.05.2024	KR	Factura Proveedor			SCAMPELO	520000228	2024",PARENT
+Ejemplo3.csv,467,"	0062300000	CUOTA MAYO 2024 BILL			50					            15.125,00		EUR	CUOTA MENSUAL MAYO 2024 BILBAO",CHILD
+Ejemplo3.csv,468,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,469,"",BLANK
+Ejemplo3.csv,470,"			       111	31.05.2024		520000229		      5			15.05.2024	15.05.2024	KR	Factura Proveedor			SCAMPELO	520000229	2024",PARENT
+Ejemplo3.csv,471,"	0062300000	CUOTA MAYO 2024 ZARA			50					            15.125,00		EUR	CUOTA MENSUAL MAYO 2024 ZARAGOZA",CHILD
+Ejemplo3.csv,472,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,473,"",BLANK
+Ejemplo3.csv,474,"			       112	31.05.2024		520000230		      5			15.05.2024	15.05.2024	KR	Factura Proveedor			SCAMPELO	520000230	2024",PARENT
+Ejemplo3.csv,475,"	0062300000	CUOTA MAYO 2024 VIGO			50					            15.125,00		EUR	CUOTA MENSUAL MAYO 2024 VIGO",CHILD
+Ejemplo3.csv,476,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,477,"",BLANK
+Ejemplo3.csv,478,"			       113	31.05.2024		520000231		      5			15.05.2024	15.05.2024	KR	Factura Proveedor			SCAMPELO	520000231	2024",PARENT
+Ejemplo3.csv,479,"	0062300000	CUOTA MAYO 2024 MALA			50					            15.125,00		EUR	CUOTA MENSUAL MAYO 2024 MALAGA",CHILD
+Ejemplo3.csv,480,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,481,"",BLANK
+Ejemplo3.csv,482,"			       114	31.05.2024		520000232		      5			15.05.2024	15.05.2024	KR	Factura Proveedor			SCAMPELO	520000232	2024",PARENT
+Ejemplo3.csv,483,"	0062300000	CUOTA MAYO 2024 CORU			50					            15.125,00		EUR	CUOTA MENSUAL MAYO 2024 CORUÑA",CHILD
+Ejemplo3.csv,484,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,485,"",BLANK
+Ejemplo3.csv,486,"			       115	31.05.2024		520000233		      5			15.05.2024	15.05.2024	KR	Factura Proveedor			SCAMPELO	520000233	2024",PARENT
+Ejemplo3.csv,487,"	0062300000	CUOTA MAYO 2024 MURC			50					            15.125,00		EUR	CUOTA MENSUAL MAYO 2024 MURCIA",CHILD
+Ejemplo3.csv,488,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,489,"",BLANK
+Ejemplo3.csv,490,"			       116	31.05.2024		520000234		      5			15.05.2024	15.05.2024	KR	Factura Proveedor			SCAMPELO	520000234	2024",PARENT
+Ejemplo3.csv,491,"	0062300000	CUOTA MAYO 2024 PALM			50					            15.125,00		EUR	CUOTA MENSUAL MAYO 2024 PALMA",CHILD
+Ejemplo3.csv,492,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,493,"",BLANK
+Ejemplo3.csv,494,"			       117	31.05.2024		520000235		      5			15.05.2024	15.05.2024	KR	Factura Proveedor			SCAMPELO	520000235	2024",PARENT
+Ejemplo3.csv,495,"	0062300000	CUOTA MAYO 2024 SANC			50					            15.125,00		EUR	CUOTA MENSUAL MAYO 2024 SANTANDER",CHILD
+Ejemplo3.csv,496,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,497,"",BLANK
+Ejemplo3.csv,498,"			       118	31.05.2024		520000236		      5			15.05.2024	15.05.2024	KR	Factura Proveedor			SCAMPELO	520000236	2024",PARENT
+Ejemplo3.csv,499,"	0062300000	CUOTA MAYO 2024 GIRO			50					            15.125,00		EUR	CUOTA MENSUAL MAYO 2024 GIRONA",CHILD
+Ejemplo3.csv,500,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,501,"",BLANK
+Ejemplo3.csv,502,"			       119	31.05.2024		520000237		      5			15.05.2024	15.05.2024	KR	Factura Proveedor			SCAMPELO	520000237	2024",PARENT
+Ejemplo3.csv,503,"	0062300000	CUOTA MAYO 2024 LEON			50					            15.125,00		EUR	CUOTA MENSUAL MAYO 2024 LEON",CHILD
+Ejemplo3.csv,504,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,505,"",BLANK
+Ejemplo3.csv,506,"			       120	31.05.2024		520000238		      5			15.05.2024	15.05.2024	KR	Factura Proveedor			SCAMPELO	520000238	2024",PARENT
+Ejemplo3.csv,507,"	0062300000	CUOTA MAYO 2024 CAST			50					            15.125,00		EUR	CUOTA MENSUAL MAYO 2024 CASTELLON",CHILD
+Ejemplo3.csv,508,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,509,"",BLANK
+Ejemplo3.csv,510,"			       121	31.05.2024		520000239		      5			31.05.2024	31.05.2024	KR	Factura Proveedor			SCAMPELO	520000239	2024",PARENT
+Ejemplo3.csv,511,"	0062300000	Agua MAYO 2024			50					             2.380,95		EUR	Factura agua Mayo 2024",CHILD
+Ejemplo3.csv,512,"	0047200000	Agua MAYO 2024			50					               500,00		EUR	Factura agua Mayo 2024",CHILD
+Ejemplo3.csv,513,"	0077200000				50				-2.880,95					EUR",CHILD
+Ejemplo3.csv,514,"",BLANK
+Ejemplo3.csv,515,"			       122	31.05.2024		520000240		      5			31.05.2024	31.05.2024	KR	Factura Proveedor			SCAMPELO	520000240	2024",PARENT
+Ejemplo3.csv,516,"	0062800000	Luz MAYO 2024			50					             8.450,25		EUR	Factura electricidad Mayo 2024",CHILD
+Ejemplo3.csv,517,"	0047200000	Luz MAYO 2024			50					             1.774,55		EUR	Factura electricidad Mayo 2024",CHILD
+Ejemplo3.csv,518,"	0077200000				50				-10.224,80					EUR",CHILD
+Ejemplo3.csv,519,"",BLANK
+Ejemplo3.csv,520,"			       123	31.05.2024		520000241		      5			31.05.2024	31.05.2024	KR	Factura Proveedor			SCAMPELO	520000241	2024",PARENT
+Ejemplo3.csv,521,"	0062900000	Gas MAYO 2024			50					             3.245,75		EUR	Factura gas Mayo 2024",CHILD
+Ejemplo3.csv,522,"	0047200000	Gas MAYO 2024			50					               681,61		EUR	Factura gas Mayo 2024",CHILD
+Ejemplo3.csv,523,"	0077200000				50				-3.927,36					EUR",CHILD
+Ejemplo3.csv,524,"",BLANK
+Ejemplo3.csv,525,"			       124	31.05.2024		520000242		      5			31.05.2024	31.05.2024	KR	Factura Proveedor			SCAMPELO	520000242	2024",PARENT
+Ejemplo3.csv,526,"	0063100000	Telefono MAYO 2024			50					               845,30		EUR	Factura telefono Mayo 2024",CHILD
+Ejemplo3.csv,527,"	0047200000	Telefono MAYO 2024			50					               177,51		EUR	Factura telefono Mayo 2024",CHILD
+Ejemplo3.csv,528,"	0077200000				50				-1.022,81					EUR",CHILD
+Ejemplo3.csv,529,"",BLANK
+Ejemplo3.csv,530,"			       125	31.05.2024		520000243		      5			31.05.2024	31.05.2024	KR	Factura Proveedor			SCAMPELO	520000243	2024",PARENT
+Ejemplo3.csv,531,"	0063200000	Internet MAYO 2024			50					               325,75		EUR	Factura internet Mayo 2024",CHILD
+Ejemplo3.csv,532,"	0047200000	Internet MAYO 2024			50					                68,41		EUR	Factura internet Mayo 2024",CHILD
+Ejemplo3.csv,533,"	0077200000				50					  -394,16					EUR",CHILD
+Ejemplo3.csv,534,"",BLANK
+Ejemplo3.csv,535,"			       126	31.05.2024		520000244		      5			31.05.2024	31.05.2024	KR	Factura Proveedor			SCAMPELO	520000244	2024",PARENT
+Ejemplo3.csv,536,"	0064000000	Seguros MAYO 2024			50					             1.245,80		EUR	Prima seguros Mayo 2024",CHILD
+Ejemplo3.csv,537,"	0047200000	Seguros MAYO 2024			50					               261,62		EUR	Prima seguros Mayo 2024",CHILD
+Ejemplo3.csv,538,"	0077200000				50				-1.507,42					EUR",CHILD
+Ejemplo3.csv,539,"",BLANK
+Ejemplo3.csv,540,"			       127	31.05.2024		520000245		      5			31.05.2024	31.05.2024	KR	Factura Proveedor			SCAMPELO	520000245	2024",PARENT
+Ejemplo3.csv,541,"	0064100000	Mantenimiento MAYO 2024			50					             2.850,45		EUR	Gastos mantenimiento Mayo 2024",CHILD
+Ejemplo3.csv,542,"	0047200000	Mantenimiento MAYO 2024			50					               598,59		EUR	Gastos mantenimiento Mayo 2024",CHILD
+Ejemplo3.csv,543,"	0077200000				50				-3.449,04					EUR",CHILD
+Ejemplo3.csv,544,"",BLANK
+Ejemplo3.csv,545,"			       128	30.06.2024		620000246		      6			15.06.2024	15.06.2024	KR	Factura Proveedor			SCAMPELO	620000246	2024",PARENT
+Ejemplo3.csv,546,"	0062300000	CUOTA JUNIO 2024 MADR			50					            15.125,00		EUR	CUOTA MENSUAL JUNIO 2024 MADRID",CHILD
+Ejemplo3.csv,547,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,548,"",BLANK
+Ejemplo3.csv,549,"			       129	30.06.2024		620000247		      6			15.06.2024	15.06.2024	KR	Factura Proveedor			SCAMPELO	620000247	2024",PARENT
+Ejemplo3.csv,550,"	0062300000	CUOTA JUNIO 2024 VALE			50					            15.125,00		EUR	CUOTA MENSUAL JUNIO 2024 VALENCIA",CHILD
+Ejemplo3.csv,551,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,552,"",BLANK
+Ejemplo3.csv,553,"			       130	30.06.2024		620000248		      6			15.06.2024	15.06.2024	KR	Factura Proveedor			SCAMPELO	620000248	2024",PARENT
+Ejemplo3.csv,554,"	0062300000	CUOTA JUNIO 2024 BARC			50					            15.125,00		EUR	CUOTA MENSUAL JUNIO 2024 BARCELONA",CHILD
+Ejemplo3.csv,555,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,556,"",BLANK
+Ejemplo3.csv,557,"			       131	30.06.2024		620000249		      6			15.06.2024	15.06.2024	KR	Factura Proveedor			SCAMPELO	620000249	2024",PARENT
+Ejemplo3.csv,558,"	0062300000	CUOTA JUNIO 2024 SEVI			50					            15.125,00		EUR	CUOTA MENSUAL JUNIO 2024 SEVILLA",CHILD
+Ejemplo3.csv,559,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,560,"",BLANK
+Ejemplo3.csv,561,"			       132	30.06.2024		620000250		      6			15.06.2024	15.06.2024	KR	Factura Proveedor			SCAMPELO	620000250	2024",PARENT
+Ejemplo3.csv,562,"	0062300000	CUOTA JUNIO 2024 BILL			50					            15.125,00		EUR	CUOTA MENSUAL JUNIO 2024 BILBAO",CHILD
+Ejemplo3.csv,563,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,564,"",BLANK
+Ejemplo3.csv,565,"			       133	30.06.2024		620000251		      6			15.06.2024	15.06.2024	KR	Factura Proveedor			SCAMPELO	620000251	2024",PARENT
+Ejemplo3.csv,566,"	0062300000	CUOTA JUNIO 2024 ZARA			50					            15.125,00		EUR	CUOTA MENSUAL JUNIO 2024 ZARAGOZA",CHILD
+Ejemplo3.csv,567,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,568,"",BLANK
+Ejemplo3.csv,569,"			       134	30.06.2024		620000252		      6			15.06.2024	15.06.2024	KR	Factura Proveedor			SCAMPELO	620000252	2024",PARENT
+Ejemplo3.csv,570,"	0062300000	CUOTA JUNIO 2024 VIGO			50					            15.125,00		EUR	CUOTA MENSUAL JUNIO 2024 VIGO",CHILD
+Ejemplo3.csv,571,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,572,"",BLANK
+Ejemplo3.csv,573,"			       135	30.06.2024		620000253		      6			15.06.2024	15.06.2024	KR	Factura Proveedor			SCAMPELO	620000253	2024",PARENT
+Ejemplo3.csv,574,"	0062300000	CUOTA JUNIO 2024 MALA			50					            15.125,00		EUR	CUOTA MENSUAL JUNIO 2024 MALAGA",CHILD
+Ejemplo3.csv,575,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,576,"",BLANK
+Ejemplo3.csv,577,"			       136	30.06.2024		620000254		      6			15.06.2024	15.06.2024	KR	Factura Proveedor			SCAMPELO	620000254	2024",PARENT
+Ejemplo3.csv,578,"	0062300000	CUOTA JUNIO 2024 CORU			50					            15.125,00		EUR	CUOTA MENSUAL JUNIO 2024 CORUÑA",CHILD
+Ejemplo3.csv,579,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,580,"",BLANK
+Ejemplo3.csv,581,"			       137	30.06.2024		620000255		      6			15.06.2024	15.06.2024	KR	Factura Proveedor			SCAMPELO	620000255	2024",PARENT
+Ejemplo3.csv,582,"	0062300000	CUOTA JUNIO 2024 MURC			50					            15.125,00		EUR	CUOTA MENSUAL JUNIO 2024 MURCIA",CHILD
+Ejemplo3.csv,583,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,584,"",BLANK
+Ejemplo3.csv,585,"			       138	30.06.2024		620000256		      6			15.06.2024	15.06.2024	KR	Factura Proveedor			SCAMPELO	620000256	2024",PARENT
+Ejemplo3.csv,586,"	0062300000	CUOTA JUNIO 2024 PALM			50					            15.125,00		EUR	CUOTA MENSUAL JUNIO 2024 PALMA",CHILD
+Ejemplo3.csv,587,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,588,"",BLANK
+Ejemplo3.csv,589,"			       139	30.06.2024		620000257		      6			15.06.2024	15.06.2024	KR	Factura Proveedor			SCAMPELO	620000257	2024",PARENT
+Ejemplo3.csv,590,"	0062300000	CUOTA JUNIO 2024 SANC			50					            15.125,00		EUR	CUOTA MENSUAL JUNIO 2024 SANTANDER",CHILD
+Ejemplo3.csv,591,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,592,"",BLANK
+Ejemplo3.csv,593,"			       140	30.06.2024		620000258		      6			15.06.2024	15.06.2024	KR	Factura Proveedor			SCAMPELO	620000258	2024",PARENT
+Ejemplo3.csv,594,"	0062300000	CUOTA JUNIO 2024 GIRO			50					            15.125,00		EUR	CUOTA MENSUAL JUNIO 2024 GIRONA",CHILD
+Ejemplo3.csv,595,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,596,"",BLANK
+Ejemplo3.csv,597,"			       141	30.06.2024		620000259		      6			15.06.2024	15.06.2024	KR	Factura Proveedor			SCAMPELO	620000259	2024",PARENT
+Ejemplo3.csv,598,"	0062300000	CUOTA JUNIO 2024 LEON			50					            15.125,00		EUR	CUOTA MENSUAL JUNIO 2024 LEON",CHILD
+Ejemplo3.csv,599,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,600,"",BLANK
+Ejemplo3.csv,601,"			       142	30.06.2024		620000260		      6			15.06.2024	15.06.2024	KR	Factura Proveedor			SCAMPELO	620000260	2024",PARENT
+Ejemplo3.csv,602,"	0062300000	CUOTA JUNIO 2024 CAST			50					            15.125,00		EUR	CUOTA MENSUAL JUNIO 2024 CASTELLON",CHILD
+Ejemplo3.csv,603,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,604,"",BLANK
+Ejemplo3.csv,605,"			       143	30.06.2024		620000261		      6			30.06.2024	30.06.2024	KR	Factura Proveedor			SCAMPELO	620000261	2024",PARENT
+Ejemplo3.csv,606,"	0062300000	Agua JUNIO 2024			50					             2.380,95		EUR	Factura agua Junio 2024",CHILD
+Ejemplo3.csv,607,"	0047200000	Agua JUNIO 2024			50					               500,00		EUR	Factura agua Junio 2024",CHILD
+Ejemplo3.csv,608,"	0077200000				50				-2.880,95					EUR",CHILD
+Ejemplo3.csv,609,"",BLANK
+Ejemplo3.csv,610,"			       144	30.06.2024		620000262		      6			30.06.2024	30.06.2024	KR	Factura Proveedor			SCAMPELO	620000262	2024",PARENT
+Ejemplo3.csv,611,"	0062800000	Luz JUNIO 2024			50					             8.450,25		EUR	Factura electricidad Junio 2024",CHILD
+Ejemplo3.csv,612,"	0047200000	Luz JUNIO 2024			50					             1.774,55		EUR	Factura electricidad Junio 2024",CHILD
+Ejemplo3.csv,613,"	0077200000				50				-10.224,80					EUR",CHILD
+Ejemplo3.csv,614,"",BLANK
+Ejemplo3.csv,615,"			       145	30.06.2024		620000263		      6			30.06.2024	30.06.2024	KR	Factura Proveedor			SCAMPELO	620000263	2024",PARENT
+Ejemplo3.csv,616,"	0062900000	Gas JUNIO 2024			50					             3.245,75		EUR	Factura gas Junio 2024",CHILD
+Ejemplo3.csv,617,"	0047200000	Gas JUNIO 2024			50					               681,61		EUR	Factura gas Junio 2024",CHILD
+Ejemplo3.csv,618,"	0077200000				50				-3.927,36					EUR",CHILD
+Ejemplo3.csv,619,"",BLANK
+Ejemplo3.csv,620,"			       146	30.06.2024		620000264		      6			30.06.2024	30.06.2024	KR	Factura Proveedor			SCAMPELO	620000264	2024",PARENT
+Ejemplo3.csv,621,"	0063100000	Telefono JUNIO 2024			50					               845,30		EUR	Factura telefono Junio 2024",CHILD
+Ejemplo3.csv,622,"	0047200000	Telefono JUNIO 2024			50					               177,51		EUR	Factura telefono Junio 2024",CHILD
+Ejemplo3.csv,623,"	0077200000				50				-1.022,81					EUR",CHILD
+Ejemplo3.csv,624,"",BLANK
+Ejemplo3.csv,625,"			       147	30.06.2024		620000265		      6			30.06.2024	30.06.2024	KR	Factura Proveedor			SCAMPELO	620000265	2024",PARENT
+Ejemplo3.csv,626,"	0063200000	Internet JUNIO 2024			50					               325,75		EUR	Factura internet Junio 2024",CHILD
+Ejemplo3.csv,627,"	0047200000	Internet JUNIO 2024			50					                68,41		EUR	Factura internet Junio 2024",CHILD
+Ejemplo3.csv,628,"	0077200000				50					  -394,16					EUR",CHILD
+Ejemplo3.csv,629,"",BLANK
+Ejemplo3.csv,630,"			       148	30.06.2024		620000266		      6			30.06.2024	30.06.2024	KR	Factura Proveedor			SCAMPELO	620000266	2024",PARENT
+Ejemplo3.csv,631,"	0064000000	Seguros JUNIO 2024			50					             1.245,80		EUR	Prima seguros Junio 2024",CHILD
+Ejemplo3.csv,632,"	0047200000	Seguros JUNIO 2024			50					               261,62		EUR	Prima seguros Junio 2024",CHILD
+Ejemplo3.csv,633,"	0077200000				50				-1.507,42					EUR",CHILD
+Ejemplo3.csv,634,"",BLANK
+Ejemplo3.csv,635,"			       149	30.06.2024		620000267		      6			30.06.2024	30.06.2024	KR	Factura Proveedor			SCAMPELO	620000267	2024",PARENT
+Ejemplo3.csv,636,"	0064100000	Mantenimiento JUNIO 2024			50					             2.850,45		EUR	Gastos mantenimiento Junio 2024",CHILD
+Ejemplo3.csv,637,"	0047200000	Mantenimiento JUNIO 2024			50					               598,59		EUR	Gastos mantenimiento Junio 2024",CHILD
+Ejemplo3.csv,638,"	0077200000				50				-3.449,04					EUR",CHILD
+Ejemplo3.csv,639,"",BLANK
+Ejemplo3.csv,640,"			       150	31.07.2024		720000268		      7			15.07.2024	15.07.2024	KR	Factura Proveedor			SCAMPELO	720000268	2024",PARENT
+Ejemplo3.csv,641,"	0062300000	CUOTA JULIO 2024 MADR			50					            15.125,00		EUR	CUOTA MENSUAL JULIO 2024 MADRID",CHILD
+Ejemplo3.csv,642,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,643,"",BLANK
+Ejemplo3.csv,644,"			       151	31.07.2024		720000269		      7			15.07.2024	15.07.2024	KR	Factura Proveedor			SCAMPELO	720000269	2024",PARENT
+Ejemplo3.csv,645,"	0062300000	CUOTA JULIO 2024 VALE			50					            15.125,00		EUR	CUOTA MENSUAL JULIO 2024 VALENCIA",CHILD
+Ejemplo3.csv,646,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,647,"",BLANK
+Ejemplo3.csv,648,"			       152	31.07.2024		720000270		      7			15.07.2024	15.07.2024	KR	Factura Proveedor			SCAMPELO	720000270	2024",PARENT
+Ejemplo3.csv,649,"	0062300000	CUOTA JULIO 2024 BARC			50					            15.125,00		EUR	CUOTA MENSUAL JULIO 2024 BARCELONA",CHILD
+Ejemplo3.csv,650,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,651,"",BLANK
+Ejemplo3.csv,652,"			       153	31.07.2024		720000271		      7			15.07.2024	15.07.2024	KR	Factura Proveedor			SCAMPELO	720000271	2024",PARENT
+Ejemplo3.csv,653,"	0062300000	CUOTA JULIO 2024 SEVI			50					            15.125,00		EUR	CUOTA MENSUAL JULIO 2024 SEVILLA",CHILD
+Ejemplo3.csv,654,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,655,"",BLANK
+Ejemplo3.csv,656,"			       154	31.07.2024		720000272		      7			15.07.2024	15.07.2024	KR	Factura Proveedor			SCAMPELO	720000272	2024",PARENT
+Ejemplo3.csv,657,"	0062300000	CUOTA JULIO 2024 BILL			50					            15.125,00		EUR	CUOTA MENSUAL JULIO 2024 BILBAO",CHILD
+Ejemplo3.csv,658,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,659,"",BLANK
+Ejemplo3.csv,660,"			       155	31.07.2024		720000273		      7			15.07.2024	15.07.2024	KR	Factura Proveedor			SCAMPELO	720000273	2024",PARENT
+Ejemplo3.csv,661,"	0062300000	CUOTA JULIO 2024 ZARA			50					            15.125,00		EUR	CUOTA MENSUAL JULIO 2024 ZARAGOZA",CHILD
+Ejemplo3.csv,662,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,663,"",BLANK
+Ejemplo3.csv,664,"			       156	31.07.2024		720000274		      7			15.07.2024	15.07.2024	KR	Factura Proveedor			SCAMPELO	720000274	2024",PARENT
+Ejemplo3.csv,665,"	0062300000	CUOTA JULIO 2024 VIGO			50					            15.125,00		EUR	CUOTA MENSUAL JULIO 2024 VIGO",CHILD
+Ejemplo3.csv,666,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,667,"",BLANK
+Ejemplo3.csv,668,"			       157	31.07.2024		720000275		      7			15.07.2024	15.07.2024	KR	Factura Proveedor			SCAMPELO	720000275	2024",PARENT
+Ejemplo3.csv,669,"	0062300000	CUOTA JULIO 2024 MALA			50					            15.125,00		EUR	CUOTA MENSUAL JULIO 2024 MALAGA",CHILD
+Ejemplo3.csv,670,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,671,"",BLANK
+Ejemplo3.csv,672,"			       158	31.07.2024		720000276		      7			15.07.2024	15.07.2024	KR	Factura Proveedor			SCAMPELO	720000276	2024",PARENT
+Ejemplo3.csv,673,"	0062300000	CUOTA JULIO 2024 CORU			50					            15.125,00		EUR	CUOTA MENSUAL JULIO 2024 CORUÑA",CHILD
+Ejemplo3.csv,674,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,675,"",BLANK
+Ejemplo3.csv,676,"			       159	31.07.2024		720000277		      7			15.07.2024	15.07.2024	KR	Factura Proveedor			SCAMPELO	720000277	2024",PARENT
+Ejemplo3.csv,677,"	0062300000	CUOTA JULIO 2024 MURC			50					            15.125,00		EUR	CUOTA MENSUAL JULIO 2024 MURCIA",CHILD
+Ejemplo3.csv,678,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,679,"",BLANK
+Ejemplo3.csv,680,"			       160	31.07.2024		720000278		      7			15.07.2024	15.07.2024	KR	Factura Proveedor			SCAMPELO	720000278	2024",PARENT
+Ejemplo3.csv,681,"	0062300000	CUOTA JULIO 2024 PALM			50					            15.125,00		EUR	CUOTA MENSUAL JULIO 2024 PALMA",CHILD
+Ejemplo3.csv,682,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,683,"",BLANK
+Ejemplo3.csv,684,"			       161	31.07.2024		720000279		      7			15.07.2024	15.07.2024	KR	Factura Proveedor			SCAMPELO	720000279	2024",PARENT
+Ejemplo3.csv,685,"	0062300000	CUOTA JULIO 2024 SANC			50					            15.125,00		EUR	CUOTA MENSUAL JULIO 2024 SANTANDER",CHILD
+Ejemplo3.csv,686,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,687,"",BLANK
+Ejemplo3.csv,688,"			       162	31.07.2024		720000280		      7			15.07.2024	15.07.2024	KR	Factura Proveedor			SCAMPELO	720000280	2024",PARENT
+Ejemplo3.csv,689,"	0062300000	CUOTA JULIO 2024 GIRO			50					            15.125,00		EUR	CUOTA MENSUAL JULIO 2024 GIRONA",CHILD
+Ejemplo3.csv,690,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,691,"",BLANK
+Ejemplo3.csv,692,"			       163	31.07.2024		720000281		      7			15.07.2024	15.07.2024	KR	Factura Proveedor			SCAMPELO	720000281	2024",PARENT
+Ejemplo3.csv,693,"	0062300000	CUOTA JULIO 2024 LEON			50					            15.125,00		EUR	CUOTA MENSUAL JULIO 2024 LEON",CHILD
+Ejemplo3.csv,694,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,695,"",BLANK
+Ejemplo3.csv,696,"			       164	31.07.2024		720000282		      7			15.07.2024	15.07.2024	KR	Factura Proveedor			SCAMPELO	720000282	2024",PARENT
+Ejemplo3.csv,697,"	0062300000	CUOTA JULIO 2024 CAST			50					            15.125,00		EUR	CUOTA MENSUAL JULIO 2024 CASTELLON",CHILD
+Ejemplo3.csv,698,"	0077200000				50				-15.125,00					EUR",CHILD
+Ejemplo3.csv,699,"",BLANK
+Ejemplo3.csv,700,"			       165	31.07.2024		720000283		      7			31.07.2024	31.07.2024	KR	Factura Proveedor			SCAMPELO	720000283	2024",PARENT
+Ejemplo3.csv,701,"	0062300000	Agua JULIO 2024			50					             2.380,95		EUR	Factura agua Julio 2024",CHILD
+Ejemplo3.csv,702,"	0047200000	Agua JULIO 2024			50					               500,00		EUR	Factura agua Julio 2024",CHILD
+Ejemplo3.csv,703,"	0077200000				50				-2.880,95					EUR",CHILD
+Ejemplo3.csv,704,"",BLANK
+Ejemplo3.csv,705,"			       166	31.07.2024		720000284		      7			31.07.2024	31.07.2024	KR	Factura Proveedor			SCAMPELO	720000284	2024",PARENT
+Ejemplo3.csv,706,"	0062800000	Luz JULIO 2024			50					             8.450,25		EUR	Factura electricidad Julio 2024",CHILD
+Ejemplo3.csv,707,"	0047200000	Luz JULIO 2024			50					             1.774,55		EUR	Factura electricidad Julio 2024",CHILD
+Ejemplo3.csv,708,"	0077200000				50				-10.224,80					EUR",CHILD
+Ejemplo3.csv,709,"",BLANK
+Ejemplo3.csv,710,"			       167	31.07.2024		720000285		      7			31.07.2024	31.07.2024	KR	Factura Proveedor			SCAMPELO	720000285	2024",PARENT
+Ejemplo3.csv,711,"	0062900000	Gas JULIO 2024			50					             3.245,75		EUR	Factura gas Julio 2024",CHILD
+Ejemplo3.csv,712,"	0047200000	Gas JULIO 2024			50					               681,61		EUR	Factura gas Julio 2024",CHILD
+Ejemplo3.csv,713,"	0077200000				50				-3.927,36					EUR",CHILD
+Ejemplo3.csv,714,"",BLANK
+Ejemplo3.csv,715,"			       168	31.07.2024		720000286		      7			31.07.2024	31.07.2024	KR	Factura Proveedor			SCAMPELO	720000286	2024",PARENT
+Ejemplo3.csv,716,"	0063100000	Telefono JULIO 2024			50					               845,30		EUR	Factura telefono Julio 2024",CHILD
+Ejemplo3.csv,717,"	0047200000	Telefono JULIO 2024			50					               177,51		EUR	Factura telefono Julio 2024",CHILD
+Ejemplo3.csv,718,"	0077200000				50				-1.022,81					EUR",CHILD
+Ejemplo3.csv,719,"",BLANK
+Ejemplo3.csv,720,"			       169	31.07.2024		720000287		      7			31.07.2024	31.07.2024	KR	Factura Proveedor			SCAMPELO	720000287	2024",PARENT
+Ejemplo3.csv,721,"	0063200000	Internet JULIO 2024			50					               325,75		EUR	Factura internet Julio 2024",CHILD
+Ejemplo3.csv,722,"	0047200000	Internet JULIO 2024			50					                68,41		EUR	Factura internet Julio 2024",CHILD
+Ejemplo3.csv,723,"	0077200000				50					  -394,16					EUR",CHILD
+Ejemplo3.csv,724,"",BLANK
+Ejemplo3.csv,725,"			       170	31.07.2024		720000288		      7			31.07.2024	31.07.2024	KR	Factura Proveedor			SCAMPELO	720000288	2024",PARENT
+Ejemplo3.csv,726,"	0064000000	Seguros JULIO 2024			50					             1.245,80		EUR	Prima seguros Julio 2024",CHILD
+Ejemplo3.csv,727,"	0047200000	Seguros JULIO 2024			50					               261,62		EUR	Prima seguros Julio 2024",CHILD
+Ejemplo2.txt,1,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,2,"Nº act.  Nº doc.           FeCont FeDoc  Ba Nº referencia... Texto cabecera doc........",HEADER
+Ejemplo2.txt,3,"         Denominación cuenta.......Ap.    I Libro may. Div. CC   Nº cuenta  MD ...Impte.en ME  Mon. Impte.Debe ML  Impte.Haber ML",HEADER
+Ejemplo2.txt,4,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,1,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,2,"Nº act.  Nº doc.           FeCont FeDoc  Ba Nº referencia... Texto cabecera doc........",HEADER
+Ejemplo2.txt,3,"         Denominación cuenta.......Ap.    I Libro may. Div. CC   Nº cuenta  MD ...Impte.en ME  Mon. Impte.Debe ML  Impte.Haber ML",HEADER
+Ejemplo2.txt,4,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,1,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,2,"Nº act.  Nº doc.           FeCont FeDoc  Ba Nº referencia... Texto cabecera doc........",HEADER
+Ejemplo2.txt,3,"         Denominación cuenta.......Ap.    I Libro may. Div. CC   Nº cuenta  MD ...Impte.en ME  Mon. Impte.Debe ML  Impte.Haber ML",HEADER
+Ejemplo2.txt,4,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,1,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,2,"Nº act.  Nº doc.           FeCont FeDoc  Ba Nº referencia... Texto cabecera doc........",HEADER
+Ejemplo2.txt,3,"         Denominación cuenta.......Ap.    I Libro may. Div. CC   Nº cuenta  MD ...Impte.en ME  Mon. Impte.Debe ML  Impte.Haber ML",HEADER
+Ejemplo2.txt,4,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,1,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,2,"Nº act.  Nº doc.           FeCont FeDoc  Ba Nº referencia... Texto cabecera doc........",HEADER
+Ejemplo2.txt,3,"         Denominación cuenta.......Ap.    I Libro may. Div. CC   Nº cuenta  MD ...Impte.en ME  Mon. Impte.Debe ML  Impte.Haber ML",HEADER
+Ejemplo2.txt,4,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,1,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,2,"Nº act.  Nº doc.           FeCont FeDoc  Ba Nº referencia... Texto cabecera doc........",HEADER
+Ejemplo2.txt,3,"         Denominación cuenta.......Ap.    I Libro may. Div. CC   Nº cuenta  MD ...Impte.en ME  Mon. Impte.Debe ML  Impte.Haber ML",HEADER
+Ejemplo2.txt,4,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,1,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,2,"Nº act.  Nº doc.           FeCont FeDoc  Ba Nº referencia... Texto cabecera doc........",HEADER
+Ejemplo2.txt,3,"         Denominación cuenta.......Ap.    I Libro may. Div. CC   Nº cuenta  MD ...Impte.en ME  Mon. Impte.Debe ML  Impte.Haber ML",HEADER
+Ejemplo2.txt,4,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,1,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,2,"Nº act.  Nº doc.           FeCont FeDoc  Ba Nº referencia... Texto cabecera doc........",HEADER
+Ejemplo2.txt,3,"         Denominación cuenta.......Ap.    I Libro may. Div. CC   Nº cuenta  MD ...Impte.en ME  Mon. Impte.Debe ML  Impte.Haber ML",HEADER
+Ejemplo2.txt,4,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,1,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,2,"Nº act.  Nº doc.           FeCont FeDoc  Ba Nº referencia... Texto cabecera doc........",HEADER
+Ejemplo2.txt,3,"         Denominación cuenta.......Ap.    I Libro may. Div. CC   Nº cuenta  MD ...Impte.en ME  Mon. Impte.Debe ML  Impte.Haber ML",HEADER
+Ejemplo2.txt,4,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,1,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,2,"Nº act.  Nº doc.           FeCont FeDoc  Ba Nº referencia... Texto cabecera doc........",HEADER
+Ejemplo2.txt,3,"         Denominación cuenta.......Ap.    I Libro may. Div. CC   Nº cuenta  MD ...Impte.en ME  Mon. Impte.Debe ML  Impte.Haber ML",HEADER
+Ejemplo2.txt,4,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,1,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,2,"Nº act.  Nº doc.           FeCont FeDoc  Ba Nº referencia... Texto cabecera doc........",HEADER
+Ejemplo2.txt,3,"         Denominación cuenta.......Ap.    I Libro may. Div. CC   Nº cuenta  MD ...Impte.en ME  Mon. Impte.Debe ML  Impte.Haber ML",HEADER
+Ejemplo2.txt,4,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,1,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,2,"Nº act.  Nº doc.           FeCont FeDoc  Ba Nº referencia... Texto cabecera doc........",HEADER
+Ejemplo2.txt,3,"         Denominación cuenta.......Ap.    I Libro may. Div. CC   Nº cuenta  MD ...Impte.en ME  Mon. Impte.Debe ML  Impte.Haber ML",HEADER
+Ejemplo2.txt,4,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,1,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,2,"Nº act.  Nº doc.           FeCont FeDoc  Ba Nº referencia... Texto cabecera doc........",HEADER
+Ejemplo2.txt,3,"         Denominación cuenta.......Ap.    I Libro may. Div. CC   Nº cuenta  MD ...Impte.en ME  Mon. Impte.Debe ML  Impte.Haber ML",HEADER
+Ejemplo2.txt,4,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,1,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,2,"Nº act.  Nº doc.           FeCont FeDoc  Ba Nº referencia... Texto cabecera doc........",HEADER
+Ejemplo2.txt,3,"         Denominación cuenta.......Ap.    I Libro may. Div. CC   Nº cuenta  MD ...Impte.en ME  Mon. Impte.Debe ML  Impte.Haber ML",HEADER
+Ejemplo2.txt,4,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,1,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,2,"Nº act.  Nº doc.           FeCont FeDoc  Ba Nº referencia... Texto cabecera doc........",HEADER
+Ejemplo2.txt,3,"         Denominación cuenta.......Ap.    I Libro may. Div. CC   Nº cuenta  MD ...Impte.en ME  Mon. Impte.Debe ML  Impte.Haber ML",HEADER
+Ejemplo2.txt,4,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,1,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,2,"Nº act.  Nº doc.           FeCont FeDoc  Ba Nº referencia... Texto cabecera doc........",HEADER
+Ejemplo2.txt,3,"         Denominación cuenta.......Ap.    I Libro may. Div. CC   Nº cuenta  MD ...Impte.en ME  Mon. Impte.Debe ML  Impte.Haber ML",HEADER
+Ejemplo2.txt,4,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,1,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,2,"Nº act.  Nº doc.           FeCont FeDoc  Ba Nº referencia... Texto cabecera doc........",HEADER
+Ejemplo2.txt,3,"         Denominación cuenta.......Ap.    I Libro may. Div. CC   Nº cuenta  MD ...Impte.en ME  Mon. Impte.Debe ML  Impte.Haber ML",HEADER
+Ejemplo2.txt,4,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,1,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,2,"Nº act.  Nº doc.           FeCont FeDoc  Ba Nº referencia... Texto cabecera doc........",HEADER
+Ejemplo2.txt,3,"         Denominación cuenta.......Ap.    I Libro may. Div. CC   Nº cuenta  MD ...Impte.en ME  Mon. Impte.Debe ML  Impte.Haber ML",HEADER
+Ejemplo2.txt,4,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,5,"00000001 0100000000        010124 010124 03                  Cobros por Tarjeta",PARENT
+Ejemplo2.txt,6,"         PASARELA PAGO EXPOS.      001    S 0440120004 BE24 40                           68,28  EUR          68,28",CHILD
+Ejemplo2.txt,7,"         3COMA3, C.B.              002    D 0430000000 BE24 15   0100026850              68,28- EUR                          68,28",CHILD
+Ejemplo2.txt,8,"         28023 MADRID JH",CHILD
+Ejemplo2.txt,9,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,10,"00000002 0100000001        010124 010124 03                  Cobros por Tarjeta",PARENT
+Ejemplo2.txt,11,"         PASARELA PAGO EXPOS.      001    S 0440120004 GE24 40                        4.061,63  EUR       4.061,63",CHILD
+Ejemplo2.txt,12,"         SANTIAGO GUIJARRO         002    D 0430000000 GE24 15   0100084244           4.061,63- EUR                       4.061,63",CHILD
+Ejemplo2.txt,13,"         28002 MADRID JH",CHILD
+Ejemplo2.txt,14,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,15,"00000003 0100000002        020124 020124 03                  Cobros por Tarjeta",PARENT
+Ejemplo2.txt,16,"         PASARELA PAGO EXPOS.      001    S 0440120004 GE24 40                        1.110,67  EUR       1.110,67",CHILD
+Ejemplo2.txt,17,"         KEDECORAS S.L.            002    D 0430000000 GE24 15   0100086751           1.110,67- EUR                       1.110,67",CHILD
+Ejemplo2.txt,18,"         19185 MESONES JH",CHILD
+Ejemplo2.txt,19,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,20,"00000004 0100000003        020124 020124 03                  Cobros por Tarjeta",PARENT
+Ejemplo2.txt,21,"         PASARELA PAGO EXPOS.      001    S 0440120004 SC24 40                           68,28  EUR          68,28",CHILD
+Ejemplo2.txt,22,"         WEH CONECTORES PRECISION  002    D 0430000000 SC24 15   0100047748              68,28- EUR                          68,28",CHILD
+Ejemplo2.txt,23,"         08191 RUBI JH",CHILD
+Ejemplo2.txt,24,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,25,"00000005 0100000004        020124 020124 03                  Cobros por Tarjeta",PARENT
+Ejemplo2.txt,26,"         PASARELA PAGO EXPOS.      001    S 0440120004 SC24 40                        4.966,58  EUR       4.966,58",CHILD
+Ejemplo2.txt,27,"         TRISKELL DISEÑO, S.L.     002    D 0430000000 SC24 15   0100019791           4.966,58- EUR                       4.966,58",CHILD
+Ejemplo2.txt,28,"         28024 MADRID JH",CHILD
+Ejemplo2.txt,29,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,30,"00000006 0100000005        020124 020124 03                  Cobros por Tarjeta",PARENT
+Ejemplo2.txt,31,"         PASARELA PAGO EXPOS.      001    S 0440120004 FT24 40                          218,87  EUR         218,87",CHILD
+Ejemplo2.txt,32,"         MEDIAFAG, S.L.            002    D 0430000000 FT24 15   0100065585             218,87- EUR                         218,87",CHILD
+Ejemplo2.txt,33,"         28500 ARGANDA DEL REY JH",CHILD
+Ejemplo2.txt,34,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,35,"00000007 0100000006        020124 020124 03                  Cobros por Tarjeta",PARENT
+Ejemplo2.txt,36,"         PASARELA PAGO EXPOS.      001    S 0440120004 FT24 40                          144,06  EUR         144,06",CHILD
+Ejemplo2.txt,37,"         CREACIONES DOCE,S.L.      002    D 0430000000 FT24 15   0100086145             144,06- EUR                         144,06",CHILD
+Ejemplo2.txt,38,"         45210 YUNCOS JH",CHILD
+Ejemplo2.txt,39,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,40,"00000008 0100000007        020124 020124 03                  Cobros por Tarjeta",PARENT
+Ejemplo2.txt,41,"         PASARELA PAGO EXPOS.      001    S 0440120004 SC24 40                           68,28  EUR          68,28",CHILD
+Ejemplo2.txt,42,"         DUPLICODER S.L.           002    D 0430000000 SC24 15   0100092483              68,28- EUR                          68,28",CHILD
+Ejemplo2.txt,43,"         29004 MÁLAGA JH",CHILD
+Ejemplo2.txt,44,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,45,"00000009 0100000008        020124 020124 03                  Cobros por Tarjeta",PARENT
+Ejemplo2.txt,46,"         PASARELA PAGO EXPOS.      001    S 0440120004 FT24 40                        1.088,77  EUR       1.088,77",CHILD
+Ejemplo2.txt,47,"         OPALO DISEÑO Y COMUNICACI 002    D 0430000000 FT24 15   0100010621           1.088,77- EUR                       1.088,77",CHILD
+Ejemplo2.txt,48,"         28050 MADRID JH",CHILD
+Ejemplo2.txt,49,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,50,"00000010 0100000009        020124 020124 03                  Cobros por Tarjeta",PARENT
+Ejemplo2.txt,51,"         PASARELA PAGO EXPOS.      001    S 0440120004 FT24 40                        3.354,95  EUR       3.354,95",CHILD
+Ejemplo2.txt,52,"         2003 DYLUNIO, S.A.        002    D 0430000000 FT24 15   0100083821           3.354,95- EUR                       3.354,95",CHILD
+Ejemplo2.txt,53,"         08230 MATADEPERA JH",CHILD
+Ejemplo2.txt,54,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,55,"00000011 0100000010        020124 020124 03                  Cobros por Tarjeta",PARENT
+Ejemplo2.txt,56,"         PASARELA PAGO EXPOS.      001    S 0440120004 FT24 40                           80,00  EUR          80,00",CHILD
+Ejemplo2.txt,57,"         AERTiCKET GmbH            002    D 0430000000 FT24 15   0200025207              80,00- EUR                          80,00",CHILD
+Ejemplo2.txt,58,"         10967-Berlin JH",CHILD
+Ejemplo2.txt,59,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+Ejemplo2.txt,60,"00000012 0100000011        020124 020124 03                  Cobros por Tarjeta",PARENT
+Ejemplo2.txt,61,"         PASARELA PAGO EXPOS.      001    S 0440120004 FT24 40                          500,21  EUR         500,21",CHILD
+Ejemplo2.txt,62,"         OPALO DISEÑO Y COMUNICACI 002    D 0430000000 FT24 15   0100010621             500,21- EUR                         500,21",CHILD
+ejemplo5.txt,1,"Plastipak Iberia S.L.U                   Diario de doc. 01.11.2023 - 31.10.2024                   Hora 09:45:05     Fecha 21.11.2024",META
+ejemplo5.txt,2,"Toledo                  Ledger 0L               LIBRO DIARIO 2024 CIF: B66460775              RFBELJ10_NACC/FI97MAP Pág.           1",META
+ejemplo5.txt,3,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+ejemplo5.txt,4,"Año  Mon.  Soc  Ms C ...Impte.Debe ML ..Impte.Haber ML C ...Impte.Debe ML ..Impte.Haber ML C ...Impte.Debe ML ..Impte.Haber ML",META
+ejemplo5.txt,5,".... ..... .... .. C ................ ................ C ................ ................ C ................ ................",META
+ejemplo5.txt,6,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+ejemplo5.txt,7,"2024 EUR   6040 01  S  173.821.226,99   173.821.226,99 D    17.143.740,17    14.348.233,43 K    12.917.155,96     9.905.060,27",META
+ejemplo5.txt,8,"2024 EUR   6040 02  S  191.550.074,06   191.550.074,06 D    16.787.261,04    13.746.796,63 K    10.202.877,07    10.240.266,88",META
+ejemplo5.txt,9,"2024 EUR   6040 03  S  203.542.917,37   203.542.917,37 D    14.579.243,29    21.175.614,53 K     9.395.219,64    11.784.938,03",META
+ejemplo5.txt,10,"2024 EUR   6040 04  S  168.462.879,59   168.462.879,59 D    17.048.012,86    15.866.835,59 K    11.376.316,27    12.474.963,37",META
+ejemplo5.txt,11,"2024 EUR   6040 05  S  169.419.115,52   169.419.115,52 D    17.374.433,51    15.702.871,29 K    10.225.930,50    13.030.141,13",META
+ejemplo5.txt,12,"2024 EUR   6040 06  S  186.352.700,34   186.352.700,34 D    18.572.742,07    16.233.323,69 K     9.092.443,07    13.779.933,90",META
+ejemplo5.txt,13,"2024 EUR   6040 07  S  190.819.819,03   190.819.819,03 D    22.161.656,66    18.019.949,50 K    12.807.146,34    13.708.435,04",META
+ejemplo5.txt,14,"2024 EUR   6040 08  S  210.011.547,46   210.011.547,46 D    23.420.050,16    18.489.742,87 K    12.381.561,32    14.341.947,90",META
+ejemplo5.txt,15,"2024 EUR   6040 09  S  233.733.743,41   233.733.743,41 D    20.983.206,86    20.656.450,96 K    13.465.288,60    14.510.334,69",META
+ejemplo5.txt,16,"2024 EUR   6040 10  S  222.215.645,23   222.215.645,23 D    19.585.863,68    22.297.442,61 K    15.931.049,17    12.962.617,44",META
+ejemplo5.txt,17,"2024 EUR   6040 11  S  253.938.394,20   253.938.394,20 D    17.701.820,89    18.120.194,03 K    14.937.804,75    14.621.067,74",META
+ejemplo5.txt,18,"2024 EUR   6040 12  S  242.002.068,02   242.002.068,02 D    18.479.430,74    26.541.526,99 K    13.922.811,68    14.645.700,69",META
+ejemplo5.txt,19,"2024 EUR   6040 ** S  2445.870.131,22  2445.870.131,22 D   223.837.461,93   221.198.982,12 K   146.655.604,37   156.005.407,08",TOTAL
+ejemplo5.txt,20,"",BLANK
+ejemplo5.txt,21,"2024 EUR   **** ** S  2445.870.131,22  2445.870.131,22 D   223.837.461,93   221.198.982,12 K   146.655.604,37   156.005.407,08",TOTAL
+ejemplo5.txt,22,"Plastipak Iberia S.L.U                   Diario de doc. 01.11.2023 - 31.10.2024                   Hora 09:45:05     Fecha 21.11.2024",META
+ejemplo5.txt,23,"Toledo                  Ledger 0L               LIBRO DIARIO 2024 CIF: B66460775              RFBELJ10_NACC/FI97MAP Pág.           2",META
+ejemplo5.txt,24,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+ejemplo5.txt,25,"Nº act.  FeCPU  Nº docum.. FeCont FeDoc  Ba Nº referencia... Texto cabecera doc........",HEADER
+ejemplo5.txt,26,"         Denominación cuenta.......Ap.    I Nº cuenta  Div. CC   Libro may. MD ...Impte.en ME  Mon. Impte.Debe ML  Impte.Haber ML",HEADER
+ejemplo5.txt,27,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+ejemplo5.txt,28,"00000001 011123 0101695872 011123 011123 RT                  Contab.activo fijo",PARENT
+ejemplo5.txt,29,"         Falta Nº cta.alt.         001    S 0000900001      50                          247,78- EUR                         247,78",CHILD
+ejemplo5.txt,30,"         Falta Nº cta.alt.         002    S 0000900001      40                          247,78  EUR         247,78",CHILD
+ejemplo5.txt,31,"         Falta Nº cta.alt.         003    S 0000900101      50                          145,14- EUR                         145,14",CHILD
+ejemplo5.txt,32,"         Falta Nº cta.alt.         004    S 0000900101      40                          145,14  EUR         145,14",CHILD
+ejemplo5.txt,33,"         Falta Nº cta.alt.         005    S 0000900301      50                          158,93- EUR                         158,93",CHILD
+ejemplo5.txt,34,"         Falta Nº cta.alt.         006    S 0000900301      40                          158,93  EUR         158,93",CHILD
+ejemplo5.txt,35,"         Falta Nº cta.alt.         007    S 0000900401      50                          525,52- EUR                         525,52",CHILD
+ejemplo5.txt,36,"         Falta Nº cta.alt.         008    S 0000900401      40                          525,52  EUR         525,52",CHILD
+ejemplo5.txt,37,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+ejemplo5.txt,38,"00000002 011123 0101695873 011123 011123 RT                  Contab.activo fijo",PARENT
+ejemplo5.txt,39,"         Falta Nº cta.alt.         001    S 0000900001      50                          263,09- EUR                         263,09",CHILD
+ejemplo5.txt,40,"         Falta Nº cta.alt.         002    S 0000900001      40                          263,09  EUR         263,09",CHILD
+ejemplo5.txt,41,"         Falta Nº cta.alt.         003    S 0000900101      50                          154,11- EUR                         154,11",CHILD
+ejemplo5.txt,42,"         Falta Nº cta.alt.         004    S 0000900101      40                          154,11  EUR         154,11",CHILD
+ejemplo5.txt,43,"         Falta Nº cta.alt.         005    S 0000900301      50                          168,76- EUR                         168,76",CHILD
+ejemplo5.txt,44,"         Falta Nº cta.alt.         006    S 0000900301      40                          168,76  EUR         168,76",CHILD
+ejemplo5.txt,45,"         Falta Nº cta.alt.         007    S 0000900401      50                          557,99- EUR                         557,99",CHILD
+ejemplo5.txt,46,"         Falta Nº cta.alt.         008    S 0000900401      40                          557,99  EUR         557,99",CHILD
+ejemplo5.txt,47,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+ejemplo5.txt,48,"00000003 011123 0101695874 011123 011123 RT                  Contab.activo fijo",PARENT
+ejemplo5.txt,49,"         Falta Nº cta.alt.         001    S 0000900001      50                          307,02- EUR                         307,02",CHILD
+ejemplo5.txt,50,"         Falta Nº cta.alt.         002    S 0000900001      40                          307,02  EUR         307,02",CHILD
+ejemplo5.txt,51,"         Falta Nº cta.alt.         003    S 0000900101      50                          179,89- EUR                         179,89",CHILD
+ejemplo5.txt,52,"         Falta Nº cta.alt.         004    S 0000900101      40                          179,89  EUR         179,89",CHILD
+ejemplo5.txt,53,"         Falta Nº cta.alt.         005    S 0000900301      50                          196,94- EUR                         196,94",CHILD
+ejemplo5.txt,54,"         Falta Nº cta.alt.         006    S 0000900301      40                          196,94  EUR         196,94",CHILD
+ejemplo5.txt,55,"         Falta Nº cta.alt.         007    S 0000900401      50                          651,16- EUR                         651,16",CHILD
+ejemplo5.txt,56,"         Falta Nº cta.alt.         008    S 0000900401      40                          651,16  EUR         651,16",CHILD
+ejemplo5.txt,57,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+ejemplo5.txt,58,"00000004 011123 0101695875 011123 011123 RT                  Contab.activo fijo",PARENT
+ejemplo5.txt,59,"         Falta Nº cta.alt.         001    S 0000900001      50                          270,75- EUR                         270,75",CHILD
+ejemplo5.txt,60,"         Falta Nº cta.alt.         002    S 0000900001      40                          270,75  EUR         270,75",CHILD
+ejemplo5.txt,61,"         Falta Nº cta.alt.         003    S 0000900101      50                          158,63- EUR                         158,63",CHILD
+ejemplo5.txt,62,"         Falta Nº cta.alt.         004    S 0000900101      40                          158,63  EUR         158,63",CHILD
+ejemplo5.txt,63,"         Falta Nº cta.alt.         005    S 0000900301      50                          173,67- EUR                         173,67",CHILD
+ejemplo5.txt,64,"         Falta Nº cta.alt.         006    S 0000900301      40                          173,67  EUR         173,67",CHILD
+ejemplo5.txt,65,"         Falta Nº cta.alt.         007    S 0000900401      50                          574,23- EUR                         574,23",CHILD
+ejemplo5.txt,66,"         Falta Nº cta.alt.         008    S 0000900401      40                          574,23  EUR         574,23",CHILD
+ejemplo5.txt,67,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+ejemplo5.txt,68,"00000005 011123 0101695876 011123 011123 RT                  Contab.activo fijo",PARENT
+ejemplo5.txt,69,"         Falta Nº cta.alt.         001    S 0000900001      50                           28,48- EUR                          28,48",CHILD
+ejemplo5.txt,70,"         Falta Nº cta.alt.         002    S 0000900001      40                           28,48  EUR          28,48",CHILD
+ejemplo5.txt,71,"         Falta Nº cta.alt.         003    S 0000900101      50                           16,65- EUR                          16,65",CHILD
+ejemplo5.txt,72,"         Falta Nº cta.alt.         004    S 0000900101      40                           16,65  EUR          16,65",CHILD
+ejemplo5.txt,73,"         Falta Nº cta.alt.         005    S 0000900301      50                           18,27- EUR                          18,27",CHILD
+ejemplo5.txt,74,"         Falta Nº cta.alt.         006    S 0000900301      40                           18,27  EUR          18,27",CHILD
+ejemplo5.txt,75,"         Falta Nº cta.alt.         007    S 0000900401      50                           60,41- EUR                          60,41",CHILD
+ejemplo5.txt,76,"         Falta Nº cta.alt.         008    S 0000900401      40                           60,41  EUR          60,41",CHILD
+ejemplo5.txt,77,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+ejemplo5.txt,78,"00000006 011123 0101695877 011123 011123 RT                  Contab.activo fijo",PARENT
+ejemplo5.txt,79,"         Falta Nº cta.alt.         001    S 0000900001      50                           34,34- EUR                          34,34",CHILD
+ejemplo5.txt,80,"         Falta Nº cta.alt.         002    S 0000900001      40                           34,34  EUR          34,34",CHILD
+ejemplo5.txt,81,"         Falta Nº cta.alt.         003    S 0000900101      50                           20,12- EUR                          20,12",CHILD
+ejemplo5.txt,82,"         Falta Nº cta.alt.         004    S 0000900101      40                           20,12  EUR          20,12",CHILD
+ejemplo5.txt,83,"         Falta Nº cta.alt.         005    S 0000900301      50                           22,02- EUR                          22,02",CHILD
+ejemplo5.txt,84,"                                                                     Total página                         4.911,88        4.933,90",TOTAL
+ejemplo5.txt,85,"                                                                     Acumulado                            4.911,88        4.933,90",TOTAL
+ejemplo5.txt,86,"Plastipak Iberia S.L.U                   Diario de doc. 01.11.2023 - 31.10.2024                   Hora 09:45:05     Fecha 21.11.2024",META
+ejemplo5.txt,87,"Toledo                  Ledger 0L               LIBRO DIARIO 2024 CIF: B66460775              RFBELJ10_NACC/FI97MAP Pág.           3",META
+ejemplo5.txt,88,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+ejemplo5.txt,89,"Nº act.  FeCPU  Nº docum.. FeCont FeDoc  Ba Nº referencia... Texto cabecera doc........",HEADER
+ejemplo5.txt,90,"         Denominación cuenta.......Ap.    I Nº cuenta  Div. CC   Libro may. MD ...Impte.en ME  Mon. Impte.Debe ML  Impte.Haber ML",HEADER
+ejemplo5.txt,91,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+ejemplo5.txt,92,"                                                                     ArrSaldos                            4.911,88        4.933,90",TOTAL
+ejemplo5.txt,93,"         Falta Nº cta.alt.         006    S 0000900301      40                           22,02  EUR          22,02",CHILD
+ejemplo5.txt,94,"         Falta Nº cta.alt.         007    S 0000900401      50                           72,84- EUR                          72,84",CHILD
+ejemplo5.txt,95,"         Falta Nº cta.alt.         008    S 0000900401      40                           72,84  EUR          72,84",CHILD
+ejemplo5.txt,96,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+ejemplo5.txt,97,"00000007 011123 0101695878 011123 011123 RT                  Contab.activo fijo",PARENT
+ejemplo5.txt,98,"         Falta Nº cta.alt.         001    S 0000900001      50                           33,86- EUR                          33,86",CHILD
+ejemplo5.txt,99,"         Falta Nº cta.alt.         002    S 0000900001      40                           33,86  EUR          33,86",CHILD
+ejemplo5.txt,100,"         Falta Nº cta.alt.         003    S 0000900101      50                           19,88- EUR                          19,88",CHILD
+ejemplo5.txt,101,"         Falta Nº cta.alt.         004    S 0000900101      40                           19,88  EUR          19,88",CHILD
+ejemplo5.txt,102,"         Falta Nº cta.alt.         005    S 0000900301      50                           21,74- EUR                          21,74",CHILD
+ejemplo5.txt,103,"         Falta Nº cta.alt.         006    S 0000900301      40                           21,74  EUR          21,74",CHILD
+ejemplo5.txt,104,"         Falta Nº cta.alt.         007    S 0000900401      50                           71,82- EUR                          71,82",CHILD
+ejemplo5.txt,105,"         Falta Nº cta.alt.         008    S 0000900401      40                           71,82  EUR          71,82",CHILD
+ejemplo5.txt,106,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+ejemplo5.txt,107,"00000008 011123 0101695879 011123 011123 RT                  Contab.activo fijo",PARENT
+ejemplo5.txt,108,"         Falta Nº cta.alt.         001    S 0000900001      50                           32,55- EUR                          32,55",CHILD
+ejemplo5.txt,109,"         Falta Nº cta.alt.         002    S 0000900001      40                           32,55  EUR          32,55",CHILD
+ejemplo5.txt,110,"         Falta Nº cta.alt.         003    S 0000900101      50                           19,07- EUR                          19,07",CHILD
+ejemplo5.txt,111,"         Falta Nº cta.alt.         004    S 0000900101      40                           19,07  EUR          19,07",CHILD
+ejemplo5.txt,112,"         Falta Nº cta.alt.         005    S 0000900301      50                           20,87- EUR                          20,87",CHILD
+ejemplo5.txt,113,"         Falta Nº cta.alt.         006    S 0000900301      40                           20,87  EUR          20,87",CHILD
+ejemplo5.txt,114,"         Falta Nº cta.alt.         007    S 0000900401      50                           69,04- EUR                          69,04",CHILD
+ejemplo5.txt,115,"         Falta Nº cta.alt.         008    S 0000900401      40                           69,04  EUR          69,04",CHILD
+ejemplo5.txt,116,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+ejemplo5.txt,117,"00000009 011123 0101695880 011123 011123 RT                  Contab.activo fijo",PARENT
+ejemplo5.txt,118,"         Falta Nº cta.alt.         001    S 0000900001      50                           32,90- EUR                          32,90",CHILD
+ejemplo5.txt,119,"         Falta Nº cta.alt.         002    S 0000900001      40                           32,90  EUR          32,90",CHILD
+ejemplo5.txt,120,"         Falta Nº cta.alt.         003    S 0000900101      50                           19,23- EUR                          19,23",CHILD
+ejemplo5.txt,121,"         Falta Nº cta.alt.         004    S 0000900101      40                           19,23  EUR          19,23",CHILD
+ejemplo5.txt,122,"         Falta Nº cta.alt.         005    S 0000900301      50                           21,09- EUR                          21,09",CHILD
+ejemplo5.txt,123,"         Falta Nº cta.alt.         006    S 0000900301      40                           21,09  EUR          21,09",CHILD
+ejemplo5.txt,124,"         Falta Nº cta.alt.         007    S 0000900401      50                           69,77- EUR                          69,77",CHILD
+ejemplo5.txt,125,"         Falta Nº cta.alt.         008    S 0000900401      40                           69,77  EUR          69,77",CHILD
+ejemplo5.txt,126,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+ejemplo5.txt,127,"00000010 011123 0101695881 011123 011123 RT                  Contab.activo fijo",PARENT
+ejemplo5.txt,128,"         Falta Nº cta.alt.         001    S 0000900001      50                           33,17- EUR                          33,17",CHILD
+ejemplo5.txt,129,"         Falta Nº cta.alt.         002    S 0000900001      40                           33,17  EUR          33,17",CHILD
+ejemplo5.txt,130,"         Falta Nº cta.alt.         003    S 0000900101      50                           19,48- EUR                          19,48",CHILD
+ejemplo5.txt,131,"         Falta Nº cta.alt.         004    S 0000900101      40                           19,48  EUR          19,48",CHILD
+ejemplo5.txt,132,"         Falta Nº cta.alt.         005    S 0000900301      50                           21,30- EUR                          21,30",CHILD
+ejemplo5.txt,133,"         Falta Nº cta.alt.         006    S 0000900301      40                           21,30  EUR          21,30",CHILD
+ejemplo5.txt,134,"         Falta Nº cta.alt.         007    S 0000900401      50                           70,35- EUR                          70,35",CHILD
+ejemplo5.txt,135,"         Falta Nº cta.alt.         008    S 0000900401      40                           70,35  EUR          70,35",CHILD
+ejemplo5.txt,136,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+ejemplo5.txt,137,"00000011 011123 0101695882 011123 011123 RT                  Contab.activo fijo",PARENT
+ejemplo5.txt,138,"         Falta Nº cta.alt.         001    S 0000900001      50                           32,27- EUR                          32,27",CHILD
+ejemplo5.txt,139,"         Falta Nº cta.alt.         002    S 0000900001      40                           32,27  EUR          32,27",CHILD
+ejemplo5.txt,140,"         Falta Nº cta.alt.         003    S 0000900101      50                           18,91- EUR                          18,91",CHILD
+ejemplo5.txt,141,"         Falta Nº cta.alt.         004    S 0000900101      40                           18,91  EUR          18,91",CHILD
+ejemplo5.txt,142,"         Falta Nº cta.alt.         005    S 0000900301      50                           20,69- EUR                          20,69",CHILD
+ejemplo5.txt,143,"         Falta Nº cta.alt.         006    S 0000900301      40                           20,69  EUR          20,69",CHILD
+ejemplo5.txt,144,"         Falta Nº cta.alt.         007    S 0000900401      50                           68,45- EUR                          68,45",CHILD
+ejemplo5.txt,145,"         Falta Nº cta.alt.         008    S 0000900401      40                           68,45  EUR          68,45",CHILD
+ejemplo5.txt,146,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+ejemplo5.txt,147,"00000012 011123 0101695883 011123 011123 RT                  Contab.activo fijo",PARENT
+ejemplo5.txt,148,"                                                                     Total página                           811,30          789,28",TOTAL
+ejemplo5.txt,149,"                                                                     Acumulado                            5.723,18        5.723,18",TOTAL
+ejemplo5.txt,150,"Plastipak Iberia S.L.U                   Diario de doc. 01.11.2023 - 31.10.2024                   Hora 09:45:05     Fecha 21.11.2024",META
+ejemplo5.txt,151,"Toledo                  Ledger 0L               LIBRO DIARIO 2024 CIF: B66460775              RFBELJ10_NACC/FI97MAP Pág.           4",META
+ejemplo5.txt,152,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+ejemplo5.txt,153,"Nº act.  FeCPU  Nº docum.. FeCont FeDoc  Ba Nº referencia... Texto cabecera doc........",HEADER
+ejemplo5.txt,154,"         Denominación cuenta.......Ap.    I Nº cuenta  Div. CC   Libro may. MD ...Impte.en ME  Mon. Impte.Debe ML  Impte.Haber ML",HEADER
+ejemplo5.txt,155,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+ejemplo5.txt,156,"                                                                     ArrSaldos                            5.723,18        5.723,18",TOTAL
+ejemplo5.txt,157,"         Falta Nº cta.alt.         001    S 0000900001      50                           31,24- EUR                          31,24",CHILD
+ejemplo5.txt,158,"         Falta Nº cta.alt.         002    S 0000900001      40                           31,24  EUR          31,24",CHILD
+ejemplo5.txt,159,"         Falta Nº cta.alt.         003    S 0000900101      50                           18,26- EUR                          18,26",CHILD
+ejemplo5.txt,160,"         Falta Nº cta.alt.         004    S 0000900101      40                           18,26  EUR          18,26",CHILD
+ejemplo5.txt,161,"         Falta Nº cta.alt.         005    S 0000900301      50                           20,04- EUR                          20,04",CHILD
+ejemplo5.txt,162,"         Falta Nº cta.alt.         006    S 0000900301      40                           20,04  EUR          20,04",CHILD
+ejemplo5.txt,163,"         Falta Nº cta.alt.         007    S 0000900401      50                           66,26- EUR                          66,26",CHILD
+ejemplo5.txt,164,"         Falta Nº cta.alt.         008    S 0000900401      40                           66,26  EUR          66,26",CHILD
+ejemplo5.txt,165,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+ejemplo5.txt,166,"00000013 011123 0101695884 011123 011123 RT                  Contab.activo fijo",PARENT
+ejemplo5.txt,167,"         Falta Nº cta.alt.         001    S 0000900001      50                           30,62- EUR                          30,62",CHILD
+ejemplo5.txt,168,"         Falta Nº cta.alt.         002    S 0000900001      40                           30,62  EUR          30,62",CHILD
+ejemplo5.txt,169,"         Falta Nº cta.alt.         003    S 0000900101      50                           17,94- EUR                          17,94",CHILD
+ejemplo5.txt,170,"         Falta Nº cta.alt.         004    S 0000900101      40                           17,94  EUR          17,94",CHILD
+ejemplo5.txt,171,"         Falta Nº cta.alt.         005    S 0000900301      50                           19,63- EUR                          19,63",CHILD
+ejemplo5.txt,172,"         Falta Nº cta.alt.         006    S 0000900301      40                           19,63  EUR          19,63",CHILD
+ejemplo5.txt,173,"         Falta Nº cta.alt.         007    S 0000900401      50                           64,94- EUR                          64,94",CHILD
+ejemplo5.txt,174,"         Falta Nº cta.alt.         008    S 0000900401      40                           64,94  EUR          64,94",CHILD
+ejemplo5.txt,175,"------------------------------------------------------------------------------------------------------------------------------------",SEPARATOR
+ejemplo5.txt,176,"00000014 011123 0101695885 011123 011123 RT                  Contab.activo fijo",PARENT
+ejemplo5.txt,177,"         Falta Nº cta.alt.         001    S 0000900001      50                           33,38- EUR                          33,38",CHILD
+ejemplo5.txt,178,"         Falta Nº cta.alt.         002    S 0000900001      40                           33,38  EUR          33,38",CHILD
+ejemplo5.txt,179,"         Falta Nº cta.alt.         003    S 0000900101      50                           19,56- EUR                          19,56",CHILD
+ejemplo5.txt,180,"         Falta Nº cta.alt.         004    S 0000900101      40                           19,56  EUR          19,56",CHILD
+ejemplo5.txt,181,"         Falta Nº cta.alt.         005    S 0000900301      50                           21,40- EUR                          21,40",CHILD
+"Ejemplo6.xlsx","1","Worldline Iberia S.A Unip                 Document Journal 01.01.2024 - 31.12.2024                Time 21:05:15     Date  10.03.2025						","META"
+"Ejemplo6.xlsx","2","Madrid                                                                                        RFBELJ10_NACC/A120540 Page           1						","META"
+"Ejemplo6.xlsx","3","						","BLANK"
+"Ejemplo6.xlsx","4","Seq.no.	CPUdte	Doc. No.	PstDte	DocDte		DT		Reference No.			Document Header Text......					","HEADER"
+"Ejemplo6.xlsx","5","	Account Name..............			LIt		A	G/L	BA	PK			Acct No.		VA	...Amt in FC	Curr			LC Debit amoun	LC Cred. amount","HEADER"
+"Ejemplo6.xlsx","6","						","BLANK"
+"Ejemplo6.xlsx","7","1	30124	100066624	10124	10124		SA		MANTENIMIENTO			G/L account document					","PARENT"
+"Ejemplo6.xlsx","8","	Caixa Cta 2200079445			1		S	572016		50					-30.00		EUR			30.00","CHILD"
+"Ejemplo6.xlsx","9","	Servicios bancarios			2		S	626000		40				5C	30.00		EUR	30.00		","CHILD"
+"Ejemplo6.xlsx","10","						","BLANK"
+"Ejemplo6.xlsx","11","2	30124	100066625	10124	10124		SA		COMISION			G/L account document					","PARENT"
+"Ejemplo6.xlsx","12","	Caixa Cta 2200079445			1		S	572016		50					-30.00		EUR			30.00","CHILD"
+"Ejemplo6.xlsx","13","	Servicios bancarios			2		S	626000		40				5C	30.00		EUR	30.00		","CHILD"
+"Ejemplo6.xlsx","14","						","BLANK"
+"Ejemplo6.xlsx","15","3	40124	100066642	10124	10124		SA		LIQ. INTERESES			G/L account document					","PARENT"
+"Ejemplo6.xlsx","16","	BMG			1		S	572065		40				22,734.44		EUR	22,734.44		","CHILD"
+"Ejemplo6.xlsx","17","	Otros ingresos finan			2		S	769001		50					-22,734.44		EUR			22,734.44","CHILD"
+"Ejemplo6.xlsx","18","						","BLANK"
+"Ejemplo6.xlsx","19","4	40124	100066645	10124	311223		AB				ES					","PARENT"
+"Ejemplo6.xlsx","20","	Provision Vacaciones			1		S	640001		50					-304.97		EUR			304.97","CHILD"
+"Ejemplo6.xlsx","21","	Provision Vacaciones			2		S	640001		50					-1,103.10		EUR			1,103.10","CHILD"
+"Ejemplo6.xlsx","22","	Provision Vacaciones			3		S	640001		50					-1,598.23		EUR			1,598.23","CHILD"
+"Ejemplo6.xlsx","23","	Provision Vacaciones			4		S	640001		50					-989.66		EUR			989.66","CHILD"
+"Ejemplo6.xlsx","24","	Provision Vacaciones			5		S	640001		50					-2,163.95		EUR			2,163.95","CHILD"
+"Ejemplo6.xlsx","25","	Provision Vacaciones			6		S	640001		50					-2,108.56		EUR			2,108.56","CHILD"
+"Ejemplo6.xlsx","26","	Provision Vacaciones			7		S	640001		50					-1,391.04		EUR			1,391.04","CHILD"
+"Ejemplo6.xlsx","27","	Provision Vacaciones			8		S	640001		50					-543.58		EUR			543.58","CHILD"
+"Ejemplo6.xlsx","28","	Provision Vacaciones			9		S	640001		50					-812.16		EUR			812.16","CHILD"
+"Ejemplo6.xlsx","29","	Provision Vacaciones			10		S	640001		50					-486.00		EUR			486.00","CHILD"
+"Ejemplo6.xlsx","30","	Provision Vacaciones			11		S	640001		50					-907.20		EUR			907.20","CHILD"
+"Ejemplo6.xlsx","31","	Provision Vacaciones			12		S	640001		50					-730.16		EUR			730.16","CHILD"
+"Ejemplo6.xlsx","32","	Provision Vacaciones			13		S	640001		50					-918.00		EUR			918.00","CHILD"
+"Ejemplo6.xlsx","33","	Provision Vacaciones			14		S	640001		50					-770.81		EUR			770.81","CHILD"
+"Ejemplo6.xlsx","34","	Provision Vacaciones			15		S	640001		50					-9,048.41		EUR			9,048.41","CHILD"
+"Ejemplo6.xlsx","35","	Provision Vacaciones			16		S	640001		50					-5,423.36		EUR			5,423.36","CHILD"
+"Ejemplo6.xlsx","36","	Provision Vacaciones			17		S	640001		50					-48,600.43		EUR			48,600.43","CHILD"
+"Ejemplo6.xlsx","37","	Provision Vacaciones			18		S	640001		50					-55,007.88		EUR			55,007.88","CHILD"
+"Ejemplo6.xlsx","38","	Provision Vacaciones			19		S	640001		50					-7,068.60		EUR			7,068.60","CHILD"
+"Ejemplo6.xlsx","39","	Provision Vacaciones			20		S	640001		50					-14,017.31		EUR			14,017.31","CHILD"
+"Ejemplo6.xlsx","40","	Provision Vacaciones			21		S	640001		50					-23,437.85		EUR			23,437.85","CHILD"
+"Ejemplo6.xlsx","41","	Provision Vacaciones			22		S	640001		50					-4,171.49		EUR			4,171.49","CHILD"
+"Ejemplo6.xlsx","42","	Provision Vacaciones			23		S	640001		50					-3,770.01		EUR			3,770.01","CHILD"
+"Ejemplo6.xlsx","43","	Provision Vacaciones			24		S	640001		50					-1,926.00		EUR			1,926.00","CHILD"
+"Ejemplo6.xlsx","44","	Provision Vacaciones			25		S	640001		50					-2,932.03		EUR			2,932.03","CHILD"
+"Ejemplo6.xlsx","45","	Provision Vacaciones			26		S	640001		50					-55,038.57		EUR			55,038.57","CHILD"
+"Ejemplo6.xlsx","46","	Provision Vacaciones			27		S	640001		50					-819.00		EUR			819.00","CHILD"
+"Ejemplo6.xlsx","47","	Provision Vacaciones			28		S	640001		50					-2,273.05		EUR			2,273.05","CHILD"
+"Ejemplo6.xlsx","48","	Provision Vacaciones			29		S	640001		50					-508.57		EUR			508.57","CHILD"
+"Ejemplo6.xlsx","49","	Provision Vacaciones			30		S	640001		50					-895.02		EUR			895.02","CHILD"
+"Ejemplo6.xlsx","50","	Provision Vacaciones			31		S	640001		50					-10,800.35		EUR			10,800.35","CHILD"
+"Ejemplo6.xlsx","51","	Provision Vacaciones			32		S	640001		50					-217.14		EUR			217.14","CHILD"
+"Ejemplo6.xlsx","52","	Provision Vacaciones			33		S	640001		50					-1,089.87		EUR			1,089.87","CHILD"
+"Ejemplo6.xlsx","53","	Provision Vacaciones			34		S	640001		50					-475.20		EUR			475.20","CHILD"
+"Ejemplo6.xlsx","54","	Provision Vacaciones			35		S	640001		50					-2,416.70		EUR			2,416.70","CHILD"
+"Ejemplo6.xlsx","55","	Provision Vacaciones			36		S	640001		50					-1,710.42		EUR			1,710.42","CHILD"
+"Ejemplo6.xlsx","56","	Provision Vacaciones			37		S	640001		50					-1,974.60		EUR			1,974.60","CHILD"
+"Ejemplo6.xlsx","57","	Provision Vacaciones			38		S	640001		50					-750.26		EUR			750.26","CHILD"
+"Ejemplo6.xlsx","58","	Remuneraciones ptes			39		S	465012		40				269,199.54		EUR	269,199.54		","CHILD"
+"Ejemplo6.xlsx","59","						","BLANK"
+"Ejemplo6.xlsx","60","5	80124	100066659	10124	311223		AB				PROV SUBCO 1223					","PARENT"
+"Ejemplo6.xlsx","61","	Trabajos realizados			1		S	607000		50					-112,727.50		EUR			112,727.50","CHILD"
+"Ejemplo6.xlsx","62","	Trabajos realizados			2		S	607000		50					-18,152.00		EUR			18,152.00","CHILD"
+"Ejemplo6.xlsx","63","						Pages Total			291,993.98		422,873.48","TOTAL"
+"Ejemplo6.xlsx","64","						Cumulated			291,993.98		422,873.48","DATA"
+"Ejemplo6.xlsx","65","						","BLANK"
+"Ejemplo6.xlsx","66","Worldline Iberia S.A Unip                 Document Journal 01.01.2024 - 31.12.2024                Time 21:05:15     Date  10.03.2025						","META"
+"Ejemplo6.xlsx","67","Madrid                                                                                        RFBELJ10_NACC/A120540 Page           2						","META"
+"Ejemplo6.xlsx","68","						","BLANK"
+"Ejemplo6.xlsx","69","Seq.no.	CPUdte	Doc. No.	PstDte	DocDte		DT		Reference No.			Document Header Text......					","HEADER"
+"Ejemplo6.xlsx","70","	Account Name..............			LIt		A	G/L	BA	PK			Acct No.		VA	...Amt in FC	Curr			LC Debit amoun	LC Cred. amount","HEADER"
+"Ejemplo6.xlsx","71","						","BLANK"
+"Ejemplo6.xlsx","72","						Carryfwd			291,993.98		422,873.48","TOTAL"
+"Ejemplo6.xlsx","72","						Carryfwd			291,993.98		422,873.48","TOTAL"
+"Ejemplo6.xlsx","1112","              Carryfwd     5561601.41  5561601.41","TOTAL"
+"Ejemplo6.xlsx","1177","              Carryfwd     6653751.48  6655440.52","TOTAL"
+"Ejemplo6.xlsx","1242","              Carryfwd     7560130.77  7560130.77","TOTAL"
+"Ejemplo6.xlsx","73","	Trabajos realizados			3		S	607000		50					-3,520.00		EUR			3,520.00","CHILD"
+"Ejemplo6.xlsx","74","	Trabajos realizados			4		S	607000		50					-3,584.00		EUR			3,584.00","CHILD"
+"Ejemplo6.xlsx","75","	Trabajos realizados			5		S	607000		50					-19,751.82		EUR			19,751.82","CHILD"
+"Ejemplo6.xlsx","76","	Trabajos realizados			6		S	607000		50					-52,770.64		EUR			52,770.64","CHILD"
+"Ejemplo6.xlsx","77","	Acreed. Facturas pen			7		S	410904		40				210,505.96		EUR	210,505.96		","CHILD"
+"Ejemplo6.xlsx","78","						","BLANK"
+"Ejemplo6.xlsx","79","6	80124	100066660	10124	311223		AB				PROV SUBCO 1223					","PARENT"
+"Ejemplo6.xlsx","80","	Trabajos realizados			1		S	607000		50					-240.00		EUR			240.00","CHILD"
+"Ejemplo6.xlsx","81","	Acreed. Facturas pen			2		S	410904		40				240.00		EUR	240.00		","CHILD"
+"Ejemplo6.xlsx","82","						","BLANK"
+"Ejemplo6.xlsx","83","7	80124	100066661	10124	311223		AB				PROV SUBCO 1223					","PARENT"
+"Ejemplo6.xlsx","84","	Trabajos realizados			1		S	607000		50					-11,296.75		EUR			11,296.75","CHILD"
+"Ejemplo6.xlsx","85","	Acreed. Facturas pen			2		S	410904		40				11,296.75		EUR	11,296.75		","CHILD"
+"Ejemplo6.xlsx","86","						","BLANK"
+"Ejemplo6.xlsx","87","8	90124	100066670	10124	311223		AB				PROV SUBCO 1123					","PARENT"
+"Ejemplo6.xlsx","88","	Trabajos realizados			1		S	607002		50					-5,630.32		EUR			5,630.32","CHILD"
+"Ejemplo6.xlsx","89","	Acreed. Facturas pen			2		S	410904		40				5,630.32		EUR	5,630.32		","CHILD"
+"Ejemplo6.xlsx","90","						","BLANK"
+"Ejemplo6.xlsx","91","9	150124	100066698	10124	311223		Z1				NOMINA 202312					","PARENT"
+"Ejemplo6.xlsx","92","	Seguro			1		S	649002		40				131.86		EUR	131.86		","CHILD"
+"Ejemplo6.xlsx","93","	Seguro			2		S	649002		40				25.95		EUR	25.95		","CHILD"
+"Ejemplo6.xlsx","94","	Seguro			3		S	649002		40				85.16		EUR	85.16		","CHILD"
+"Ejemplo6.xlsx","95","	Seguro			4		S	649002		40				478.99		EUR	478.99		","CHILD"
+"Ejemplo6.xlsx","96","	Seguro			5		S	649002		40				75.20		EUR	75.20		","CHILD"
+"Ejemplo6.xlsx","97","	Seguro			6		S	649002		40				1,619.92		EUR	1,619.92		","CHILD"
+"Ejemplo6.xlsx","98","	Seguro			7		S	649002		40				41.91		EUR	41.91		","CHILD"
+"Ejemplo6.xlsx","99","	Seguro			8		S	649002		40				164.08		EUR	164.08		","CHILD"
+"Ejemplo6.xlsx","100","	Seguro			9		S	649002		40				117.66		EUR	117.66		","CHILD"
+"Ejemplo6.xlsx","101","	Seguro			10		S	649002		40				195.51		EUR	195.51		","CHILD"
+"Ejemplo6.xlsx","102","	Seguro			11		S	649002		40				225.12		EUR	225.12		","CHILD"
+"Ejemplo6.xlsx","103","	Seguro			12		S	649002		40				218.13		EUR	218.13		","CHILD"
+"Ejemplo6.xlsx","104","	Seguro			13		S	649002		40				221.97		EUR	221.97		","CHILD"
+"Ejemplo6.xlsx","105","	Seguro			14		S	649002		40				187.44		EUR	187.44		","CHILD"
+"Ejemplo6.xlsx","106","	Seguro			15		S	649002		40				2,162.52		EUR	2,162.52		","CHILD"
+"Ejemplo6.xlsx","107","	Seguro			16		S	649002		40				1,304.02		EUR	1,304.02		","CHILD"
+"Ejemplo6.xlsx","108","	Seguro			17		S	649002		40				11,694.42		EUR	11,694.42		","CHILD"
+"Ejemplo6.xlsx","109","	Seguro			18		S	649002		40				13,235.16		EUR	13,235.16		","CHILD"
+"Ejemplo6.xlsx","110","	Seguro			19		S	649002		40				1,702.90		EUR	1,702.90		","CHILD"
+"Ejemplo6.xlsx","111","	Seguro			20		S	649002		40				3,371.71		EUR	3,371.71		","CHILD"
+"Ejemplo6.xlsx","112","	Seguro			21		S	649002		40				5,641.33		EUR	5,641.33		","CHILD"
+"Ejemplo6.xlsx","113","	Seguro			22		S	649002		40				1,003.75		EUR	1,003.75		","CHILD"
+"Ejemplo6.xlsx","114","	Seguro			23		S	649002		40				907.95		EUR	907.95		","CHILD"
+"Ejemplo6.xlsx","115","	Seguro			24		S	649002		40				463.39		EUR	463.39		","CHILD"
+"Ejemplo6.xlsx","116","	Seguro			25		S	649002		40				705.33		EUR	705.33		","CHILD"
+"Ejemplo6.xlsx","117","	Seguro			26		S	649002		40				13,240.06		EUR	13,240.06		","CHILD"
+"Ejemplo6.xlsx","118","	Seguro			27		S	649002		40				196.97		EUR	196.97		","CHILD"
+"Ejemplo6.xlsx","119","	Seguro			28		S	649002		40				547.02		EUR	547.02		","CHILD"
+"Ejemplo6.xlsx","120","	Seguro			29		S	649002		40				122.36		EUR	122.36		","CHILD"
+"Ejemplo6.xlsx","121","	Seguro			30		S	649002		40				215.49		EUR	215.49		","CHILD"
+"Ejemplo6.xlsx","122","	Seguro			31		S	649002		40				2,598.08		EUR	2,598.08		","CHILD"
+"Ejemplo6.xlsx","123","	Seguro			32		S	649002		40				52.20		EUR	52.20		","CHILD"
+"Ejemplo6.xlsx","124","	Seguro			33		S	649002		40				262.11		EUR	262.11		","CHILD"
+"Ejemplo6.xlsx","125","	Seguro			34		S	649002		40				114.25		EUR	114.25		","CHILD"
+"Ejemplo6.xlsx","126","	Seguro			35		S	649002		40				581.48		EUR	581.48		","CHILD"
+"Ejemplo6.xlsx","127","	Seguro			36		S	649002		40				411.54		EUR	411.54		","CHILD"
+"Ejemplo6.xlsx","128","	Seguro			37		S	649002		40				474.90		EUR	474.90		","CHILD"
+"Ejemplo6.xlsx","129","	Seguro			38		S	649002		40				180.49		EUR	180.49		","CHILD"
+"Ejemplo6.xlsx","130","	Remuneraciones ptes			39		S	465012		40				-64,804.13		EUR			64,804.13","CHILD"
+"Ejemplo6.xlsx","131","						","BLANK"
+"Ejemplo6.xlsx","132","10	150124	100066699	10124	311223		Z1				NOMINA 202312					","PARENT"
+"Ejemplo6.xlsx","133","	Seguro			1		S	649001		40				8.47		EUR	8.47		","CHILD"
+"Ejemplo6.xlsx","134","	Seguro			2		S	649001		40				1.67		EUR	1.67		","CHILD"
+"Ejemplo6.xlsx","135","	Seguro			3		S	649001		40				5.47		EUR	5.47		","CHILD"
+"Ejemplo6.xlsx","136","	Seguro			4		S	649001		40				30.78		EUR	30.78		","CHILD"
+"Ejemplo6.xlsx","137","	Seguro			5		S	649001		40				4.83		EUR	4.83		","CHILD"
+"Ejemplo6.xlsx","138","	Seguro			6		S	649001		40				104.06		EUR	104.06		","CHILD"
+"Ejemplo6.xlsx","139","	Seguro			7		S	649001		40				2.69		EUR	2.69		","CHILD"
+"Ejemplo6.xlsx","140","	Seguro			8		S	649001		40				10.54		EUR	10.54		","CHILD"
+"Ejemplo6.xlsx","141","	Seguro			9		S	649001		40				7.57		EUR	7.57		","CHILD"
+"Ejemplo6.xlsx","142","	Seguro			10		S	649001		40				12.57		EUR	12.57		","CHILD"
+"Ejemplo6.xlsx","143","	Seguro			11		S	649001		40				14.47		EUR	14.47		","CHILD"
+"Ejemplo6.xlsx","144","	Seguro			12		S	649001		40				14.01		EUR	14.01		","CHILD"
+"Ejemplo6.xlsx","145","	Seguro			13		S	649001		40				14.27		EUR	14.27		","CHILD"
+"Ejemplo6.xlsx","146","	Seguro			14		S	649001		40				12.05		EUR	12.05		","CHILD"
+"Ejemplo6.xlsx","147","	Seguro			15		S	649001		40				138.96		EUR	138.96		","CHILD"
+"Ejemplo6.xlsx","148","	Seguro			16		S	649001		40				83.81		EUR	83.81		","CHILD"
+"Ejemplo6.xlsx","149","	Seguro			17		S	649001		40				751.46		EUR	751.46		","CHILD"
+"Ejemplo6.xlsx","150","	Seguro			18		S	649001		40				850.98		EUR	850.98		","CHILD"
+"Ejemplo6.xlsx","151","	Seguro			19		S	649001		40				109.49		EUR	109.49		","CHILD"
+"Ejemplo6.xlsx","152","	Seguro			20		S	649001		40				216.74		EUR	216.74		","CHILD"
+"Ejemplo6.xlsx","153","	Seguro			21		S	649001		40				362.61		EUR	362.61		","CHILD"
+"Ejemplo6.xlsx","154","	Seguro			22		S	649001		40				64.52		EUR	64.52		","CHILD"
+"Ejemplo6.xlsx","155","	Seguro			23		S	649001		40				58.36		EUR	58.36		","CHILD"
+"Ejemplo6.xlsx","156","	Seguro			24		S	649001		40				29.79		EUR	29.79		","CHILD"
+"Ejemplo6.xlsx","157","	Seguro			25		S	649001		40				45.34		EUR	45.34		","CHILD"
+"Ejemplo6.xlsx","158","	Seguro			26		S	649001		40				850.98		EUR	850.98		","CHILD"
+"Ejemplo6.xlsx","159","	Seguro			27		S	649001		40				12.66		EUR	12.66		","CHILD"
+"Ejemplo6.xlsx","160","	Seguro			28		S	649001		40				35.16		EUR	35.16		","CHILD"
+"Ejemplo6.xlsx","161","	Seguro			29		S	649001		40				7.87		EUR	7.87		","CHILD"
+"Ejemplo6.xlsx","162","	Seguro			30		S	649001		40				13.85		EUR	13.85		","CHILD"
+"Ejemplo6.xlsx","163","	Seguro			31		S	649001		40				166.91		EUR	166.91		","CHILD"
+"Ejemplo6.xlsx","164","	Seguro			32		S	649001		40				3.36		EUR	3.36		","CHILD"
+"Ejemplo6.xlsx","165","	Seguro			33		S	649001		40				16.84		EUR	16.84		","CHILD"
+"Ejemplo6.xlsx","166","	Seguro			34		S	649001		40				7.34		EUR	7.34		","CHILD"
+"Ejemplo6.xlsx","167","	Seguro			35		S	649001		40				37.35		EUR	37.35		","CHILD"
+"Ejemplo6.xlsx","168","	Seguro			36		S	649001		40				26.44		EUR	26.44		","CHILD"
+"Ejemplo6.xlsx","169","	Seguro			37		S	649001		40				30.52		EUR	30.52		","CHILD"
+"Ejemplo6.xlsx","170","	Seguro			38		S	649001		40				11.61		EUR	11.61		","CHILD"
+"Ejemplo6.xlsx","171","	Remuneraciones ptes			39		S	465012		40				-4,163.04		EUR			4,163.04","CHILD"
+"Ejemplo6.xlsx","172","						","BLANK"
+"Ejemplo6.xlsx","173","11	150124	100066700	10124	311223		Z1				NOMINA 202312					","PARENT"
+"Ejemplo6.xlsx","174","	Seguro			1		S	649003		40				19.19		EUR	19.19		","CHILD"
+"Ejemplo6.xlsx","175","	Seguro			2		S	649003		40				3.78		EUR	3.78		","CHILD"
+"Ejemplo6.xlsx","176","	Seguro			3		S	649003		40				12.39		EUR	12.39		","CHILD"
+"Ejemplo6.xlsx","177","	Seguro			4		S	649003		40				69.76		EUR	69.76		","CHILD"
+"Ejemplo6.xlsx","178","	Seguro			5		S	649003		40				10.95		EUR	10.95		","CHILD"
+"Ejemplo6.xlsx","179","	Seguro			6		S	649003		40				235.78		EUR	235.78		","CHILD"
+"Ejemplo6.xlsx","180","	Seguro			7		S	649003		40				6.10		EUR	6.10		","CHILD"
+"Ejemplo6.xlsx","181","	Seguro			8		S	649003		40				23.89		EUR	23.89		","CHILD"
+"Ejemplo6.xlsx","182","	Seguro			9		S	649003		40				17.15		EUR	17.15		","CHILD"
+"Ejemplo6.xlsx","183","	Seguro			10		S	649003		40				28.49		EUR	28.49		","CHILD"
+"Ejemplo6.xlsx","184","	Seguro			11		S	649003		40				32.79		EUR	32.79		","CHILD"
+"Ejemplo6.xlsx","185","	Seguro			12		S	649003		40				31.77		EUR	31.77		","CHILD"
+"Ejemplo6.xlsx","186","	Seguro			13		S	649003		40				32.35		EUR	32.35		","CHILD"
+"Ejemplo6.xlsx","187","	Seguro			14		S	649003		40				27.32		EUR	27.32		","CHILD"
+"Ejemplo6.xlsx","188","	Seguro			15		S	649003		40				314.87		EUR	314.87		","CHILD"
+"Ejemplo6.xlsx","189","	Seguro			16		S	649003		40				189.84		EUR	189.84		","CHILD"
+"Ejemplo6.xlsx","190","	Seguro			17		S	649003		40				1,702.90		EUR	1,702.90		","CHILD"
+"Ejemplo6.xlsx","191","	Seguro			18		S	649003		40				1,929.22		EUR	1,929.22		","CHILD"
+"Ejemplo6.xlsx","192","	Seguro			19		S	649003		40				248.17		EUR	248.17		","CHILD"
+"Ejemplo6.xlsx","193","	Seguro			20		S	649003		40				491.38		EUR	491.38		","CHILD"
+"Ejemplo6.xlsx","194","	Seguro			21		S	649003		40				821.54		EUR	821.54		","CHILD"
+"Ejemplo6.xlsx","195","	Seguro			22		S	649003		40				146.19		EUR	146.19		","CHILD"
+"Ejemplo6.xlsx","196","	Seguro			23		S	649003		40				132.30		EUR	132.30		","CHILD"
+"Ejemplo6.xlsx","197","	Seguro			24		S	649003		40				67.51		EUR	67.51		","CHILD"
+"Ejemplo6.xlsx","198","	Seguro			25		S	649003		40				102.77		EUR	102.77		","CHILD"
+"Ejemplo6.xlsx","199","	Seguro			26		S	649003		40				1,929.22		EUR	1,929.22		","CHILD"
+"Ejemplo6.xlsx","200","	Seguro			27		S	649003		40				28.69		EUR	28.69		","CHILD"
+"Ejemplo6.xlsx","201","	Seguro			28		S	649003		40				79.69		EUR	79.69		","CHILD"
+"Ejemplo6.xlsx","202","	Seguro			29		S	649003		40				17.84		EUR	17.84		","CHILD"
+"Ejemplo6.xlsx","203","	Seguro			30		S	649003		40				31.38		EUR	31.38		","CHILD"
+"Ejemplo6.xlsx","204","	Seguro			31		S	649003		40				378.26		EUR	378.26		","CHILD"
+"Ejemplo6.xlsx","205","	Seguro			32		S	649003		40				7.61		EUR	7.61		","CHILD"
+"Ejemplo6.xlsx","206","	Seguro			33		S	649003		40				38.17		EUR	38.17		","CHILD"
+"Ejemplo6.xlsx","207","	Seguro			34		S	649003		40				16.64		EUR	16.64		","CHILD"
+"Ejemplo6.xlsx","208","	Seguro			35		S	649003		40				84.64		EUR	84.64		","CHILD"
+"Ejemplo6.xlsx","209","	Seguro			36		S	649003		40				59.90		EUR	59.90		","CHILD"
+"Ejemplo6.xlsx","210","	Seguro			37		S	649003		40				69.18		EUR	69.18		","CHILD"
+"Ejemplo6.xlsx","211","	Seguro			38		S	649003		40				26.30		EUR	26.30		","CHILD"
+"Ejemplo6.xlsx","212","	Remuneraciones ptes			39		S	465012		40				-9,432.47		EUR			9,432.47","CHILD"
+"Ejemplo6.xlsx","213","						","BLANK"
+"Ejemplo6.xlsx","214","12	150124	100066701	10124	311223		Z1				NOMINA 202312					","PARENT"
+"Ejemplo6.xlsx","215","	Sueldos y salarios			1		S	640000		50					-4,158.00		EUR			4,158.00","CHILD"
+"Ejemplo6.xlsx","216","	Sueldos y salarios			2		S	640000		50					-819.00		EUR			819.00","CHILD"
+"Ejemplo6.xlsx","217","	Sueldos y salarios			3		S	640000		50					-2,686.00		EUR			2,686.00","CHILD"
+"Ejemplo6.xlsx","218","	Sueldos y salarios			4		S	640000		50					-15,122.25		EUR			15,122.25","CHILD"
+"Ejemplo6.xlsx","219","	Sueldos y salarios			5		S	640000		50					-2,373.50		EUR			2,373.50","CHILD"
+"Ejemplo6.xlsx","220","	Sueldos y salarios			6		S	640000		50					-51,139.50		EUR			51,139.50","CHILD"
+"Ejemplo6.xlsx","221","	Sueldos y salarios			7		S	640000		50					-1,323.00		EUR			1,323.00","CHILD"
+"Ejemplo6.xlsx","222","	Sueldos y salarios			8		S	640000		50					-5,184.00		EUR			5,184.00","CHILD"
+"Ejemplo6.xlsx","223","	Sueldos y salarios			9		S	640000		50					-3,720.00		EUR			3,720.00","CHILD"
+"Ejemplo6.xlsx","224","	Sueldos y salarios			10		S	640000		50					-6,177.00		EUR			6,177.00","CHILD"
+"Ejemplo6.xlsx","225","	Sueldos y salarios			11		S	640000		50					-7,113.50		EUR			7,113.50","CHILD"
+"Ejemplo6.xlsx","226","	Sueldos y salarios			12		S	640000		50					-6,895.25		EUR			6,895.25","CHILD"
+"Ejemplo6.xlsx","227","	Sueldos y salarios			13		S	640000		50					-7,023.50		EUR			7,023.50","CHILD"
+"Ejemplo6.xlsx","228","	Sueldos y salarios			14		S	640000		50					-5,934.00		EUR			5,934.00","CHILD"
+"Ejemplo6.xlsx","229","	Sueldos y salarios			15		S	640000		50					-68,342.50		EUR			68,342.50","CHILD"
+"Ejemplo6.xlsx","230","	Sueldos y salarios			16		S	640000		50					-41,200.50		EUR			41,200.50","CHILD"
+"Ejemplo6.xlsx","231","	Sueldos y salarios			17		S	640000		50					-369,634.00		EUR			369,634.00","CHILD"
+"Ejemplo6.xlsx","232","	Sueldos y salarios			18		S	640000		50					-418,581.50		EUR			418,581.50","CHILD"
+"Ejemplo6.xlsx","233","	Sueldos y salarios			19		S	640000		50					-53,807.50		EUR			53,807.50","CHILD"
+"Ejemplo6.xlsx","234","	Sueldos y salarios			20		S	640000		50					-106,663.50		EUR			106,663.50","CHILD"
+"Ejemplo6.xlsx","235","	Sueldos y salarios			21		S	640000		50					-178,405.50		EUR			178,405.50","CHILD"
+"Ejemplo6.xlsx","236","	Sueldos y salarios			22		S	640000		50					-31,731.00		EUR			31,731.00","CHILD"
+"Ejemplo6.xlsx","237","	Sueldos y salarios			23		S	640000		50					-28,701.50		EUR			28,701.50","CHILD"
+"Ejemplo6.xlsx","238","	Sueldos y salarios			24		S	640000		50					-14,657.00		EUR			14,657.00","CHILD"
+"Ejemplo6.xlsx","239","	Sueldos y salarios			25		S	640000		50					-22,312.00		EUR			22,312.00","CHILD"
+"Ejemplo6.xlsx","240","	Sueldos y salarios			26		S	640000		50					-418,581.50		EUR			418,581.50","CHILD"
+"Ejemplo6.xlsx","241","	Sueldos y salarios			27		S	640000		50					-6,223.50		EUR			6,223.50","CHILD"
+"Ejemplo6.xlsx","242","	Sueldos y salarios			28		S	640000		50					-17,291.50		EUR			17,291.50","CHILD"
+"Ejemplo6.xlsx","243","	Sueldos y salarios			29		S	640000		50					-3,872.00		EUR			3,872.00","CHILD"
+"Ejemplo6.xlsx","244","	Sueldos y salarios			30		S	640000		50					-6,807.00		EUR			6,807.00","CHILD"
+"Ejemplo6.xlsx","245","	Sueldos y salarios			31		S	640000		50					-82,089.50		EUR			82,089.50","CHILD"
+"Ejemplo6.xlsx","246","	Sueldos y salarios			32		S	640000		50					-1,651.50		EUR			1,651.50","CHILD"
+"Ejemplo6.xlsx","247","	Sueldos y salarios			33		S	640000		50					-8,289.50		EUR			8,289.50","CHILD"
+"Ejemplo6.xlsx","248","	Sueldos y salarios			34		S	640000		50					-3,612.00		EUR			3,612.00","CHILD"
+"Ejemplo6.xlsx","249","	Sueldos y salarios			35		S	640000		50					-18,382.50		EUR			18,382.50","CHILD"
+"Ejemplo6.xlsx","250","	Sueldos y salarios			36		S	640000		50					-13,009.50		EUR			13,009.50","CHILD"
+"Ejemplo6.xlsx","251","	Sueldos y salarios			37		S	640000		50					-15,015.00		EUR			15,015.00","CHILD"
+"Ejemplo6.xlsx","252","	Sueldos y salarios			38		S	640000		50					-5,709.50		EUR			5,709.50","CHILD"
+"Ejemplo6.xlsx","253","	Remuneraciones ptes			39		S	465012		40				2,047,833.00		EUR	2,047,833.00		","CHILD"
+"Ejemplo6.xlsx","254","						","BLANK"
+"Ejemplo6.xlsx","255","13	150124	100066702	10124	311223		Z1				NOMINA 202312					","PARENT"
+"Ejemplo6.xlsx","256","	Sueldos y salarios			1		S	640000		50					-145.60		EUR			145.60","CHILD"
+"Ejemplo6.xlsx","257","	Sueldos y salarios			2		S	640000		50					-28.70		EUR			28.70","CHILD"
+"Ejemplo6.xlsx","258","	Sueldos y salarios			3		S	640000		50					-94.10		EUR			94.10","CHILD"
+"Ejemplo6.xlsx","259","	Sueldos y salarios			4		S	640000		50					-529.79		EUR			529.79","CHILD"
+"Ejemplo6.xlsx","260","	Sueldos y salarios			5		S	640000		50					-83.15		EUR			83.15","CHILD"
+"Ejemplo6.xlsx","261","	Sueldos y salarios			6		S	640000		50					-1,791.98		EUR			1,791.98","CHILD"
+"Ejemplo6.xlsx","262","	Sueldos y salarios			7		S	640000		50					-46.35		EUR			46.35","CHILD"
+"Ejemplo6.xlsx","263","	Sueldos y salarios			8		S	640000		50					-181.60		EUR			181.60","CHILD"
+"Ejemplo6.xlsx","264","	Sueldos y salarios			9		S	640000		50					-130.20		EUR			130.20","CHILD"
+"Ejemplo6.xlsx","265","	Sueldos y salarios			10		S	640000		50					-216.30		EUR			216.30","CHILD"
+"Ejemplo6.xlsx","266","	Sueldos y salarios			11		S	640000		50					-249.25		EUR			249.25","CHILD"
+"Ejemplo6.xlsx","267","	Sueldos y salarios			12		S	640000		50					-241.65		EUR			241.65","CHILD"
+"Ejemplo6.xlsx","268","	Sueldos y salarios			13		S	640000		50					-246.25		EUR			246.25","CHILD"
+"Ejemplo6.xlsx","269","	Sueldos y salarios			14		S	640000		50					-208.02		EUR			208.02","CHILD"
+"Ejemplo6.xlsx","270","	Sueldos y salarios			15		S	640000		50					-2,397.30		EUR			2,397.30","CHILD"
+"Ejemplo6.xlsx","271","	Sueldos y salarios			16		S	640000		50					-1,444.02		EUR			1,444.02","CHILD"
+"Ejemplo6.xlsx","272","	Sueldos y salarios			17		S	640000		50					-12,959.42		EUR			12,959.42","CHILD"
+"Ejemplo6.xlsx","273","	Sueldos y salarios			18		S	640000		50					-14,671.82		EUR			14,671.82","CHILD"
+"Ejemplo6.xlsx","274","	Sueldos y salarios			19		S	640000		50					-1,885.62		EUR			1,885.62","CHILD"
+"Ejemplo6.xlsx","275","	Sueldos y salarios			20		S	640000		50					-3,737.62		EUR			3,737.62","CHILD"
+"Ejemplo6.xlsx","276","	Sueldos y salarios			21		S	640000		50					-6,251.82		EUR			6,251.82","CHILD"
+"Ejemplo6.xlsx","277","	Sueldos y salarios			22		S	640000		50					-1,111.83		EUR			1,111.83","CHILD"
+"Ejemplo6.xlsx","278","	Sueldos y salarios			23		S	640000		50					-1,006.05		EUR			1,006.05","CHILD"
+"Ejemplo6.xlsx","279","	Sueldos y salarios			24		S	640000		50					-513.50		EUR			513.50","CHILD"
+"Ejemplo6.xlsx","280","	Sueldos y salarios			25		S	640000		50					-782.12		EUR			782.12","CHILD"
+"Ejemplo6.xlsx","281","	Sueldos y salarios			26		S	640000		50					-14,671.82		EUR			14,671.82","CHILD"
+"Ejemplo6.xlsx","282","	Sueldos y salarios			27		S	640000		50					-218.23		EUR			218.23","CHILD"
+"Ejemplo6.xlsx","283","	Sueldos y salarios			28		S	640000		50					-605.71		EUR			605.71","CHILD"
+"Ejemplo6.xlsx","284","	Sueldos y salarios			29		S	640000		50					-135.72		EUR			135.72","CHILD"
+"Ejemplo6.xlsx","285","	Sueldos y salarios			30		S	640000		50					-238.62		EUR			238.62","CHILD"
+"Ejemplo6.xlsx","286","	Sueldos y salarios			31		S	640000		50					-2,876.67		EUR			2,876.67","CHILD"
+"Ejemplo6.xlsx","287","	Sueldos y salarios			32		S	640000		50					-57.89		EUR			57.89","CHILD"
+"Ejemplo6.xlsx","288","	Sueldos y salarios			33		S	640000		50					-290.54		EUR			290.54","CHILD"
+"Ejemplo6.xlsx","289","	Sueldos y salarios			34		S	640000		50					-126.62		EUR			126.62","CHILD"
+"Ejemplo6.xlsx","290","	Sueldos y salarios			35		S	640000		50					-643.93		EUR			643.93","CHILD"
+"Ejemplo6.xlsx","291","	Sueldos y salarios			36		S	640000		50					-455.93		EUR			455.93","CHILD"
+"Ejemplo6.xlsx","292","	Sueldos y salarios			37		S	640000		50					-526.03		EUR			526.03","CHILD"
+"Ejemplo6.xlsx","293","	Sueldos y salarios			38		S	640000		50					-200.13		EUR			200.13","CHILD"
+"Ejemplo6.xlsx","294","	Remuneraciones ptes			39		S	465012		40				71,779.22		EUR	71,779.22		","CHILD"
+"Ejemplo6.xlsx","295","						","BLANK"
+"Ejemplo6.xlsx","296","14	150124	100066703	10124	311223		Z1				NOMINA 202312					","PARENT"
+"Ejemplo6.xlsx","297","	Sueldos y salarios			1		S	640000		50					-103.40		EUR			103.40","CHILD"
+"Ejemplo6.xlsx","298","	Sueldos y salarios			2		S	640000		50					-20.38		EUR			20.38","CHILD"
+"Ejemplo6.xlsx","299","	Sueldos y salarios			3		S	640000		50					-66.82		EUR			66.82","CHILD"
+"Ejemplo6.xlsx","300","	Sueldos y salarios			4		S	640000		50					-376.22		EUR			376.22","CHILD"
+Ejemplo9.xlsx,1,"Descripción	Tipo documento	Nº documento	Nº cuenta	Nombre	Importe debe	Importe haber	Nº asiento	Fecha registro",HEADER
+Ejemplo9.xlsx,1,"Descripción	Tipo documento	Nº documento	Nº cuenta	Nombre	Importe debe	Importe haber	Nº asiento	Fecha registro",HEADER
+Ejemplo9.xlsx,1,"Descripción	Tipo documento	Nº documento	Nº cuenta	Nombre	Importe debe	Importe haber	Nº asiento	Fecha registro",HEADER
+Ejemplo9.xlsx,1,"Descripción	Tipo documento	Nº documento	Nº cuenta	Nombre	Importe debe	Importe haber	Nº asiento	Fecha registro",HEADER
+Ejemplo9.xlsx,1,"Descripción	Tipo documento	Nº documento	Nº cuenta	Nombre	Importe debe	Importe haber	Nº asiento	Fecha registro",HEADER
+Ejemplo9.xlsx,1,"Descripción	Tipo documento	Nº documento	Nº cuenta	Nombre	Importe debe	Importe haber	Nº asiento	Fecha registro",HEADER
+Ejemplo9.xlsx,1,"Descripción	Tipo documento	Nº documento	Nº cuenta	Nombre	Importe debe	Importe haber	Nº asiento	Fecha registro",HEADER
+Ejemplo9.xlsx,1,"Descripción	Tipo documento	Nº documento	Nº cuenta	Nombre	Importe debe	Importe haber	Nº asiento	Fecha registro",HEADER
+Ejemplo9.xlsx,1,"Descripción	Tipo documento	Nº documento	Nº cuenta	Nombre	Importe debe	Importe haber	Nº asiento	Fecha registro",HEADER
+Ejemplo9.xlsx,1,"Descripción	Tipo documento	Nº documento	Nº cuenta	Nombre	Importe debe	Importe haber	Nº asiento	Fecha registro",HEADER
+Ejemplo9.xlsx,1,"Descripción	Tipo documento	Nº documento	Nº cuenta	Nombre	Importe debe	Importe haber	Nº asiento	Fecha registro",HEADER
+Ejemplo9.xlsx,1,"Descripción	Tipo documento	Nº documento	Nº cuenta	Nombre	Importe debe	Importe haber	Nº asiento	Fecha registro",HEADER
+Ejemplo9.xlsx,1,"Descripción	Tipo documento	Nº documento	Nº cuenta	Nombre	Importe debe	Importe haber	Nº asiento	Fecha registro",HEADER
+Ejemplo9.xlsx,1,"Descripción	Tipo documento	Nº documento	Nº cuenta	Nombre	Importe debe	Importe haber	Nº asiento	Fecha registro",HEADER
+Ejemplo9.xlsx,1,"Descripción	Tipo documento	Nº documento	Nº cuenta	Nombre	Importe debe	Importe haber	Nº asiento	Fecha registro",HEADER
+Ejemplo9.xlsx,1,"Descripción	Tipo documento	Nº documento	Nº cuenta	Nombre	Importe debe	Importe haber	Nº asiento	Fecha registro",HEADER
+Ejemplo9.xlsx,1,"Descripción	Tipo documento	Nº documento	Nº cuenta	Nombre	Importe debe	Importe haber	Nº asiento	Fecha registro",HEADER
+Ejemplo9.xlsx,1,"Descripción	Tipo documento	Nº documento	Nº cuenta	Nombre	Importe debe	Importe haber	Nº asiento	Fecha registro",HEADER
+Ejemplo9.xlsx,1,"Descripción	Tipo documento	Nº documento	Nº cuenta	Nombre	Importe debe	Importe haber	Nº asiento	Fecha registro",HEADER
+Ejemplo9.xlsx,1,"Descripción	Tipo documento	Nº documento	Nº cuenta	Nombre	Importe debe	Importe haber	Nº asiento	Fecha registro",HEADER
+Ejemplo9.xlsx,1,"Descripción	Tipo documento	Nº documento	Nº cuenta	Nombre	Importe debe	Importe haber	Nº asiento	Fecha registro",HEADER
+Ejemplo9.xlsx,1,"Descripción	Tipo documento	Nº documento	Nº cuenta	Nombre	Importe debe	Importe haber	Nº asiento	Fecha registro",HEADER
+Ejemplo9.xlsx,2,"Asiento apertura periodo		100000000000		Capital social		6010.12	1	01/01/24",DATA
+Ejemplo9.xlsx,3,"Asiento apertura periodo		112000000000		Reserva legal		1202.02	1	01/01/24",DATA
+Ejemplo9.xlsx,4,"Asiento apertura periodo		113000000000		Reserva voluntaria		4532085.33	1	01/01/24",DATA
+Ejemplo9.xlsx,5,"Asiento apertura periodo		114700000001		Reserva de capitalizacion 		657686.02	1	01/01/24",DATA
+Ejemplo9.xlsx,6,"Asiento apertura periodo		129000000000		Resultado del ejercicio		2811540.95	1	01/01/24",DATA
+Ejemplo9.xlsx,7,"Asiento apertura periodo		206000000000		Aplicaciones informáticas	174974.22		1	01/01/24",DATA
+Ejemplo9.xlsx,8,"Asiento apertura periodo		210900000000		Terrenos y bienes naturales	1207500		1	01/01/24",DATA
+Ejemplo9.xlsx,9,"Asiento apertura periodo		211000000000		Nave Mataro	1947879.91		1	01/01/24",DATA
+Ejemplo9.xlsx,10,"Asiento apertura periodo		213000000000		Maquinaria	308400.72		1	01/01/24",DATA
+Ejemplo9.xlsx,11,"Asiento apertura periodo		215000000000		Instalaciones	77148.01		1	01/01/24",DATA
+Ejemplo9.xlsx,12,"Asiento apertura periodo		216000000000		Mobiliario	138936.11		1	01/01/24",DATA
+Ejemplo9.xlsx,13,"Asiento apertura periodo		217000000000		Equipos procesos información	265858.63		1	01/01/24",DATA
+Ejemplo9.xlsx,14,"Asiento apertura periodo		217000000001		Equipos procesos información ue	571.5		1	01/01/24",DATA
+Ejemplo9.xlsx,15,"Asiento apertura periodo		218000000000		Elementos de transporte	315198.95		1	01/01/24",DATA
+Ejemplo9.xlsx,16,"Asiento apertura periodo		219000000000		Otro inmovilizado material	43056.64		1	01/01/24",DATA
+Ejemplo9.xlsx,17,"Asiento apertura periodo		252000000001		CREDITOS A LARGO PLAZO 	18000		1	01/01/24",DATA
+Ejemplo9.xlsx,18,"Asiento apertura periodo		260000000002		Fianza alquiler desp..Patpon		200	1	01/01/24",DATA
+Ejemplo9.xlsx,19,"Asiento apertura periodo		260000000003		Fianza alquiler despacho PTP 		400	1	01/01/24",DATA
+Ejemplo9.xlsx,20,"Asiento apertura periodo		260000000004		Fianza alquiler despacho PFL 		400	1	01/01/24",DATA
+Ejemplo9.xlsx,21,"Asiento apertura periodo		260000000005		Fianza alquiler despacho MATARO 		600	1	01/01/24",DATA
+Ejemplo9.xlsx,22,"Asiento apertura periodo		260000000006		Fianza alquiler despacho VLL 		600	1	01/01/24",DATA
+Ejemplo9.xlsx,23,"Asiento apertura periodo		260000000007		Fianza alquiler despacho BA		600	1	01/01/24",DATA
+Ejemplo9.xlsx,24,"Asiento apertura periodo		260000000008		Fianza alquiler despacho MA		600	1	01/01/24",DATA
+Ejemplo9.xlsx,25,"Asiento apertura periodo		260000000009		Fianza alquiler despacho SE		600	1	01/01/24",DATA
+Ejemplo9.xlsx,26,"Asiento apertura periodo		260000000010		Fianza alquiler despacho VA		600	1	01/01/24",DATA
+Ejemplo9.xlsx,27,"Asiento apertura periodo		280600000001		Amort.Acum. Apl. informáticas		103799.13	1	01/01/24",DATA
+Ejemplo9.xlsx,28,"Asiento apertura periodo		281300000000		Amort.Acum. Maquinaria		294780.69	1	01/01/24",DATA
+Ejemplo9.xlsx,29,"Asiento apertura periodo		281500000000		Amort.Acum.Instalaciones		69433.21	1	01/01/24",DATA
+Ejemplo9.xlsx,30,"Asiento apertura periodo		281600000000		Amort.Acum.Mobiliario		125042.5	1	01/01/24",DATA
+Ejemplo9.xlsx,31,"Asiento apertura periodo		281700000000		Amort.Acum.Eq. proc.inform		239273	1	01/01/24",DATA
+Ejemplo9.xlsx,32,"Asiento apertura periodo		281700000001		Amort.Acum.Eq. proc.inform.ue		514.35	1	01/01/24",DATA
+Ejemplo9.xlsx,33,"Asiento apertura periodo		281800000000		Amort.Acum.Elem. transporte		252159.16	1	01/01/24",DATA
+Ejemplo9.xlsx,34,"Asiento apertura periodo		281900000000		Amort.Acum.Otro inmov.mat		38750.98	1	01/01/24",DATA
+Ejemplo9.xlsx,35,"Asiento apertura periodo		430000000000		Clientes		166598.68	1	01/01/24",DATA
+Ejemplo9.xlsx,36,"Asiento apertura periodo		430000000001		Clientes 1	130789.71		1	01/01/24",DATA
+Ejemplo9.xlsx,37,"Asiento apertura periodo		430000000002		Clientes 2	89567.23		1	01/01/24",DATA
+Ejemplo9.xlsx,38,"Asiento apertura periodo		430000000003		Clientes 3	45890.12		1	01/01/24",DATA
+Ejemplo9.xlsx,39,"Asiento apertura periodo		430000000004		Clientes 4	67234.56		1	01/01/24",DATA
+Ejemplo9.xlsx,40,"Asiento apertura periodo		470000000001		Hacienda Pública deudora		15789.45	1	01/01/24",DATA
+Ejemplo9.xlsx,41,"Asiento apertura periodo		472000000001		HP IVA soportado	23456.78		1	01/01/24",DATA
+Ejemplo9.xlsx,42,"Asiento apertura periodo		473000000000		HP retenciones y pagos cuenta		12345.67	1	01/01/24",DATA
+Ejemplo9.xlsx,43,"Asiento apertura periodo		475000000000		HP acreedora por IVA		25678.90	1	01/01/24",DATA
+Ejemplo9.xlsx,44,"Asiento apertura periodo		476000000000		Organismos SS acreedores		8901.23	1	01/01/24",DATA
+Ejemplo9.xlsx,45,"Asiento apertura periodo		477000000000		HP IVA repercutido		45678.12	1	01/01/24",DATA
+Ejemplo9.xlsx,46,"Asiento apertura periodo		512000000001		Bancos cuenta 1	890123.45		1	01/01/24",DATA
+Ejemplo9.xlsx,47,"Asiento apertura periodo		512000000002		Bancos cuenta 2	567890.12		1	01/01/24",DATA
+Ejemplo9.xlsx,48,"Asiento apertura periodo		512000000003		Bancos cuenta 3	234567.89		1	01/01/24",DATA
+Ejemplo9.xlsx,49,"Asiento apertura periodo		520000000000		Deudas a corto plazo		345678.90	1	01/01/24",DATA
+Ejemplo9.xlsx,50,"Asiento apertura periodo		523000000000		Proveedores		456789.01	1	01/01/24",DATA
+Ejemplo9.xlsx,51,"Factura proveedor	KR	100000000001	600000000000	Compras mercaderias	15000		2	02/01/24",DATA
+Ejemplo9.xlsx,52,"Factura proveedor	KR	100000000001	472000000000	HP IVA soportado	3150		2	02/01/24",DATA
+Ejemplo9.xlsx,53,"Factura proveedor	KR	100000000001	410000000000	Acreedores servicios		18150	2	02/01/24",DATA
+Ejemplo9.xlsx,54,"Factura cliente	DR	100000000002	430000000001	Clientes	24200		3	03/01/24",DATA
+Ejemplo9.xlsx,55,"Factura cliente	DR	100000000002	477000000000	HP IVA repercutido		5082	3	03/01/24",DATA
+Ejemplo9.xlsx,56,"Factura cliente	DR	100000000002	700000000000	Ventas mercaderias		19118	3	03/01/24",DATA
+Ejemplo9.xlsx,57,"Pago proveedor	SA	100000000003	410000000000	Acreedores servicios	18150		4	04/01/24",DATA
+Ejemplo9.xlsx,58,"Pago proveedor	SA	100000000003	512000000001	Bancos cuenta 1		18150	4	04/01/24",DATA
+Ejemplo9.xlsx,59,"Cobro cliente	SA	100000000004	512000000002	Bancos cuenta 2	24200		5	05/01/24",DATA
+Ejemplo9.xlsx,60,"Cobro cliente	SA	100000000004	430000000001	Clientes		24200	5	05/01/24",DATA
+Ejemplo9.xlsx,61,"Nomina enero	SA	100000000005	640000000000	Sueldos y salarios	85000		6	31/01/24",DATA
+Ejemplo9.xlsx,62,"Nomina enero	SA	100000000005	642000000000	Seguridad Social empresa	25500		6	31/01/24",DATA
+Ejemplo9.xlsx,63,"Nomina enero	SA	100000000005	473000000001	HP retenciones		18700	6	31/01/24",DATA
+Ejemplo9.xlsx,64,"Nomina enero	SA	100000000005	476000000001	Organismos SS		8925	6	31/01/24",DATA
+Ejemplo9.xlsx,65,"Nomina enero	SA	100000000005	465000000000	Remuneraciones pendientes pago		82875	6	31/01/24",DATA
+Ejemplo9.xlsx,66,"Alquiler oficina	KR	100000000006	621000000000	Arrendamientos	8500		7	31/01/24",DATA
+Ejemplo9.xlsx,67,"Alquiler oficina	KR	100000000006	472000000001	HP IVA soportado	1785		7	31/01/24",DATA
+Ejemplo9.xlsx,68,"Alquiler oficina	KR	100000000006	410000000001	Acreedores servicios		10285	7	31/01/24",DATA
+Ejemplo9.xlsx,69,"Suministros	KR	100000000007	628000000000	Suministros	2340		8	31/01/24",DATA
+Ejemplo9.xlsx,70,"Suministros	KR	100000000007	472000000002	HP IVA soportado	491.4		8	31/01/24",DATA
+Ejemplo9.xlsx,71,"Suministros	KR	100000000007	410000000002	Acreedores servicios		2831.4	8	31/01/24",DATA
+Ejemplo9.xlsx,72,"Amortizacion	SA	100000000008	681000000000	Amortizacion inmovilizado material	12500		9	31/01/24",DATA
+Ejemplo9.xlsx,73,"Amortizacion	SA	100000000008	680000000000	Amortizacion inmovilizado intangible	3250		9	31/01/24",DATA
+Ejemplo9.xlsx,74,"Amortizacion	SA	100000000008	280600000001	Amort.Acum. Apl. informáticas		3250	9	31/01/24",DATA
+Ejemplo9.xlsx,75,"Amortizacion	SA	100000000008	281300000001	Amort.Acum. Maquinaria		4200	9	31/01/24",DATA
+Ejemplo9.xlsx,76,"Amortizacion	SA	100000000008	281500000001	Amort.Acum.Instalaciones		2800	9	31/01/24",DATA
+Ejemplo9.xlsx,77,"Amortizacion	SA	100000000008	281600000001	Amort.Acum.Mobiliario		3500	9	31/01/24",DATA
+Ejemplo9.xlsx,78,"Amortizacion	SA	100000000008	281800000001	Amort.Acum.Elem. transporte		1800	9	31/01/24",DATA
+Ejemplo9.xlsx,79,"Provision	SA	100000000009	694000000000	Perdidas por deterioro		5600	10	31/01/24",DATA
+Ejemplo9.xlsx,80,"Provision	SA	100000000009	490000000000	Deterioro valor creditos comerciales	5600		10	31/01/24",DATA
+Ejemplo10.csv,1,"ACTEON SIGLO XXI, SA                             Diario de documentos (acc 01.01.2024 - 30.09.2024                             Hora 11:37:42     Fecha 26.11.2024									",META
+Ejemplo10.csv,2,"VALENCIA              Ledger 0L                                                                                               RFBELJ10/JCARBALLO Página         1									",META
+Ejemplo10.csv,3,"									",BLANK
+Ejemplo10.csv,4,"	Referencia		    Número	Registrado		Nº doc.		Período			Fe.contab.	Fecha doc.	Clase	Texto cab.documento			Usuario	Nº doc.LM	EjLM	Anulación	 Ej.",HEADER
+Ejemplo10.csv,5,"	Cuenta				CC		Lib.mayor		II	  Debe en moneda local			 Haber en moneda local		ML	Texto				",HEADER
+Ejemplo10.csv,6,"									",BLANK
+Ejemplo10.csv,7,"	AV4N000001		1	02.01.2024		101000000		1			01.01.2024	01.01.2024	RV	Traspaso de facturas			AJIMENEZ	101000000	2024		",PARENT
+Ejemplo10.csv,8,"	0000100451	DIRECT CLIENT			11		43000000		R1				160,2		EUR	""162950	MARTÍNEZ PÉREZ, SILVIA""				",CHILD
+Ejemplo10.csv,9,"	0047700000	Hac Pub, IVA reper			40				R1	14,56				EUR	""AV4N000001	MARTÍNEZ PÉREZ, SILVIA""				",CHILD
+Ejemplo10.csv,10,"	0043090005	Mano corriente TMS			40				R1	145,64				EUR	""AV4N000001	Advance invoice""				",CHILD
+Ejemplo10.csv,11,"									",BLANK
+Ejemplo10.csv,12,"	AV4N000002		2	02.01.2024		101000001		1			01.01.2024	01.01.2024	RV	Traspaso de facturas			AJIMENEZ	101000001	2024		",PARENT
+Ejemplo10.csv,13,"	0000100451	DIRECT CLIENT			11		43000000		R1				160,2		EUR	""162950	MARTÍNEZ PÉREZ, SILVIA""				",CHILD
+Ejemplo10.csv,14,"	0047700000	Hac Pub, IVA reper			40				R1	14,56				EUR	""AV4N000002	MARTÍNEZ PÉREZ, SILVIA""				",CHILD
+Ejemplo10.csv,15,"	0043090005	Mano corriente TMS			40				R1	145,64				EUR	""AV4N000002	Advance invoice""				",CHILD
+Ejemplo10.csv,16,"									",BLANK
+Ejemplo10.csv,17,"	AV4O000001		3	02.01.2024		101000002		1			01.01.2024	01.01.2024	RV	Traspaso de facturas			AJIMENEZ	101000002	2024		",PARENT
+Ejemplo10.csv,18,"	0047700000	Hac Pub, IVA reper			40				R1	15,82				EUR	""AV4O000001	WALSH, SANDY HENNY""				",CHILD
+Ejemplo10.csv,19,"	0043090005	Mano corriente TMS			40				R1	158,17				EUR	""AV4O000001	Advance invoice""				",CHILD
+Ejemplo10.csv,20,"	0047700000	Hac Pub, IVA reper			50				R1				15,82		EUR	""AV4O000001	WALSH, SANDY HENNY""				",CHILD
+Ejemplo10.csv,21,"	0043090005	Mano corriente TMS			50				R1				158,17		EUR	""AV4O000001	Room""				",CHILD
+Ejemplo10.csv,22,"									",BLANK
+Ejemplo10.csv,23,"	AV4O000002		4	02.01.2024		101000003		1			01.01.2024	01.01.2024	RV	Traspaso de facturas			AJIMENEZ	101000003	2024		",PARENT
+Ejemplo10.csv,24,"	0047700000	Hac Pub, IVA reper			40				R1	47				EUR	""AV4O000002	PALACIO  ARM NTO, CHRISTIAN""				",CHILD
+Ejemplo10.csv,25,"	0043090005	Mano corriente TMS			40				R1	469,97				EUR	""AV4O000002	Advance invoice""				",CHILD
+Ejemplo10.csv,26,"	0047700000	Hac Pub, IVA reper			50				R1				15		EUR	""AV4O000002	PALACIO  ARM NTO, CHRISTIAN""				",CHILD
+Ejemplo10.csv,27,"	0043090005	Mano corriente TMS			50				R1				149,99		EUR	""AV4O000002	Room""				",CHILD
+Ejemplo10.csv,28,"	0047700000	Hac Pub, IVA reper			50				R1				15,64		EUR	""AV4O000002	PALACIO  ARM NTO, CHRISTIAN""				",CHILD
+Ejemplo10.csv,29,"	0043090005	Mano corriente TMS			50				R1				156,35		EUR	""AV4O000002	Room""				",CHILD
+Ejemplo10.csv,30,"	0047700000	Hac Pub, IVA reper			50				R1				16,36		EUR	""AV4O000002	PALACIO  ARM NTO, CHRISTIAN""				",CHILD
+Ejemplo10.csv,31,"	0043090005	Mano corriente TMS			50				R1				163,63		EUR	""AV4O000002	Room""				",CHILD
+Ejemplo10.csv,32,"									",BLANK
+Ejemplo10.csv,33,"	AV4O000003		5	02.01.2024		101000004		1			01.01.2024	01.01.2024	RV	Traspaso de facturas			AJIMENEZ	101000004	2024		",PARENT
+Ejemplo10.csv,34,"	0047700000	Hac Pub, IVA reper			40				R1	41,54				EUR	""AV4O000003	AVILA DEL VECCHIO, SILVANA MARGARITA""				",CHILD
+Ejemplo10.csv,35,"	0043090005	Mano corriente TMS			40				R1	415,43				EUR	""AV4O000003	Advance invoice""				",CHILD
+Ejemplo10.csv,36,"	0047700000	Hac Pub, IVA reper			50				R1				13,18		EUR	""AV4O000003	AVILA DEL VECCHIO, SILVANA MARGARITA""				",CHILD
+Ejemplo10.csv,37,"	0043090005	Mano corriente TMS			50				R1				131,81		EUR	""AV4O000003	Room""				",CHILD
+Ejemplo10.csv,38,"	0047700000	Hac Pub, IVA reper			50				R1				13,82		EUR	""AV4O000003	AVILA DEL VECCHIO, SILVANA MARGARITA""				",CHILD
+Ejemplo10.csv,39,"	0043090005	Mano corriente TMS			50				R1				138,17		EUR	""AV4O000003	Room""				",CHILD
+Ejemplo10.csv,40,"	0047700000	Hac Pub, IVA reper			50				R1				14,54		EUR	""AV4O000003	AVILA DEL VECCHIO, SILVANA MARGARITA""				",CHILD
+Ejemplo10.csv,41,"	0043090005	Mano corriente TMS			50				R1				145,45		EUR	""AV4O000003	Room""				",CHILD
+Ejemplo10.csv,42,"									",BLANK
+Ejemplo10.csv,43,"	AV4O000004		6	02.01.2024		101000005		1			01.01.2024	01.01.2024	RV	Traspaso de facturas			AJIMENEZ	101000005	2024		",PARENT
+Ejemplo10.csv,44,"	0047700000	Hac Pub, IVA reper			40				R1	23,18				EUR	""AV4O000004	ZBIANCMKI, KAMIL SZYMON""				",CHILD
+Ejemplo10.csv,45,"	0043090005	Mano corriente TMS			40				R1	231,82				EUR	""AV4O000004	Advance invoice""				",CHILD
+Ejemplo10.csv,46,"	0047700000	Hac Pub, IVA reper			50				R1				10,82		EUR	""AV4O000004	ZBIANCMKI, KAMIL SZYMON""				",CHILD
+Ejemplo10.csv,47,"	0043090005	Mano corriente TMS			50				R1				108,18		EUR	""AV4O000004	Room""				",CHILD
+Ejemplo10.csv,48,"	0047700000	Hac Pub, IVA reper			50				R1				12,36		EUR	""AV4O000004	ZBIANCMKI, KAMIL SZYMON""				",CHILD
+Ejemplo10.csv,49,"	0043090005	Mano corriente TMS			50				R1				123,64		EUR	""AV4O000004	Room""				",CHILD
+Ejemplo10.csv,50,"									",BLANK
+Ejemplo10.csv,51,"	AV4O000005		7	02.01.2024		101000006		1			01.01.2024	01.01.2024	RV	Traspaso de facturas			AJIMENEZ	101000006	2024		",PARENT
+Ejemplo10.csv,52,"	0047700000	Hac Pub, IVA reper			40				R1	15,18				EUR	""AV4O000005	TOST BRULL, JAUME""				",CHILD
+Ejemplo10.csv,53,"	0043090005	Mano corriente TMS			40				R1	151,82				EUR	""AV4O000005	Advance invoice""				",CHILD
+Ejemplo10.csv,54,"	0047700000	Hac Pub, IVA reper			50				R1				15,18		EUR	""AV4O000005	TOST BRULL, JAUME""				",CHILD
+Ejemplo10.csv,55,"	0043090005	Mano corriente TMS			50				R1				151,82		EUR	""AV4O000005	Room""				",CHILD
+Ejemplo10.csv,56,"									",BLANK
+Ejemplo10.csv,57,"	AV4O000006		8	02.01.2024		101000007		1			01.01.2024	01.01.2024	RV	Traspaso de facturas			AJIMENEZ	101000007	2024		",PARENT
+Ejemplo10.csv,58,"	0047700000	Hac Pub, IVA reper			40				R1	31,64				EUR	""AV4O000006	BRYCE MOTOS, ANTONIO""				",CHILD
+Ejemplo10.csv,59,"	0043090005	Mano corriente TMS			40				R1	316,36				EUR	""AV4O000006	Advance invoice""				",CHILD
+Ejemplo10.csv,60,"	0047700000	Hac Pub, IVA reper			50				R1				10,55		EUR	""AV4O000006	BRYCE MOTOS, ANTONIO""				",CHILD
+Ejemplo10.csv,61,"	0043090005	Mano corriente TMS			50				R1				105,45		EUR	""AV4O000006	Room""				",CHILD
+Ejemplo10.csv,62,"	0047700000	Hac Pub, IVA reper			50				R1				10,55		EUR	""AV4O000006	BRYCE MOTOS, ANTONIO""				",CHILD
+Ejemplo10.csv,63,"	0043090005	Mano corriente TMS			50				R1				105,45		EUR	""AV4O000006	Room""				",CHILD
+Ejemplo10.csv,64,"	0047700000	Hac Pub, IVA reper			50				R1				10,54		EUR	""AV4O000006	BRYCE MOTOS, ANTONIO""				",CHILD
+Ejemplo10.csv,65,"	0043090005	Mano corriente TMS			50				R1				105,46		EUR	""AV4O000006	Room""				",CHILD
+Ejemplo10.csv,66,"									",BLANK
+Ejemplo10.csv,67,"	AV4O000007		9	02.01.2024		101000008		1			01.01.2024	01.01.2024	RV	Traspaso de facturas			AJIMENEZ	101000008	2024		",PARENT
+Ejemplo10.csv,68,"	0047700000	Hac Pub, IVA reper			40				R1	31,36				EUR	""AV4O000007	MARTÍN PALOMO, ANTONIO""				",CHILD
+Ejemplo10.csv,69,"	0043090005	Mano corriente TMS			40				R1	313,64				EUR	""AV4O000007	Advance invoice""				",CHILD
+Ejemplo10.csv,70,"	0047700000	Hac Pub, IVA reper			50				R1				31,36		EUR	""AV4O000007	MARTÍN PALOMO, ANTONIO""				",CHILD
+Ejemplo10.csv,71,"	0043090005	Mano corriente TMS			50				R1				313,64		EUR	""AV4O000007	Room""				",CHILD
+Ejemplo10.csv,72,"									",BLANK
+Ejemplo10.csv,73,"	AV4O000008		10	02.01.2024		101000009		1			01.01.2024	01.01.2024	RV	Traspaso de facturas			AJIMENEZ	101000009	2024		",PARENT
+Ejemplo10.csv,74,"	0047700000	Hac Pub, IVA reper			40				R1	39,64				EUR	""AV4O000008	MANRIQUE VALIENTE, JAVIER""				",CHILD
+Ejemplo10.csv,75,"	0043090005	Mano corriente TMS			40				R1	396,36				EUR	""AV4O000008	Advance invoice""				",CHILD
+Ejemplo10.csv,76,"	0047700000	Hac Pub, IVA reper			50				R1				13,21		EUR	""AV4O000008	MANRIQUE VALIENTE, JAVIER""				",CHILD
+Ejemplo10.csv,77,"	0043090005	Mano corriente TMS			50				R1				132,12		EUR	""AV4O000008	Room""				",CHILD
+Ejemplo10.csv,78,"	0047700000	Hac Pub, IVA reper			50				R1				13,21		EUR	""AV4O000008	MANRIQUE VALIENTE, JAVIER""				",CHILD
+Ejemplo10.csv,79,"	0043090005	Mano corriente TMS			50				R1				132,12		EUR	""AV4O000008	Room""				",CHILD
+Ejemplo10.csv,80,"	0047700000	Hac Pub, IVA reper			50				R1				13,22		EUR	""AV4O000008	MANRIQUE VALIENTE, JAVIER""				",CHILD
+Ejemplo10.csv,81,"	0043090005	Mano corriente TMS			50				R1				132,12		EUR	""AV4O000008	Room""				",CHILD
+Ejemplo10.csv,82,"									",BLANK
+Ejemplo10.csv,83,"	AV4O000009		11	02.01.2024		101000010		1			01.01.2024	01.01.2024	RV	Traspaso de facturas			AJIMENEZ	101000010	2024		",PARENT
+Ejemplo10.csv,84,"	0047700000	Hac Pub, IVA reper			40				R1	24,55				EUR	""AV4O000009	MANRIQUEZ GONZALEZ, JUAN CARLOS""				",CHILD
+Ejemplo10.csv,85,"	0043090005	Mano corriente TMS			40				R1	245,45				EUR	""AV4O000009	Advance invoice""				",CHILD
+Ejemplo10.csv,86,"	0047700000	Hac Pub, IVA reper			50				R1				24,55		EUR	""AV4O000009	MANRIQUEZ GONZALEZ, JUAN CARLOS""				",CHILD
+Ejemplo10.csv,87,"	0043090005	Mano corriente TMS			50				R1				245,45		EUR	""AV4O000009	Room""				",CHILD
+Ejemplo10.csv,88,"									",BLANK
+Ejemplo10.csv,89,"	AV4O000010		12	02.01.2024		101000011		1			01.01.2024	01.01.2024	RV	Traspaso de facturas			AJIMENEZ	101000011	2024		",PARENT
+Ejemplo10.csv,90,"	0047700000	Hac Pub, IVA reper			40				R1	34,45				EUR	""AV4O000010	SANCHEZ CABEZA, JESUS""				",CHILD
+Ejemplo10.csv,91,"	0043090005	Mano corriente TMS			40				R1	344,55				EUR	""AV4O000010	Advance invoice""				",CHILD
+Ejemplo10.csv,92,"	0047700000	Hac Pub, IVA reper			50				R1				34,45		EUR	""AV4O000010	SANCHEZ CABEZA, JESUS""				",CHILD
+Ejemplo10.csv,93,"	0043090005	Mano corriente TMS			50				R1				344,55		EUR	""AV4O000010	Room""				",CHILD
+Ejemplo10.csv,94,"									",BLANK
+Ejemplo10.csv,95,"	AV4O000011		13	02.01.2024		101000012		1			01.01.2024	01.01.2024	RV	Traspaso de facturas			AJIMENEZ	101000012	2024		",PARENT
+Ejemplo10.csv,96,"	0047700000	Hac Pub, IVA reper			40				R1	20,91				EUR	""AV4O000011	TOMAS RAMIREZ, ALBERTO""				",CHILD
+Ejemplo10.csv,97,"	0043090005	Mano corriente TMS			40				R1	209,09				EUR	""AV4O000011	Advance invoice""				",CHILD
+Ejemplo10.csv,98,"	0047700000	Hac Pub, IVA reper			50				R1				20,91		EUR	""AV4O000011	TOMAS RAMIREZ, ALBERTO""				",CHILD
+Ejemplo10.csv,99,"	0043090005	Mano corriente TMS			50				R1				209,09		EUR	""AV4O000011	Room""				",CHILD
+Ejemplo10.csv,100,"									",BLANK
+Ejemplo10.csv,101,"	AV4O000012		14	02.01.2024		101000013		1			01.01.2024	01.01.2024	RV	Traspaso de facturas			AJIMENEZ	101000013	2024		",PARENT
+Ejemplo10.csv,102,"	0047700000	Hac Pub, IVA reper			40				R1	40,45				EUR	""AV4O000012	GOMEZ ROJAS, JOSE""				",CHILD
+Ejemplo10.csv,103,"	0043090005	Mano corriente TMS			40				R1	404,55				EUR	""AV4O000012	Advance invoice""				",CHILD
+Ejemplo10.csv,104,"	0047700000	Hac Pub, IVA reper			50				R1				13,48		EUR	""AV4O000012	GOMEZ ROJAS, JOSE""				",CHILD
+Ejemplo10.csv,105,"	0043090005	Mano corriente TMS			50				R1				134,85		EUR	""AV4O000012	Room""				",CHILD
+Ejemplo10.csv,106,"	0047700000	Hac Pub, IVA reper			50				R1				13,49		EUR	""AV4O000012	GOMEZ ROJAS, JOSE""				",CHILD
+Ejemplo10.csv,107,"	0043090005	Mano corriente TMS			50				R1				134,85		EUR	""AV4O000012	Room""				",CHILD
+Ejemplo10.csv,108,"	0047700000	Hac Pub, IVA reper			50				R1				13,48		EUR	""AV4O000012	GOMEZ ROJAS, JOSE""				",CHILD
+Ejemplo10.csv,109,"	0043090005	Mano corriente TMS			50				R1				134,85		EUR	""AV4O000012	Room""				",CHILD
+Ejemplo10.csv,110,"									",BLANK
+Ejemplo10.csv,111,"	AV4O000013		15	02.01.2024		101000014		1			01.01.2024	01.01.2024	RV	Traspaso de facturas			AJIMENEZ	101000014	2024		",PARENT
+Ejemplo10.csv,112,"	0047700000	Hac Pub, IVA reper			40				R1	20,64				EUR	""AV4O000013	FERNANDEZ GARCIA, FRANCISCO""				",CHILD
+Ejemplo10.csv,113,"	0043090005	Mano corriente TMS			40				R1	206,36				EUR	""AV4O000013	Advance invoice""				",CHILD
+Ejemplo10.csv,114,"	0047700000	Hac Pub, IVA reper			50				R1				20,64		EUR	""AV4O000013	FERNANDEZ GARCIA, FRANCISCO""				",CHILD
+Ejemplo10.csv,115,"	0043090005	Mano corriente TMS			50				R1				206,36		EUR	""AV4O000013	Room""				",CHILD
+Ejemplo10.csv,116,"									",BLANK
+Ejemplo10.csv,117,"	AV4O000014		16	02.01.2024		101000015		1			01.01.2024	01.01.2024	RV	Traspaso de facturas			AJIMENEZ	101000015	2024		",PARENT
+Ejemplo10.csv,118,"	0047700000	Hac Pub, IVA reper			40				R1	30,18				EUR	""AV4O000014	SILVA PEREZ, MIGUEL""				",CHILD
+Ejemplo10.csv,119,"	0043090005	Mano corriente TMS			40				R1	301,82				EUR	""AV4O000014	Advance invoice""				",CHILD
+Ejemplo10.csv,120,"	0047700000	Hac Pub, IVA reper			50				R1				10,06		EUR	""AV4O000014	SILVA PEREZ, MIGUEL""				",CHILD
+Ejemplo10.csv,121,"	0043090005	Mano corriente TMS			50				R1				100,61		EUR	""AV4O000014	Room""				",CHILD
+Ejemplo10.csv,122,"	0047700000	Hac Pub, IVA reper			50				R1				10,06		EUR	""AV4O000014	SILVA PEREZ, MIGUEL""				",CHILD
+Ejemplo10.csv,123,"	0043090005	Mano corriente TMS			50				R1				100,61		EUR	""AV4O000014	Room""				",CHILD
+Ejemplo10.csv,124,"	0047700000	Hac Pub, IVA reper			50				R1				10,06		EUR	""AV4O000014	SILVA PEREZ, MIGUEL""				",CHILD
+Ejemplo10.csv,125,"	0043090005	Mano corriente TMS			50				R1				100,60		EUR	""AV4O000014	Room""				",CHILD
+Ejemplo10.csv,126,"									",BLANK
+Ejemplo10.csv,127,"	AV4O000015		17	02.01.2024		101000016		1			01.01.2024	01.01.2024	RV	Traspaso de facturas			AJIMENEZ	101000016	2024		",PARENT
+Ejemplo10.csv,128,"	0047700000	Hac Pub, IVA reper			40				R1	22,91				EUR	""AV4O000015	GONZALEZ MORALES, MARIA""				",CHILD
+Ejemplo10.csv,129,"	0043090005	Mano corriente TMS			40				R1	229,09				EUR	""AV4O000015	Advance invoice""				",CHILD
+Ejemplo10.csv,130,"	0047700000	Hac Pub, IVA reper			50				R1				22,91		EUR	""AV4O000015	GONZALEZ MORALES, MARIA""				",CHILD
+Ejemplo10.csv,131,"	0043090005	Mano corriente TMS			50				R1				229,09		EUR	""AV4O000015	Room""				",CHILD
+Ejemplo10.csv,132,"									",BLANK
+Ejemplo10.csv,133,"	AV4O000016		18	02.01.2024		101000017		1			01.01.2024	01.01.2024	RV	Traspaso de facturas			AJIMENEZ	101000017	2024		",PARENT
+Ejemplo10.csv,134,"	0047700000	Hac Pub, IVA reper			40				R1	21,09				EUR	""AV4O000016	RODRIGUEZ MARTINEZ, JOSE""				",CHILD
+Ejemplo10.csv,135,"	0043090005	Mano corriente TMS			40				R1	210,91				EUR	""AV4O000016	Advance invoice""				",CHILD
+Ejemplo10.csv,136,"	0047700000	Hac Pub, IVA reper			50				R1				21,09		EUR	""AV4O000016	RODRIGUEZ MARTINEZ, JOSE""				",CHILD
+Ejemplo10.csv,137,"	0043090005	Mano corriente TMS			50				R1				210,91		EUR	""AV4O000016	Room""				",CHILD
+Ejemplo10.csv,138,"									",BLANK
+Ejemplo10.csv,139,"	AV4O000017		19	02.01.2024		101000018		1			01.01.2024	01.01.2024	RV	Traspaso de facturas			AJIMENEZ	101000018	2024		",PARENT
+Ejemplo10.csv,140,"	0047700000	Hac Pub, IVA reper			40				R1	33,45				EUR	""AV4O000017	LOPEZ GARCIA, MANUEL""				",CHILD
+Ejemplo10.csv,141,"	0043090005	Mano corriente TMS			40				R1	334,55				EUR	""AV4O000017	Advance invoice""				",CHILD
+Ejemplo10.csv,142,"	0047700000	Hac Pub, IVA reper			50				R1				33,45		EUR	""AV4O000017	LOPEZ GARCIA, MANUEL""				",CHILD
+Ejemplo10.csv,143,"	0043090005	Mano corriente TMS			50				R1				334,55		EUR	""AV4O000017	Room""				",CHILD
+Ejemplo10.csv,144,"									",BLANK
+Ejemplo10.csv,145,"	AV4O000018		20	02.01.2024		101000019		1			01.01.2024	01.01.2024	RV	Traspaso de facturas			AJIMENEZ	101000019	2024		",PARENT
+Ejemplo10.csv,146,"	0047700000	Hac Pub, IVA reper			40				R1	24,45				EUR	""AV4O000018	RUIZ FERNANDEZ, PEDRO""				",CHILD
+Ejemplo10.csv,147,"	0043090005	Mano corriente TMS			40				R1	244,55				EUR	""AV4O000018	Advance invoice""				",CHILD
+Ejemplo10.csv,148,"	0047700000	Hac Pub, IVA reper			50				R1				24,45		EUR	""AV4O000018	RUIZ FERNANDEZ, PEDRO""				",CHILD
+Ejemplo10.csv,149,"	0043090005	Mano corriente TMS			50				R1				244,55		EUR	""AV4O000018	Room""				",CHILD
+Ejemplo10.csv,150,"									",BLANK
+Ejemplo10.csv,151,"	AV4O000019		21	02.01.2024		101000020		1			01.01.2024	01.01.2024	RV	Traspaso de facturas			AJIMENEZ	101000020	2024		",PARENT
+Ejemplo10.csv,152,"	0047700000	Hac Pub, IVA reper			40				R1	27,27				EUR	""AV4O000019	MARTIN JIMENEZ, ANTONIO""				",CHILD
+Ejemplo10.csv,153,"	0043090005	Mano corriente TMS			40				R1	272,73				EUR	""AV4O000019	Advance invoice""				",CHILD
+Ejemplo10.csv,154,"	0047700000	Hac Pub, IVA reper			50				R1				27,27		EUR	""AV4O000019	MARTIN JIMENEZ, ANTONIO""				",CHILD
+Ejemplo10.csv,155,"	0043090005	Mano corriente TMS			50				R1				272,73		EUR	""AV4O000019	Room""				",CHILD
+Ejemplo10.csv,156,"									",BLANK
+Ejemplo10.csv,157,"	AV4O000020		22	02.01.2024		101000021		1			01.01.2024	01.01.2024	RV	Traspaso de facturas			AJIMENEZ	101000021	2024		",PARENT
