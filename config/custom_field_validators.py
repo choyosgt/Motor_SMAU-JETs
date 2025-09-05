@@ -1,4 +1,4 @@
-# config/custom_field_validators.py - VALIDADORES MEJORADOS CON APRENDIZAJE DE PATRONES
+# config/custom_field_validators.py - Validadores de patrones para los campos
 
 import pandas as pd
 import re
