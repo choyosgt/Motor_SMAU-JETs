@@ -344,16 +344,20 @@ class AutomaticConfirmationTrainingSession:
 
     def _update_user_decisions_from_mappings(self, final_mappings: Dict):
         """Actualiza user_decisions basado en mapeos finales"""
+        conflicts_count = 0
+
         for column_name, mapping_info in final_mappings.items():
             field_type = mapping_info['field_type']
             confidence = mapping_info['confidence']
             resolution_type = mapping_info['resolution_type']
             
             # Determinar tipo de decisión automática
+
             if resolution_type == 'no_conflict':
                 decision_type = 'automatic_no_conflict'
             else:
                 decision_type = f'automatic_{resolution_type}'
+                conflicts_count += 1
             
             self.user_decisions[column_name] = {
                 'field_type': field_type,
@@ -370,6 +374,8 @@ class AutomaticConfirmationTrainingSession:
                 
             self.training_stats['automatic_mappings'] += 1
 
+        self.training_stats['conflicts_resolved'] = conflicts_count
+
     def _finalize_automatic_training(self) -> Dict:
         """Finaliza el entrenamiento automático SIN validación redundante de balance"""
         try:
@@ -381,7 +387,7 @@ class AutomaticConfirmationTrainingSession:
             column_mapping = {col: decision['field_type'] for col, decision in self.user_decisions.items()}
             transformed_df = transformed_df.rename(columns=column_mapping)
             
-            # 2. Procesar campos numéricos (si el procesador está disponible)
+            processing_stats = {}
             if hasattr(self, 'data_processor') and self.data_processor:
                 print("   📊 Processing numeric fields...")
                 try:
@@ -389,23 +395,44 @@ class AutomaticConfirmationTrainingSession:
                         transformed_df
                     )
                     self.training_stats.update(processing_stats)
+                    
+                    # CAPTURAR INFORMACIÓN NUMÉRICA PARA EL REPORTE
+                    print(f"📊 NUMERIC FIELDS PROCESSING SUMMARY:")
+                    for field in ['amount', 'debit_amount', 'credit_amount']:
+                        if field in transformed_df.columns:
+                            valid_count = transformed_df[field].count()
+                            zero_count = (transformed_df[field] == 0).sum()
+                            print(f"   {field}: {valid_count} valid values, {zero_count} zeros")
+                            
                 except Exception as e:
                     print(f"   ⚠️ Numeric processing failed: {e}")
-            else:
-                print("   ℹ️ Numeric processing not available")
             
-            # 3. *** ELIMINAR VALIDACIÓN REDUNDANTE ***
-            # NO hacer balance validation aquí porque ya se hizo en conflict resolution
-            print("   ⚖️ Balance validation: SKIPPED (already performed during conflict resolution)")
-            balance_report = {
-                'is_balanced': True,  # Asumir OK ya que se validó antes
-                'validation_performed': False,
-                'note': 'Balance validation performed during field mapping conflict resolution',
-                'total_debit_sum': 0.0,
-                'total_credit_sum': 0.0,
-                'entries_count': 0,
-                'balanced_entries_count': 0
-            }
+            # 3. EJECUTAR BALANCE VALIDATION REAL (NO SALTAR)
+            balance_report = {}
+            if self.balance_validator and 'journal_entry_id' in transformed_df.columns:
+                print("   ⚖️ Performing comprehensive balance validation...")
+                try:
+                    balance_report = self.balance_validator.perform_comprehensive_balance_validation(transformed_df)
+                except Exception as e:
+                    print(f"   ⚠️ Balance validation failed: {e}")
+                    balance_report = {
+                        'is_balanced': False,
+                        'total_debit_sum': 0.0,
+                        'total_credit_sum': 0.0,
+                        'entries_count': 0,
+                        'balanced_entries_count': 0,
+                        'error': str(e)
+                    }
+            else:
+                print("   ℹ️ Balance validation not available")
+                balance_report = {
+                    'is_balanced': True,
+                    'total_debit_sum': 0.0,
+                    'total_credit_sum': 0.0,
+                    'entries_count': 0,
+                    'balanced_entries_count': 0,
+                    'note': 'Balance validator not available'
+                }
             
             # 4. Crear CSV usando transformador (si está disponible)
             if hasattr(self, 'csv_transformer') and self.csv_transformer:
@@ -434,6 +461,7 @@ class AutomaticConfirmationTrainingSession:
                         'balance_report': balance_report,
                         'training_mode': 'automatic',
                         'standard_fields': self.standard_fields,
+                        'confidence_threshold': self.confidence_threshold,
                         **csv_result
                     }
                     report_file = self.reporter.generate_comprehensive_training_report(training_data)
