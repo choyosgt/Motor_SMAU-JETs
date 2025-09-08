@@ -619,7 +619,7 @@ def create_sample_field_definitions() -> Dict[str, DynamicFieldDefinition]:
     debit_credit_indicator.add_synonym("Oracle", "dc_indicator", 0.8)
     fields["debit_credit_indicator"] = debit_credit_indicator
     
-    # CAMPO 14: Vendor ID (NUEVO)
+    # CAMPO 14: Vendor ID 
     vendor_id = create_field_definition(
         code="vendor_id",
         name="ID del Proveedor/Tercero",
@@ -635,7 +635,7 @@ def create_sample_field_definitions() -> Dict[str, DynamicFieldDefinition]:
     vendor_id.add_synonym("Navision", "vendor_no", 0.8)
     fields["vendor_id"] = vendor_id
     
-    # CAMPO 15: Prepared By (actualizado de entered_by)
+    # CAMPO 15: Prepared By 
     prepared_by = create_field_definition(
         code="prepared_by",
         name="Preparado Por",
@@ -649,7 +649,7 @@ def create_sample_field_definitions() -> Dict[str, DynamicFieldDefinition]:
     prepared_by.add_synonym("Oracle", "created_by", 0.8)
     fields["prepared_by"] = prepared_by
     
-    # CAMPO 16: Entry Date (actualizado de entered_date)
+    # CAMPO 16: Entry Date 
     entry_date = create_field_definition(
         code="entry_date",
         name="Fecha de Entrada",
@@ -663,7 +663,7 @@ def create_sample_field_definitions() -> Dict[str, DynamicFieldDefinition]:
     entry_date.add_synonym("Oracle", "creation_date", 0.8)
     fields["entry_date"] = entry_date
     
-    # CAMPO 17: Entry Time (actualizado de entered_time)
+    # CAMPO 17: Entry Time 
     entry_time = create_field_definition(
         code="entry_time",
         name="Hora de Entrada",

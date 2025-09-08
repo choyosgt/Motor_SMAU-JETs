@@ -2,7 +2,7 @@
 """
 Cargador dinámico de configuración con soporte completo para archivos externos
 Optimizado para Spyder con manejo robusto de errores
-VERSIÓN CORREGIDA - Procesamiento correcto de sinónimos por ERP
+
 """
 
 import json

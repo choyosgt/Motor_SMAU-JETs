@@ -1,7 +1,7 @@
 # core/__init__.py
 """
 Sistema Dinámico de Detección de Campos Contables
-Módulo principal con importaciones optimizadas para Spyder
+Módulo principal
 """
 
 __version__ = "2.1.2"
