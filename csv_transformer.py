@@ -48,42 +48,6 @@ class IntegratedCSVTransformer:
             'numeric_fields_processed': 0
         }
 
-    def _handle_amount_only_scenario(self, df: pd.DataFrame) -> pd.DataFrame:
-        """
-        Maneja el escenario donde solo hay campo 'amount' sin indicador ni debit/credit.
-        Si amount es negativo: debit=0, credit=abs(amount)
-        Si amount es positivo: debit=amount, credit=0
-        """
-        print(f"💡 HANDLING AMOUNT-ONLY SCENARIO: No debit_credit_indicator found")
-        print(f"   Creating debit_amount and credit_amount based on amount sign")
-        
-        # Inicializar columnas
-        df['debit_amount'] = 0.0
-        df['credit_amount'] = 0.0
-        
-        # Limpiar y procesar la columna amount si es necesario
-        df['amount'] = df['amount'].apply(self._clean_numeric_value_with_zero_fill)
-        
-        # Crear máscaras basadas en el signo de amount
-        positive_amounts = df['amount'] > 0
-        negative_amounts = df['amount'] < 0
-        zero_amounts = df['amount'] == 0
-        
-        # Asignar valores según el signo
-        # Positivos van a debe (debit)
-        df.loc[positive_amounts, 'debit_amount'] = df.loc[positive_amounts, 'amount'].abs()
-        df.loc[positive_amounts, 'credit_amount'] = 0.0
-        
-        # Negativos van a haber (credit)
-        df.loc[negative_amounts, 'debit_amount'] = 0.0
-        df.loc[negative_amounts, 'credit_amount'] = df.loc[negative_amounts, 'amount'].abs()
-        
-        # Ceros quedan en cero (ya inicializados)
-        df.loc[zero_amounts, 'debit_amount'] = 0.0
-        df.loc[zero_amounts, 'credit_amount'] = 0.0
-        
-        
-        return df    
     def create_header_detail_csvs(self, df: pd.DataFrame, user_decisions: Dict, 
                                  standard_fields: List[str]) -> Dict[str, Any]:
         """
@@ -150,8 +114,7 @@ class IntegratedCSVTransformer:
             
             detail_field_definitions = [
                 'journal_entry_id', 'line_number', 'line_description', 
-                'gl_account_number', 'gl_account_name', 'amount', 'debit_amount', 
-                'credit_amount', 'debit_credit_indicator', 'vendor_id'
+                'gl_account_number', 'gl_account_name', 'amount', 'debit_credit_indicator', 'vendor_id'
             ]
             
             # 5. Filtrar campos disponibles
@@ -208,7 +171,7 @@ class IntegratedCSVTransformer:
         
         # Identificar campos numéricos que pueden estar presentes después del mapeo
         potential_numeric_fields = [
-            'amount', 'debit_amount', 'credit_amount', 'line_number',
+            'amount', 'line_number', 'debit_amount', 'credit_amount',
             'fiscal_year', 'period_number', 'gl_account_number'
         ]
         
@@ -304,7 +267,7 @@ class IntegratedCSVTransformer:
             numeric_stats = result.get('numeric_processing_stats', {})
             if numeric_stats:
                 print(f"   Zero-filled fields:       {numeric_stats.get('zero_filled_fields', 0)}")
-                print(f"   Debit/Credit calculated:  {numeric_stats.get('debit_credit_calculated', 0)}")
+                print(f"   Debit/Credit calculated:  {numeric_stats.get('indicators_created', 0)}")
                 print(f"   Amount signs adjusted:    {numeric_stats.get('amount_signs_adjusted', 0)}")
         else:
             print(f"   Numeric processing:    Not applied")
@@ -378,7 +341,7 @@ class IntegratedCSVTransformer:
                 print(f"   💰 Numeric processing stats:")
                 print(f"     Fields cleaned: {numeric_stats.get('fields_cleaned', 0)}")
                 print(f"     Zero-filled: {numeric_stats.get('zero_filled_fields', 0)}")
-                print(f"     Calculations: {numeric_stats.get('debit_credit_calculated', 0)}")
+                print(f"     Calculations: {numeric_stats.get('indicators', 0)}")
             
             return result
             
@@ -412,7 +375,7 @@ def transform_and_split_csv_with_numeric_cleaning(csv_file: str, column_mapping:
     standard_fields = [
         'journal_entry_id', 'line_number', 'description', 'line_description',
         'posting_date', 'fiscal_year', 'period_number', 'gl_account_number',
-        'amount', 'debit_amount', 'credit_amount', 'debit_credit_indicator',
+        'amount', 'debit_credit_indicator',
         'prepared_by', 'entry_date', 'entry_time', 'gl_account_name', 'vendor_id'
     ]
     

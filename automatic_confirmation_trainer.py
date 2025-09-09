@@ -78,8 +78,7 @@ class AutomaticConfirmationTrainingSession:
                 def perform_comprehensive_balance_validation(self, df):
                     return {
                         'is_balanced': True,
-                        'total_debit_sum': 0.0,
-                        'total_credit_sum': 0.0,
+                        'total_amount_sum': 0.0,
                         'entries_count': 0,
                         'balanced_entries_count': 0,
                         'validation_stats': {}
@@ -398,7 +397,7 @@ class AutomaticConfirmationTrainingSession:
                     
                     # CAPTURAR INFORMACIÓN NUMÉRICA PARA EL REPORTE
                     print(f"📊 NUMERIC FIELDS PROCESSING SUMMARY:")
-                    for field in ['amount', 'debit_amount', 'credit_amount']:
+                    for field in ['amount']:
                         if field in transformed_df.columns:
                             valid_count = transformed_df[field].count()
                             zero_count = (transformed_df[field] == 0).sum()
@@ -499,7 +498,7 @@ class AutomaticConfirmationTrainingSession:
             
             # Definir campos de cabecera y detalle
             header_fields = ['journal_entry_id', 'description', 'posting_date', 'fiscal_year', 'period_number', 'prepared_by', 'entry_date']
-            detail_fields = ['journal_entry_id', 'line_number', 'line_description', 'gl_account_number', 'gl_account_name', 'amount', 'debit_amount', 'credit_amount', 'debit_credit_indicator', 'vendor_id']
+            detail_fields = ['journal_entry_id', 'line_number', 'line_description', 'gl_account_number', 'gl_account_name', 'amount', 'debit_credit_indicator', 'vendor_id']
             
             # Archivo de cabecera
             header_file = None
@@ -614,8 +613,7 @@ def run_automatic_training(csv_file: str, erp_hint: str = None) -> Dict:
                 balance = result['balance_report']
                 print(f"\n⚖️ BALANCE VALIDATION:")
                 print(f"   • Total Balance: {'✅ BALANCED' if balance['is_balanced'] else '❌ UNBALANCED'}")
-                print(f"   • Total Debit: {balance['total_debit_sum']:,.2f}")
-                print(f"   • Total Credit: {balance['total_credit_sum']:,.2f}")
+                print(f"   • Total Amount: {balance.get('total_amount_sum', 0):,.2f}")
                 
                 if balance['entries_count'] > 0:
                     balanced_pct = balance['balanced_entries_count'] / balance['entries_count'] * 100

@@ -432,27 +432,23 @@ Training Mode: {training_mode}"""
             match_rate = cross_validation.get('match_rate', 0)
             discrepancies = cross_validation.get('discrepancies', 0)
             
-            lines.append(f"  ")
-            lines.append(f"  CROSS-VALIDATION WITH AMOUNT FIELD:")
-            lines.append(f"  Amount field matches debit-credit: {matching_rows}/{total_rows}")
-            lines.append(f"  Match rate: {match_rate * 100:.1f}%")
-            
+            lines.append(f"  AMOUNT FIELD ANALYSIS:")
+            lines.append(f"  Valid amount entries: {matching_rows}/{total_rows}")
+            lines.append(f"  Data quality rate: {match_rate * 100:.1f}%")
+
             if discrepancies > 0:
-                lines.append(f"  Significant discrepancies found: {discrepancies}")
+                lines.append(f"  Data quality issues found: {discrepancies}")
         
         # Solo mostrar totales si tienen valores significativos
-        total_debit = balance.get('total_debit_sum', 0)
-        total_credit = balance.get('total_credit_sum', 0)
+        total_amount = balance.get('total_amount_sum', 0)
         is_balanced = balance.get('is_balanced', False)
-        
-        if total_debit > 0 or total_credit > 0:
-            difference = balance.get('total_balance_difference', 0)
+
+        if abs(total_amount) > 0.01:  # Solo si hay diferencia significativa
             lines.append(f"  ")
             lines.append(f"  OVERALL TOTALS:")
             lines.append(f"  Total Balance: {'BALANCED' if is_balanced else 'UNBALANCED'}")
-            lines.append(f"  Total Debit: {total_debit:,.2f}")
-            lines.append(f"  Total Credit: {total_credit:,.2f}")
-            lines.append(f"  Difference: {difference:,.2f}")
+            lines.append(f"  Total Amount Sum: {total_amount:,.2f}")
+            lines.append(f"  Expected: 0.00 (balanced)")
         
         return "\n".join(lines)
     
@@ -479,11 +475,9 @@ Training Mode: {training_mode}"""
         # Datos de la muestra
         for i, entry in enumerate(unbalanced_entries[:sample_size]):
             entry_id = str(entry.get('journal_entry_id', 'N/A'))[:14]
-            debit = entry.get('debit_amount', 0)
-            credit = entry.get('credit_amount', 0)
             diff = entry.get('balance_difference', 0)
             
-            lines.append(f"{entry_id:<15} | {debit:>12.2f} | {credit:>12.2f} | {diff:>12.2f}")
+            lines.append(f"{entry_id:<15} | {diff:>12.2f}")
         
         if len(unbalanced_entries) > sample_size:
             remaining = len(unbalanced_entries) - sample_size
