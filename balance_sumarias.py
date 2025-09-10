@@ -4,12 +4,6 @@ import argparse
 import unicodedata
 
 def clean_number(value):
-    """
-    Convierte un valor en formato europeo a float estándar en Python.
-    - Elimina separadores de miles (punto).
-    - Cambia coma decimal por punto.
-    - Convierte valores entre paréntesis en negativos.
-    """
     if pd.isna(value):
         return None
     value = str(value).strip()
@@ -25,19 +19,12 @@ def clean_number(value):
         return None
 
 def normalize_text(text: str) -> str:
-    """
-    Normaliza un texto eliminando tildes, espacios extras y convirtiendo a mayúsculas.
-    """
     text = str(text).strip().upper()
     text = "".join(c for c in unicodedata.normalize("NFD", text) if unicodedata.category(c) != "Mn")
     text = re.sub(r"\s+", " ", text)
     return text
 
 def find_column(df, keywords):
-    """
-    Busca una columna en df que contenga todas las palabras clave dadas (ignorando mayúsculas, tildes y espacios).
-    Devuelve el nombre original de la columna o None.
-    """
     normalized_cols = {normalize_text(c): c for c in df.columns}
     for norm_name, orig_name in normalized_cols.items():
         if all(k in norm_name for k in keywords):
@@ -45,10 +32,6 @@ def find_column(df, keywords):
     return None
 
 def detectar_fila_cabecera(input_file: str) -> int:
-    """
-    Escanea la primera hoja para encontrar la fila que contiene columnas tipo 'CUENTA' y 'SALDO'.
-    Devuelve el índice de fila que se debe usar como header.
-    """
     preview = pd.read_excel(input_file, None)
     first_sheet = next(iter(preview))
     df_preview = pd.read_excel(input_file, sheet_name=first_sheet, header=None)
@@ -59,12 +42,6 @@ def detectar_fila_cabecera(input_file: str) -> int:
     raise ValueError("No se encontró la fila de cabecera con columnas tipo 'CUENTA' y 'SALDO'")
 
 def clean_account_number(value):
-    """
-    Convierte un valor de cuenta a string sin decimales.
-    - Si es float y es entero, lo convierte a int antes de string (evita '185.0' -> '185').
-    - Si ya es string, lo limpia de espacios.
-    - Si es NaN devuelve cadena vacía "".
-    """
     if pd.isna(value):
         return ""
     if isinstance(value, float) and value.is_integer():
@@ -73,6 +50,31 @@ def clean_account_number(value):
     if re.fullmatch(r"\d+\.0+", val_str):
         return str(int(float(val_str)))
     return val_str
+
+# Columnas completas de staging.trial_balance en el orden correcto
+TRIAL_BALANCE_COLUMNS = [
+    'gl_account_number',
+    'reporting_account',
+    'fiscal_year',
+    'period_number',
+    'period_ending_balance',
+    'period_activity_debit',
+    'period_activity_credit',
+    'period_beginning_balance',
+    'period_ending_date',
+    'business_unit',
+    'cost_center',
+    'department',
+    'user_defined_01',
+    'user_defined_02',
+    'user_defined_03'
+]
+
+def _ensure_all_columns_trial_balance(df: pd.DataFrame, required_fields: list) -> pd.DataFrame:
+    for col in required_fields:
+        if col not in df.columns:
+            df[col] = ""
+    return df[required_fields]
 
 def transformar_excel_a_csv(input_file: str, output_file: str):
     # Detectar fila de cabecera
@@ -121,15 +123,16 @@ def transformar_excel_a_csv(input_file: str, output_file: str):
     if gl_local_account_number_col:
         result["gl_local_account_number"] = df[gl_local_account_number_col].apply(clean_account_number)
     result["period_ending_balance"] = df[col_ending_balance].apply(clean_number)
-
     if beginning_col:
         result["period_beginning_balance"] = df[beginning_col].apply(clean_number)
     else:
         result["period_beginning_balance"] = pd.Series([None] * len(result), index=result.index)
 
+    # Garantizar todas las columnas de staging
+    result = _ensure_all_columns_trial_balance(result, TRIAL_BALANCE_COLUMNS)
+
     # Guardar en CSV
     result.to_csv(output_file, index=False, sep=",", float_format="%.2f")
-    print(f"Archivo CSV generado en: {output_file}")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Transformar Excel de saldos a CSV limpio.")
