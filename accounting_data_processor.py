@@ -36,6 +36,7 @@ class AccountingDataProcessor:
         """
         Separa campos que contienen fecha y hora combinados en campos separados
         VERSIÓN CORREGIDA - Mantiene toda la funcionalidad original pero sin bucles infinitos
+        ASEGURA que todas las fechas se conviertan a formato YYYY-MM-DD
         """
         
         def _separate_single_datetime_field(df, field_name):
@@ -140,17 +141,37 @@ class AccountingDataProcessor:
             pure_date_ratio = pure_date_count / total_samples
             pure_time_ratio = pure_time_count / total_samples
             
-            # Si la mayoría son fechas puras, NO separar
+            # NUEVA LÓGICA: Convertir fechas a YYYY-MM-DD incluso si no se separan
+            def convert_to_standard_date(value, dayfirst=detected_dayfirst):
+                """Convierte cualquier fecha a formato YYYY-MM-DD"""
+                if pd.isna(value) or value == '':
+                    return value
+                
+                str_value = str(value).strip()
+                try:
+                    parsed_dt = pd.to_datetime(str_value, dayfirst=dayfirst, errors='coerce')
+                    if not pd.isna(parsed_dt):
+                        return parsed_dt.strftime('%Y-%m-%d')
+                    else:
+                        return str_value
+                except:
+                    return str_value
+            
+            # Si la mayoría son fechas puras, convertir a YYYY-MM-DD pero NO separar
             if pure_date_ratio >= 0.7:
-                print(f"   ℹ️ Field '{field_name}' contains pure dates (format like DD.MM.YYYY), NOT separating")
-                return False
+                print(f"   ℹ️ Field '{field_name}' contains pure dates, converting to YYYY-MM-DD format")
+                # Convertir todas las fechas al formato estándar
+                df[field_name] = df[field_name].apply(lambda x: convert_to_standard_date(x, detected_dayfirst))
+                return False  # No separamos, solo convertimos formato
             # Si la mayoría son tiempos puros, NO separar  
             elif pure_time_ratio >= 0.7:
                 print(f"   ℹ️ Field '{field_name}' contains pure times (format like HH:MM:SS), NOT separating")
                 return False
             # Solo separar si realmente detectamos datetime combinado
             elif not datetime_detected:
-                print(f"   ℹ️ Field '{field_name}' does not contain combined date+time, NOT separating")
+                print(f"   ℹ️ Field '{field_name}' does not contain combined date+time")
+                # Aún así, intentar convertir fechas a formato estándar si las hay
+                df[field_name] = df[field_name].apply(lambda x: convert_to_standard_date(x, detected_dayfirst))
                 return False
             
             print(f"   📅 Detected combined DateTime in '{field_name}', separating...")
@@ -169,14 +190,20 @@ class AccountingDataProcessor:
                 
                 # Verificar si este valor específico es fecha pura
                 if any(re.match(pattern, str_value) for pattern in pure_date_patterns):
-                    dates.append(str_value)  # Mantener formato original
+                    try:
+                        parsed_dt = pd.to_datetime(str_value, dayfirst=detected_dayfirst, errors='coerce')
+                        date_str = parsed_dt.strftime('%Y-%m-%d') if not pd.isna(parsed_dt) else str_value
+                    except:
+                        date_str = str_value
+
+                    dates.append(date_str)
                     times.append('')
                     continue
                 
                 # Verificar si este valor específico es tiempo puro
                 if any(re.match(pattern, str_value) for pattern in pure_time_patterns):
                     dates.append('')  # No hay fecha
-                    times.append(str_value)  # Mantener formato original
+                    times.append(str_value)  
                     continue
                 
                 # Solo procesar como datetime combinado si realmente lo es
@@ -196,27 +223,29 @@ class AccountingDataProcessor:
                             # Fallback si no se detectó formato específico
                             parsed_dt = pd.to_datetime(str_value, dayfirst=detected_dayfirst, errors='raise')
                         
-                        # Para fechas que SÍ tienen hora, convertir fecha a formato deseado
-                        # Mantener formato DD.MM.YYYY si era el formato original
-                        if '.' in str_value:
-                            date_str = parsed_dt.strftime('%d.%m.%Y')
-                        elif '/' in str_value:
-                            date_str = parsed_dt.strftime('%d/%m/%Y')
-                        else:
-                            date_str = parsed_dt.strftime('%Y-%m-%d')
-                        
+                        # SIEMPRE convertir fecha a YYYY-MM-DD
+                        date_str = parsed_dt.strftime('%Y-%m-%d')
                         time_str = parsed_dt.strftime('%H:%M:%S')
-                        
+
                         dates.append(date_str)
                         times.append(time_str)
                         
                     except Exception as e:
-                        # Si falla el parseo, mantener original
-                        dates.append(str_value)
+                        # Si falla el parseo, mantener original pero intentar convertir fecha
+                        try:
+                            parsed_dt = pd.to_datetime(str_value, dayfirst=detected_dayfirst, errors='coerce')
+                            date_str = parsed_dt.strftime('%Y-%m-%d') if not pd.isna(parsed_dt) else str_value
+                        except:
+                            date_str = str_value
+                        dates.append(date_str)
                         times.append('')
                 else:
-                    # No tiene formato de fecha+hora, mantener original
-                    dates.append(str_value)
+                    try:
+                        parsed_dt = pd.to_datetime(str_value, dayfirst=detected_dayfirst, errors='coerce')
+                        date_str = parsed_dt.strftime('%Y-%m-%d') if not pd.isna(parsed_dt) else str_value
+                    except:
+                        date_str = str_value
+                    dates.append(date_str)
                     times.append('')
             
             # Solo actualizar si realmente se procesó algo
@@ -256,6 +285,10 @@ class AccountingDataProcessor:
                 print(f"     Sample times: {[t for t in times[:3] if t]}")
                 
                 return True  
+            else:
+                # Si no había tiempos para separar, al menos actualizar las fechas convertidas
+                df[field_name] = dates
+                return False
             
             return False  
         
@@ -276,7 +309,7 @@ class AccountingDataProcessor:
             print(f"⚠️ Error processing DateTime fields: {e}")
 
         print("✓ DateTime field separation completed")
-        return df 
+        return df
 
     def process_numeric_fields_and_calculate_amounts(self, df: pd.DataFrame) -> Tuple[pd.DataFrame, Dict]:
         """
@@ -451,6 +484,7 @@ class AccountingDataProcessor:
         - Convierte a float si es posible
         - Maneja paréntesis como valores negativos
         - Devuelve 0.0 para valores inválidos o vacíos
+        - CORREGIDO: Maneja correctamente formatos europeos como 25.000.00
         """
         if pd.isna(value) or value == '' or str(value).strip() == '':
             return 0.0
@@ -474,7 +508,7 @@ class AccountingDataProcessor:
             if cleaned:
                 # Manejar comas y puntos decimales
                 if ',' in cleaned and '.' in cleaned:
-                    # Formato como 1,234.56
+                    # Formato como 1,234.56 vs 1.234,56
                     if cleaned.rfind(',') < cleaned.rfind('.'):
                         cleaned = cleaned.replace(',', '')
                     else:
@@ -484,24 +518,37 @@ class AccountingDataProcessor:
                 elif ',' in cleaned:
                     # Solo comas - asumir decimal si hay 2 dígitos después de la última coma
                     parts = cleaned.split(',')
-                    if len(parts[-1]) == 2:
+                    if len(parts[-1]) <= 2:  # Cambio: <= 2 en lugar de == 2
                         cleaned = ''.join(parts[:-1]) + '.' + parts[-1]
                     else:
                         cleaned = cleaned.replace(',', '')
+                elif '.' in cleaned:
+                    # NUEVA LÓGICA: Solo puntos - formato europeo
+                    dot_parts = cleaned.split('.')
+                    if len(dot_parts) >= 2:
+                        last_part = dot_parts[-1]
+                        # Si hay múltiples puntos Y la última parte tiene 1-2 dígitos → formato europeo
+                        if len(dot_parts) > 2 and len(last_part) <= 2 and last_part.isdigit():
+                            # 25.000.00 → 25000.00
+                            integer_part = ''.join(dot_parts[:-1])
+                            cleaned = f"{integer_part}.{last_part}"
+                        elif len(dot_parts) == 2 and len(last_part) > 2:
+                            # 1.234567 → separador de miles solamente
+                            cleaned = cleaned.replace('.', '')
+                        # Si len(dot_parts) == 2 and len(last_part) <= 2: mantener como decimal normal
                 
-                # Extraer el primer número
+                # Extraer el primer número (ahora debería ser el limpio)
                 first_num = re.search(r'-?\d+\.?\d*', cleaned)
                 if first_num:
                     result = float(first_num.group())
-                    # Si había paréntesis, hacer negativo (SIN usar abs())
+                    # Si había paréntesis, hacer negativo
                     if is_parentheses_negative:
-                        result = -result  # NO usar abs(), mantener como negativo
+                        result = -result
                     return result
                     
                 return 0.0
         except:
             return 0.0
-
     def _report_incomplete_scenarios(self, has_amount: bool, has_debit: bool, 
                                    has_credit: bool, has_indicator: bool):
         """Reporta escenarios que no pueden ser procesados"""
