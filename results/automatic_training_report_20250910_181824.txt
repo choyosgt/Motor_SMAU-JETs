@@ -1,0 +1,115 @@
+FIELD TRAINING SESSION REPORT - AUTOMATIC
+============================================================
+
+Generated: 2025-09-10T18:18:24.615890
+Training Mode: automatic
+
+SESSION INFORMATION:
+  CSV File: C:\Users\choyos\Downloads\Libro_Diario_Redur.csv
+  ERP Hint: None
+  Standard Fields: 10
+  Timestamp: 2025-09-10T18:18:24.615977
+
+TRAINING STATISTICS:
+  Columns Processed: 22
+  Automatic Mappings: 21
+  Conflicts Resolved: 2
+  Amount Conflicts Resolved: 0
+  High Confidence Mappings: 20
+  Low Confidence Mappings: 1
+  Rejected Low Confidence: 1
+  Unmapped Columns: 0
+  Synonyms Added: 0
+  Regex Patterns Added: 0
+  Balance Validation Enabled: True
+  Zero Filled Fields: 36095
+  Debit Credit Calculated: 0
+  Debit Amounts From Indicator: 0
+  Credit Amounts From Indicator: 0
+  Amount Signs Adjusted: 0
+  Fields Cleaned: 6
+  Parentheses Negatives Processed: 0
+  Amount Calculated: 0
+  Indicators Created: 0
+
+AUTOMATIC CONFLICT RESOLUTION:
+-----------------------------------
+   debit_amount: Importe debe (no conflict)
+   credit_amount: Importe haber (no conflict)
+   amount: Importe (conflict resolved - highest_confidence)
+   posting_date: Fecha registro (no conflict)
+   journal_entry_id: Nº asiento (conflict resolved - balance_validation_winner)
+   gl_account_number: Nº cuenta (no conflict)
+   line_description: Descripción (no conflict)
+   vendor_id: Cta. contrapartida (no conflict)
+   prepared_by: Id. usuario (no conflict)
+   line_number: Nº mov. (no conflict)
+
+APPLYING CONFIDENCE FILTER:
+Threshold: 0.75
+----------------------------------------
+   Importe debe: debit_amount (0.940) - ACCEPTED
+   Importe haber: credit_amount (0.940) - ACCEPTED
+   Importe: amount (0.928) - ACCEPTED
+   Fecha registro: posting_date (1.000) - ACCEPTED
+   Nº asiento: journal_entry_id (0.928) - ACCEPTED
+   Nº cuenta: gl_account_number (0.872) - ACCEPTED
+   Descripción: line_description (0.930) - ACCEPTED
+   Cta. contrapartida: vendor_id (0.870) - ACCEPTED
+   Id. usuario: prepared_by (0.860) - ACCEPTED
+   Nº mov.: line_number (0.880) - ACCEPTED
+
+   Final: 10 accepted, 0 rejected
+
+DATE/TIME FIELD VALIDATIONS:
+===================================
+  posting_date: Fecha registro - Validated
+  DateTime handling: Pure date format detected
+
+NUMERIC FIELDS PROCESSING:
+==============================
+  Numeric fields found: ['debit_amount', 'credit_amount', 'amount', 'gl_account_number']
+  Fields cleaned: 6
+  Zero-filled values: 36095
+  Amount calculation: amount = debit_amount - credit_amount
+
+FINAL MAPPING TABLE:
+Standard Field            | Mapped Column                  | Confidence
+------------------------- | ------------------------------ | ----------
+journal_entry_id          | Nº asiento                     | 0.928     
+line_number               | Nº mov.                        | 0.880     
+description               | No mapeado                     | 0.000     
+line_description          | Descripción                    | 0.930     
+posting_date              | Fecha registro                 | 1.000     
+fiscal_year               | No mapeado                     | 0.000     
+period_number             | No mapeado                     | 0.000     
+gl_account_number         | Nº cuenta                      | 0.872     
+amount                    | Importe                        | 0.928     
+debit_amount              | Importe debe                   | 0.940     
+credit_amount             | Importe haber                  | 0.940     
+debit_credit_indicator    | No mapeado                     | 0.000     
+prepared_by               | Id. usuario                    | 0.860     
+entry_date                | No mapeado                     | 0.000     
+entry_time                | No mapeado                     | 0.000     
+gl_account_name           | No mapeado                     | 0.000     
+vendor_id                 | Cta. contrapartida             | 0.870     
+
+MAPPING DECISIONS:
+  Automatic Decisions:
+    Importe debe -> debit_amount (confidence: 0.940, type: automatic_no_conflict)
+    Importe haber -> credit_amount (confidence: 0.940, type: automatic_no_conflict)
+    Importe -> amount (confidence: 0.928, type: automatic_highest_confidence)
+    Fecha registro -> posting_date (confidence: 1.000, type: automatic_no_conflict)
+    Nº asiento -> journal_entry_id (confidence: 0.928, type: automatic_balance_validation_winner)
+    Nº cuenta -> gl_account_number (confidence: 0.872, type: automatic_no_conflict)
+    Descripción -> line_description (confidence: 0.930, type: automatic_no_conflict)
+    Cta. contrapartida -> vendor_id (confidence: 0.870, type: automatic_no_conflict)
+    Id. usuario -> prepared_by (confidence: 0.860, type: automatic_no_conflict)
+    Nº mov. -> line_number (confidence: 0.880, type: automatic_no_conflict)
+
+BALANCE VALIDATION RESULTS:
+  ENTRY-LEVEL BALANCE CHECK:
+  Total Entries: 4283
+  Balanced: 4283
+  Unbalanced: 0
+  Status: All entries are balanced!
