@@ -1,5 +1,5 @@
 # csv_transformer_integrated.py - Transformador CSV con limpieza numérica integrada
-# MEJORADO: Incluye procesamiento automático de campos numéricos contables
+# CORREGIDO: Deduplicación de journal_entry_id funcionando correctamente
 # Y garantiza todas las columnas de header y detail
 
 import pandas as pd
@@ -36,8 +36,10 @@ class IntegratedCSVTransformer:
             'detail_columns': 0,
             'rows_processed': 0,
             'numeric_processing_applied': False,
-            'numeric_fields_processed': 0
+            'numeric_fields_processed': 0,
+            'duplicates_removed': 0
         }
+    
     def _ensure_all_columns(self, df: pd.DataFrame, required_fields: List[str]) -> pd.DataFrame:
         """Asegura que todas las columnas requeridas existan en el DataFrame, rellenando con vacías si falta alguna."""
         for col in required_fields:
@@ -93,7 +95,6 @@ class IntegratedCSVTransformer:
                 'user_defined_02', 'user_defined_03'
             ]
 
-
             # Crear DataFrames separados para header y detail, asegurando todas las columnas
             header_df = self._ensure_all_columns(transformed_df, header_field_definitions)
             detail_df = self._ensure_all_columns(transformed_df, detail_field_definitions)
@@ -145,28 +146,68 @@ class IntegratedCSVTransformer:
         return processed_df, processing_stats
     
     def _create_header_csv(self, df: pd.DataFrame, header_fields: List[str], timestamp: str) -> Optional[str]:
+        """Crea CSV de header con journal_entry_id únicos (deduplicados)"""
         if not header_fields:
             return None
+        
+        # Verificar si hay journal_entry_id y procesar deduplicación
         if 'journal_entry_id' in header_fields and 'journal_entry_id' in df.columns:
-            header_df = df[header_fields].drop_duplicates(subset=['journal_entry_id'])
-            if self.sort_by_journal_id:
-                header_df = header_df.sort_values('journal_entry_id', ascending=True)
-        else:
+            # Contar duplicados antes de la deduplicación
+            original_count = len(df)
+            
+            # CORREGIDO: Primero asegurar columnas, luego deduplicar
             header_df = df[header_fields].copy()
-        header_df = self._ensure_all_columns(df[header_fields], header_fields)
+            
+            # Deduplicar por journal_entry_id, conservando el primer registro
+            header_df = header_df.drop_duplicates(subset=['journal_entry_id'], keep='first')
+            
+            # Contar duplicados removidos
+            deduplicated_count = len(header_df)
+            duplicates_removed = original_count - deduplicated_count
+            self.transformation_stats['duplicates_removed'] = duplicates_removed
+            
+            if duplicates_removed > 0:
+                print(f"DEDUPLICACIÓN: Removidos {duplicates_removed:,} registros duplicados de journal_entry_id")
+                print(f"Registros únicos de header: {deduplicated_count:,}")
+            
+            # Ordenar si está habilitado
+            if self.sort_by_journal_id:
+                try:
+                    header_df = header_df.sort_values('journal_entry_id', ascending=True)
+                except TypeError:
+                    header_df['journal_entry_id'] = header_df['journal_entry_id'].astype(str)
+                    header_df = header_df.sort_values('journal_entry_id', ascending=True)
+        else:
+            # Si no hay journal_entry_id, solo copiar los campos
+            header_df = df[header_fields].copy()
+        
+        # Crear archivo CSV
         header_file = os.path.join(self.results_dir, f"{self.output_prefix}_header_{timestamp}.csv")
         header_df.to_csv(header_file, index=False, encoding='utf-8')
+        
+        print(f"Archivo header creado: {header_file} ({len(header_df):,} registros)")
         return header_file
     
     def _create_detail_csv(self, df: pd.DataFrame, detail_fields: List[str], timestamp: str) -> Optional[str]:
+        """Crea CSV de detalle manteniendo todos los registros (incluyendo duplicados de journal_entry_id)"""
         if not detail_fields:
             return None
+        
         detail_df = df[detail_fields].copy()
+        
+        # Ordenar si está habilitado y journal_entry_id está presente
         if self.sort_by_journal_id and 'journal_entry_id' in detail_df.columns:
-            detail_df = detail_df.sort_values('journal_entry_id', ascending=True)
-        detail_df = self._ensure_all_columns(df[detail_fields], detail_fields)
+            try:
+                detail_df = detail_df.sort_values('journal_entry_id', ascending=True)
+            except TypeError:
+                detail_df['journal_entry_id'] = detail_df['journal_entry_id'].astype(str)
+                detail_df = detail_df.sort_values('journal_entry_id', ascending=True)
+        
+        # Crear archivo CSV
         detail_file = os.path.join(self.results_dir, f"{self.output_prefix}_detail_{timestamp}.csv")
         detail_df.to_csv(detail_file, index=False, encoding='utf-8')
+        
+        print(f"Archivo detail creado: {detail_file} ({len(detail_df):,} registros)")
         return detail_file
     
     def create_single_transformed_csv(self, df: pd.DataFrame, user_decisions: Dict, 

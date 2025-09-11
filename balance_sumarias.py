@@ -6,17 +6,41 @@ import unicodedata
 def clean_number(value):
     if pd.isna(value):
         return None
+
     value = str(value).strip()
     is_negative = False
+
+    # Números negativos entre paréntesis
     if value.startswith("(") and value.endswith(")"):
         is_negative = True
         value = value[1:-1]
-    value = value.replace(".", "").replace(",", ".")
+
+    # Quitar espacios y caracteres extraños
+    value = value.replace(" ", "").replace("\u200b", "")
+
+    # Detectar si hay separador de miles y decimal
+    # Ejemplo: 1.234,56 o 1,234.56
+    # Primero detectar qué símbolo aparece al final
+    last_comma = value.rfind(",")
+    last_dot = value.rfind(".")
+    
+    if last_comma > last_dot:
+        # Coma decimal, punto como miles
+        value = value.replace(".", "").replace(",", ".")
+    elif last_dot > last_comma:
+        # Punto decimal, coma como miles
+        value = value.replace(",", "")
+    else:
+        # Solo un número, nada que reemplazar
+        pass
+
     try:
         num = float(value)
         return -num if is_negative else num
     except ValueError:
         return None
+
+
 
 def normalize_text(text: str) -> str:
     text = str(text).strip().upper()
