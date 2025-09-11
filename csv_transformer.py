@@ -41,11 +41,23 @@ class IntegratedCSVTransformer:
         }
     
     def _ensure_all_columns(self, df: pd.DataFrame, required_fields: List[str]) -> pd.DataFrame:
-        """Asegura que todas las columnas requeridas existan en el DataFrame, rellenando con vacías si falta alguna."""
+        result_df = df.copy()
+        
         for col in required_fields:
-            if col not in df.columns:
-                df[col] = ""
-        return df[required_fields]
+            if col not in result_df.columns:
+                result_df[col] = ""
+            elif col == 'debit_credit_indicator' and result_df[col].isna().all():
+                # Si debit_credit_indicator existe pero está completamente vacío, 
+                # intentar crearlo desde amount si existe
+                if 'amount' in result_df.columns:
+                    print(f"   🔧 Regenerating empty debit_credit_indicator from amount")
+                    result_df[col] = ''
+                    mask_positive = result_df['amount'] > 0
+                    mask_negative = result_df['amount'] < 0
+                    result_df.loc[mask_positive, col] = 'D'
+                    result_df.loc[mask_negative, col] = 'H'
+        
+        return result_df[required_fields]
     
     def create_header_detail_csvs(self, df: pd.DataFrame, user_decisions: Dict, 
                                 standard_fields: List[str]) -> Dict[str, Any]:
@@ -104,6 +116,13 @@ class IntegratedCSVTransformer:
 
             # Crear archivos CSV separados
             header_file = self._create_header_csv(header_df, available_header_fields, timestamp)
+            # En create_header_detail_csvs(), justo antes de crear detail_df:
+            print(f"DEBUG - Columns before ensure_all_columns: {list(transformed_df.columns)}")
+            if 'debit_credit_indicator' in transformed_df.columns:
+                indicator_values = transformed_df['debit_credit_indicator'].value_counts()
+                print(f"DEBUG - debit_credit_indicator values: {dict(indicator_values)}")
+            else:
+                print("DEBUG - debit_credit_indicator NO EXISTE")
             detail_file = self._create_detail_csv(detail_df, available_detail_fields, timestamp)
             
             # Actualizar estadísticas

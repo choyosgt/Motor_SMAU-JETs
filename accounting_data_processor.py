@@ -330,7 +330,11 @@ class AccountingDataProcessor:
             has_amount = 'amount' in df.columns
             has_debit = 'debit_amount' in df.columns
             has_credit = 'credit_amount' in df.columns
-            has_indicator = 'debit_credit_indicator' in df.columns
+            has_indicator = (
+            'debit_credit_indicator' in df.columns and 
+            not df['debit_credit_indicator'].isna().all() and
+            (df['debit_credit_indicator'] != '').any()
+        )
             
             print(f"\n🔍 SCENARIO DETECTION:")
             print(f"   Has amount: {has_amount}")
@@ -352,6 +356,10 @@ class AccountingDataProcessor:
             elif has_amount and has_indicator:
                 print(f"ℹ️  SCENARIO 3: Amount and indicator exist - no calculations needed")
                 print(f"   Only numeric cleaning applied")
+
+            # *** NUEVO ESCENARIO 4: Tiene amount + debit + credit pero no indicator ***
+            elif has_amount and has_debit and has_credit and not has_indicator:
+                df = self.create_indicator_from_debit_credit_pattern(df)
             
             # Casos incompletos o no reconocidos
             else:
@@ -405,6 +413,28 @@ class AccountingDataProcessor:
         self.stats['amount_calculated'] = len(df)
         self.stats['indicators_created'] = debit_count + credit_count
         
+        return df
+    
+    def create_indicator_from_debit_credit_pattern(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        Tiene amount, debit_amount, credit_amount pero no indicator
+        """
+        
+        df['debit_credit_indicator'] = ''
+        
+        # D si debit != 0 y credit == 0
+        mask_debit = (df['debit_amount'] != 0) & (df['credit_amount'] == 0)
+        df.loc[mask_debit, 'debit_credit_indicator'] = 'D'
+        
+        # H si debit == 0 y credit != 0  
+        mask_credit = (df['debit_amount'] == 0) & (df['credit_amount'] != 0)
+        df.loc[mask_credit, 'debit_credit_indicator'] = 'H'
+        
+        debit_count = mask_debit.sum()
+        credit_count = mask_credit.sum()
+        
+        
+        self.stats['indicators_created'] = debit_count + credit_count
         return df
 
     def amount_only_create_indicator(self, df: pd.DataFrame) -> pd.DataFrame:
