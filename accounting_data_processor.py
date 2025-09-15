@@ -394,7 +394,7 @@ class AccountingDataProcessor:
         df['debit_credit_indicator'] = ''
         
         # D si debit != 0 y credit == 0
-        mask_debit = (df['debit_amount'] != 0) & (df['credit_amount'] == 0)
+        mask_debit = (df['credit_amount'] == 0)
         df.loc[mask_debit, 'debit_credit_indicator'] = 'D'
         
         # H si debit == 0 y credit > 0
@@ -423,7 +423,7 @@ class AccountingDataProcessor:
         df['debit_credit_indicator'] = ''
         
         # D si debit != 0 y credit == 0
-        mask_debit = (df['debit_amount'] != 0) & (df['credit_amount'] == 0)
+        mask_debit =  (df['credit_amount'] == 0)
         df.loc[mask_debit, 'debit_credit_indicator'] = 'D'
         
         # H si debit == 0 y credit != 0  
